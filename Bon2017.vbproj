@@ -1,0 +1,927 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C9C10D52-770A-46A2-87EA-AEF0E45DAB95}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Bon2017.My.MyApplication</StartupObject>
+    <RootNamespace>Bon2017</RootNamespace>
+    <AssemblyName>Bon2017</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Temp\bon2017_local\</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Bon2017.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Bon2017.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F2425E09D86C205F6630E37F884164D7C2A820E9</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Bon2017_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.5840.25917, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\System.Linq.Dynamic.1.0.6\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BON.designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BON.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="BONDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BONDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BONDataSet.vb">
+      <DependentUpon>BONDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectDB.Designer.vb">
+      <DependentUpon>ConnectDB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectDB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAOms.Designer.vb">
+      <DependentUpon>EditAOms.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditAOms.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditBon.Designer.vb">
+      <DependentUpon>EditBon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditBon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditBonl.Designer.vb">
+      <DependentUpon>EditBonl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditBonl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditBTW.Designer.vb">
+      <DependentUpon>EditBTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditBTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCode.Designer.vb">
+      <DependentUpon>EditCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCodgp.Designer.vb">
+      <DependentUpon>EditCodgp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditCodgp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDies.Designer.vb">
+      <DependentUpon>EditDies.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditDies.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditEigenaar.Designer.vb">
+      <DependentUpon>EditEigenaar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditEigenaar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditFAKT.Designer.vb">
+      <DependentUpon>EditFAKT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditFAKT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditKlant.Designer.vb">
+      <DependentUpon>EditKlant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditKlant.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditLEV.Designer.vb">
+      <DependentUpon>EditLEV.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditLEV.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editlogin.Designer.vb">
+      <DependentUpon>Editlogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Editlogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditOaanm.Designer.vb">
+      <DependentUpon>EditOaanm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditOaanm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditParameters.Designer.vb">
+      <DependentUpon>EditParameters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditParameters.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPER.Designer.vb">
+      <DependentUpon>EditPER.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditPER.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditStock.Designer.vb">
+      <DependentUpon>EditStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GrpBONL.Designer.vb">
+      <DependentUpon>GrpBONL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GrpBONL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module_BON.vb" />
+    <Compile Include="Module_Factuur.vb" />
+    <Compile Include="FrmBONE.Designer.vb">
+      <DependentUpon>FrmBONE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBONE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetTime.Designer.vb">
+      <DependentUpon>GetTime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GetTime.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logon.Designer.vb">
+      <DependentUpon>Logon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Logon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIbon.Designer.vb">
+      <DependentUpon>MDIbon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MDIbon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module_dim.vb" />
+    <Compile Include="Module_Display.vb" />
+    <Compile Include="Module_things.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PositionMsgbox.vb" />
+    <Compile Include="SearchAOms.Designer.vb">
+      <DependentUpon>SearchAOms.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchAOms.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchBON.Designer.vb">
+      <DependentUpon>SearchBON.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchBON.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchBONL.Designer.vb">
+      <DependentUpon>SearchBONL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchBONL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchBTW.Designer.vb">
+      <DependentUpon>SearchBTW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchBTW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchCode.Designer.vb">
+      <DependentUpon>SearchCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchCodgp.Designer.vb">
+      <DependentUpon>SearchCodgp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchCodgp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchDEL.Designer.vb">
+      <DependentUpon>SearchDEL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchDEL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchDies.Designer.vb">
+      <DependentUpon>SearchDies.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchDies.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchEigenaar.Designer.vb">
+      <DependentUpon>SearchEigenaar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchEigenaar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchFAKT.Designer.vb">
+      <DependentUpon>SearchFAKT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFAKT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchFAKTL.Designer.vb">
+      <DependentUpon>SearchFAKTL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFAKTL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchKlant.Designer.vb">
+      <DependentUpon>SearchKlant.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchKlant.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchLEV.Designer.vb">
+      <DependentUpon>SearchLEV.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchLEV.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Searchlogin.Designer.vb">
+      <DependentUpon>Searchlogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Searchlogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchOaanm.Designer.vb">
+      <DependentUpon>SearchOaanm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchOaanm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchPER.Designer.vb">
+      <DependentUpon>SearchPER.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPER.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchStock.Designer.vb">
+      <DependentUpon>SearchStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchStockHist.Designer.vb">
+      <DependentUpon>SearchStockHist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchStockHist.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.UserOverride.vb" />
+    <Compile Include="StartSQL.Designer.vb">
+      <DependentUpon>StartSQL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StartSQL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EditAOms.resx">
+      <DependentUpon>EditAOms.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditBon.resx">
+      <DependentUpon>EditBon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditBonl.resx">
+      <DependentUpon>EditBonl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditBTW.resx">
+      <DependentUpon>EditBTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCode.resx">
+      <DependentUpon>EditCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCodgp.resx">
+      <DependentUpon>EditCodgp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditDies.resx">
+      <DependentUpon>EditDies.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditEigenaar.resx">
+      <DependentUpon>EditEigenaar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditFAKT.resx">
+      <DependentUpon>EditFAKT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditKlant.resx">
+      <DependentUpon>EditKlant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditLEV.resx">
+      <DependentUpon>EditLEV.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editlogin.resx">
+      <DependentUpon>Editlogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditOaanm.resx">
+      <DependentUpon>EditOaanm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditParameters.resx">
+      <DependentUpon>EditParameters.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditPER.resx">
+      <DependentUpon>EditPER.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditStock.resx">
+      <DependentUpon>EditStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBONE.resx">
+      <DependentUpon>FrmBONE.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GetTime.resx">
+      <DependentUpon>GetTime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GrpBONL.resx">
+      <DependentUpon>GrpBONL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchAOms.resx">
+      <DependentUpon>SearchAOms.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchBON.resx">
+      <DependentUpon>SearchBON.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchBONL.resx">
+      <DependentUpon>SearchBONL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchBTW.resx">
+      <DependentUpon>SearchBTW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchCode.resx">
+      <DependentUpon>SearchCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchCodgp.resx">
+      <DependentUpon>SearchCodgp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchDEL.resx">
+      <DependentUpon>SearchDEL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchDies.resx">
+      <DependentUpon>SearchDies.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchEigenaar.resx">
+      <DependentUpon>SearchEigenaar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchFAKT.resx">
+      <DependentUpon>SearchFAKT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchFAKTL.resx">
+      <DependentUpon>SearchFAKTL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchKlant.resx">
+      <DependentUpon>SearchKlant.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchLEV.resx">
+      <DependentUpon>SearchLEV.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Searchlogin.resx">
+      <DependentUpon>Searchlogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchOaanm.resx">
+      <DependentUpon>SearchOaanm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchPER.resx">
+      <DependentUpon>SearchPER.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchStock.resx">
+      <DependentUpon>SearchStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchStockHist.resx">
+      <DependentUpon>SearchStockHist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartSQL.resx">
+      <DependentUpon>StartSQL.vb</DependentUpon>
+    </EmbeddedResource>
+    <None Include="BON.dbml.layout">
+      <DependentUpon>BON.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="ConnectDB.resx">
+      <DependentUpon>ConnectDB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logon.resx">
+      <DependentUpon>Logon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIbon.resx">
+      <DependentUpon>MDIbon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="BONDataSet.xsc">
+      <DependentUpon>BONDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BONDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BONDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BONDataSet.xss">
+      <DependentUpon>BONDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BON.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>BON.designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\099-floppy-disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\099-floppy-disk1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adresbook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attachement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\award.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\battery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\briefcase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bulb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calculator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chartpie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\connected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\connection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\container.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\do.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\documents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dollar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\firstaid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globefancy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\headphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\id.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\itemadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\itemdelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\itemedit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\itemnext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\linksrond.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lookup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\microphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\multiagent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\network.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\processing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recycle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recycleempty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\scissor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shutdown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userfemale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usermale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wifi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yum2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yum3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yum4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yum5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logojacky.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

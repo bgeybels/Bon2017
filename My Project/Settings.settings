@@ -1,0 +1,74 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="BONConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-AGFTUAJ;Initial Catalog=BON;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DESKTOP-AGFTUAJ;Initial Catalog=BON;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="fltbonjr" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2016</Value>
+    </Setting>
+    <Setting Name="fltbontbw" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="BONConnectionStringUserOverride" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="GRIDrowseven" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#ffffb3</Value>
+    </Setting>
+    <Setting Name="GRIDrowsodd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#ffff66</Value>
+    </Setting>
+    <Setting Name="GRIDforecoloreven" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#1e47fc</Value>
+    </Setting>
+    <Setting Name="GRIDforecolorodd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#000000</Value>
+    </Setting>
+    <Setting Name="DISPtextboxbackcolor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#ffffff</Value>
+    </Setting>
+    <Setting Name="UserLogon" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DISPtextboxerror" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#ff4500</Value>
+    </Setting>
+    <Setting Name="GRIDcellnotused" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#f49d5a</Value>
+    </Setting>
+    <Setting Name="STOCKupdateclosed" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="STOCKstandaardtrans" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Inventaris 2016</Value>
+    </Setting>
+    <Setting Name="fltbondel" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="fltbonvs" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="fltbongst" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="fltbonuv" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="fltbonfnr" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="fltboncnr" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FirstFNR" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

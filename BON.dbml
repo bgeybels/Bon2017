@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BON" Class="BONDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-AGFTUAJ;Initial Catalog=BON;Integrated Security=True" SettingsObjectName="Bon2017.My.MySettings" SettingsPropertyName="BONConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BONL" Member="BONLs">
+    <Type Name="BONL">
+      <Column Name="BONJR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BONNR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BONLVNR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Volgorde" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Datum" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BWStraat" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BWAdres" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Aantal" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="BONEenhp" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BNRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ANRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CNRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BONEenhpbu" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="diesel" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[select]" Member="select" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="omstijd" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="EXTNR" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="DNRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="memo" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PERNM" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="OAANMNM" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="levering" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="usercre" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="datecre" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="BONL_COD" Member="CODs" ThisKey="CNRQ" OtherKey="CNRQ" Type="COD" />
+      <Association Name="BONL_BTW" Member="BTWs" ThisKey="BNRQ" OtherKey="BTW" Type="BTW" />
+      <Association Name="BONL_AOms" Member="AOms" ThisKey="ANRQ" OtherKey="ANRQ" Type="AOms" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Login" Member="Logins">
+    <Type Name="Login">
+      <Column Name="nrq" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="naam" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="pwd" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserNrq" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CurrentLogon" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="upd" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="del" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="new" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.COD" Member="CODs">
+    <Type Name="COD">
+      <Column Name="CNRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CGNRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="OmsCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OmsLong" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Eenhp" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EenhpO" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Aankp" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ANRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="milieu" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ChDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Perc" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="USDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="sort" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Besteld" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Minstock" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Maxstock" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Stock" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="OStock" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Plmagazijn" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="notstock" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="lupdate" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="PERNM" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[select]" Member="select" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LEV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="gratis" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OAANMNM" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="COD_CODGP" Member="CODGPs" ThisKey="CGNRQ" OtherKey="CGNRQ" Type="CODGP" />
+      <Association Name="COD_AOms" Member="AOms" ThisKey="ANRQ" OtherKey="ANRQ" Type="AOms" />
+      <Association Name="BONL_COD" Member="BONL" ThisKey="CNRQ" OtherKey="CNRQ" Type="BONL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CODGP" Member="CODGPs">
+    <Type Name="CODGP">
+      <Column Name="CGNRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OmsGroep" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="rondaf" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="nostock" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="procent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="noinvent" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dies" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="COD_CODGP" Member="COD" ThisKey="CGNRQ" OtherKey="CGNRQ" Type="COD" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BTW" Member="BTWs">
+    <Type Name="BTW">
+      <Column Name="BNRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BTW" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OmsBTW" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="nieuwbon" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="BONL_BTW" Member="BONL" ThisKey="BTW" OtherKey="BNRQ" Type="BONL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AOms" Member="AOms">
+    <Type Name="AOms">
+      <Column Name="ANRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Oms" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdateao" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="BONL_AOms" Member="BONL" ThisKey="ANRQ" OtherKey="ANRQ" Type="BONL" IsForeignKey="true" />
+      <Association Name="COD_AOms" Member="COD" ThisKey="ANRQ" OtherKey="ANRQ" Type="COD" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EIGENAAR" Member="EIGENAARs">
+    <Type Name="EIGENAAR">
+      <Column Name="ENRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EFirma" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ENaam" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EEMail" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EStraat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EAdres" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ETel" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="EGSM" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="EFax" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="EBTWNr" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="EREKNR" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PER" Member="PERs">
+    <Type Name="PER">
+      <Column Name="PERNRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PERNM" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="PERTEL" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PERGSM" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PERGSMW" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PERSORT" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="DIENST" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OAANM" Member="OAANMs">
+    <Type Name="OAANM">
+      <Column Name="OAANMNRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OAANMNM" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DIES" Member="DIES">
+    <Type Name="DIES">
+      <Column Name="DNRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DIES" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="OmsDIES" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="actief" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BON" Member="BONs">
+    <Type Name="BON">
+      <Column Name="BONJR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BONNR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="KNRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ENRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DatumAanvang" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="OmsBon" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Particulier" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Betaald" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DatumBetaald" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="printed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="tav" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="fok" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="fnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="del" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="tbw" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="gstk" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="vs" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="dvan" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="dtot" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="cnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="cok" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="uv" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="bon_type" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KLANT" Member="KLANTs">
+    <Type Name="KLANT">
+      <Column Name="KNRQ" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="KNaam" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Ktav" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="KEMail" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="KStraat" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="KAdres" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="KTel" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="KGSM" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="KFax" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="KWStraat" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="KWAdres" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="KBTWNr" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ConvIN_NR" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="USDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.STOCK" Member="STOCKs">
+    <Type Name="STOCK">
+      <Column Name="STID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="stcgnrq" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="stcnrq" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="stcode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="stomscode" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="stomsgroep" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="strans" Type="System.String" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="saantal" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="soms" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="sdat" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LEV" Member="LEVs">
+    <Type Name="LEV">
+      <Column Name="LEVnrq" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LEVnaam" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FAKT" Member="FAKTs">
+    <Type Name="FAKT">
+      <Column Name="JAAR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DC" Type="System.String" DbType="NVarChar(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FNR" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KNaam" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Datin" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Werf" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tbedrag" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ENRQ" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KSTRAAT" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="KADRES" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="WJAAR" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dvan" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="dtot" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="teenhp" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="tbtw" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="bon_type" Type="System.Char" DbType="NChar(1)" CanBeNull="true" />
+      <Column Name="fakt_ncalc" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FAKTL" Member="FAKTLs">
+    <Type Name="FAKTL">
+      <Column Name="FJAAR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FNR" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DC" Type="System.String" DbType="NVarChar(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FAKTL" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DATUM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BWSTRAAT" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BWADRES" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AANTAL" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="EENHP" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BTW" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AOMS" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="CODE" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="OMSCODE" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GROEP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="diesel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DEL" Member="DELs">
+    <Type Name="DEL">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="usernrq" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="delWO" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="chdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="part" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="delinfo" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="yearin" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
