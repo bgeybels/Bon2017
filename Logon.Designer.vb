@@ -40,6 +40,7 @@ Partial Class Logon
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.DatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LBLinfo = New System.Windows.Forms.Label()
+        Me.CB_updatestock = New System.Windows.Forms.CheckBox()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -55,7 +56,7 @@ Partial Class Logon
         '
         'UsernameLabel
         '
-        Me.UsernameLabel.Location = New System.Drawing.Point(234, 27)
+        Me.UsernameLabel.Location = New System.Drawing.Point(234, 12)
         Me.UsernameLabel.Name = "UsernameLabel"
         Me.UsernameLabel.Size = New System.Drawing.Size(220, 23)
         Me.UsernameLabel.TabIndex = 0
@@ -64,7 +65,7 @@ Partial Class Logon
         '
         'PasswordLabel
         '
-        Me.PasswordLabel.Location = New System.Drawing.Point(233, 70)
+        Me.PasswordLabel.Location = New System.Drawing.Point(233, 55)
         Me.PasswordLabel.Name = "PasswordLabel"
         Me.PasswordLabel.Size = New System.Drawing.Size(220, 23)
         Me.PasswordLabel.TabIndex = 2
@@ -73,14 +74,14 @@ Partial Class Logon
         '
         'UsernameTextBox
         '
-        Me.UsernameTextBox.Location = New System.Drawing.Point(236, 47)
+        Me.UsernameTextBox.Location = New System.Drawing.Point(236, 32)
         Me.UsernameTextBox.Name = "UsernameTextBox"
         Me.UsernameTextBox.Size = New System.Drawing.Size(220, 20)
         Me.UsernameTextBox.TabIndex = 1
         '
         'PasswordTextBox
         '
-        Me.PasswordTextBox.Location = New System.Drawing.Point(235, 90)
+        Me.PasswordTextBox.Location = New System.Drawing.Point(235, 75)
         Me.PasswordTextBox.Name = "PasswordTextBox"
         Me.PasswordTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.PasswordTextBox.Size = New System.Drawing.Size(220, 20)
@@ -99,7 +100,7 @@ Partial Class Logon
         '
         'DTPsys
         '
-        Me.DTPsys.Location = New System.Drawing.Point(235, 125)
+        Me.DTPsys.Location = New System.Drawing.Point(235, 110)
         Me.DTPsys.Name = "DTPsys"
         Me.DTPsys.Size = New System.Drawing.Size(218, 20)
         Me.DTPsys.TabIndex = 7
@@ -114,7 +115,7 @@ Partial Class Logon
         'DatabaseToolStripMenuItem
         '
         Me.DatabaseToolStripMenuItem.Name = "DatabaseToolStripMenuItem"
-        Me.DatabaseToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.DatabaseToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.DatabaseToolStripMenuItem.Text = "Database"
         '
         'LBLinfo
@@ -127,6 +128,22 @@ Partial Class Logon
         Me.LBLinfo.TabIndex = 8
         Me.LBLinfo.Text = "Label1"
         '
+        'CB_updatestock
+        '
+        Me.CB_updatestock.AutoSize = True
+        Me.CB_updatestock.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CB_updatestock.Checked = True
+        Me.CB_updatestock.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CB_updatestock.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CB_updatestock.ForeColor = System.Drawing.Color.Red
+        Me.CB_updatestock.Location = New System.Drawing.Point(337, 139)
+        Me.CB_updatestock.Name = "CB_updatestock"
+        Me.CB_updatestock.Size = New System.Drawing.Size(119, 19)
+        Me.CB_updatestock.TabIndex = 85
+        Me.CB_updatestock.Text = "Update Stock?"
+        Me.CB_updatestock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.CB_updatestock.UseVisualStyleBackColor = True
+        '
         'Logon
         '
         Me.AcceptButton = Me.OK
@@ -135,6 +152,7 @@ Partial Class Logon
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(466, 219)
         Me.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.Controls.Add(Me.CB_updatestock)
         Me.Controls.Add(Me.LBLinfo)
         Me.Controls.Add(Me.DTPsys)
         Me.Controls.Add(Me.OK)
@@ -160,4 +178,5 @@ Partial Class Logon
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents DatabaseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LBLinfo As Label
+    Friend WithEvents CB_updatestock As CheckBox
 End Class

@@ -49,7 +49,7 @@ Partial Class EditAOms
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'TSBexit
-
+        '
         Me.TSBexit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.TSBexit.Image = Global.Bon2017.My.Resources.Resources.home
         Me.TSBexit.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -58,7 +58,7 @@ Partial Class EditAOms
         Me.TSBexit.Text = "Exit"
         '
         'ToolStripLabel4
-
+        '
         Me.ToolStripLabel4.Name = "ToolStripLabel4"
         Me.ToolStripLabel4.Size = New System.Drawing.Size(16, 28)
         Me.ToolStripLabel4.Text = "   "
@@ -121,7 +121,7 @@ Partial Class EditAOms
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "EditAOms"
-        Me.Text = "Volume: Bewerken"
+        Me.Text = "Eenheden: Bewerken"
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)

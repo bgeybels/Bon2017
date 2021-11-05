@@ -31,46 +31,29 @@ Partial Class EditStock
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.DGstock = New System.Windows.Forms.DataGridView()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
-        Me.DGbon = New System.Windows.Forms.DataGridView()
-        Me.GrBFilters = New System.Windows.Forms.GroupBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.FLTwerf = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.FltCBfnr = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.FltCBtbw = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Fltklant = New System.Windows.Forms.TextBox()
-        Me.Fltbonjr = New System.Windows.Forms.NumericUpDown()
-        Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
-        Me.DGlev = New System.Windows.Forms.DataGridView()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Fltlevnaam = New System.Windows.Forms.TextBox()
+        Me.TBResultCODE = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.CB_OudeStock = New System.Windows.Forms.CheckBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TBtrans = New System.Windows.Forms.TextBox()
         Me.TBaantal = New System.Windows.Forms.NumericUpDown()
+        Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
+        Me.DGlev = New System.Windows.Forms.DataGridView()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Fltlevnaam = New System.Windows.Forms.TextBox()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DGstock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel2.SuspendLayout()
-        Me.TableLayoutPanel3.SuspendLayout()
-        Me.TableLayoutPanel5.SuspendLayout()
-        CType(Me.DGbon, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GrBFilters.SuspendLayout()
-        CType(Me.Fltbonjr, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        CType(Me.TBaantal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.TableLayoutPanel6.SuspendLayout()
         CType(Me.DGlev, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        CType(Me.TBaantal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -157,241 +140,31 @@ Partial Class EditStock
         Me.TableLayoutPanel2.AutoSize = True
         Me.TableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.TableLayoutPanel2.ColumnCount = 1
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel3, 0, 1)
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Controls.Add(Me.TBResultCODE, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupBox1, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel4, 0, 2)
-        Me.TableLayoutPanel2.Controls.Add(Me.GroupBox1, 0, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 3
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.85512!))
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.14487!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 185.0!))
         Me.TableLayoutPanel2.Size = New System.Drawing.Size(794, 469)
         Me.TableLayoutPanel2.TabIndex = 1
         '
-        'TableLayoutPanel3
+        'TBResultCODE
         '
-        Me.TableLayoutPanel3.AutoSize = True
-        Me.TableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel3.ColumnCount = 2
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.874153!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.12585!))
-        Me.TableLayoutPanel3.Controls.Add(Me.TableLayoutPanel5, 1, 0)
-        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 79)
-        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-        Me.TableLayoutPanel3.RowCount = 1
-        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(788, 201)
-        Me.TableLayoutPanel3.TabIndex = 0
-        '
-        'TableLayoutPanel5
-        '
-        Me.TableLayoutPanel5.AutoSize = True
-        Me.TableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel5.ColumnCount = 1
-        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel5.Controls.Add(Me.DGbon, 0, 1)
-        Me.TableLayoutPanel5.Controls.Add(Me.GrBFilters, 0, 0)
-        Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel5.Location = New System.Drawing.Point(80, 3)
-        Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
-        Me.TableLayoutPanel5.RowCount = 2
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.02564!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.97436!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(705, 195)
-        Me.TableLayoutPanel5.TabIndex = 0
-        '
-        'DGbon
-        '
-        Me.DGbon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGbon.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DGbon.Location = New System.Drawing.Point(3, 43)
-        Me.DGbon.Name = "DGbon"
-        Me.DGbon.Size = New System.Drawing.Size(699, 149)
-        Me.DGbon.TabIndex = 0
-        '
-        'GrBFilters
-        '
-        Me.GrBFilters.AutoSize = True
-        Me.GrBFilters.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GrBFilters.Controls.Add(Me.Label5)
-        Me.GrBFilters.Controls.Add(Me.FLTwerf)
-        Me.GrBFilters.Controls.Add(Me.Label10)
-        Me.GrBFilters.Controls.Add(Me.FltCBfnr)
-        Me.GrBFilters.Controls.Add(Me.Label4)
-        Me.GrBFilters.Controls.Add(Me.FltCBtbw)
-        Me.GrBFilters.Controls.Add(Me.Label1)
-        Me.GrBFilters.Controls.Add(Me.Fltklant)
-        Me.GrBFilters.Controls.Add(Me.Fltbonjr)
-        Me.GrBFilters.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GrBFilters.Location = New System.Drawing.Point(3, 3)
-        Me.GrBFilters.Name = "GrBFilters"
-        Me.GrBFilters.Size = New System.Drawing.Size(699, 34)
-        Me.GrBFilters.TabIndex = 1
-        Me.GrBFilters.TabStop = False
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(460, 12)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(30, 13)
-        Me.Label5.TabIndex = 34
-        Me.Label5.Text = "Werf"
-        '
-        'FLTwerf
-        '
-        Me.FLTwerf.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FLTwerf.Location = New System.Drawing.Point(497, 8)
-        Me.FLTwerf.Name = "FLTwerf"
-        Me.FLTwerf.Size = New System.Drawing.Size(66, 20)
-        Me.FLTwerf.TabIndex = 33
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(214, 11)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(24, 13)
-        Me.Label10.TabIndex = 32
-        Me.Label10.Text = "FNr"
-        '
-        'FltCBfnr
-        '
-        Me.FltCBfnr.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FltCBfnr.FormattingEnabled = True
-        Me.FltCBfnr.Location = New System.Drawing.Point(243, 7)
-        Me.FltCBfnr.Name = "FltCBfnr"
-        Me.FltCBfnr.Size = New System.Drawing.Size(64, 21)
-        Me.FltCBfnr.TabIndex = 31
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(337, 12)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(32, 13)
-        Me.Label4.TabIndex = 30
-        Me.Label4.Text = "TBW"
-        '
-        'FltCBtbw
-        '
-        Me.FltCBtbw.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FltCBtbw.FormattingEnabled = True
-        Me.FltCBtbw.Location = New System.Drawing.Point(375, 7)
-        Me.FltCBtbw.Name = "FltCBtbw"
-        Me.FltCBtbw.Size = New System.Drawing.Size(64, 21)
-        Me.FltCBtbw.TabIndex = 29
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(79, 11)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(31, 13)
-        Me.Label1.TabIndex = 28
-        Me.Label1.Text = "Klant"
-        '
-        'Fltklant
-        '
-        Me.Fltklant.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltklant.Location = New System.Drawing.Point(116, 7)
-        Me.Fltklant.Name = "Fltklant"
-        Me.Fltklant.Size = New System.Drawing.Size(66, 20)
-        Me.Fltklant.TabIndex = 27
-        '
-        'Fltbonjr
-        '
-        Me.Fltbonjr.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltbonjr.Location = New System.Drawing.Point(2, 7)
-        Me.Fltbonjr.Maximum = New Decimal(New Integer() {2090, 0, 0, 0})
-        Me.Fltbonjr.Minimum = New Decimal(New Integer() {1980, 0, 0, 0})
-        Me.Fltbonjr.Name = "Fltbonjr"
-        Me.Fltbonjr.Size = New System.Drawing.Size(56, 20)
-        Me.Fltbonjr.TabIndex = 26
-        Me.Fltbonjr.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.Fltbonjr.Value = New Decimal(New Integer() {2012, 0, 0, 0})
-        '
-        'TableLayoutPanel4
-        '
-        Me.TableLayoutPanel4.AutoSize = True
-        Me.TableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel4.ColumnCount = 2
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.874153!))
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.12585!))
-        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel6, 1, 0)
-        Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 286)
-        Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
-        Me.TableLayoutPanel4.RowCount = 1
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(788, 180)
-        Me.TableLayoutPanel4.TabIndex = 1
-        '
-        'TableLayoutPanel6
-        '
-        Me.TableLayoutPanel6.AutoSize = True
-        Me.TableLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel6.ColumnCount = 1
-        Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel6.Controls.Add(Me.DGlev, 0, 1)
-        Me.TableLayoutPanel6.Controls.Add(Me.GroupBox3, 0, 0)
-        Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel6.Location = New System.Drawing.Point(80, 3)
-        Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
-        Me.TableLayoutPanel6.RowCount = 2
-        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.54023!))
-        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.45977!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(705, 174)
-        Me.TableLayoutPanel6.TabIndex = 0
-        '
-        'DGlev
-        '
-        Me.DGlev.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGlev.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DGlev.Location = New System.Drawing.Point(3, 36)
-        Me.DGlev.Name = "DGlev"
-        Me.DGlev.Size = New System.Drawing.Size(699, 135)
-        Me.DGlev.TabIndex = 0
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.AutoSize = True
-        Me.GroupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GroupBox3.Controls.Add(Me.Label2)
-        Me.GroupBox3.Controls.Add(Me.Fltlevnaam)
-        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(699, 27)
-        Me.GroupBox3.TabIndex = 1
-        Me.GroupBox3.TabStop = False
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(-1, 5)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(35, 13)
-        Me.Label2.TabIndex = 30
-        Me.Label2.Text = "Naam"
-        '
-        'Fltlevnaam
-        '
-        Me.Fltlevnaam.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltlevnaam.Location = New System.Drawing.Point(36, 1)
-        Me.Fltlevnaam.Name = "Fltlevnaam"
-        Me.Fltlevnaam.Size = New System.Drawing.Size(94, 20)
-        Me.Fltlevnaam.TabIndex = 29
+        Me.TBResultCODE.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.TBResultCODE.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TBResultCODE.Enabled = False
+        Me.TBResultCODE.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TBResultCODE.Location = New System.Drawing.Point(3, 3)
+        Me.TBResultCODE.Multiline = True
+        Me.TBResultCODE.Name = "TBResultCODE"
+        Me.TBResultCODE.Size = New System.Drawing.Size(788, 94)
+        Me.TBResultCODE.TabIndex = 17
         '
         'GroupBox1
         '
@@ -403,10 +176,10 @@ Partial Class EditStock
         Me.GroupBox1.Controls.Add(Me.TBtrans)
         Me.GroupBox1.Controls.Add(Me.TBaantal)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 103)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(788, 70)
-        Me.GroupBox1.TabIndex = 2
+        Me.GroupBox1.Size = New System.Drawing.Size(788, 86)
+        Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         '
         'Label3
@@ -461,6 +234,78 @@ Partial Class EditStock
         Me.TBaantal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.TBaantal.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
+        'TableLayoutPanel4
+        '
+        Me.TableLayoutPanel4.AutoSize = True
+        Me.TableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel4.ColumnCount = 2
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.874153!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.12585!))
+        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel6, 1, 0)
+        Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 195)
+        Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+        Me.TableLayoutPanel4.RowCount = 1
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(788, 271)
+        Me.TableLayoutPanel4.TabIndex = 1
+        '
+        'TableLayoutPanel6
+        '
+        Me.TableLayoutPanel6.AutoSize = True
+        Me.TableLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel6.ColumnCount = 1
+        Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel6.Controls.Add(Me.DGlev, 0, 1)
+        Me.TableLayoutPanel6.Controls.Add(Me.GroupBox3, 0, 0)
+        Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel6.Location = New System.Drawing.Point(80, 3)
+        Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
+        Me.TableLayoutPanel6.RowCount = 2
+        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.54023!))
+        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.45977!))
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(705, 265)
+        Me.TableLayoutPanel6.TabIndex = 0
+        '
+        'DGlev
+        '
+        Me.DGlev.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGlev.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DGlev.Location = New System.Drawing.Point(3, 54)
+        Me.DGlev.Name = "DGlev"
+        Me.DGlev.Size = New System.Drawing.Size(699, 208)
+        Me.DGlev.TabIndex = 0
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.AutoSize = True
+        Me.GroupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBox3.Controls.Add(Me.Label2)
+        Me.GroupBox3.Controls.Add(Me.Fltlevnaam)
+        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(699, 45)
+        Me.GroupBox3.TabIndex = 1
+        Me.GroupBox3.TabStop = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(-1, 5)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(35, 13)
+        Me.Label2.TabIndex = 30
+        Me.Label2.Text = "Naam"
+        '
+        'Fltlevnaam
+        '
+        Me.Fltlevnaam.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Fltlevnaam.Location = New System.Drawing.Point(36, 1)
+        Me.Fltlevnaam.Name = "Fltlevnaam"
+        Me.Fltlevnaam.Size = New System.Drawing.Size(94, 20)
+        Me.Fltlevnaam.TabIndex = 29
+        '
         'EditStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -477,14 +322,9 @@ Partial Class EditStock
         CType(Me.DGstock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.TableLayoutPanel2.PerformLayout()
-        Me.TableLayoutPanel3.ResumeLayout(False)
-        Me.TableLayoutPanel3.PerformLayout()
-        Me.TableLayoutPanel5.ResumeLayout(False)
-        Me.TableLayoutPanel5.PerformLayout()
-        CType(Me.DGbon, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GrBFilters.ResumeLayout(False)
-        Me.GrBFilters.PerformLayout()
-        CType(Me.Fltbonjr, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        CType(Me.TBaantal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.TableLayoutPanel4.PerformLayout()
         Me.TableLayoutPanel6.ResumeLayout(False)
@@ -492,9 +332,6 @@ Partial Class EditStock
         CType(Me.DGlev, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        CType(Me.TBaantal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -506,22 +343,7 @@ Partial Class EditStock
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents DGstock As DataGridView
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
-    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents TBaantal As NumericUpDown
-    Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
-    Friend WithEvents DGbon As DataGridView
-    Friend WithEvents Label12 As Label
-    Friend WithEvents TBtrans As TextBox
-    Friend WithEvents GrBFilters As GroupBox
-    Friend WithEvents Fltbonjr As NumericUpDown
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Fltklant As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents FltCBtbw As ComboBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents FltCBfnr As ComboBox
     Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
     Friend WithEvents DGlev As DataGridView
     Friend WithEvents GroupBox3 As GroupBox
@@ -530,8 +352,11 @@ Partial Class EditStock
     Friend WithEvents TSBplus As ToolStripButton
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents TSBmin As ToolStripButton
-    Friend WithEvents CB_OudeStock As CheckBox
+    Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents FLTwerf As TextBox
+    Friend WithEvents CB_OudeStock As CheckBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TBtrans As TextBox
+    Friend WithEvents TBaantal As NumericUpDown
+    Friend WithEvents TBResultCODE As TextBox
 End Class

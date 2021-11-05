@@ -63,7 +63,7 @@ Partial Class SearchBTW
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBnew, Me.TSBedit, Me.ToolStripLabel2, Me.ToolStripLabel5, Me.TSBdelete, Me.ToolStripLabel3, Me.TSBexport})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1085, 31)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1235, 31)
         Me.ToolStrip1.TabIndex = 5
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -178,17 +178,18 @@ Partial Class SearchBTW
         '
         Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.Controls.Add(Me.GroupFilter, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
+        Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1085, 394)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 394.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1235, 394)
         Me.TableLayoutPanel1.TabIndex = 7
         '
         'GroupFilter
@@ -203,14 +204,14 @@ Partial Class SearchBTW
         Me.GroupFilter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupFilter.Location = New System.Drawing.Point(3, 3)
         Me.GroupFilter.Name = "GroupFilter"
-        Me.GroupFilter.Size = New System.Drawing.Size(1079, 42)
-        Me.GroupFilter.TabIndex = 1
+        Me.GroupFilter.Size = New System.Drawing.Size(134, 388)
+        Me.GroupFilter.TabIndex = 3
         Me.GroupFilter.TabStop = False
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(179, 19)
+        Me.Label5.Location = New System.Drawing.Point(7, 80)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(26, 13)
         Me.Label5.TabIndex = 21
@@ -219,7 +220,7 @@ Partial Class SearchBTW
         'Fltusernrq
         '
         Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltusernrq.Location = New System.Drawing.Point(216, 15)
+        Me.Fltusernrq.Location = New System.Drawing.Point(62, 75)
         Me.Fltusernrq.Name = "Fltusernrq"
         Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
         Me.Fltusernrq.TabIndex = 14
@@ -227,7 +228,7 @@ Partial Class SearchBTW
         'BTN_FilterReset
         '
         Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
-        Me.BTN_FilterReset.Location = New System.Drawing.Point(0, 7)
+        Me.BTN_FilterReset.Location = New System.Drawing.Point(93, 8)
         Me.BTN_FilterReset.Name = "BTN_FilterReset"
         Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
         Me.BTN_FilterReset.TabIndex = 17
@@ -237,7 +238,7 @@ Partial Class SearchBTW
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(44, 18)
+        Me.Label2.Location = New System.Drawing.Point(7, 52)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
         Me.Label2.TabIndex = 14
@@ -246,7 +247,7 @@ Partial Class SearchBTW
         'Fltomsbtw
         '
         Me.Fltomsbtw.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltomsbtw.Location = New System.Drawing.Point(103, 15)
+        Me.Fltomsbtw.Location = New System.Drawing.Point(62, 49)
         Me.Fltomsbtw.Name = "Fltomsbtw"
         Me.Fltomsbtw.Size = New System.Drawing.Size(66, 20)
         Me.Fltomsbtw.TabIndex = 11
@@ -257,9 +258,9 @@ Partial Class SearchBTW
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBox1.Controls.Add(Me.DGREC)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 51)
+        Me.GroupBox1.Location = New System.Drawing.Point(143, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1079, 340)
+        Me.GroupBox1.Size = New System.Drawing.Size(1089, 388)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         '
@@ -278,7 +279,7 @@ Partial Class SearchBTW
         Me.DGREC.ReadOnly = True
         Me.DGREC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGREC.Size = New System.Drawing.Size(1073, 321)
+        Me.DGREC.Size = New System.Drawing.Size(1083, 369)
         Me.DGREC.TabIndex = 3
         Me.DGREC.TabStop = False
         '
@@ -286,7 +287,7 @@ Partial Class SearchBTW
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1085, 425)
+        Me.ClientSize = New System.Drawing.Size(1235, 425)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "SearchBTW"

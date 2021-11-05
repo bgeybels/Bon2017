@@ -178,16 +178,17 @@ Partial Class SearchOaanm
         '
         Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.Controls.Add(Me.GroupFilter, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
+        Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 371.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(910, 371)
         Me.TableLayoutPanel1.TabIndex = 9
         '
@@ -203,14 +204,14 @@ Partial Class SearchOaanm
         Me.GroupFilter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupFilter.Location = New System.Drawing.Point(3, 3)
         Me.GroupFilter.Name = "GroupFilter"
-        Me.GroupFilter.Size = New System.Drawing.Size(904, 42)
-        Me.GroupFilter.TabIndex = 1
+        Me.GroupFilter.Size = New System.Drawing.Size(165, 365)
+        Me.GroupFilter.TabIndex = 3
         Me.GroupFilter.TabStop = False
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(218, 19)
+        Me.Label5.Location = New System.Drawing.Point(56, 80)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(26, 13)
         Me.Label5.TabIndex = 21
@@ -219,7 +220,7 @@ Partial Class SearchOaanm
         'Fltusernrq
         '
         Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltusernrq.Location = New System.Drawing.Point(255, 15)
+        Me.Fltusernrq.Location = New System.Drawing.Point(93, 76)
         Me.Fltusernrq.Name = "Fltusernrq"
         Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
         Me.Fltusernrq.TabIndex = 14
@@ -227,7 +228,7 @@ Partial Class SearchOaanm
         'BTN_FilterReset
         '
         Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
-        Me.BTN_FilterReset.Location = New System.Drawing.Point(0, 7)
+        Me.BTN_FilterReset.Location = New System.Drawing.Point(124, 9)
         Me.BTN_FilterReset.Name = "BTN_FilterReset"
         Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
         Me.BTN_FilterReset.TabIndex = 17
@@ -237,7 +238,7 @@ Partial Class SearchOaanm
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(44, 18)
+        Me.Label2.Location = New System.Drawing.Point(6, 53)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(83, 13)
         Me.Label2.TabIndex = 14
@@ -246,7 +247,7 @@ Partial Class SearchOaanm
         'Fltoaanmnm
         '
         Me.Fltoaanmnm.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltoaanmnm.Location = New System.Drawing.Point(131, 15)
+        Me.Fltoaanmnm.Location = New System.Drawing.Point(93, 50)
         Me.Fltoaanmnm.Name = "Fltoaanmnm"
         Me.Fltoaanmnm.Size = New System.Drawing.Size(66, 20)
         Me.Fltoaanmnm.TabIndex = 11
@@ -257,9 +258,9 @@ Partial Class SearchOaanm
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBox1.Controls.Add(Me.DGREC)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 51)
+        Me.GroupBox1.Location = New System.Drawing.Point(174, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(904, 317)
+        Me.GroupBox1.Size = New System.Drawing.Size(733, 365)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         '
@@ -278,7 +279,7 @@ Partial Class SearchOaanm
         Me.DGREC.ReadOnly = True
         Me.DGREC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGREC.Size = New System.Drawing.Size(898, 298)
+        Me.DGREC.Size = New System.Drawing.Size(727, 346)
         Me.DGREC.TabIndex = 1
         Me.DGREC.TabStop = False
         '
@@ -322,12 +323,12 @@ Partial Class SearchOaanm
     Friend WithEvents VerwijderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents DGREC As DataGridView
     Friend WithEvents GroupFilter As GroupBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Fltusernrq As TextBox
     Friend WithEvents BTN_FilterReset As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Fltoaanmnm As TextBox
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents DGREC As DataGridView
 End Class

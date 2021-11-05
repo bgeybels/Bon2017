@@ -1,81 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 8.5" name="BON">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.125, 8.5" name="BON">
   <DataContextMoniker Name="/BONDataContext" />
   <nestedChildShapes>
-    <classShape Id="021c943b-c8dd-4f81-a205-a2d7f60e0a4e" isExpanded="false" absoluteBounds="0.75, 2.375, 2, 0.45">
-      <DataClassMoniker Name="/BONDataContext/BONL" />
-      <nestedChildShapes>
-        <elementListCompartment Id="50d21472-012d-4820-8bbb-01e58e360e4d" absoluteBounds="0.76500000059604645, 2.8350000008940697, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ef8f3dc3-f0ee-4702-803b-037faf17139d" isExpanded="false" absoluteBounds="6.75, 0.75, 2, 0.45000000000000007">
+    <classShape Id="ef8f3dc3-f0ee-4702-803b-037faf17139d" isExpanded="false" absoluteBounds="6.875, 1, 2, 0.45000000000000007">
       <DataClassMoniker Name="/BONDataContext/Login" />
       <nestedChildShapes>
-        <elementListCompartment Id="502fdc6a-3a86-43cf-b42b-abc57ff52361" absoluteBounds="6.7650000000000006, 1.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="502fdc6a-3a86-43cf-b42b-abc57ff52361" absoluteBounds="6.8900000000000006, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="dd4746a9-ddc4-4b71-a431-e49469bc16a5" isExpanded="false" absoluteBounds="0.875, 4.375, 2, 0.45">
-      <DataClassMoniker Name="/BONDataContext/COD" />
-      <nestedChildShapes>
-        <elementListCompartment Id="2f099286-c64d-4a84-a287-332d776e7277" absoluteBounds="0.8899999999999999, 4.835, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="48958a55-50b7-4f91-8f82-b6c89d960de4" isExpanded="false" absoluteBounds="3.75, 4.125, 2, 0.45">
-      <DataClassMoniker Name="/BONDataContext/CODGP" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3ee77d42-62e6-4ff0-8696-60053482a280" absoluteBounds="3.7650000005960464, 4.58500000089407, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(1.8125 : 2.825); (1.8125 : 4.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/BONDataContext/BONL/BONL_COD" />
-      <nodes>
-        <classShapeMoniker Id="021c943b-c8dd-4f81-a205-a2d7f60e0a4e" />
-        <classShapeMoniker Id="dd4746a9-ddc4-4b71-a431-e49469bc16a5" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.875 : 4.5062525); (3.75 : 4.5062525)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/BONDataContext/COD/COD_CODGP" />
-      <nodes>
-        <classShapeMoniker Id="dd4746a9-ddc4-4b71-a431-e49469bc16a5" />
-        <classShapeMoniker Id="48958a55-50b7-4f91-8f82-b6c89d960de4" />
-      </nodes>
-    </associationConnector>
     <classShape Id="4c7a604e-4d54-49c0-a820-f387414e2d27" isExpanded="false" absoluteBounds="3.75, 2.75, 2, 0.45">
       <DataClassMoniker Name="/BONDataContext/BTW" />
       <nestedChildShapes>
         <elementListCompartment Id="5924d944-b24d-472c-b3fa-bc4974f232a1" absoluteBounds="3.7650000005960464, 3.2100000008940697, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.825); (3.125 : 3.2); (3.125 : 2.375); (3.375 : 2.375); (3.75 : 2.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/BONDataContext/BONL/BONL_BTW" />
-      <nodes>
-        <classShapeMoniker Id="021c943b-c8dd-4f81-a205-a2d7f60e0a4e" />
-        <classShapeMoniker Id="4c7a604e-4d54-49c0-a820-f387414e2d27" />
-      </nodes>
-    </associationConnector>
     <classShape Id="085b072b-d13a-44a0-93f2-1cc86bdc9bf5" isExpanded="false" absoluteBounds="3.75, 3.375, 2, 0.45">
       <DataClassMoniker Name="/BONDataContext/AOms" />
       <nestedChildShapes>
         <elementListCompartment Id="2f260a13-6937-4b74-90ff-d38fb0d49fe0" absoluteBounds="3.7650000005960464, 3.8350000008940697, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.2499975 : 2.825); (1.2499975 : 3.5687475); (1.72916666666667 : 3.5687475 : JumpStart); (1.89583333333333 : 3.5687475 : JumpEnd); (3.75 : 3.5687475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/BONDataContext/BONL/BONL_AOms" />
-      <nodes>
-        <classShapeMoniker Id="021c943b-c8dd-4f81-a205-a2d7f60e0a4e" />
-        <classShapeMoniker Id="085b072b-d13a-44a0-93f2-1cc86bdc9bf5" />
-      </nodes>
-    </associationConnector>
     <classShape Id="843a9807-42e9-4a09-b0cb-3b406f07654f" isExpanded="false" absoluteBounds="3.625, 0.625, 2, 0.45000000000000018">
       <DataClassMoniker Name="/BONDataContext/EIGENAAR" />
       <nestedChildShapes>
         <elementListCompartment Id="9cf2f4d9-d8d9-4db5-99d0-c3d8174c4384" absoluteBounds="3.6400000005960464, 1.0850000008940697, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="084df00e-5c30-4e60-8893-414a6e77e02f" isExpanded="false" absoluteBounds="6.75, 2.125, 2, 0.45000000000000018">
-      <DataClassMoniker Name="/BONDataContext/PER" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3dd4beac-531d-4f81-9417-e95df91c4438" absoluteBounds="6.765, 2.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="c94d581f-56b4-4c6f-a5a3-97ef99fca283" isExpanded="false" absoluteBounds="6.75, 2.625, 2, 0.44999999999999929">
@@ -90,29 +38,10 @@
         <elementListCompartment Id="217a2794-a623-4282-a657-ff02019d578a" absoluteBounds="6.765, 1.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5450eb56-dbe7-4356-899f-e662daa67553" isExpanded="false" absoluteBounds="0.75, 0.625, 2, 0.45">
-      <DataClassMoniker Name="/BONDataContext/BON" />
-      <nestedChildShapes>
-        <elementListCompartment Id="73f464a8-8968-40ab-8b6b-27ffb25e3b56" absoluteBounds="0.76499999999999968, 1.085, 1.9700000000000002, 5.0569254557291661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="df562901-b006-46e5-9a16-97f66fc318dd" isExpanded="false" absoluteBounds="3.625, 1.25, 2, 0.45">
-      <DataClassMoniker Name="/BONDataContext/KLANT" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9036d3d2-0d0d-42b0-a7a5-932606bc5882" absoluteBounds="3.6399999999999997, 1.71, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(2.875 : 4.375); (3.75 : 3.825)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/BONDataContext/COD/COD_AOms" />
-      <nodes>
-        <classShapeMoniker Id="dd4746a9-ddc4-4b71-a431-e49469bc16a5" />
-        <classShapeMoniker Id="085b072b-d13a-44a0-93f2-1cc86bdc9bf5" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="ea39673e-62f7-4f87-b5b5-6bd3659d30c8" absoluteBounds="9, 1.5, 2, 2.7324039713541666">
+    <classShape Id="ea39673e-62f7-4f87-b5b5-6bd3659d30c8" isExpanded="false" absoluteBounds="9.25, 1.5, 2, 0.45">
       <DataClassMoniker Name="/BONDataContext/STOCK" />
       <nestedChildShapes>
-        <elementListCompartment Id="9d720917-2297-4ebd-a612-8a34c30d92b9" absoluteBounds="9.015, 1.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9d720917-2297-4ebd-a612-8a34c30d92b9" absoluteBounds="9.265, 1.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="67422107-98ba-4e70-aac8-8458486085fd" isExpanded="false" absoluteBounds="9, 0.75, 2, 0.45">
@@ -121,22 +50,148 @@
         <elementListCompartment Id="ba5d9586-9cd0-454f-a3f0-9d530128c1ca" absoluteBounds="9.015, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f6fad917-7e2f-443b-925f-82eaa3054620" isExpanded="false" absoluteBounds="4.125, 4.875, 2, 0.45">
-      <DataClassMoniker Name="/BONDataContext/FAKT" />
-      <nestedChildShapes>
-        <elementListCompartment Id="e060f08e-bd69-48a2-98bf-5f2b43637bce" absoluteBounds="4.14, 5.335, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ff6bc6e5-66c4-4072-8d15-453da7217a06" isExpanded="false" absoluteBounds="4.125, 5.5, 2, 0.45">
+    <classShape Id="ff6bc6e5-66c4-4072-8d15-453da7217a06" isExpanded="false" absoluteBounds="5.125, 5, 2, 0.45">
       <DataClassMoniker Name="/BONDataContext/FAKTL" />
       <nestedChildShapes>
-        <elementListCompartment Id="10d9266e-3462-4b17-a2d8-04d25f7c563c" absoluteBounds="4.1400000000000006, 5.96, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="10d9266e-3462-4b17-a2d8-04d25f7c563c" absoluteBounds="5.1400000000000006, 5.46, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2ee0e1dc-6b39-4392-9e04-71c438be83d7" absoluteBounds="7.375, 3.625, 2, 2.1554996744791666">
+    <classShape Id="2ee0e1dc-6b39-4392-9e04-71c438be83d7" isExpanded="false" absoluteBounds="9.125, 2.375, 2, 0.45">
       <DataClassMoniker Name="/BONDataContext/DEL" />
       <nestedChildShapes>
-        <elementListCompartment Id="85755017-9a9c-4f67-b2d3-b5796ea62ebc" absoluteBounds="7.39, 4.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="85755017-9a9c-4f67-b2d3-b5796ea62ebc" absoluteBounds="9.14, 2.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a1ccd4d7-abb8-46d9-a517-6d9cc141d748" isExpanded="false" absoluteBounds="3, 5, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/FAKT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c3051baa-a897-4ba2-92e5-2b847f75f2ee" absoluteBounds="3.0149999999999997, 5.46, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="be1528bb-ff45-4c6f-aeb9-aa07f966fc51" isExpanded="false" absoluteBounds="3, 5.875, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/VERSIEG" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e4b634d0-82a4-4593-b1fa-0f81c136dcd9" absoluteBounds="3.0150000000000006, 6.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="761c2d89-6093-4011-a2f5-a47125a5f679" isExpanded="false" absoluteBounds="0.75, 5.625, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/VERSIE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9e8a5d6-04ba-4913-8f28-6e5137ff6189" absoluteBounds="0.76500000000000057, 6.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="676622f4-3d16-4b24-ac29-5297842c0eb7" isExpanded="false" absoluteBounds="4.125, 1.875, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/Post" />
+      <nestedChildShapes>
+        <elementListCompartment Id="845272fe-004e-4b4d-9537-eb92b66d307d" absoluteBounds="4.14, 2.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="99fc8b1d-735f-4105-a812-5b374f2968f8" isExpanded="false" absoluteBounds="1, 4.125, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/BONLdup" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c97fb56b-31ca-4233-a8ae-e5a32dd4bb03" absoluteBounds="1.0149999999999997, 4.585, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aa7d9efa-5080-42cd-a62f-12f21d4f388b" isExpanded="false" absoluteBounds="9.875, 3.875, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/v_bonl_all" />
+      <nestedChildShapes>
+        <elementListCompartment Id="96846109-fa3a-4ed1-8ada-2f95448e3d88" absoluteBounds="9.89, 4.335, 1.9700000000000002, 6.0184326171875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="54a9fa07-d5db-4cf7-9555-277eb94bb783" isExpanded="false" absoluteBounds="3.875, 4, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/CODGP" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3c3f0214-d15a-4255-bb86-29b6046daa9c" absoluteBounds="3.8899999999999997, 4.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c41114b7-cabd-491f-9f1c-8f9a4a5b2916" isExpanded="false" absoluteBounds="0.75, 2.75, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/COD" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e890ae86-5c37-4e0a-816e-c1e1c7f82f81" absoluteBounds="0.76500000000000012, 3.21, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1cf9d500-0660-42ba-94b6-fad89528c3c9" isExpanded="false" absoluteBounds="0.875, 3.5, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/PERL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="721dd9ce-b30d-4d52-a15a-2dce7b16282f" absoluteBounds="0.89000000000000012, 3.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="812ae706-9ffa-4c1d-9475-5a88c0ab29ac" isExpanded="false" absoluteBounds="0.875, 1.25, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/KLANT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4267b85c-977d-49ea-a0be-60b71f4d78a7" absoluteBounds="0.89000000000000012, 1.71, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0acbe3ba-f293-4988-ac5d-ebba1f96e051" isExpanded="false" absoluteBounds="7.375, 5.125, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/PSECTOR" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0d04e19e-34c9-4552-9215-20e857853c71" absoluteBounds="7.3900000000000006, 5.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bbd854c8-acac-4377-ae1a-9405d6a61f62" isExpanded="false" absoluteBounds="7.5, 5.875, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/PTYPE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="920b3ff0-aa70-48d1-a20d-0a696e7cc794" absoluteBounds="7.5150000000000006, 6.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a12be7e5-6f58-4644-a079-a3d9c00d95cf" isExpanded="false" absoluteBounds="6.625, 3.5, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/PER" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0e85b074-36f3-4a05-b875-1c8cc3042ab3" absoluteBounds="6.64, 3.96, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2dd87ab0-fd8b-429e-a33d-9d99fc50c118" isExpanded="false" absoluteBounds="7.375, 4.25, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/PREST" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6cee2587-5f15-49d8-a301-931f9fabb5f7" absoluteBounds="7.3900000000000006, 4.71, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1d2d0135-38ff-4a0a-98c7-2691b2011a43" isExpanded="false" absoluteBounds="0.5, 4.75, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/FEEST" />
+      <nestedChildShapes>
+        <elementListCompartment Id="81fda798-7bc2-46b3-93cd-9084b56e784e" absoluteBounds="0.51499999999999968, 5.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2965b2a6-214e-4611-aed1-8630c8fade52" isExpanded="false" absoluteBounds="0.75, 2, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/BONL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="82ddb37a-07f6-4c6a-aded-0b2f1098c87a" absoluteBounds="0.76500000000000012, 2.46, 1.9700000000000002, 6.0184326171875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b8aec997-837a-4322-bba1-2ff440c18042" isExpanded="false" absoluteBounds="5.75, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/LOCK" />
+      <nestedChildShapes>
+        <elementListCompartment Id="869768e0-b707-4a38-8bc2-0995bb125a9e" absoluteBounds="5.765, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="99a403e4-e72a-421e-b45c-c26fa9ea3966" isExpanded="false" absoluteBounds="0.5, 6.625, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/AFR" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7e2f874d-52da-467b-9da6-f7be8d7780bc" absoluteBounds="0.51500000000000012, 7.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c6216b2d-30da-4b8c-b0db-d22a54145349" isExpanded="false" absoluteBounds="2.75, 6.625, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/AFT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="42f79333-cd2c-40be-81d1-b2d174567af5" absoluteBounds="2.7649999999999997, 7.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9842b9d3-44e8-4fa9-b4e1-1cde809d8f05" isExpanded="false" absoluteBounds="0.625, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/BON" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e1079c47-e096-4357-95a4-963619eba4f4" absoluteBounds="0.64000000000000012, 0.96, 1.9700000000000002, 6.5953369140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="700b35a1-6962-4570-9b37-aa66e519f600" isExpanded="false" absoluteBounds="3.5, 1.375, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/USERS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1967b2de-7d9b-4f52-8d71-abdaf03f649e" absoluteBounds="3.5149999999999997, 1.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dffa545d-2894-46c5-9499-45a01f634319" isExpanded="false" absoluteBounds="5.125, 6.625, 2, 0.45">
+      <DataClassMoniker Name="/BONDataContext/AF" />
+      <nestedChildShapes>
+        <elementListCompartment Id="609f31f5-dc6b-49da-a3b5-1450c3fcf98b" absoluteBounds="5.14, 7.085, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

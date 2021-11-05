@@ -88,6 +88,7 @@ Partial Class EditLEV
         'GroupBox1
         '
         Me.GroupBox1.AutoSize = True
+        Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBox1.Controls.Add(Me.TBlevnaam)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill

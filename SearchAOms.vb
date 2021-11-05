@@ -2,7 +2,7 @@
 Imports System.Linq
 
 Public Class SearchAOms
-    Private ordDGREC As String = "Volume"
+    Private ordDGREC As String = "Eenheid"
     Dim updategrid As Boolean = True
     Dim nofilter As Boolean = False
 
@@ -59,11 +59,11 @@ Public Class SearchAOms
         records =
         From aoms In db.AOms
         Let Wie = aoms.usernrq & " (" & aoms.chdateao & ")"
-        Select aoms.ANRQ, Volume = aoms.Oms,
+        Select aoms.ANRQ, Eenheid = aoms.Oms,
             aoms.chdateao, aoms.usernrq,
             Wie
 
-        If Me.ordDGREC = Nothing Then ordDGREC = "Volume"
+        If Me.ordDGREC = Nothing Then ordDGREC = "Eenheid"
         records = records.OrderBy(Me.ordDGREC, SortOrder.Ascending = True)
         DGFILTER()
         Me.DGREC.DataSource = records
@@ -75,12 +75,18 @@ Public Class SearchAOms
         Next
 
         'set autosizemode
-        Dim dgautos = New String() {"Volume", "Wie"}
+        Dim dgautos = New String() {"Eenheid", "Wie"}
         For index = 0 To dgautos.GetUpperBound(0)
             DGREC.Columns(dgautos(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next index
-        DGREC.Columns("Volume").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DGREC.Columns("Eenheid").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         Me.Cursor = System.Windows.Forms.Cursors.Default
+    End Sub
+
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
     End Sub
 
     Private Sub DGREC_SelectionChanged(sender As Object, e As EventArgs) Handles DGREC.SelectionChanged
@@ -114,6 +120,16 @@ NoRecords:
 
     Private Sub UpdateRec()
         keyanrq = DGREC.CurrentRow.Cells("ANRQ").Value
+
+        ' test lock
+        Dim lockedby = isLocked("AOMS", keyanrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("AOMS", keyanrq)
+
         EditAOms.ShowDialog()
         Refresh_data()
     End Sub
@@ -123,14 +139,14 @@ NoRecords:
                        Where bonl.ANRQ = keyanrq
         If checkrec.Count > 0 Then
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Volume " & keyanrq & " nog gebruikt in bonnen!")
+            MsgBox("Eenheid " & keyanrq & " nog gebruikt in bonnen!")
             Exit Sub
         End If
         Dim checkreca = From cod In db.CODs
                         Where cod.ANRQ = keyanrq
         If checkreca.Count > 0 Then
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Volume " & keyanrq & " nog gebruikt in codes!")
+            MsgBox("Eenheid " & keyanrq & " nog gebruikt in codes!")
             Exit Sub
         End If
         Try
@@ -138,7 +154,7 @@ NoRecords:
                              Where aoms.ANRQ = keyanrq).ToList()(0)
             db.AOms.DeleteOnSubmit(deleterec)
             db.SubmitChanges()
-            Archive("VOLUME_D", Str(keyanrq), deleterec.Oms)
+            Archive("EENHEID_D", Str(keyanrq), deleterec.Oms)
             keyanrq = 0
         Catch
             PositionMsgbox.CenterMsgBox(Me)
@@ -186,20 +202,21 @@ NoRecords:
     End Sub
 
     Private Sub TSBdelete_Click(sender As Object, e As EventArgs) Handles TSBdelete.Click
-
-        If MsgBox("Verwijder volume?", MsgBoxStyle.YesNoCancel, "Wil je dit volume-record echt verwijderen?") = MsgBoxResult.Yes Then
+        If MsgBox("Verwijder Eenheid?", MsgBoxStyle.YesNoCancel, "Wil je dit Eenheid-record echt verwijderen?") = MsgBoxResult.Yes Then
             DeleteRec()
         End If
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("Exporteer naar CSV")
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "EENHEDEN")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
     '****Filters
     Private Sub DGFILTER()
         'records = records.Where("KNaam.startswith(@0)", Fltklant.Text)
-        records = records.Where("Volume.Contains(@0)", Fltoms.Text)
+        records = records.Where("Eenheid.Contains(@0)", Fltoms.Text)
         records = records.Where("Wie.Contains(@0)", Fltusernrq.Text)
     End Sub
 
@@ -210,7 +227,4 @@ NoRecords:
         If nofilter = False Then Fill_DGREC()
     End Sub
 
-    Private Sub DGREC_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGREC.CellContentClick
-
-    End Sub
 End Class

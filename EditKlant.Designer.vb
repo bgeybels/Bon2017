@@ -29,12 +29,13 @@ Partial Class EditKlant
         Me.TSBsave = New System.Windows.Forms.ToolStripButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GRPAlgemeen = New System.Windows.Forms.GroupBox()
+        Me.CBfacp = New System.Windows.Forms.CheckBox()
+        Me.CBfacm = New System.Windows.Forms.CheckBox()
+        Me.CBfac = New System.Windows.Forms.CheckBox()
         Me.TBkbtwnr = New System.Windows.Forms.TextBox()
         Me.TBktav = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.TBconvin_nr = New System.Windows.Forms.TextBox()
         Me.TBknaam = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
@@ -57,6 +58,8 @@ Partial Class EditKlant
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
+        Me.TBkemailf = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GRPAlgemeen.SuspendLayout()
@@ -116,19 +119,20 @@ Partial Class EditKlant
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(685, 291)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(685, 304)
         Me.TableLayoutPanel1.TabIndex = 2
         '
         'GRPAlgemeen
         '
         Me.GRPAlgemeen.AutoSize = True
         Me.GRPAlgemeen.BackColor = System.Drawing.SystemColors.Control
+        Me.GRPAlgemeen.Controls.Add(Me.CBfacp)
+        Me.GRPAlgemeen.Controls.Add(Me.CBfacm)
+        Me.GRPAlgemeen.Controls.Add(Me.CBfac)
         Me.GRPAlgemeen.Controls.Add(Me.TBkbtwnr)
         Me.GRPAlgemeen.Controls.Add(Me.TBktav)
         Me.GRPAlgemeen.Controls.Add(Me.Label14)
         Me.GRPAlgemeen.Controls.Add(Me.Label11)
-        Me.GRPAlgemeen.Controls.Add(Me.Label15)
-        Me.GRPAlgemeen.Controls.Add(Me.TBconvin_nr)
         Me.GRPAlgemeen.Controls.Add(Me.TBknaam)
         Me.GRPAlgemeen.Controls.Add(Me.Label4)
         Me.GRPAlgemeen.Dock = System.Windows.Forms.DockStyle.Fill
@@ -137,6 +141,45 @@ Partial Class EditKlant
         Me.GRPAlgemeen.Size = New System.Drawing.Size(679, 87)
         Me.GRPAlgemeen.TabIndex = 0
         Me.GRPAlgemeen.TabStop = False
+        '
+        'CBfacp
+        '
+        Me.CBfacp.AutoSize = True
+        Me.CBfacp.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CBfacp.Location = New System.Drawing.Point(549, 21)
+        Me.CBfacp.Name = "CBfacp"
+        Me.CBfacp.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CBfacp.Size = New System.Drawing.Size(47, 17)
+        Me.CBfacp.TabIndex = 48
+        Me.CBfacp.TabStop = False
+        Me.CBfacp.Text = "Post"
+        Me.CBfacp.UseVisualStyleBackColor = True
+        '
+        'CBfacm
+        '
+        Me.CBfacm.AutoSize = True
+        Me.CBfacm.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CBfacm.Location = New System.Drawing.Point(489, 21)
+        Me.CBfacm.Name = "CBfacm"
+        Me.CBfacm.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CBfacm.Size = New System.Drawing.Size(45, 17)
+        Me.CBfacm.TabIndex = 47
+        Me.CBfacm.TabStop = False
+        Me.CBfacm.Text = "Mail"
+        Me.CBfacm.UseVisualStyleBackColor = True
+        '
+        'CBfac
+        '
+        Me.CBfac.AutoSize = True
+        Me.CBfac.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CBfac.Location = New System.Drawing.Point(417, 21)
+        Me.CBfac.Name = "CBfac"
+        Me.CBfac.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CBfac.Size = New System.Drawing.Size(60, 17)
+        Me.CBfac.TabIndex = 46
+        Me.CBfac.TabStop = False
+        Me.CBfac.Text = "Upload"
+        Me.CBfac.UseVisualStyleBackColor = True
         '
         'TBkbtwnr
         '
@@ -169,22 +212,6 @@ Partial Class EditKlant
         Me.Label11.Size = New System.Drawing.Size(26, 13)
         Me.Label11.TabIndex = 29
         Me.Label11.Text = "Tav"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(356, 22)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(46, 13)
-        Me.Label15.TabIndex = 27
-        Me.Label15.Text = "CONVnr"
-        '
-        'TBconvin_nr
-        '
-        Me.TBconvin_nr.Location = New System.Drawing.Point(420, 19)
-        Me.TBconvin_nr.Name = "TBconvin_nr"
-        Me.TBconvin_nr.Size = New System.Drawing.Size(242, 20)
-        Me.TBconvin_nr.TabIndex = 14
         '
         'TBknaam
         '
@@ -316,6 +343,8 @@ Partial Class EditKlant
         '
         Me.GRPContact.AutoSize = True
         Me.GRPContact.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GRPContact.Controls.Add(Me.TBkemailf)
+        Me.GRPContact.Controls.Add(Me.Label2)
         Me.GRPContact.Controls.Add(Me.TBkemail)
         Me.GRPContact.Controls.Add(Me.Label1)
         Me.GRPContact.Controls.Add(Me.TBkfax)
@@ -327,7 +356,7 @@ Partial Class EditKlant
         Me.GRPContact.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GRPContact.Location = New System.Drawing.Point(3, 202)
         Me.GRPContact.Name = "GRPContact"
-        Me.GRPContact.Size = New System.Drawing.Size(679, 86)
+        Me.GRPContact.Size = New System.Drawing.Size(679, 103)
         Me.GRPContact.TabIndex = 2
         Me.GRPContact.TabStop = False
         Me.GRPContact.Text = "Contactgegevens"
@@ -364,7 +393,7 @@ Partial Class EditKlant
         '
         'TBktel
         '
-        Me.TBktel.Location = New System.Drawing.Point(69, 41)
+        Me.TBktel.Location = New System.Drawing.Point(69, 64)
         Me.TBktel.Name = "TBktel"
         Me.TBktel.Size = New System.Drawing.Size(242, 20)
         Me.TBktel.TabIndex = 52
@@ -390,18 +419,34 @@ Partial Class EditKlant
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(5, 44)
+        Me.Label9.Location = New System.Drawing.Point(5, 67)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(49, 13)
         Me.Label9.TabIndex = 21
         Me.Label9.Text = "Telefoon"
+        '
+        'TBkemailf
+        '
+        Me.TBkemailf.Location = New System.Drawing.Point(69, 39)
+        Me.TBkemailf.Name = "TBkemailf"
+        Me.TBkemailf.Size = New System.Drawing.Size(242, 20)
+        Me.TBkemailf.TabIndex = 51
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(5, 42)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(60, 13)
+        Me.Label2.TabIndex = 57
+        Me.Label2.Text = "EMail Fact."
         '
         'EditKlant
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(685, 322)
+        Me.ClientSize = New System.Drawing.Size(685, 335)
         Me.ControlBox = False
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -436,8 +481,6 @@ Partial Class EditKlant
     Friend WithEvents TBktav As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents TBconvin_nr As TextBox
     Friend WithEvents TBknaam As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
@@ -463,4 +506,9 @@ Partial Class EditKlant
     Friend WithEvents TSBexit As ToolStripButton
     Friend WithEvents ToolStripLabel4 As ToolStripLabel
     Friend WithEvents TSBsave As ToolStripButton
+    Friend WithEvents CBfac As CheckBox
+    Friend WithEvents CBfacp As CheckBox
+    Friend WithEvents CBfacm As CheckBox
+    Friend WithEvents TBkemailf As TextBox
+    Friend WithEvents Label2 As Label
 End Class

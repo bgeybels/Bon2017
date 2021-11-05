@@ -32,19 +32,8 @@ Partial Class SearchPER
         Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripLabel5 = New System.Windows.Forms.ToolStripLabel()
         Me.TSBdelete = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripLabel3 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.TSBexport = New System.Windows.Forms.ToolStripButton()
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.GrBFilters = New System.Windows.Forms.GroupBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.FltCBdienst = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Fltpernm = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Fltusernrq = New System.Windows.Forms.TextBox()
-        Me.BTN_FilterReset = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.DGREC = New System.Windows.Forms.DataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.NieuwToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BewerkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -53,21 +42,42 @@ Partial Class SearchPER
         Me.DeselecteerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.VerwijderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.DGREC = New System.Windows.Forms.DataGridView()
+        Me.GrBFilters = New System.Windows.Forms.GroupBox()
+        Me.CBbediendeN = New System.Windows.Forms.CheckBox()
+        Me.CBbediendeJ = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.CBdienstN = New System.Windows.Forms.CheckBox()
+        Me.CBdienstJ = New System.Windows.Forms.CheckBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.BTN_FilterReset = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Fltusernrq = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Fltpernm = New System.Windows.Forms.TextBox()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.VerwijderGeselecteerdeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
-        Me.TableLayoutPanel1.SuspendLayout()
-        Me.GrBFilters.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        CType(Me.DGREC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.DGREC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GrBFilters.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
         '
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBnew, Me.TSBedit, Me.ToolStripLabel2, Me.ToolStripLabel5, Me.TSBdelete, Me.ToolStripLabel3, Me.TSBexport})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBnew, Me.TSBedit, Me.ToolStripLabel2, Me.ToolStripLabel5, Me.TSBdelete, Me.ToolStripLabel1, Me.TSBexport})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1014, 31)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1013, 31)
         Me.ToolStrip1.TabIndex = 6
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -126,11 +136,11 @@ Partial Class SearchPER
         Me.TSBdelete.Size = New System.Drawing.Size(28, 28)
         Me.TSBdelete.Text = "Verwijder"
         '
-        'ToolStripLabel3
+        'ToolStripLabel1
         '
-        Me.ToolStripLabel3.Name = "ToolStripLabel3"
-        Me.ToolStripLabel3.Size = New System.Drawing.Size(16, 28)
-        Me.ToolStripLabel3.Text = "   "
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(16, 28)
+        Me.ToolStripLabel1.Text = "   "
         '
         'TSBexport
         '
@@ -141,117 +151,114 @@ Partial Class SearchPER
         Me.TSBexport.Size = New System.Drawing.Size(28, 28)
         Me.TSBexport.Text = "Exporteer"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NieuwToolStripMenuItem, Me.BewerkToolStripMenuItem, Me.ToolStripSeparator1, Me.SelecteerToolStripMenuItem, Me.DeselecteerToolStripMenuItem, Me.ToolStripSeparator2, Me.VerwijderToolStripMenuItem, Me.ToolStripSeparator3, Me.VerwijderGeselecteerdeToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(198, 176)
+        '
+        'NieuwToolStripMenuItem
+        '
+        Me.NieuwToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemadd
+        Me.NieuwToolStripMenuItem.Name = "NieuwToolStripMenuItem"
+        Me.NieuwToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.NieuwToolStripMenuItem.Text = "Nieuw"
+        Me.NieuwToolStripMenuItem.ToolTipText = "Nieuwe blanco code"
+        '
+        'BewerkToolStripMenuItem
+        '
+        Me.BewerkToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemedit
+        Me.BewerkToolStripMenuItem.Name = "BewerkToolStripMenuItem"
+        Me.BewerkToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.BewerkToolStripMenuItem.Text = "Bewerk"
+        Me.BewerkToolStripMenuItem.ToolTipText = "Bewerk de code"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(194, 6)
+        '
+        'SelecteerToolStripMenuItem
+        '
+        Me.SelecteerToolStripMenuItem.Name = "SelecteerToolStripMenuItem"
+        Me.SelecteerToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.SelecteerToolStripMenuItem.Text = "Selectie InDienst"
+        '
+        'DeselecteerToolStripMenuItem
+        '
+        Me.DeselecteerToolStripMenuItem.Name = "DeselecteerToolStripMenuItem"
+        Me.DeselecteerToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.DeselecteerToolStripMenuItem.Text = "Selectie UitDienst"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(194, 6)
+        '
+        'VerwijderToolStripMenuItem
+        '
+        Me.VerwijderToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemdelete
+        Me.VerwijderToolStripMenuItem.Name = "VerwijderToolStripMenuItem"
+        Me.VerwijderToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.VerwijderToolStripMenuItem.Text = "Verwijder"
+        Me.VerwijderToolStripMenuItem.ToolTipText = "Verwijder de code"
+        '
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnCount = 2
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.GrBFilters, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1014, 364)
-        Me.TableLayoutPanel1.TabIndex = 8
-        '
-        'GrBFilters
-        '
-        Me.GrBFilters.AutoSize = True
-        Me.GrBFilters.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GrBFilters.Controls.Add(Me.Label6)
-        Me.GrBFilters.Controls.Add(Me.FltCBdienst)
-        Me.GrBFilters.Controls.Add(Me.Label4)
-        Me.GrBFilters.Controls.Add(Me.Fltpernm)
-        Me.GrBFilters.Controls.Add(Me.Label5)
-        Me.GrBFilters.Controls.Add(Me.Fltusernrq)
-        Me.GrBFilters.Controls.Add(Me.BTN_FilterReset)
-        Me.GrBFilters.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GrBFilters.Location = New System.Drawing.Point(3, 3)
-        Me.GrBFilters.Name = "GrBFilters"
-        Me.GrBFilters.Size = New System.Drawing.Size(1008, 42)
-        Me.GrBFilters.TabIndex = 1
-        Me.GrBFilters.TabStop = False
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(296, 20)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(46, 13)
-        Me.Label6.TabIndex = 30
-        Me.Label6.Text = "InDienst"
-        '
-        'FltCBdienst
-        '
-        Me.FltCBdienst.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.FltCBdienst.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.FltCBdienst.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FltCBdienst.FormattingEnabled = True
-        Me.FltCBdienst.Location = New System.Drawing.Point(358, 16)
-        Me.FltCBdienst.Name = "FltCBdienst"
-        Me.FltCBdienst.Size = New System.Drawing.Size(64, 21)
-        Me.FltCBdienst.TabIndex = 29
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label4.Location = New System.Drawing.Point(38, 20)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(35, 13)
-        Me.Label4.TabIndex = 26
-        Me.Label4.Text = "Naam"
-        '
-        'Fltpernm
-        '
-        Me.Fltpernm.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltpernm.Location = New System.Drawing.Point(80, 16)
-        Me.Fltpernm.Name = "Fltpernm"
-        Me.Fltpernm.Size = New System.Drawing.Size(94, 20)
-        Me.Fltpernm.TabIndex = 11
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(185, 20)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(26, 13)
-        Me.Label5.TabIndex = 21
-        Me.Label5.Text = "Wie"
-        '
-        'Fltusernrq
-        '
-        Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltusernrq.Location = New System.Drawing.Point(217, 16)
-        Me.Fltusernrq.Name = "Fltusernrq"
-        Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
-        Me.Fltusernrq.TabIndex = 14
-        '
-        'BTN_FilterReset
-        '
-        Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
-        Me.BTN_FilterReset.Location = New System.Drawing.Point(0, 7)
-        Me.BTN_FilterReset.Name = "BTN_FilterReset"
-        Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
-        Me.BTN_FilterReset.TabIndex = 17
-        Me.BTN_FilterReset.TabStop = False
-        Me.BTN_FilterReset.UseVisualStyleBackColor = True
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1013, 396)
+        Me.TableLayoutPanel1.TabIndex = 7
         '
         'GroupBox1
         '
         Me.GroupBox1.AutoSize = True
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GroupBox1.Controls.Add(Me.DGREC)
+        Me.GroupBox1.Controls.Add(Me.TableLayoutPanel2)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 51)
+        Me.GroupBox1.Location = New System.Drawing.Point(155, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1008, 310)
-        Me.GroupBox1.TabIndex = 2
+        Me.GroupBox1.Size = New System.Drawing.Size(855, 390)
+        Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.AutoSize = True
+        Me.TableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel2.ColumnCount = 1
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupBox2, 0, 0)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 16)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 371.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(849, 371)
+        Me.TableLayoutPanel2.TabIndex = 9
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.AutoSize = True
+        Me.GroupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBox2.Controls.Add(Me.DGREC)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(843, 365)
+        Me.GroupBox2.TabIndex = 2
+        Me.GroupBox2.TabStop = False
         '
         'DGREC
         '
@@ -267,80 +274,169 @@ Partial Class SearchPER
         Me.DGREC.ReadOnly = True
         Me.DGREC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGREC.Size = New System.Drawing.Size(1002, 291)
+        Me.DGREC.Size = New System.Drawing.Size(837, 346)
         Me.DGREC.TabIndex = 1
         Me.DGREC.TabStop = False
         '
-        'ContextMenuStrip1
+        'GrBFilters
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NieuwToolStripMenuItem, Me.BewerkToolStripMenuItem, Me.ToolStripSeparator1, Me.SelecteerToolStripMenuItem, Me.DeselecteerToolStripMenuItem, Me.ToolStripSeparator2, Me.VerwijderToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(166, 148)
+        Me.GrBFilters.AutoSize = True
+        Me.GrBFilters.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GrBFilters.Controls.Add(Me.CBbediendeN)
+        Me.GrBFilters.Controls.Add(Me.CBbediendeJ)
+        Me.GrBFilters.Controls.Add(Me.Label1)
+        Me.GrBFilters.Controls.Add(Me.CBdienstN)
+        Me.GrBFilters.Controls.Add(Me.CBdienstJ)
+        Me.GrBFilters.Controls.Add(Me.Label6)
+        Me.GrBFilters.Controls.Add(Me.BTN_FilterReset)
+        Me.GrBFilters.Controls.Add(Me.Label4)
+        Me.GrBFilters.Controls.Add(Me.Fltusernrq)
+        Me.GrBFilters.Controls.Add(Me.Label5)
+        Me.GrBFilters.Controls.Add(Me.Fltpernm)
+        Me.GrBFilters.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GrBFilters.Location = New System.Drawing.Point(3, 3)
+        Me.GrBFilters.Name = "GrBFilters"
+        Me.GrBFilters.Size = New System.Drawing.Size(146, 390)
+        Me.GrBFilters.TabIndex = 1
+        Me.GrBFilters.TabStop = False
         '
-        'NieuwToolStripMenuItem
+        'CBbediendeN
         '
-        Me.NieuwToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemadd
-        Me.NieuwToolStripMenuItem.Name = "NieuwToolStripMenuItem"
-        Me.NieuwToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
-        Me.NieuwToolStripMenuItem.Text = "Nieuw"
-        Me.NieuwToolStripMenuItem.ToolTipText = "Nieuwe blanco code"
+        Me.CBbediendeN.AutoSize = True
+        Me.CBbediendeN.Location = New System.Drawing.Point(94, 137)
+        Me.CBbediendeN.Name = "CBbediendeN"
+        Me.CBbediendeN.Size = New System.Drawing.Size(46, 17)
+        Me.CBbediendeN.TabIndex = 48
+        Me.CBbediendeN.Text = "Nee"
+        Me.CBbediendeN.UseVisualStyleBackColor = True
         '
-        'BewerkToolStripMenuItem
+        'CBbediendeJ
         '
-        Me.BewerkToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemedit
-        Me.BewerkToolStripMenuItem.Name = "BewerkToolStripMenuItem"
-        Me.BewerkToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
-        Me.BewerkToolStripMenuItem.Text = "Bewerk"
-        Me.BewerkToolStripMenuItem.ToolTipText = "Bewerk de code"
+        Me.CBbediendeJ.AutoSize = True
+        Me.CBbediendeJ.Location = New System.Drawing.Point(61, 137)
+        Me.CBbediendeJ.Name = "CBbediendeJ"
+        Me.CBbediendeJ.Size = New System.Drawing.Size(37, 17)
+        Me.CBbediendeJ.TabIndex = 47
+        Me.CBbediendeJ.Text = "Ja"
+        Me.CBbediendeJ.UseVisualStyleBackColor = True
         '
-        'ToolStripSeparator1
+        'Label1
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(162, 6)
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 137)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(52, 13)
+        Me.Label1.TabIndex = 46
+        Me.Label1.Text = "Bediende"
         '
-        'SelecteerToolStripMenuItem
+        'CBdienstN
         '
-        Me.SelecteerToolStripMenuItem.Name = "SelecteerToolStripMenuItem"
-        Me.SelecteerToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
-        Me.SelecteerToolStripMenuItem.Text = "Selectie InDienst"
+        Me.CBdienstN.AutoSize = True
+        Me.CBdienstN.Location = New System.Drawing.Point(94, 115)
+        Me.CBdienstN.Name = "CBdienstN"
+        Me.CBdienstN.Size = New System.Drawing.Size(46, 17)
+        Me.CBdienstN.TabIndex = 45
+        Me.CBdienstN.Text = "Nee"
+        Me.CBdienstN.UseVisualStyleBackColor = True
         '
-        'DeselecteerToolStripMenuItem
+        'CBdienstJ
         '
-        Me.DeselecteerToolStripMenuItem.Name = "DeselecteerToolStripMenuItem"
-        Me.DeselecteerToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
-        Me.DeselecteerToolStripMenuItem.Text = "Selectie UitDienst"
+        Me.CBdienstJ.AutoSize = True
+        Me.CBdienstJ.Location = New System.Drawing.Point(61, 115)
+        Me.CBdienstJ.Name = "CBdienstJ"
+        Me.CBdienstJ.Size = New System.Drawing.Size(37, 17)
+        Me.CBdienstJ.TabIndex = 44
+        Me.CBdienstJ.Text = "Ja"
+        Me.CBdienstJ.UseVisualStyleBackColor = True
         '
-        'ToolStripSeparator2
+        'Label6
         '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(162, 6)
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(9, 115)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(46, 13)
+        Me.Label6.TabIndex = 30
+        Me.Label6.Text = "InDienst"
         '
-        'VerwijderToolStripMenuItem
+        'BTN_FilterReset
         '
-        Me.VerwijderToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemdelete
-        Me.VerwijderToolStripMenuItem.Name = "VerwijderToolStripMenuItem"
-        Me.VerwijderToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
-        Me.VerwijderToolStripMenuItem.Text = "Verwijder"
-        Me.VerwijderToolStripMenuItem.ToolTipText = "Verwijder de code"
+        Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
+        Me.BTN_FilterReset.Location = New System.Drawing.Point(93, 13)
+        Me.BTN_FilterReset.Name = "BTN_FilterReset"
+        Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
+        Me.BTN_FilterReset.TabIndex = 17
+        Me.BTN_FilterReset.TabStop = False
+        Me.BTN_FilterReset.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label4.Location = New System.Drawing.Point(9, 57)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(35, 13)
+        Me.Label4.TabIndex = 26
+        Me.Label4.Text = "Naam"
+        '
+        'Fltusernrq
+        '
+        Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Fltusernrq.Location = New System.Drawing.Point(61, 83)
+        Me.Fltusernrq.Name = "Fltusernrq"
+        Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
+        Me.Fltusernrq.TabIndex = 14
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(9, 86)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(26, 13)
+        Me.Label5.TabIndex = 21
+        Me.Label5.Text = "Wie"
+        '
+        'Fltpernm
+        '
+        Me.Fltpernm.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Fltpernm.Location = New System.Drawing.Point(61, 54)
+        Me.Fltpernm.Name = "Fltpernm"
+        Me.Fltpernm.Size = New System.Drawing.Size(66, 20)
+        Me.Fltpernm.TabIndex = 11
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(194, 6)
+        '
+        'VerwijderGeselecteerdeToolStripMenuItem
+        '
+        Me.VerwijderGeselecteerdeToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.recycle
+        Me.VerwijderGeselecteerdeToolStripMenuItem.Name = "VerwijderGeselecteerdeToolStripMenuItem"
+        Me.VerwijderGeselecteerdeToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.VerwijderGeselecteerdeToolStripMenuItem.Text = "Verwijder geselecteerde"
         '
         'SearchPER
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1014, 395)
+        Me.ClientSize = New System.Drawing.Size(1013, 427)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "SearchPER"
         Me.Text = "Personeel: Overzicht"
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        CType(Me.DGREC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GrBFilters.ResumeLayout(False)
         Me.GrBFilters.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        CType(Me.DGREC, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -354,19 +450,7 @@ Partial Class SearchPER
     Friend WithEvents ToolStripLabel2 As ToolStripLabel
     Friend WithEvents ToolStripLabel5 As ToolStripLabel
     Friend WithEvents TSBdelete As ToolStripButton
-    Friend WithEvents ToolStripLabel3 As ToolStripLabel
     Friend WithEvents TSBexport As ToolStripButton
-    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents GrBFilters As GroupBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents FltCBdienst As ComboBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Fltpernm As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Fltusernrq As TextBox
-    Friend WithEvents BTN_FilterReset As Button
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents DGREC As DataGridView
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents NieuwToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BewerkToolStripMenuItem As ToolStripMenuItem
@@ -375,4 +459,24 @@ Partial Class SearchPER
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents SelecteerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeselecteerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents DGREC As DataGridView
+    Friend WithEvents GrBFilters As GroupBox
+    Friend WithEvents BTN_FilterReset As Button
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Fltusernrq As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Fltpernm As TextBox
+    Friend WithEvents ToolStripLabel1 As ToolStripLabel
+    Friend WithEvents CBbediendeN As CheckBox
+    Friend WithEvents CBbediendeJ As CheckBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents CBdienstN As CheckBox
+    Friend WithEvents CBdienstJ As CheckBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents VerwijderGeselecteerdeToolStripMenuItem As ToolStripMenuItem
 End Class

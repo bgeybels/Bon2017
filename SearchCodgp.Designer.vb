@@ -41,19 +41,19 @@ Partial Class SearchCodgp
         Me.VerwijderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DGREC = New System.Windows.Forms.DataGridView()
-        Me.GrBFilters = New System.Windows.Forms.GroupBox()
-        Me.BTN_FilterReset = New System.Windows.Forms.Button()
-        Me.Fltusernrq = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Fltomsgroep = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GrBFilters = New System.Windows.Forms.GroupBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Fltomsgroep = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Fltusernrq = New System.Windows.Forms.TextBox()
+        Me.BTN_FilterReset = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DGREC, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GrBFilters.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
+        Me.GrBFilters.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -177,9 +177,9 @@ Partial Class SearchCodgp
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBox1.Controls.Add(Me.DGREC)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 51)
+        Me.GroupBox1.Location = New System.Drawing.Point(126, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1286, 277)
+        Me.GroupBox1.Size = New System.Drawing.Size(1163, 325)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         '
@@ -197,9 +197,27 @@ Partial Class SearchCodgp
         Me.DGREC.ReadOnly = True
         Me.DGREC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGREC.Size = New System.Drawing.Size(1280, 258)
+        Me.DGREC.Size = New System.Drawing.Size(1157, 306)
         Me.DGREC.TabIndex = 1
         Me.DGREC.TabStop = False
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.AutoSize = True
+        Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel1.Controls.Add(Me.GrBFilters, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 1, 0)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1292, 331)
+        Me.TableLayoutPanel1.TabIndex = 8
         '
         'GrBFilters
         '
@@ -213,71 +231,54 @@ Partial Class SearchCodgp
         Me.GrBFilters.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GrBFilters.Location = New System.Drawing.Point(3, 3)
         Me.GrBFilters.Name = "GrBFilters"
-        Me.GrBFilters.Size = New System.Drawing.Size(1286, 42)
-        Me.GrBFilters.TabIndex = 1
+        Me.GrBFilters.Size = New System.Drawing.Size(117, 325)
+        Me.GrBFilters.TabIndex = 3
         Me.GrBFilters.TabStop = False
-        '
-        'BTN_FilterReset
-        '
-        Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
-        Me.BTN_FilterReset.Location = New System.Drawing.Point(0, 7)
-        Me.BTN_FilterReset.Name = "BTN_FilterReset"
-        Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
-        Me.BTN_FilterReset.TabIndex = 17
-        Me.BTN_FilterReset.TabStop = False
-        Me.BTN_FilterReset.UseVisualStyleBackColor = True
-        '
-        'Fltusernrq
-        '
-        Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltusernrq.Location = New System.Drawing.Point(197, 16)
-        Me.Fltusernrq.Name = "Fltusernrq"
-        Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
-        Me.Fltusernrq.TabIndex = 14
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(165, 20)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(26, 13)
-        Me.Label5.TabIndex = 21
-        Me.Label5.Text = "Wie"
-        '
-        'Fltomsgroep
-        '
-        Me.Fltomsgroep.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltomsgroep.Location = New System.Drawing.Point(84, 16)
-        Me.Fltomsgroep.Name = "Fltomsgroep"
-        Me.Fltomsgroep.Size = New System.Drawing.Size(66, 20)
-        Me.Fltomsgroep.TabIndex = 11
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label4.Location = New System.Drawing.Point(42, 20)
+        Me.Label4.Location = New System.Drawing.Point(3, 52)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(36, 13)
         Me.Label4.TabIndex = 26
         Me.Label4.Text = "Groep"
         '
-        'TableLayoutPanel1
+        'Fltomsgroep
         '
-        Me.TableLayoutPanel1.AutoSize = True
-        Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanel1.Controls.Add(Me.GrBFilters, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1292, 331)
-        Me.TableLayoutPanel1.TabIndex = 8
+        Me.Fltomsgroep.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Fltomsgroep.Location = New System.Drawing.Point(45, 48)
+        Me.Fltomsgroep.Name = "Fltomsgroep"
+        Me.Fltomsgroep.Size = New System.Drawing.Size(66, 20)
+        Me.Fltomsgroep.TabIndex = 11
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(4, 78)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(26, 13)
+        Me.Label5.TabIndex = 21
+        Me.Label5.Text = "Wie"
+        '
+        'Fltusernrq
+        '
+        Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Fltusernrq.Location = New System.Drawing.Point(45, 74)
+        Me.Fltusernrq.Name = "Fltusernrq"
+        Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
+        Me.Fltusernrq.TabIndex = 14
+        '
+        'BTN_FilterReset
+        '
+        Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
+        Me.BTN_FilterReset.Location = New System.Drawing.Point(75, 8)
+        Me.BTN_FilterReset.Name = "BTN_FilterReset"
+        Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
+        Me.BTN_FilterReset.TabIndex = 17
+        Me.BTN_FilterReset.TabStop = False
+        Me.BTN_FilterReset.UseVisualStyleBackColor = True
         '
         'SearchCodgp
         '
@@ -293,10 +294,10 @@ Partial Class SearchCodgp
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.DGREC, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GrBFilters.ResumeLayout(False)
-        Me.GrBFilters.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
+        Me.GrBFilters.ResumeLayout(False)
+        Me.GrBFilters.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -319,11 +320,11 @@ Partial Class SearchCodgp
     Friend WithEvents VerwijderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DGREC As DataGridView
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents GrBFilters As GroupBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Fltomsgroep As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Fltusernrq As TextBox
     Friend WithEvents BTN_FilterReset As Button
-    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
 End Class

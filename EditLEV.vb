@@ -7,12 +7,20 @@ Public Class EditLEV
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "Leverancier: Bewerken (key=" & keylevnrq & ")"
         If IsNewRecord = True Then Me.Text = "Leverancier: Nieuw"
 
         nocmdupd = True
         Fill_DG()
         nocmdupd = False
         Velden_vullen()
+    End Sub
+
+    Private Sub EditLEV_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If IsNewRecord = False Then
+            Dim unlock = unlockrec("LEV", keylevnrq)
+        End If
+        IsNewRecord = False
     End Sub
 
     Private Sub SetGrids()
@@ -45,14 +53,14 @@ Public Class EditLEV
 
         Dim oldnaam As String = updaterec.LEVnaam
         updaterec.LEVnaam = TBlevnaam.Text
-        updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
         Try
             db.SubmitChanges()
             Archive("LEV_U", Str(keylevnrq), oldnaam & " --> " & updaterec.LEVnaam)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -61,15 +69,15 @@ Public Class EditLEV
         Dim newrec As New LEV With {
           .LEVnaam = TBlevnaam.Text,
           .usernrq = LoginNm,
-          .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+          .chdate = ChDate
           }
 
         db.LEVs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try

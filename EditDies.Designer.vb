@@ -22,7 +22,7 @@ Partial Class EditDIES
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditDies))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditDIES))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TSBexit = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
@@ -86,7 +86,7 @@ Partial Class EditDIES
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(376, 126)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(376, 119)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'GroupBox1
@@ -101,14 +101,13 @@ Partial Class EditDIES
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(370, 120)
+        Me.GroupBox1.Size = New System.Drawing.Size(370, 113)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
         'CBactief
         '
-        Me.CBactief.Appearance = System.Windows.Forms.Appearance.Button
-        Me.CBactief.Location = New System.Drawing.Point(94, 84)
+        Me.CBactief.Location = New System.Drawing.Point(94, 77)
         Me.CBactief.Name = "CBactief"
         Me.CBactief.Size = New System.Drawing.Size(73, 23)
         Me.CBactief.TabIndex = 43
@@ -149,14 +148,14 @@ Partial Class EditDIES
         Me.Label4.TabIndex = 41
         Me.Label4.Text = "Percentage"
         '
-        'EditDies
+        'EditDIES
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(376, 157)
+        Me.ClientSize = New System.Drawing.Size(376, 150)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.Name = "EditDies"
+        Me.Name = "EditDIES"
         Me.Text = "Dieselpercentage: Bewerken"
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()

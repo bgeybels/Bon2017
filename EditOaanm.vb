@@ -3,16 +3,24 @@
 Public Class EditOaanm
     Dim nocmdupd As Boolean = False
 
-    Private Sub EditCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub EditOaanm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "Onderaannemer: Bewerken (key=" & keyoaanmnrq & ")"
         If IsNewRecord = True Then Me.Text = "Onderaannemer: Nieuw"
 
         nocmdupd = True
         Fill_DG()
         nocmdupd = False
         Velden_vullen()
+    End Sub
+
+    Private Sub EditOaanm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If IsNewRecord = False Then
+            Dim unlock = unlockrec("OAANM", keyoaanmnrq)
+        End If
+        IsNewRecord = False
     End Sub
 
     Private Sub SetGrids()
@@ -45,14 +53,14 @@ Public Class EditOaanm
 
         Dim oldnaam As String = updaterec.OAANMNM
         updaterec.OAANMNM = TBoaanmnm.Text
-        updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
         Try
             db.SubmitChanges()
             Archive("OAANM_U", Str(keyoaanmnrq), oldnaam & " --> " & TBoaanmnm.Text)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -61,15 +69,15 @@ Public Class EditOaanm
         Dim newrec As New OAANM With {
             .OAANMNM = TBoaanmnm.Text,
             .usernrq = LoginNm,
-            .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+            .chdate = ChDate
         }
 
         db.OAANMs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record toevoegen niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try

@@ -1,5 +1,4 @@
 ﻿Imports System.ComponentModel
-Imports System.Text.RegularExpressions
 
 Public Class Editbon
     Dim nocmdupd As Boolean = False
@@ -8,8 +7,10 @@ Public Class Editbon
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "Bon: Bewerken (key=" & keybonjr & "/" & keybonnr & ")"
         If IsNewRecord = True Then
-            Me.Text = "BonLijn: Nieuw"
+            'TSBPrintBon.Enabled = False
+            Me.Text = "Bon: Nieuw"
             'Me.ToolStrip1.BackColor = Color.Bisque
         End If
         FillCMBeigenaar(CMBeigenaar)
@@ -19,8 +20,16 @@ Public Class Editbon
         nocmdupd = False
         Velden_vullen()
 
+        DTPdatumaanvang.Focus()
+
     End Sub
     Private Sub Editbon_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        ' unlock record (niet voor nieuwe records)
+        If IsNewRecord = False Then
+            Dim strkey As String = keybonjr & keybonnr
+            Dim unlock = unlockrec("BON", strkey)
+        End If
+
         IsNewRecord = False
     End Sub
 
@@ -34,7 +43,10 @@ Public Class Editbon
             records = From bon In db.BONs
                       Where bon.BONJR = keybonjr AndAlso bon.BONNR = keybonnr
                       Take 1
+
         Catch ex As Exception
+            PositionMsgbox.CenterMsgBox(Me)
+            MsgBox("Probleem... Ophalen niet gelukt! --> " & ex.Message)
 
         End Try
 
@@ -59,6 +71,7 @@ Public Class Editbon
 
         updaterec.DatumAanvang = DTPdatumaanvang.Value
         updaterec.tav = TBtav.Text
+        updaterec.OPM = TBopm.Text
 
         Dim tyx = CMBtype.SelectedItem
         updaterec.bon_type = tyx.Substring(0, 1)
@@ -79,6 +92,8 @@ Public Class Editbon
         updaterec.fnr = TBfnr.Text
         updaterec.cok = CBcok.CheckState
         updaterec.fok = CBfok.CheckState
+        updaterec.PART = CBpart.CheckState
+        updaterec.klaar = CBklaar.CheckState
         updaterec.del = CBdel.CheckState
         updaterec.tbw = CBtbw.CheckState
         updaterec.vs = CBvs.CheckState
@@ -90,15 +105,16 @@ Public Class Editbon
         updaterec.ENRQ = CMBeigenaar.SelectedValue
         updaterec.KNRQ = keyknrq
 
-        updaterec.ChDate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        'updaterec.chdate = sysdate & DateTime.Now.ToString("HH:mm:ss")
         updaterec.usernrq = LoginNm
         Try
             db.SubmitChanges()
             Dim key = keybonjr & "/" & keybonnr.ToString("0000")
             Archive("BON_U", key, TBomsbon.Text)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -119,12 +135,15 @@ Public Class Editbon
         .Betaald = 0,
         .printed = 0,
         .tav = TBtav.Text,
+        .OPM = TBopm.Text,
         .dvan = DTPdvan.Text,
         .dtot = DTPdtot.Text,
         .cnr = Format(TBcnr.Text, "0"),
         .fnr = Format(TBfnr.Text, "0"),
         .fok = CBfok.CheckState,
         .cok = CBcok.CheckState,
+        .PART = CBpart.CheckState,
+        .klaar = CBklaar.CheckState,
         .del = CBdel.CheckState,
         .tbw = CBtbw.CheckState,
         .vs = CBvs.CheckState,
@@ -132,15 +151,15 @@ Public Class Editbon
         .uv = CBuv.CheckState,
         .bon_type = tyx.Substring(0, 1),
         .usernrq = LoginNm,
-        .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        .chdate = ChDate & " " & DateTime.Now.ToString("HH:mm:ss")
         }
 
         db.BONs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.  Probeer opnieuw.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try
@@ -167,6 +186,23 @@ Public Class Editbon
     End Function
 
     Private Sub Velden_vullen()
+        setklant(0)
+        DTPdatumaanvang.Value = SysDate
+        DTPdvan.Value = SysDate
+        DTPdtot.Value = SysDate
+        TBtav.Text = ""
+        TBopm.Text = ""
+        TBomsbon.Text = ""
+        CBdel.Checked = 0
+        CBvs.Checked = 0
+        CBgstk.Checked = 0
+        CBuv.Checked = 0
+        CBfok.Checked = 0
+        CBcok.Checked = 0
+        CBpart.Checked = 0
+        CBklaar.Checked = 0
+        CMBeigenaar.SelectedItem = 1
+
         LBLboninfo.Text = keybonjr & "/" & keybonnr
         If IsNewRecord = True Then LBLboninfo.Text = keybonjr & "/" & "..."
         CMBtype.SelectedItem = "Onbekend"
@@ -179,22 +215,40 @@ Public Class Editbon
                     DTPdatumaanvang.Value = SysDate
                     DTPdvan.Value = SysDate
                     DTPdtot.Value = SysDate
+                    TBomsbon.Text = ""
+                    TBtav.Text = ""
+                    TBopm.Text = ""
+                    CBdel.Checked = 0
+                    CBvs.Checked = 0
+                    CBgstk.Checked = 0
+                    CBuv.Checked = 0
+                    CBfok.Checked = 0
+                    CBpart.Checked = 0
+                    CBklaar.Checked = 0
+                    CBtbw.Checked = 0
+                    TBfnr.Text = 0
+                    TBcnr.Text = 0
+                    CBcok.Checked = 0
                 Else
                     DTPdatumaanvang.Value = rec.datumaanvang
                     DTPdvan.Value = rec.dvan
                     DTPdtot.Value = rec.dtot
+                    TBomsbon.Text = rec.omsbon
+                    TBtav.Text = rec.tav
+                    TBopm.Text = rec.opm
+                    CBdel.Checked = rec.del
+                    CBvs.Checked = rec.vs
+                    CBtbw.Checked = rec.tbw
+                    CBgstk.Checked = rec.gstk
+                    CBuv.Checked = rec.uv
+                    CBfok.Checked = rec.fok
+                    CBpart.Checked = rec.part
+                    CBklaar.Checked = rec.klaar
+                    TBfnr.Text = rec.fnr
+                    TBcnr.Text = rec.cnr
+                    CBcok.Checked = rec.cok
                 End If
 
-                TBtav.Text = rec.tav
-                TBomsbon.Text = rec.omsbon
-                CBdel.Checked = rec.del
-                CBvs.Checked = rec.vs
-                CBgstk.Checked = rec.gstk
-                CBuv.Checked = rec.uv
-                CBfok.Checked = rec.fok
-                TBfnr.Text = rec.fnr
-                TBcnr.Text = rec.cnr
-                CBcok.Checked = rec.cok
                 CMBeigenaar.SelectedValue = rec.enrq
 
                 Select Case rec.bon_type
@@ -208,27 +262,14 @@ Public Class Editbon
                         CMBtype.SelectedItem = "Container"
                     Case "N"
                         CMBtype.SelectedItem = "Nazorg"
+                    Case "G"
+                        CMBtype.SelectedItem = "Groenonderhoud"
                     Case Else
                         CMBtype.SelectedItem = "Onbekend"
                 End Select
             Next
         Catch ex As Exception
-            setklant(0)
 
-            DTPdatumaanvang.Value = SysDate
-            DTPdvan.Value = SysDate
-            DTPdtot.Value = SysDate
-            TBtav.Text = ""
-            TBomsbon.Text = ""
-            CBdel.Checked = 0
-            CBvs.Checked = 0
-            CBgstk.Checked = 0
-            CBuv.Checked = 0
-            CBfok.Checked = 0
-            CBcok.Checked = 0
-            CMBeigenaar.SelectedItem = 1
-
-            CMBtype.SelectedItem = "Onbekend"
         End Try
 
     End Sub
@@ -244,7 +285,9 @@ Public Class Editbon
 
     Private Sub zoekKlant_Click(sender As Object, e As EventArgs) Handles ZoekKlant.Click
         keyklantnrq = keyknrq
+        frompopup = True
         SearchKlant.ShowDialog()
+        frompopup = False
         keyknrq = keyklantnrq
         setklant(keyknrq)
     End Sub
@@ -252,8 +295,29 @@ Public Class Editbon
     '****Functions
     Private Sub setklant(key As Integer)
         Dim klantnaam As String
-        klantnaam = GetKlantNaam(key)
+        klantnaam = GetKlantInfo(key)
         lblKLANTinfo.Text = klantnaam
     End Sub
+
+    Private Sub PrintBon_Click(sender As Object, e As EventArgs) Handles TSBPrintBon.Click
+        If Savedata() = True Then
+            ExportToBonNaCalc(keybonjr, keybonnr)
+        End If
+    End Sub
+
+    Private Sub TSBCopyBon_Click(sender As Object, e As EventArgs) Handles TSBCopyBon.Click
+        ' Nieuwjaar = ToJaar
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        If CopyBON(keybonjr) = False Then
+            Me.Cursor = System.Windows.Forms.Cursors.Default
+            MsgBox("Kopieer Bon(lijnen) niet gelukt!")
+            Exit Sub
+        End If
+
+        My.Settings.fltbonjr = keybonjr
+        Me.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Close()
+    End Sub
+
 
 End Class

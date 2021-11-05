@@ -1,8 +1,8 @@
 ﻿Imports System.Linq.Dynamic
 Imports System.ComponentModel
 
-Public Class searchfakt
-    Private ordDGREC As String = "NR"
+Public Class Searchfakt
+    Private ordDGREC As String = "FNR"
     Dim updategrid As Boolean = True
     Dim nofilter As Boolean = True
 
@@ -24,23 +24,26 @@ Public Class searchfakt
             FormBorderStyle = FormBorderStyle.Sizable
         End If
 
-        For Each a In GroupFilter.Controls
-            If TypeOf a Is ComboBox Then
-                If a.name Like "Flt*" Then
-                    FillCMBeau(a)
-                    a.selectedindex = 0
-                End If
-            End If
-        Next
+        'For Each a In GroupFilter.Controls
+        'If TypeOf a Is ComboBox Then
+        'If a.name Like "Flt*" Then
+        'FillCMBeau(a)
+        'a.selectedindex = 0
+        'End If
+        'End If
+        'Next
+        ''FillCMBdc(FltCBcnr)
 
         TSButtonPermissions(TSBdelete)
         CMButtonPermissions(VerwijderToolStripMenuItem)
 
+        nofilter = False
         ' get values from settings
         Fltbonjr.Value = My.Settings.fltbonjr
+        '      CMBtype.SelectedIndex = 1
+        NFltCBtype.SelectedItem = "Verkoop"
         'FltCBtbw.SelectedIndex = My.Settings.fltbontbw
 
-        nofilter = False
         hkey = keyfaktjr
         hkey2 = keyfaktnr
         hkeystr = keyfaktdc
@@ -59,15 +62,15 @@ Public Class searchfakt
         If keyfaktjr = 0 Then keyfaktjr = My.Settings.fltbonjr
         hkey = keyfaktjr
         hkey2 = keyfaktnr
-        hkey3 = keyfaktdc
+        hkeystr = keyfaktdc
         Fill_DGREC()
         keybonjr = hkey
         keybonnr = hkey2
-        keyfaktdc = hkey3
+        keyfaktdc = hkeystr
         SetRECrow()
         keyfaktjr = hkey
         keyfaktnr = hkey2
-        keyfaktdc = hkey3
+        keyfaktdc = hkeystr
         updategrid = True
     End Sub
 
@@ -85,49 +88,77 @@ Public Class searchfakt
     End Sub
 
     Private Sub FillInfo()
-        '  'TBResultFAKT
-        ' TBResultBON.Text = ""
-        'TBResultBON.Text = TBResultBON.Text & " Bon: " & keybonjr & "/" & keybonnr.ToString("0000") & "  (Totaal aantal bonnen: " & DGREC.RowCount & ")"
-        'TBResultBON.Text = TBResultBON.Text & Environment.NewLine & GetKlantNaam(keyknrq)
-        'Next
-
-        'TBResultFAKTL
-        'TBResultBONL.Text = GetBonlFigures(keybonjr, keybonnr)
-
+        TBResultFAKTL.Text = " Faktuur: " & keyfaktjr & "/" & keyfaktfnr.ToString("0000") & "-" & keyfaktdc & "  (Totaal aantal fakturen: " & DGREC.RowCount & ")"
+        TBResultFAKTL.Text = TBResultFAKTL.Text & Environment.NewLine & GetFaktlFigures(keybonjr, keybonnr)
     End Sub
 
+    Private Sub FillInfoSEL()
+        'TBResultFAKT
+        TBResultFAKT.Text = GetSELFaktlFigures(DGREC)
+    End Sub
     '****DATAGRID stuff
     Private Sub Fill_DGREC()
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
 
-        If CBfilteryear.Checked = True Then
+        If (CBfilteryear.Checked = True) And (CBfilterdatum.Checked = False) Then
             records =
                     From fakt In db.FAKTs
                     Join eigenaar In db.EIGENAARs On fakt.ENRQ Equals eigenaar.ENRQ
                     Where fakt.JAAR = Fltbonjr.Value
                     Let Wie = fakt.usernrq & " (" & fakt.chdate & ")"
-                    Select JR = fakt.JAAR, NR = fakt.NR, Type = fakt.bon_type, DC = fakt.DC, fakt.FNR, WJR = fakt.WJAAR,
+                    Select JR = fakt.JAAR, NR = fakt.NR, Type = fakt.fakt_bon_type, DC = fakt.DC, fakt.FNR, WJR = fakt.WJAAR,
                         fakt.Datin, Start = fakt.dvan, Einde = fakt.dtot,
                         Inclusief = fakt.tbedrag, Exclusief = fakt.teenhp, BTW = fakt.tbtw, NaCalc = fakt.fakt_ncalc,
                         fakt.KNaam, fakt.Werf,
                         EIGENAAR = eigenaar.ENaam, Wie
+        ElseIf (CBfilteryear.Checked = True) And (CBfilterdatum.Checked = True) Then
+            records = From fakt In db.FAKTs
+                      Join eigenaar In db.EIGENAARs On fakt.ENRQ Equals eigenaar.ENRQ
+                      Where fakt.JAAR = Fltbonjr.Value _
+                      And fakt.dvan >= Format(FltDatumvan.Value, "#yyyy-MM-dd 00:00:00.000#") _
+                      And fakt.dtot < Format(Fltdatumtot.Value, "#yyyy-MM-dd 23:59:59.999#")
+                      Let Wie = fakt.usernrq & " (" & fakt.chdate & ")"
+                      Select JR = fakt.JAAR, NR = fakt.NR, Type = fakt.fakt_bon_type, DC = fakt.DC, fakt.FNR, WJR = fakt.WJAAR,
+                fakt.Datin, Start = fakt.dvan, Einde = fakt.dtot,
+                Inclusief = fakt.tbedrag, Exclusief = fakt.teenhp, BTW = fakt.tbtw, NaCalc = fakt.fakt_ncalc,
+                fakt.KNaam, fakt.Werf,
+                EIGENAAR = eigenaar.ENaam, Wie
+        ElseIf (CBfilterdatum.Checked = True) Then
+            records =
+                From fakt In db.FAKTs
+                Join eigenaar In db.EIGENAARs On fakt.ENRQ Equals eigenaar.ENRQ
+                Where fakt.JAAR = Fltbonjr.Value _
+                      And fakt.dvan >= Format(FltDatumvan.Value, "#yyyy-MM-dd 00:00:00.000#") _
+                      And fakt.dtot < Format(Fltdatumtot.Value, "#yyyy-MM-dd 23:59:59.999#")
+                Let Wie = fakt.usernrq & " (" & fakt.chdate & ")"
+                Select JR = fakt.JAAR, NR = fakt.NR, Type = fakt.fakt_bon_type, DC = fakt.DC, fakt.FNR, WJR = fakt.WJAAR,
+            fakt.Datin, Start = fakt.dvan, Einde = fakt.dtot,
+            Inclusief = fakt.tbedrag, Exclusief = fakt.teenhp, BTW = fakt.tbtw, NaCalc = fakt.fakt_ncalc,
+            fakt.KNaam, fakt.Werf,
+            EIGENAAR = eigenaar.ENaam, Wie
         Else
             records =
                 From fakt In db.FAKTs
                 Join eigenaar In db.EIGENAARs On fakt.ENRQ Equals eigenaar.ENRQ
                 Let Wie = fakt.usernrq & " (" & fakt.chdate & ")"
-                Select JR = fakt.JAAR, NR = fakt.NR, Type = fakt.bon_type, DC = fakt.DC, fakt.FNR, WJR = fakt.WJAAR,
+                Select JR = fakt.JAAR, NR = fakt.NR, Type = fakt.fakt_bon_type, DC = fakt.DC, fakt.FNR, WJR = fakt.WJAAR,
                         fakt.Datin, Start = fakt.dvan, Einde = fakt.dtot,
                         Inclusief = fakt.tbedrag, Exclusief = fakt.teenhp, BTW = fakt.tbtw, NaCalc = fakt.fakt_ncalc,
                         fakt.KNaam, fakt.Werf,
                         EIGENAAR = eigenaar.ENaam, Wie
         End If
 
-        If Me.ordDGREC = Nothing Then ordDGREC = "NR"
-        records = records.OrderBy(ordDGREC, SortOrder.Ascending = True)
         DGFILTER()
         Me.DGREC.DataSource = records
-        FillInfo()
+        If Me.ordDGREC = Nothing Then ordDGREC = "FNR"
+        Me.DGREC.Sort(Me.DGREC.Columns(ordDGREC), ListSortDirection.Descending)
+
+        'set numbermode
+        Dim dgnums = New String() {"Inclusief", "Exclusief", "BTW", "NaCalc"}
+        For index = 0 To dgnums.GetUpperBound(0)
+            DGREC.Columns(dgnums(index)).DefaultCellStyle.Format = "N2"
+            DGREC.Columns(dgnums(index)).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        Next
 
         'set invisible
         'Dim dginvisible = New String() {"KNRQ", "fok", "cok", "printed"}
@@ -139,7 +170,7 @@ Public Class searchfakt
         For index = 0 To dgautos.GetUpperBound(0)
             DGREC.Columns(dgautos(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next index
-        Dim dgautod = New String() {"JR", "NR", "DC", "Type", "EIGENAAR"}
+        Dim dgautod = New String() {"JR", "NR", "DC", "Type", "EIGENAAR", "Type"}
         For index = 0 To dgautod.GetUpperBound(0)
             DGREC.Columns(dgautod(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
         Next index
@@ -149,6 +180,10 @@ Public Class searchfakt
             keyfaktjr = Fltbonjr.Value
             keyfaktnr = 0
         End If
+
+        FillInfo()
+        FillInfoSEL()
+
         Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
@@ -160,11 +195,22 @@ Public Class searchfakt
         'If CBfilteryear.Checked = False Then keybonjr = DGREC.CurrentRow.Cells("JR").Value
         keyfaktjr = DGREC.CurrentRow.Cells("JR").Value
         keyfaktnr = DGREC.CurrentRow.Cells("NR").Value
+        keyfaktfnr = DGREC.CurrentRow.Cells("FNR").Value
         keyfaktdc = DGREC.CurrentRow.Cells("DC").Value
 
         FillInfo()
 
 NoRecords:
+    End Sub
+
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+            keyfaktjr = DGREC.CurrentRow.Cells("JR").Value
+            keyfaktnr = DGREC.CurrentRow.Cells("NR").Value
+            keyfaktfnr = DGREC.CurrentRow.Cells("FNR").Value
+            keyfaktdc = DGREC.CurrentRow.Cells("DC").Value
+        End If
     End Sub
 
     Private Sub SetGrids()
@@ -178,32 +224,47 @@ NoRecords:
             MsgBox("Geen faktuur beschikbaar om te verwijderen.")
             Exit Sub
         End If
-        If MsgBox("Verwijder faktuur?", MsgBoxStyle.YesNoCancel, "Wil je deze faktuur echt verwijderen?") = MsgBoxResult.No Then
+        If MsgBox("Wil je deze faktuur en bijhorende faktuurlijnen echt verwijderen?", MsgBoxStyle.YesNoCancel, "Verwijder faktuur?") = MsgBoxResult.No Then
             Exit Sub
         End If
-        Dim checkrec = From faktl In db.FAKTLs
-                       Where faktl.FJAAR = keyfaktjr AndAlso faktl.FNR = keyfaktnr AndAlso faktl.DC = keyfaktdc
-        If checkrec.Count > 0 Then
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        Dim bonlinked As Boolean = False
+        If keyfaktdc = "D" Then
+            Dim checkrec = From bon In db.BONs Where bon.BONJR = keyfaktjr And bon.BONNR = keyfaktnr And bon.fnr = keyfaktfnr
+            If checkrec.Count > 0 Then
+                bonlinked = True
+            End If
+        Else
+            Dim checkrec = From bon In db.BONs Where bon.BONJR = keyfaktjr And bon.BONNR = keyfaktnr And bon.cnr = keyfaktfnr
+            If checkrec.Count > 0 Then
+                bonlinked = True
+            End If
+        End If
+        If bonlinked = True Then
+            Me.Cursor = System.Windows.Forms.Cursors.Default
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Faktuur " & keyfaktjr & "/" & keyfaktnr & " bevat nog faktuurlijnen!")
+            MsgBox("Faktuur " & keyfaktjr & "/" & keyfaktnr & " is nog gelinkt in bon!")
             Exit Sub
         End If
 
         Try
-            Dim deleterec = (From fakt In db.FAKTs
-                             Where fakt.JAAR = keyfaktjr AndAlso fakt.NR = keyfaktnr AndAlso fakt.DC = keyfaktdc).ToList()(0)
+            Dim delsrec = (From fakt In db.FAKTs
+                           Where fakt.JAAR = keyfaktjr AndAlso fakt.NR = keyfaktnr AndAlso fakt.DC = keyfaktdc).ToList()(0)
 
-            db.FAKTs.DeleteOnSubmit(deleterec)
+            db.FAKTs.DeleteOnSubmit(delsrec)
             db.SubmitChanges()
             Dim key = keyfaktjr & "/" & keyfaktnr.ToString("0000") & "-" & keyfaktdc
-            Archive("FAKT_D", key, deleterec.KNaam)
+            Archive("FAKT_D", key, delsrec.KNaam)
             keyfaktjr = Fltbonjr.Value
-            keyfaktnr = 0
+
         Catch
-            PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Schrappen niet gelukt!")
+            'PositionMsgbox.CenterMsgBox(Me)
+            'MsgBox("Schrappen faktuur niet gelukt!")
         End Try
+        DelFAKTL(keyfaktjr, keyfaktnr, keyfaktdc)
+        keyfaktnr = 0
         Refresh_data()
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
 
@@ -218,6 +279,9 @@ NoRecords:
                 If (Mid(a.name, 1, 5) = "FltCB") Then
                     a.selectedindex = 0
                 End If
+            End If
+            If TypeOf a Is CheckBox Then
+                a.checked = False
             End If
         Next
         nofilter = False
@@ -238,7 +302,9 @@ NoRecords:
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("Todo: Export")
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "FAKTUUR")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
     Private Sub TSBprint_Click(sender As Object, e As EventArgs) Handles TSBprint.Click
@@ -248,10 +314,16 @@ NoRecords:
 
     '****Filters
     Private Sub DGFILTER()
-
+        Dim chval As String
         If Fltnr.Text <> "" Then
             records = records.Where("NR == " & Fltnr.Text)
             Exit Sub
+        End If
+
+        If ChkBType.Checked = True Then
+            Dim tyx = NFltCBtype.SelectedItem.substring(0, 1)
+            records = records.Where("Type.equals(@0)", tyx)
+            ' updaterec.bon_type = tyx.Substring(0, 1)
         End If
 
         records = records.Where("Wie.Contains(@0)", Fltusernrq.Text)
@@ -261,23 +333,10 @@ NoRecords:
             records = records.Where("WJR.equals(@0)", Convert.ToInt32(FltWJR.Value))
         End If
 
-        '  Select Case FltCBdel.SelectedItem
-        '  Case "Aan"
-        '  chval = "true"
-        '  Case "Uit"
-        '  chval = "false"
-        '  Case Else
-        '  chval = ""
-        '  End Select
-        '  If chval <> "" Then records = records.Where("del == " & chval)
-
-        ' Select Case FltCBcnr.SelectedItem
-        ' Case "Aan"
-        ' records = records.Where("cnr <> 0")
-        ' Case "Uit"
-        ' records = records.Where("cnr == 0")
-        ' Case Else
-        ' End Select
+        chval = ""
+        If (CBcnrD.Checked = True) And (CBcnrC.Checked = False) Then chval = "D"
+        If (CBcnrC.Checked = True) And (CBcnrD.Checked = False) Then chval = "C"
+        If chval <> "" Then records = records.Where("DC.equals(@0)", chval)
     End Sub
 
     Private Sub CBfilteryear_CheckedChanged(sender As Object, e As EventArgs) Handles CBfilteryear.CheckedChanged
@@ -290,7 +349,7 @@ NoRecords:
     Private Sub Fltbonjr_ValueChanged(sender As Object, e As EventArgs) Handles Fltbonjr.ValueChanged
         keybonjr = Fltbonjr.Value
         keybonnr = 0
-        If nofilter = False Then Fill_DGREC()
+        If (nofilter = False) And (CBfilteryear.Checked = True) Then Fill_DGREC()
     End Sub
     Private Sub Fltwjr_ValueChanged(sender As Object, e As EventArgs) Handles FltWJR.ValueChanged
         If nofilter = False Then Fill_DGREC()
@@ -319,8 +378,27 @@ NoRecords:
         SearchFAKTL.Show()
     End Sub
 
-    Private Sub DGREC_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGREC.CellContentClick
-
+    Private Sub FltCBtype_SelectedIndexChanged(sender As Object, e As EventArgs) Handles NFltCBtype.SelectedIndexChanged
+        If nofilter = False Then
+            If ChkBType.Checked = True Then
+                Fill_DGREC()
+            End If
+        End If
     End Sub
 
+    Private Sub ChkBType_CheckedChanged(sender As Object, e As EventArgs) Handles ChkBType.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBcnrD_CheckedChanged(sender As Object, e As EventArgs) Handles CBcnrD.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBcnrC_CheckedChanged(sender As Object, e As EventArgs) Handles CBcnrC.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBfilterdatum_CheckedChanged(sender As Object, e As EventArgs) Handles CBfilterdatum.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
 End Class

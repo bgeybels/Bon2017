@@ -78,11 +78,16 @@ Public Class SearchPER
             Let Wie = per.usernrq & " (" & per.chdate & ")"
             Select per.PERNRQ,
                 InDienst = per.DIENST,
-                Telefoon = per.PERTEL,
-                GSMPrive = per.PERGSM,
-                GSMWerk = per.PERGSMW,
+                Bediende = per.BEDIENDE,
                 Sortering = per.PERSORT,
                 Naam = per.PERNM,
+                DT_InDienst = per.PERDTID,
+                DT_Contract = per.PERDTCT,
+                DT_UitDienst = per.PERDTUD,
+                GSMWerk = per.PERGSMW,
+                Telefoon = per.PERTEL,
+                ICE = per.PERICE,
+                GSMPrive = per.PERGSM,
                 Wie
 
         If Me.ordDGREC = Nothing Then ordDGREC = "Naam"
@@ -97,7 +102,7 @@ Public Class SearchPER
         Next
 
         'set autosizemode
-        Dim dgautos = New String() {"Naam", "Telefoon", "GSMPrive", "GSMWerk", "Sortering", "InDienst", "Wie"}
+        Dim dgautos = New String() {"Bediende", "DT_InDienst", "DT_Contract", "DT_UitDienst", "ICE", "Naam", "Telefoon", "GSMPrive", "GSMWerk", "Sortering", "InDienst", "Wie"}
         For index = 0 To dgautos.GetUpperBound(0)
             DGREC.Columns(dgautos(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next index
@@ -112,11 +117,17 @@ Public Class SearchPER
 NoRecords:
     End Sub
 
-    Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As EventArgs) Handles DGREC.DoubleClick
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
+    End Sub
+
+    Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As EventArgs)
         UpdateRec()
     End Sub
 
-    Private Sub DGREC_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGREC.ColumnHeaderMouseClick
+    Private Sub DGREC_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs)
         Me.ordDGREC = DGREC.Columns(e.ColumnIndex).Name
         'MsgBox(ordDGREC)
     End Sub
@@ -132,7 +143,17 @@ NoRecords:
 
     Private Sub UpdateRec()
         keypernrq = DGREC.CurrentRow.Cells("PERNRQ").Value
-        Editper.ShowDialog()
+
+        ' test lock
+        Dim lockedby = isLocked("PER", keypernrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("PER", keypernrq)
+
+        EditPER.ShowDialog()
         Refresh_data()
     End Sub
 
@@ -151,7 +172,25 @@ NoRecords:
         End Try
         Refresh_data()
     End Sub
+    Private Sub DeleteRecMulti()
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        For Each row As DataGridViewRow In Me.DGREC.SelectedRows
+            keypernrq = row.Cells("PERNRQ").Value
+            Try
+                Dim deleterec = (From per In db.PERs
+                                 Where per.PERNRQ = keypernrq).ToList()(0)
 
+                db.PERs.DeleteOnSubmit(deleterec)
+                db.SubmitChanges()
+                Archive("PER_D", Str(keypernrq), deleterec.PERNM & " - " & deleterec.PERTEL & " - " & deleterec.PERGSM)
+                keypernrq = 0
+            Catch
+            End Try
+        Next
+
+        Refresh_data()
+        Me.Cursor = System.Windows.Forms.Cursors.Default
+    End Sub
 
     '****BUTTON-KEY Actions
     Private Sub BTN_FilterReset_Click(sender As Object, e As EventArgs) Handles BTN_FilterReset.Click
@@ -164,6 +203,9 @@ NoRecords:
                 If (Mid(a.name, 1, 5) = "FltCB") Then
                     a.selectedindex = 0
                 End If
+            End If
+            If TypeOf a Is CheckBox Then
+                a.checked = False
             End If
         Next
         nofilter = False
@@ -194,13 +236,17 @@ NoRecords:
     End Sub
 
     Private Sub TSBdelete_Click(sender As Object, e As EventArgs) Handles TSBdelete.Click
-        If MsgBox("Verwijder personeel?", MsgBoxStyle.YesNoCancel, "Wil je dit personeelslid echt verwijderen?") = MsgBoxResult.Yes Then
-            DeleteRec()
+        If MsgBox("Verwijder personeel?", MsgBoxStyle.YesNoCancel, "Wil je dit personeelslid echt verwijderen?") <> MsgBoxResult.Yes Then
+            Return
         End If
+        DeleteRec()
     End Sub
 
+
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("Exporteer naar excel")
+        Cursor = Cursors.WaitCursor
+        ExportToCSV(DGREC, "PERSONEEL")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
     '****Filters
@@ -211,23 +257,21 @@ NoRecords:
         records = records.Where("Naam.Contains(@0)", Fltpernm.Text)
         records = records.Where("Wie.Contains(@0)", Fltusernrq.Text)
 
-        Select Case FltCBdienst.SelectedItem
-            Case "Aan"
-                chval = "true"
-            Case "Uit"
-                chval = "false"
-            Case Else
-                chval = ""
-        End Select
+        chval = ""
+        If (CBdienstJ.Checked = True) And (CBdienstN.Checked = False) Then chval = "true"
+        If (CBdienstN.Checked = True) And (CBdienstJ.Checked = False) Then chval = "false"
         If chval <> "" Then records = records.Where("InDienst == " & chval)
+
+        chval = ""
+        If (CBbediendeJ.Checked = True) And (CBbediendeN.Checked = False) Then chval = "true"
+        If (CBbediendeN.Checked = True) And (CBbediendeJ.Checked = False) Then chval = "false"
+        If chval <> "" Then records = records.Where("BEDIENDE == " & chval)
     End Sub
 
     Private Sub Fltusernrq_TextChanged(sender As Object, e As EventArgs) Handles Fltusernrq.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
-    Private Sub FltCBdienst_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FltCBdienst.SelectedIndexChanged
-        If nofilter = False Then Fill_DGREC()
-    End Sub
+
     Private Sub Fltpernm_TextChanged(sender As Object, e As EventArgs) Handles Fltpernm.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
@@ -247,7 +291,7 @@ NoRecords:
     Private Sub UpdateSelect(setting As Integer)
         Dim skeyper As Integer
 
-        For Each row As DataGridViewRow In Me.DGREC.SelectedRows
+        For Each row As DataGridViewRow In DGREC.SelectedRows
             skeyper = row.Cells("PERNRQ").Value
             Dim updaterecs = (From per In db.PERs
                               Where per.PERNRQ = skeyper).ToList()(0)
@@ -258,5 +302,33 @@ NoRecords:
                 ' Handle exception.  
             End Try
         Next
+    End Sub
+
+    Private Sub DGREC_DoubleClick(sender As Object, e As EventArgs) Handles DGREC.DoubleClick
+        UpdateRec()
+    End Sub
+
+    Private Sub CBdienstJ_CheckedChanged(sender As Object, e As EventArgs) Handles CBdienstJ.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBdienstN_CheckedChanged(sender As Object, e As EventArgs) Handles CBdienstN.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBbediendeJ_CheckedChanged(sender As Object, e As EventArgs) Handles CBbediendeJ.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+    Private Sub CBbediendeN_CheckedChanged(sender As Object, e As EventArgs) Handles CBbediendeN.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub VerwijderGeselecteerdeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerwijderGeselecteerdeToolStripMenuItem.Click
+
+        If MsgBox("Wil je deze personeelsleden echt verwijderen?", MsgBoxStyle.YesNoCancel, "Verwijder geselecteerde personeel?") <> MsgBoxResult.Yes Then
+            Return
+        End If
+        DeleteRecMulti()
+
     End Sub
 End Class

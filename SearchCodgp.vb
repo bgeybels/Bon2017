@@ -64,8 +64,12 @@ Public Class SearchCodgp
         records =
             From codgp In db.CODGPs
             Let Wie = codgp.usernrq & " (" & codgp.chdate & ")"
+            Let Afronden = codgp.rondaf
+            Let NietInStock = codgp.nostock
+            Let GeenInventaris = codgp.noinvent
+            Let InZoek = codgp.INRESULT
             Select codgp.CGNRQ,
-                codgp.rondaf, codgp.nostock, codgp.noinvent, codgp.dies,
+                Afronden, NietInStock, GeenInventaris, InZoek,
                 codgp.procent,
                 codgp.OmsGroep,
                 Wie
@@ -82,7 +86,7 @@ Public Class SearchCodgp
         Next
 
         'set autosizemode
-        Dim dgautos = New String() {"OmsGroep", "procent", "Wie", "rondaf", "nostock", "noinvent", "dies"}
+        Dim dgautos = New String() {"OmsGroep", "procent", "Wie", "Afronden", "NietInStock", "GeenInventaris", "InZoek"}
         For index = 0 To dgautos.GetUpperBound(0)
             DGREC.Columns(dgautos(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next index
@@ -96,6 +100,12 @@ Public Class SearchCodgp
         If updategrid = False Then Exit Sub
         keycnrq = DGREC.CurrentRow.Cells("CNRQ").Value
 NoRecords:
+    End Sub
+
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
     End Sub
 
     Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As EventArgs) Handles DGREC.DoubleClick
@@ -118,6 +128,16 @@ NoRecords:
 
     Private Sub UpdateRec()
         keycgnrq = DGREC.CurrentRow.Cells("CGNRQ").Value
+
+        ' test lock
+        Dim lockedby = isLocked("CODGP", keycgnrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("CODGP", keycgnrq)
+
         EditCodgp.ShowDialog()
         Refresh_data()
     End Sub
@@ -189,7 +209,9 @@ NoRecords:
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("Exporteer naar excel")
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "CODEGROEP")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
 

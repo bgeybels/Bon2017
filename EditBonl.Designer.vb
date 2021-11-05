@@ -22,6 +22,7 @@ Partial Class Editbonl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Editbonl))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TSBexit = New System.Windows.Forms.ToolStripButton()
@@ -30,6 +31,10 @@ Partial Class Editbonl
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.GRPAdres = New System.Windows.Forms.GroupBox()
+        Me.CMBlev = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TBlevnm = New System.Windows.Forms.TextBox()
+        Me.Lblomstijd = New System.Windows.Forms.Label()
         Me.CMBper = New System.Windows.Forms.ComboBox()
         Me.CMBoaanm = New System.Windows.Forms.ComboBox()
         Me.TBpernm = New System.Windows.Forms.TextBox()
@@ -43,20 +48,16 @@ Partial Class Editbonl
         Me.TBboneenhp = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.GRPWerf = New System.Windows.Forms.GroupBox()
-        Me.CMBdies = New System.Windows.Forms.ComboBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.TBdiesel = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TBbwadres = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TBbwstraat = New System.Windows.Forms.TextBox()
-        Me.CBlevering = New System.Windows.Forms.CheckBox()
         Me.CBselect = New System.Windows.Forms.CheckBox()
         Me.GRPContact = New System.Windows.Forms.GroupBox()
         Me.TBmemo = New System.Windows.Forms.TextBox()
-        Me.TBkemail = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ZoekCodeIM = New System.Windows.Forms.TextBox()
         Me.CMBbtw = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -68,6 +69,14 @@ Partial Class Editbonl
         Me.LBLbonlinfo = New System.Windows.Forms.Label()
         Me.ZoekCode = New System.Windows.Forms.Button()
         Me.DTPdatum = New System.Windows.Forms.DateTimePicker()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.BewerkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BewerkCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BTWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BewerkPersoneelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OnderaannemerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LeverancierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
@@ -75,6 +84,7 @@ Partial Class Editbonl
         Me.GRPWerf.SuspendLayout()
         Me.GRPContact.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -84,7 +94,7 @@ Partial Class Editbonl
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBsave})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(885, 31)
+        Me.ToolStrip1.Size = New System.Drawing.Size(948, 31)
         Me.ToolStrip1.TabIndex = 4
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -127,7 +137,7 @@ Partial Class Editbonl
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(885, 433)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(948, 433)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'TableLayoutPanel2
@@ -144,13 +154,17 @@ Partial Class Editbonl
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(879, 138)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(942, 164)
         Me.TableLayoutPanel2.TabIndex = 1
         '
         'GRPAdres
         '
         Me.GRPAdres.AutoSize = True
         Me.GRPAdres.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GRPAdres.Controls.Add(Me.CMBlev)
+        Me.GRPAdres.Controls.Add(Me.Label7)
+        Me.GRPAdres.Controls.Add(Me.TBlevnm)
+        Me.GRPAdres.Controls.Add(Me.Lblomstijd)
         Me.GRPAdres.Controls.Add(Me.CMBper)
         Me.GRPAdres.Controls.Add(Me.CMBoaanm)
         Me.GRPAdres.Controls.Add(Me.TBpernm)
@@ -166,39 +180,76 @@ Partial Class Editbonl
         Me.GRPAdres.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GRPAdres.Location = New System.Drawing.Point(3, 3)
         Me.GRPAdres.Name = "GRPAdres"
-        Me.GRPAdres.Size = New System.Drawing.Size(464, 132)
+        Me.GRPAdres.Size = New System.Drawing.Size(490, 158)
         Me.GRPAdres.TabIndex = 0
         Me.GRPAdres.TabStop = False
+        '
+        'CMBlev
+        '
+        Me.CMBlev.FormattingEnabled = True
+        Me.CMBlev.Location = New System.Drawing.Point(284, 118)
+        Me.CMBlev.Name = "CMBlev"
+        Me.CMBlev.Size = New System.Drawing.Size(200, 21)
+        Me.CMBlev.TabIndex = 83
+        Me.CMBlev.TabStop = False
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(6, 122)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(63, 13)
+        Me.Label7.TabIndex = 85
+        Me.Label7.Text = "Leverancier"
+        '
+        'TBlevnm
+        '
+        Me.TBlevnm.Location = New System.Drawing.Point(81, 118)
+        Me.TBlevnm.MaxLength = 100
+        Me.TBlevnm.Name = "TBlevnm"
+        Me.TBlevnm.Size = New System.Drawing.Size(197, 20)
+        Me.TBlevnm.TabIndex = 84
+        '
+        'Lblomstijd
+        '
+        Me.Lblomstijd.AutoSize = True
+        Me.Lblomstijd.Location = New System.Drawing.Point(281, 41)
+        Me.Lblomstijd.Name = "Lblomstijd"
+        Me.Lblomstijd.Size = New System.Drawing.Size(41, 13)
+        Me.Lblomstijd.TabIndex = 82
+        Me.Lblomstijd.Text = "Omstijd"
         '
         'CMBper
         '
         Me.CMBper.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.CMBper.FormattingEnabled = True
-        Me.CMBper.Location = New System.Drawing.Point(284, 39)
+        Me.CMBper.Location = New System.Drawing.Point(284, 65)
         Me.CMBper.Name = "CMBper"
-        Me.CMBper.Size = New System.Drawing.Size(174, 21)
+        Me.CMBper.Size = New System.Drawing.Size(200, 21)
         Me.CMBper.TabIndex = 16
+        Me.CMBper.TabStop = False
         '
         'CMBoaanm
         '
         Me.CMBoaanm.FormattingEnabled = True
-        Me.CMBoaanm.Location = New System.Drawing.Point(284, 66)
+        Me.CMBoaanm.Location = New System.Drawing.Point(284, 92)
         Me.CMBoaanm.Name = "CMBoaanm"
-        Me.CMBoaanm.Size = New System.Drawing.Size(174, 21)
+        Me.CMBoaanm.Size = New System.Drawing.Size(200, 21)
         Me.CMBoaanm.TabIndex = 17
+        Me.CMBoaanm.TabStop = False
         '
         'TBpernm
         '
-        Me.TBpernm.Location = New System.Drawing.Point(81, 40)
+        Me.TBpernm.Location = New System.Drawing.Point(81, 66)
+        Me.TBpernm.MaxLength = 100
         Me.TBpernm.Name = "TBpernm"
         Me.TBpernm.Size = New System.Drawing.Size(197, 20)
-        Me.TBpernm.TabIndex = 78
-        Me.TBpernm.TabStop = False
+        Me.TBpernm.TabIndex = 20
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(6, 44)
+        Me.Label16.Location = New System.Drawing.Point(6, 70)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(54, 13)
         Me.Label16.TabIndex = 79
@@ -207,7 +258,7 @@ Partial Class Editbonl
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(6, 70)
+        Me.Label17.Location = New System.Drawing.Point(6, 96)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(72, 13)
         Me.Label17.TabIndex = 81
@@ -215,17 +266,17 @@ Partial Class Editbonl
         '
         'TBoaanmnm
         '
-        Me.TBoaanmnm.Location = New System.Drawing.Point(81, 66)
+        Me.TBoaanmnm.Location = New System.Drawing.Point(81, 92)
+        Me.TBoaanmnm.MaxLength = 100
         Me.TBoaanmnm.Name = "TBoaanmnm"
         Me.TBoaanmnm.Size = New System.Drawing.Size(197, 20)
-        Me.TBoaanmnm.TabIndex = 80
-        Me.TBoaanmnm.TabStop = False
+        Me.TBoaanmnm.TabIndex = 21
         '
         'BTNtijd
         '
-        Me.BTNtijd.Location = New System.Drawing.Point(319, 13)
+        Me.BTNtijd.Location = New System.Drawing.Point(340, 13)
         Me.BTNtijd.Name = "BTNtijd"
-        Me.BTNtijd.Size = New System.Drawing.Size(39, 23)
+        Me.BTNtijd.Size = New System.Drawing.Size(55, 23)
         Me.BTNtijd.TabIndex = 75
         Me.BTNtijd.TabStop = False
         Me.BTNtijd.Text = "Tijd"
@@ -258,7 +309,7 @@ Partial Class Editbonl
         '
         'TBboneenhp
         '
-        Me.TBboneenhp.Location = New System.Drawing.Point(241, 14)
+        Me.TBboneenhp.Location = New System.Drawing.Point(279, 14)
         Me.TBboneenhp.Name = "TBboneenhp"
         Me.TBboneenhp.Size = New System.Drawing.Size(56, 20)
         Me.TBboneenhp.TabIndex = 15
@@ -266,7 +317,7 @@ Partial Class Editbonl
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(214, 18)
+        Me.Label13.Location = New System.Drawing.Point(252, 18)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(21, 13)
         Me.Label13.TabIndex = 70
@@ -276,52 +327,22 @@ Partial Class Editbonl
         '
         Me.GRPWerf.AutoSize = True
         Me.GRPWerf.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GRPWerf.Controls.Add(Me.CMBdies)
-        Me.GRPWerf.Controls.Add(Me.Label19)
-        Me.GRPWerf.Controls.Add(Me.TBdiesel)
         Me.GRPWerf.Controls.Add(Me.Label5)
         Me.GRPWerf.Controls.Add(Me.TBbwadres)
         Me.GRPWerf.Controls.Add(Me.Label3)
         Me.GRPWerf.Controls.Add(Me.TBbwstraat)
-        Me.GRPWerf.Controls.Add(Me.CBlevering)
         Me.GRPWerf.Controls.Add(Me.CBselect)
         Me.GRPWerf.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GRPWerf.Location = New System.Drawing.Point(473, 3)
+        Me.GRPWerf.Location = New System.Drawing.Point(499, 3)
         Me.GRPWerf.Name = "GRPWerf"
-        Me.GRPWerf.Size = New System.Drawing.Size(403, 132)
+        Me.GRPWerf.Size = New System.Drawing.Size(440, 158)
         Me.GRPWerf.TabIndex = 1
         Me.GRPWerf.TabStop = False
-        '
-        'CMBdies
-        '
-        Me.CMBdies.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.CMBdies.FormattingEnabled = True
-        Me.CMBdies.Location = New System.Drawing.Point(192, 92)
-        Me.CMBdies.Name = "CMBdies"
-        Me.CMBdies.Size = New System.Drawing.Size(178, 21)
-        Me.CMBdies.TabIndex = 20
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(15, 96)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(36, 13)
-        Me.Label19.TabIndex = 84
-        Me.Label19.Text = "Diesel"
-        '
-        'TBdiesel
-        '
-        Me.TBdiesel.Location = New System.Drawing.Point(94, 92)
-        Me.TBdiesel.Name = "TBdiesel"
-        Me.TBdiesel.Size = New System.Drawing.Size(93, 20)
-        Me.TBdiesel.TabIndex = 83
-        Me.TBdiesel.TabStop = False
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(15, 68)
+        Me.Label5.Location = New System.Drawing.Point(12, 68)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(56, 13)
         Me.Label5.TabIndex = 82
@@ -329,15 +350,16 @@ Partial Class Editbonl
         '
         'TBbwadres
         '
-        Me.TBbwadres.Location = New System.Drawing.Point(94, 65)
+        Me.TBbwadres.Location = New System.Drawing.Point(91, 65)
+        Me.TBbwadres.MaxLength = 50
         Me.TBbwadres.Name = "TBbwadres"
         Me.TBbwadres.Size = New System.Drawing.Size(253, 20)
-        Me.TBbwadres.TabIndex = 19
+        Me.TBbwadres.TabIndex = 31
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(15, 42)
+        Me.Label3.Location = New System.Drawing.Point(12, 42)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(56, 13)
         Me.Label3.TabIndex = 80
@@ -345,26 +367,16 @@ Partial Class Editbonl
         '
         'TBbwstraat
         '
-        Me.TBbwstraat.Location = New System.Drawing.Point(94, 39)
+        Me.TBbwstraat.Location = New System.Drawing.Point(91, 39)
+        Me.TBbwstraat.MaxLength = 50
         Me.TBbwstraat.Name = "TBbwstraat"
         Me.TBbwstraat.Size = New System.Drawing.Size(253, 20)
-        Me.TBbwstraat.TabIndex = 18
-        '
-        'CBlevering
-        '
-        Me.CBlevering.AutoSize = True
-        Me.CBlevering.Location = New System.Drawing.Point(15, 16)
-        Me.CBlevering.Name = "CBlevering"
-        Me.CBlevering.Size = New System.Drawing.Size(67, 17)
-        Me.CBlevering.TabIndex = 60
-        Me.CBlevering.TabStop = False
-        Me.CBlevering.Text = "Levering"
-        Me.CBlevering.UseVisualStyleBackColor = True
+        Me.TBbwstraat.TabIndex = 30
         '
         'CBselect
         '
         Me.CBselect.AutoSize = True
-        Me.CBselect.Location = New System.Drawing.Point(94, 16)
+        Me.CBselect.Location = New System.Drawing.Point(91, 16)
         Me.CBselect.Name = "CBselect"
         Me.CBselect.Size = New System.Drawing.Size(71, 17)
         Me.CBselect.TabIndex = 58
@@ -377,30 +389,23 @@ Partial Class Editbonl
         Me.GRPContact.AutoSize = True
         Me.GRPContact.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GRPContact.Controls.Add(Me.TBmemo)
-        Me.GRPContact.Controls.Add(Me.TBkemail)
         Me.GRPContact.Controls.Add(Me.Label12)
         Me.GRPContact.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GRPContact.Location = New System.Drawing.Point(3, 314)
+        Me.GRPContact.Location = New System.Drawing.Point(3, 340)
         Me.GRPContact.Name = "GRPContact"
-        Me.GRPContact.Size = New System.Drawing.Size(879, 149)
+        Me.GRPContact.Size = New System.Drawing.Size(942, 90)
         Me.GRPContact.TabIndex = 2
         Me.GRPContact.TabStop = False
         '
         'TBmemo
         '
-        Me.TBmemo.Location = New System.Drawing.Point(9, 17)
+        Me.TBmemo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TBmemo.Location = New System.Drawing.Point(3, 16)
         Me.TBmemo.Multiline = True
         Me.TBmemo.Name = "TBmemo"
-        Me.TBmemo.Size = New System.Drawing.Size(864, 113)
+        Me.TBmemo.Size = New System.Drawing.Size(936, 71)
         Me.TBmemo.TabIndex = 44
         Me.TBmemo.TabStop = False
-        '
-        'TBkemail
-        '
-        Me.TBkemail.Location = New System.Drawing.Point(432, -89)
-        Me.TBkemail.Name = "TBkemail"
-        Me.TBkemail.Size = New System.Drawing.Size(242, 20)
-        Me.TBkemail.TabIndex = 24
         '
         'Label12
         '
@@ -415,6 +420,7 @@ Partial Class Editbonl
         '
         Me.GroupBox1.AutoSize = True
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBox1.Controls.Add(Me.ZoekCodeIM)
         Me.GroupBox1.Controls.Add(Me.CMBbtw)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label2)
@@ -429,9 +435,18 @@ Partial Class Editbonl
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(879, 161)
+        Me.GroupBox1.Size = New System.Drawing.Size(942, 161)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
+        '
+        'ZoekCodeIM
+        '
+        Me.ZoekCodeIM.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ZoekCodeIM.Location = New System.Drawing.Point(248, 48)
+        Me.ZoekCodeIM.Name = "ZoekCodeIM"
+        Me.ZoekCodeIM.Size = New System.Drawing.Size(46, 20)
+        Me.ZoekCodeIM.TabIndex = 81
+        Me.ZoekCodeIM.TabStop = False
         '
         'CMBbtw
         '
@@ -463,8 +478,9 @@ Partial Class Editbonl
         'TBextnr
         '
         Me.TBextnr.Location = New System.Drawing.Point(84, 122)
+        Me.TBextnr.MaxLength = 10
         Me.TBextnr.Name = "TBextnr"
-        Me.TBextnr.Size = New System.Drawing.Size(56, 20)
+        Me.TBextnr.Size = New System.Drawing.Size(107, 20)
         Me.TBextnr.TabIndex = 13
         '
         'Label1
@@ -497,7 +513,7 @@ Partial Class Editbonl
         Me.lblCODEinfo.AutoSize = True
         Me.lblCODEinfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCODEinfo.ForeColor = System.Drawing.Color.Gray
-        Me.lblCODEinfo.Location = New System.Drawing.Point(350, 55)
+        Me.lblCODEinfo.Location = New System.Drawing.Point(350, 46)
         Me.lblCODEinfo.Name = "lblCODEinfo"
         Me.lblCODEinfo.Size = New System.Drawing.Size(137, 20)
         Me.lblCODEinfo.TabIndex = 59
@@ -516,13 +532,15 @@ Partial Class Editbonl
         '
         'ZoekCode
         '
-        Me.ZoekCode.Image = CType(resources.GetObject("ZoekCode.Image"), System.Drawing.Image)
-        Me.ZoekCode.Location = New System.Drawing.Point(300, 49)
+        Me.ZoekCode.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ZoekCode.Image = Global.Bon2017.My.Resources.Resources.search
+        Me.ZoekCode.Location = New System.Drawing.Point(300, 45)
         Me.ZoekCode.Name = "ZoekCode"
-        Me.ZoekCode.Size = New System.Drawing.Size(36, 33)
+        Me.ZoekCode.Size = New System.Drawing.Size(36, 35)
         Me.ZoekCode.TabIndex = 54
         Me.ZoekCode.TabStop = False
-        Me.ZoekCode.UseVisualStyleBackColor = True
+        Me.ToolTip1.SetToolTip(Me.ZoekCode, "Zoek naar Code")
+        Me.ZoekCode.UseVisualStyleBackColor = False
         '
         'DTPdatum
         '
@@ -532,11 +550,56 @@ Partial Class Editbonl
         Me.DTPdatum.Size = New System.Drawing.Size(107, 20)
         Me.DTPdatum.TabIndex = 11
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BewerkToolStripMenuItem, Me.BewerkCodeToolStripMenuItem, Me.BTWToolStripMenuItem, Me.BewerkPersoneelToolStripMenuItem, Me.OnderaannemerToolStripMenuItem, Me.LeverancierToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 158)
+        '
+        'BewerkToolStripMenuItem
+        '
+        Me.BewerkToolStripMenuItem.Enabled = False
+        Me.BewerkToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemedit
+        Me.BewerkToolStripMenuItem.Name = "BewerkToolStripMenuItem"
+        Me.BewerkToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BewerkToolStripMenuItem.Text = "Bewerk:"
+        '
+        'BewerkCodeToolStripMenuItem
+        '
+        Me.BewerkCodeToolStripMenuItem.Name = "BewerkCodeToolStripMenuItem"
+        Me.BewerkCodeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BewerkCodeToolStripMenuItem.Text = "Code"
+        '
+        'BTWToolStripMenuItem
+        '
+        Me.BTWToolStripMenuItem.Name = "BTWToolStripMenuItem"
+        Me.BTWToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BTWToolStripMenuItem.Text = "BTW"
+        '
+        'BewerkPersoneelToolStripMenuItem
+        '
+        Me.BewerkPersoneelToolStripMenuItem.Name = "BewerkPersoneelToolStripMenuItem"
+        Me.BewerkPersoneelToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.BewerkPersoneelToolStripMenuItem.Text = "Personeel"
+        '
+        'OnderaannemerToolStripMenuItem
+        '
+        Me.OnderaannemerToolStripMenuItem.Name = "OnderaannemerToolStripMenuItem"
+        Me.OnderaannemerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OnderaannemerToolStripMenuItem.Text = "Onderaannemer"
+        '
+        'LeverancierToolStripMenuItem
+        '
+        Me.LeverancierToolStripMenuItem.Name = "LeverancierToolStripMenuItem"
+        Me.LeverancierToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LeverancierToolStripMenuItem.Text = "Leverancier"
+        '
         'Editbonl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(885, 464)
+        Me.ClientSize = New System.Drawing.Size(948, 464)
+        Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "Editbonl"
@@ -555,6 +618,7 @@ Partial Class Editbonl
         Me.GRPContact.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -569,10 +633,8 @@ Partial Class Editbonl
     Friend WithEvents GRPAdres As GroupBox
     Friend WithEvents TBmemo As TextBox
     Friend WithEvents GRPWerf As GroupBox
-    Friend WithEvents CBlevering As CheckBox
     Friend WithEvents CBselect As CheckBox
     Friend WithEvents GRPContact As GroupBox
-    Friend WithEvents TBkemail As TextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label4 As Label
@@ -596,13 +658,23 @@ Partial Class Editbonl
     Friend WithEvents Label16 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents TBoaanmnm As TextBox
-    Friend WithEvents CMBdies As ComboBox
-    Friend WithEvents Label19 As Label
-    Friend WithEvents TBdiesel As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents TBbwadres As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents TBbwstraat As TextBox
     Friend WithEvents CMBbtw As ComboBox
     Friend WithEvents Label6 As Label
+    Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents Lblomstijd As Label
+    Friend WithEvents ZoekCodeIM As TextBox
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents BewerkCodeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BewerkPersoneelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BewerkToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BTWToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OnderaannemerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CMBlev As ComboBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents TBlevnm As TextBox
+    Friend WithEvents LeverancierToolStripMenuItem As ToolStripMenuItem
 End Class

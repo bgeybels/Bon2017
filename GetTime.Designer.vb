@@ -25,17 +25,18 @@ Partial Class GetTime
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TSBexit = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
+        Me.TSBdelete = New System.Windows.Forms.ToolStripButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.CBuvan = New System.Windows.Forms.ComboBox()
-        Me.CBmvan = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.CBmmin = New System.Windows.Forms.ComboBox()
+        Me.CBumin = New System.Windows.Forms.ComboBox()
         Me.CBmtot = New System.Windows.Forms.ComboBox()
         Me.CButot = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.CBmmin = New System.Windows.Forms.ComboBox()
-        Me.CBumin = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.CBmvan = New System.Windows.Forms.ComboBox()
+        Me.CBuvan = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -45,7 +46,7 @@ Partial Class GetTime
         '
         Me.ToolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBdelete})
         Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
@@ -60,13 +61,22 @@ Partial Class GetTime
         Me.TSBexit.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TSBexit.Name = "TSBexit"
         Me.TSBexit.Size = New System.Drawing.Size(28, 28)
-        Me.TSBexit.Text = "Exit"
+        Me.TSBexit.Text = "Exit en neem tijd over"
         '
         'ToolStripLabel4
         '
         Me.ToolStripLabel4.Name = "ToolStripLabel4"
         Me.ToolStripLabel4.Size = New System.Drawing.Size(16, 28)
         Me.ToolStripLabel4.Text = "   "
+        '
+        'TSBdelete
+        '
+        Me.TSBdelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TSBdelete.Image = Global.Bon2017.My.Resources.Resources.itemdelete
+        Me.TSBdelete.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBdelete.Name = "TSBdelete"
+        Me.TSBdelete.Size = New System.Drawing.Size(28, 28)
+        Me.TSBdelete.Text = "Annuleer"
         '
         'TableLayoutPanel1
         '
@@ -100,42 +110,42 @@ Partial Class GetTime
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
-        'Label4
+        'Label2
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(5, 14)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(48, 13)
-        Me.Label4.TabIndex = 30
-        Me.Label4.Text = "Tijd van:"
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(161, 54)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(70, 13)
+        Me.Label2.TabIndex = 38
+        Me.Label2.Text = ": In mindering"
         '
-        'CBuvan
+        'CBmmin
         '
-        Me.CBuvan.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.CBuvan.FormattingEnabled = True
-        Me.CBuvan.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.CBuvan.Location = New System.Drawing.Point(59, 11)
-        Me.CBuvan.Name = "CBuvan"
-        Me.CBuvan.Size = New System.Drawing.Size(40, 21)
-        Me.CBuvan.TabIndex = 31
-        Me.CBuvan.Text = "00"
+        Me.CBmmin.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
+        Me.CBmmin.FormattingEnabled = True
+        Me.CBmmin.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
+        Me.CBmmin.Location = New System.Drawing.Point(105, 49)
+        Me.CBmmin.Name = "CBmmin"
+        Me.CBmmin.Size = New System.Drawing.Size(40, 21)
+        Me.CBmmin.TabIndex = 37
+        Me.CBmmin.Text = "00"
         '
-        'CBmvan
+        'CBumin
         '
-        Me.CBmvan.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.CBmvan.FormattingEnabled = True
-        Me.CBmvan.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.CBmvan.Location = New System.Drawing.Point(105, 11)
-        Me.CBmvan.Name = "CBmvan"
-        Me.CBmvan.Size = New System.Drawing.Size(40, 21)
-        Me.CBmvan.TabIndex = 32
-        Me.CBmvan.Text = "00"
+        Me.CBumin.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
+        Me.CBumin.FormattingEnabled = True
+        Me.CBumin.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
+        Me.CBumin.Location = New System.Drawing.Point(59, 49)
+        Me.CBumin.Name = "CBumin"
+        Me.CBumin.Size = New System.Drawing.Size(40, 21)
+        Me.CBumin.TabIndex = 36
+        Me.CBumin.Text = "00"
         '
         'CBmtot
         '
         Me.CBmtot.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         Me.CBmtot.FormattingEnabled = True
-        Me.CBmtot.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
+        Me.CBmtot.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         Me.CBmtot.Location = New System.Drawing.Point(232, 14)
         Me.CBmtot.Name = "CBmtot"
         Me.CBmtot.Size = New System.Drawing.Size(40, 21)
@@ -162,36 +172,36 @@ Partial Class GetTime
         Me.Label1.TabIndex = 33
         Me.Label1.Text = "tot:"
         '
-        'CBmmin
+        'CBmvan
         '
-        Me.CBmmin.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        Me.CBmmin.FormattingEnabled = True
-        Me.CBmmin.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.CBmmin.Location = New System.Drawing.Point(105, 49)
-        Me.CBmmin.Name = "CBmmin"
-        Me.CBmmin.Size = New System.Drawing.Size(40, 21)
-        Me.CBmmin.TabIndex = 37
-        Me.CBmmin.Text = "00"
+        Me.CBmvan.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
+        Me.CBmvan.FormattingEnabled = True
+        Me.CBmvan.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
+        Me.CBmvan.Location = New System.Drawing.Point(105, 11)
+        Me.CBmvan.Name = "CBmvan"
+        Me.CBmvan.Size = New System.Drawing.Size(40, 21)
+        Me.CBmvan.TabIndex = 32
+        Me.CBmvan.Text = "00"
         '
-        'CBumin
+        'CBuvan
         '
-        Me.CBumin.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.CBumin.FormattingEnabled = True
-        Me.CBumin.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
-        Me.CBumin.Location = New System.Drawing.Point(59, 49)
-        Me.CBumin.Name = "CBumin"
-        Me.CBumin.Size = New System.Drawing.Size(40, 21)
-        Me.CBumin.TabIndex = 36
-        Me.CBumin.Text = "00"
+        Me.CBuvan.AutoCompleteCustomSource.AddRange(New String() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
+        Me.CBuvan.FormattingEnabled = True
+        Me.CBuvan.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
+        Me.CBuvan.Location = New System.Drawing.Point(59, 11)
+        Me.CBuvan.Name = "CBuvan"
+        Me.CBuvan.Size = New System.Drawing.Size(40, 21)
+        Me.CBuvan.TabIndex = 31
+        Me.CBuvan.Text = "00"
         '
-        'Label2
+        'Label4
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(161, 57)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(70, 13)
-        Me.Label2.TabIndex = 38
-        Me.Label2.Text = ": In mindering"
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(5, 14)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(48, 13)
+        Me.Label4.TabIndex = 30
+        Me.Label4.Text = "Tijd van:"
         '
         'GetTime
         '
@@ -227,4 +237,5 @@ Partial Class GetTime
     Friend WithEvents Label2 As Label
     Friend WithEvents CBmmin As ComboBox
     Friend WithEvents CBumin As ComboBox
+    Friend WithEvents TSBdelete As ToolStripButton
 End Class

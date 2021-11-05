@@ -15,19 +15,13 @@ Public Class EditStock
             FormBorderStyle = FormBorderStyle.Sizable
         End If
 
-        Fltbonjr.Value = My.Settings.fltbonjr
         TBtrans.Text = My.Settings.STOCKstandaardtrans
-        For Each a In GrBFilters.Controls
-            If TypeOf a Is ComboBox Then
-                FillCMBeau(a)
-                a.selectedindex = 0
-            End If
-        Next
 
         Fill_DGstock()
-        Fill_DGbon()
         Fill_DGlev()
         SetGrids()
+        FillInfoRow()
+
     End Sub
 
     Private Sub TSBexit_Click(sender As Object, e As EventArgs) Handles TSBexit.Click
@@ -63,16 +57,16 @@ Public Class EditStock
             .strans = plusmin,
             .saantal = aantal,
             .soms = oms & " [" & plusmin & aantal & " " & "(" & LoginNm & " - " & SysDate & " " & DateTime.Now.ToString("HH:mm:ss") & ")]",
-            .sdat = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+            .sdat = ChDate
         }
 
         db.STOCKs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
             Archive("STOCK", Str(keycnrq), fcode & " - " & fomscode & " - " & aantal & " - " & oms)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw STOCK-record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try
@@ -103,18 +97,37 @@ Public Class EditStock
             End If
         End If
         updaterec.lupdate = plusmin & aantal & " " & oms
-        updaterec.ChDate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.ChDate = ChDate
         updaterec.usernrq = LoginNm
 
         Try
             db.SubmitChanges()
             Archive("CODE_S", Str(keycgnrq), updaterec.Code & " - " & updaterec.OmsCode & " - " & updaterec.Stock & " - " & oms)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen stock zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
     End Sub
 
+    Private Sub FillInfoRow()
+        TBResultCODE.Text = ""
+        Dim codrec = From cod In db.CODs
+                     Where cod.CNRQ = keycnrq
+                     Select cod.Code, cod.OmsCode, cod.Stock, cod.Minstock, cod.Eenhp, cod.Aankp, cod.Plmagazijn, cod.Besteld, cod.notstock, cod.gratis
+                     Take 1
+
+        Dim extra As String = ""
+        For Each rec In codrec
+            TBResultCODE.Text = TBResultCODE.Text & rec.Code & " (" & rec.OmsCode & ")" & Environment.NewLine
+            TBResultCODE.Text = TBResultCODE.Text & "Stock: " & rec.Stock & "    Minimum Stock: " & rec.Minstock & "   (" & rec.Plmagazijn & ")"
+            TBResultCODE.Text = TBResultCODE.Text & Environment.NewLine & " AP: " & rec.Aankp & "  VP: " & rec.Eenhp
+            If rec.gratis = True Then extra = extra & "Gratis "
+            If rec.notstock = True Then extra = extra & "Niet_opgenomen_in_Stock "
+            If rec.Besteld = True Then extra = extra & "In_Bestelling"
+            TBResultCODE.Text = TBResultCODE.Text & Environment.NewLine & extra
+        Next
+
+    End Sub
 
     '****DATAGRID stuff
     Private Sub Fill_DGstock()
@@ -139,27 +152,6 @@ Public Class EditStock
         Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
-    Private Sub Fill_DGbon()
-        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
-        records = From bon In db.BONs
-                  Join klant In db.KLANTs On bon.KNRQ Equals klant.KNRQ
-                  Where bon.BONJR = Fltbonjr.Value
-                  Select JR = bon.BONJR, NR = bon.BONNR, bon.fnr, klant.KNaam, Werf = bon.OmsBon, bon.tbw
-
-        records = records.OrderBy("NR", SortOrder.Ascending = True)
-        DGFbon()
-        Me.DGbon.DataSource = records
-
-        'set invisible
-        '  Dim dginvisible = New String() {"JR", "TBW"}
-        '  Setcolumns("V", Me.DGbon, dginvisible)
-
-        'set autosizemode
-        ' Dim dgautos = New String() {"NR", "fnr", "knaam"}
-        ' Setcolumns("AC", dgbon, dgautos)
-        ' DGbon.Columns("Werf").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        Me.Cursor = System.Windows.Forms.Cursors.Default
-    End Sub
     Private Sub Fill_DGlev()
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
         records = From lev In db.LEVs
@@ -176,6 +168,7 @@ Public Class EditStock
         DGlev.Columns("levnaam").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
+
     Private Sub Setcolumns(what As String, dg As DataGridView, dginv As String())
         For index = 0 To dginv.GetUpperBound(0)
             Select Case what
@@ -186,74 +179,26 @@ Public Class EditStock
             End Select
         Next
     End Sub
+
     Private Sub SetGrids()
+        SetPopupForm(Me)
         SetGridRows(DGstock)
         SetGridRows(DGlev)
-        SetGridRows(DGbon)
     End Sub
 
     '****Filters
     Private Sub DGFstock()
         records = records.Where("stcnrq.equals(@0)", keycnrq)
     End Sub
+
     Private Sub DGFlev()
         records = records.Where("levnaam.Contains(@0)", Fltlevnaam.Text)
-    End Sub
-    Private Sub DGFbon()
-        Dim chval As String
-        records = records.Where("KNaam.startswith(@0)", Fltklant.Text)
-        records = records.Where("Werf.Contains(@0)", FLTwerf.Text)
-        Select Case FltCBtbw.SelectedItem
-            Case "Aan"
-                chval = "true"
-            Case "Uit"
-                chval = "false"
-            Case Else
-                chval = ""
-        End Select
-        If chval <> "" Then records = records.Where("tbw == " & chval)
-
-        Select Case FltCBfnr.SelectedItem
-            Case "Aan"
-                records = records.Where("fnr <> 0")
-            Case "Uit"
-                records = records.Where("fnr == 0")
-            Case Else
-                chval = ""
-        End Select
     End Sub
 
     Private Sub Fltlevnaam_TextChanged(sender As Object, e As EventArgs) Handles Fltlevnaam.TextChanged
         Fill_DGlev()
     End Sub
 
-    Private Sub Fltbonjr_ValueChanged(sender As Object, e As EventArgs) Handles Fltbonjr.ValueChanged
-        Fill_DGbon()
-    End Sub
-
-    Private Sub Fltklant_TextChanged(sender As Object, e As EventArgs) Handles Fltklant.TextChanged
-        Fill_DGbon()
-    End Sub
-
-    Private Sub FltCBfnr_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FltCBfnr.SelectedIndexChanged
-        Fill_DGbon()
-    End Sub
-
-    Private Sub FltCBtbw_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FltCBtbw.SelectedIndexChanged
-        Fill_DGbon()
-    End Sub
-
-    Private Sub FLTwerf_TextChanged(sender As Object, e As EventArgs) Handles FLTwerf.TextChanged
-        Fill_DGbon()
-    End Sub
-
-    Private Sub DGbon_MouseDown(sender As Object, e As MouseEventArgs) Handles DGbon.MouseDown
-        On Error GoTo notselected
-        If e.Button = MouseButtons.Right Then
-            TBtrans.Text = DGbon.CurrentRow.Cells("KNaam").Value & " (" & DGbon.CurrentRow.Cells("JR").Value & "/" & DGbon.CurrentRow.Cells("NR").Value & ")"
-        End If
-notselected:
-    End Sub
     Private Sub DGlev_MouseDown(sender As Object, e As MouseEventArgs) Handles DGlev.MouseDown
         On Error GoTo notselected
         If e.Button = MouseButtons.Right Then

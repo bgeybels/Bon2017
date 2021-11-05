@@ -90,6 +90,12 @@ Public Class SearchOaanm
 NoRecords:
     End Sub
 
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
+    End Sub
+
     Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As EventArgs) Handles DGREC.DoubleClick
         UpdateRec()
     End Sub
@@ -114,6 +120,16 @@ NoRecords:
 
     Private Sub UpdateRec()
         keyoaanmnrq = DGREC.CurrentRow.Cells("OAANMNRQ").Value
+
+        ' test lock
+        Dim lockedby = isLocked("OAANM", keyoaanmnrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("OAANM", keyoaanmnrq)
+
         EditOaanm.ShowDialog()
         Refresh_data()
     End Sub
@@ -178,7 +194,9 @@ NoRecords:
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("Exporteer naar CSV")
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "ONDERAANNEMERS")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
     '****Filters

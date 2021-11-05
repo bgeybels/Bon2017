@@ -1,38 +1,55 @@
 ﻿Imports System.ComponentModel
 
 Public Class Editbonl
-    Dim nocmdupd As Boolean = False
+    Dim nocmdupd As Boolean = True
     Dim NotSaved As Boolean = True
+    Dim apcod As Double = 0
 
     Private Sub Editbonl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "Bonlijn: Bewerken (Key=" & keybonjr & "/" & keybonnr & "-" & keybonlvnr & ")"
         If IsNewRecord = True Then
-            Me.Text = "Bon: Nieuw"
+            Me.Text = "Bonlijn: Nieuw"
             'Me.ToolStrip1.BackColor = Color.Bisque
         End If
-        FillCMBbtw(CMBbtw)
-        FillCMBdies(CMBdies)
-        FillCMBper(CMBper)
-        FillCMBoaanmnm(CMBoaanm)
 
-        nocmdupd = True
+        FillCMBbtw(CMBbtw)
+        FillCMBper(CMBper)
+        FillCMBlev(CMBlev)
+        FillCMBoaanmnm(CMBoaanm)
+        ZoekCodeIM.Text = ""
+
+        NotSaved = True
         Fill_DG()
-        nocmdupd = False
         Velden_vullen()
+        nocmdupd = False
+        TBextnr.Focus()
+    End Sub
+
+    Private Sub Editbonl_MenuStart(sender As Object, e As EventArgs) Handles Me.MenuStart
+        TBaantal.Focus()
     End Sub
 
     Private Sub Editbonl_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         ' prevents closing the window
         If NotSaved = True Then
-            If MessageBox.Show("Niet opgeslagen, toch afsluiten?", "Bewerk Bonlijn", MessageBoxButtons.YesNo) = DialogResult.No Then
-                e.Cancel = True
+            If LoginNm <> "SYSTEM" And LoginNm <> "bge" Then
+                If MessageBox.Show("Niet opgeslagen, toch afsluiten?", "Bewerk Bonlijn", MessageBoxButtons.YesNo) = DialogResult.No Then
+                    e.Cancel = True
+                End If
             End If
         End If
     End Sub
 
     Private Sub Editbonl_Closed(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        ' unlock record (niet voor nieuwe records)
+        If IsNewRecord = False Then
+            Dim strkey As String = keybonjr & keybonnr & keybonlvnr
+            Dim unlock = unlockrec("BONL", strkey)
+        End If
+
         IsNewRecord = False
     End Sub
 
@@ -47,13 +64,29 @@ Public Class Editbonl
                       Where bonl.BONJR = keybonjr AndAlso bonl.BONNR = keybonnr AndAlso bonl.BONLVNR = keybonlvnr
                       Take 1
         Catch ex As Exception
-            MsgBox("Probleem met sleutels: .." & keybonjr & "../.." & keybonnr & ".._.." & keybonlvnr)
+            MsgBox("Probleem met sleutels: .." & keybonjr & "../.." & keybonnr & ".._.." & keybonlvnr & " --> " & ex.Message)
             Close()
         End Try
 
     End Sub
 
     '****FIELDActions
+
+    Private Function update_bon()
+        Dim updatebon = (From bon In db.BONs
+                         Where bon.BONJR = keybonjr AndAlso bon.BONNR = keybonnr).ToList()(0)
+
+        updatebon.usernrq = LoginNm
+        'updatebon.chdate = ChDate
+        updatebon.chdate = ChDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        Try
+            db.SubmitChanges()
+        Catch ex As Exception
+        End Try
+        Return True
+    End Function
+
+
     Private Function Savedata() As Boolean
         If Check_Data() = False Then
             PositionMsgbox.CenterMsgBox(Me)
@@ -63,6 +96,7 @@ Public Class Editbonl
         ' zorgt ervoor dat je de vraag "toch afsluiten" niet krijgt!!!
         NotSaved = False
 
+        update_bon()
         If IsNewRecord = True Then
             SaveNEW()
             Return True
@@ -72,40 +106,51 @@ Public Class Editbonl
         Dim updaterec = (From bonl In db.BONLs
                          Where bonl.BONJR = keybonjr AndAlso bonl.BONNR = keybonnr AndAlso bonl.BONLVNR = keybonlvnr).ToList()(0)
 
+        If updatestock = True Then
+            UpdateOk = StockUpdate("U", keycnrq, keybonjr, keybonnr, keybonlvnr, TBaantal.Text)
+            If updateOK <> "" Then MsgBox(updateOK)
+        End If
         With updaterec
             If TBvolgorde.Text = "" Then TBvolgorde.Text = updaterec.BONLVNR
             .Volgorde = TBvolgorde.Text
-            .Datum = DTPdatum.Value
+            .Datum = Format(DTPdatum.Value, "#yyyy-MM-dd#")
+            .BLSORT = .Datum.ToString("yyyyMMdd") & "-" & .Volgorde.ToString("D4")
+
             .BWStraat = TBbwstraat.Text
             .BWAdres = TBbwadres.Text
             .Aantal = TBaantal.Text
             .BONEenhp = TBboneenhp.Text
+            .ap = apcod
             .BONEenhpbu = TBboneenhp.Text
             .select = CBselect.Checked
-            .levering = CBlevering.Checked
-            .diesel = TBdiesel.Text
-            .omstijd = TimeStr
+            .levering = 0
+            .diesel = 0
+            .omstijd = Lblomstijd.Text
             .EXTNR = TBextnr.Text
             .DNRQ = 0
             .ANRQ = 0
             .memo = TBmemo.Text
             .PERNM = TBpernm.Text
             .OAANMNM = TBoaanmnm.Text
+            .LEVNM = TBlevnm.Text
 
             .BNRQ = CMBbtw.SelectedValue
             .CNRQ = keycnrq
 
-            .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+            .chdate = ChDate & " " & DateTime.Now.ToString("HH:mm:ss")
             .usernrq = LoginNm
+            'MsgBox("datum: " & Format(DTPdatum.Value, "#yyyy-MM-dd#"))
+            'MsgBox("datum: " & ChDate & " " & DateTime.Now.ToString("HH:mm:ss"))
         End With
 
         Try
             db.SubmitChanges()
             Dim key = keybonjr & "/" & keybonnr.ToString("0000")
             Archive("BONL_U", key, TBmemo.Text)
-        Catch
+
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -114,7 +159,6 @@ Public Class Editbonl
         If keyknrq = 0 Then keyknrq = 1
         Dim newbonlvnr = GetHighBonLVNR(keybonjr, keybonnr)
         If TBvolgorde.Text = "" Then TBvolgorde.Text = newbonlvnr
-        If TBdiesel.Text = "" Then TBdiesel.Text = 0
 
         Dim newrec As New BONL With {
                 .BONJR = keybonjr,
@@ -122,35 +166,43 @@ Public Class Editbonl
                 .BONLVNR = newbonlvnr,
                 .Volgorde = TBvolgorde.Text,
                 .Datum = DTPdatum.Value,
+                .BLSORT = .Datum.ToString("yyyyMMdd") & "-" & .Volgorde.ToString("D4"),
                 .BWStraat = TBbwstraat.Text,
                 .BWAdres = TBbwadres.Text,
                 .Aantal = TBaantal.Text,
                 .BONEenhp = TBboneenhp.Text,
+                .AP = apcod,
                 .BONEenhpbu = TBboneenhp.Text,
                 .select = CBselect.Checked,
-                .levering = CBlevering.Checked,
-                .diesel = TBdiesel.Text,
-                .omstijd = TimeStr,
+                .levering = 0,
+                .CONTROLEOK = 0,
+                .diesel = 0,
+                .omstijd = Lblomstijd.Text,
                 .EXTNR = TBextnr.Text,
                 .DNRQ = 0,
                 .memo = TBmemo.Text,
                 .PERNM = TBpernm.Text,
                 .OAANMNM = TBoaanmnm.Text,
+                .LEVNM = TBlevnm.Text,
                 .BNRQ = CMBbtw.SelectedValue,
                 .CNRQ = keycnrq,
                 .ANRQ = 0,
-                .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss"),
+                .chdate = ChDate & " " & DateTime.Now.ToString("HH:mm:ss"),
                 .usernrq = LoginNm,
                 .usercre = LoginNm,
-                .datecre = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+                .datecre = ChDate & " " & DateTime.Now.ToString("HH:mm:ss")
             }
 
         db.BONLs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+            If updatestock = True Then
+                UpdateOk = StockUpdate("N", keycnrq, keybonjr, keybonnr, newbonlvnr, TBaantal.Text)
+                If updateOK <> "" Then MsgBox(updateOK)
+            End If
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.  Probeer opnieuw.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try
@@ -165,9 +217,13 @@ Public Class Editbonl
         Dim AllOK As Boolean = True
         Dim result As Integer = 0
 
-        If TBdiesel.Text = "" Then TBdiesel.Text = 0
+        TBextnr.BackColor = boxcolor
+        If Len(TBextnr.Text) > 10 Then
+            AllOK = False
+            TBextnr.BackColor = boxcolorerror
+        End If
 
-        Dim TBNum() As TextBox = New TextBox() {TBvolgorde, TBdiesel}
+        Dim TBNum() As TextBox = New TextBox() {TBvolgorde}
         For Each TB As TextBox In TBNum
             TB.BackColor = boxcolor
             If Not IsNumeric(TB.Text) And Not TB.Text = "" Then
@@ -194,16 +250,16 @@ Public Class Editbonl
         TBvolgorde.Text = GetHighBonLVNR(keybonjr, keybonnr)
         TBbwstraat.Text = ""
         TBbwadres.Text = ""
-        TBaantal.Text = 1
+        TBaantal.Text = 0
+        Lblomstijd.Text = ""
         TBboneenhp.Text = 0
         CBselect.Checked = False
-        CBlevering.Checked = False
-        TBdiesel.Text = ""
         TBextnr.Text = ""
         TBmemo.Text = ""
         TBpernm.Text = ""
         TBoaanmnm.Text = ""
-        CMBbtw.SelectedIndex = 1
+        TBlevnm.Text = ""
+        CMBbtw.SelectedIndex = 0
         Try
             For Each rec In records
                 keycnrq = rec.cnrq
@@ -219,21 +275,35 @@ Public Class Editbonl
 
                 If IsNewRecord = True Then
                     DTPdatum.Value = SysDate
+                    Lblomstijd.Text = ""
+                    TBextnr.Text = ""
+                    TBbwstraat.Text = ""
+                    TBbwadres.Text = ""
+                    TBpernm.Text = rec.pernm
+                    TBoaanmnm.Text = rec.oaanmnm
+                    TBlevnm.Text = rec.levnm
+                    TBbwstraat.Text = ""
+                    TBbwadres.Text = ""
+                    TBmemo.Text = ""
+
+                    Dim newbonlvolgorde = GetHighBonLVolgorde(keybonjr, keybonnr)
+                    TBvolgorde.Text = newbonlvolgorde
                 Else
                     DTPdatum.Value = rec.datum
+                    TBvolgorde.Text = rec.volgorde
+                    TBaantal.Text = rec.aantal
+                    Lblomstijd.Text = rec.omstijd
+                    TBextnr.Text = rec.extnr
+                    TBpernm.Text = rec.pernm
+                    TBoaanmnm.Text = rec.oaanmnm
+                    TBlevnm.Text = rec.levnm
+                    TBbwstraat.Text = rec.bwstraat
+                    TBbwadres.Text = rec.bwadres
+                    TBmemo.Text = rec.memo
                 End If
-                If IsNewRecord = False Then TBvolgorde.Text = rec.volgorde
-                TBbwstraat.Text = rec.bwstraat
-                TBbwadres.Text = rec.bwadres
-                TBaantal.Text = rec.aantal
+
                 TBboneenhp.Text = rec.boneenhp
                 CBselect.Checked = rec.select
-                CBlevering.Checked = rec.levering
-                TBdiesel.Text = rec.diesel
-                TBextnr.Text = rec.extnr
-                TBmemo.Text = rec.memo
-                TBpernm.Text = rec.pernm
-                TBoaanmnm.Text = rec.oaanmnm
                 CMBbtw.SelectedValue = rec.bnrq
 
             Next
@@ -257,16 +327,22 @@ Public Class Editbonl
         If Savedata() = True Then Close()
     End Sub
 
-    Private Sub zoekCode_Click(sender As Object, e As EventArgs) Handles ZoekCode.Click
+    Private Sub ZoekCode_Click(sender As Object, e As EventArgs) Handles ZoekCode.Click
         SelCGNRQ = keycgnrq
+        frompopup = True
+        filtercode = ZoekCodeIM.Text
+        codfrombon = True
         SearchCode.ShowDialog()
+        codfrombon = False
+        filtercode = ""
+        frompopup = False
         SelCGNRQ = 0
         setcode(keycnrq)
         fillDisplay()
     End Sub
 
     '****Functions
-    Private Sub fillDisplay()
+    Private Sub FillDisplay()
         LBLbonlinfo.Text = ""
         Dim klantrec = From bon In db.BONs
                        Join klant In db.KLANTs On bon.KNRQ Equals klant.KNRQ
@@ -291,7 +367,7 @@ Public Class Editbonl
         Next
     End Sub
 
-    Private Sub setcode(key As Integer)
+    Private Sub Setcode(key As Integer)
         Dim valcode As String
         valcode = Getvalcode(key)
         lblCODEinfo.Text = valcode
@@ -299,31 +375,117 @@ Public Class Editbonl
         'préfill db-data
         codrecs = From cod In db.CODs
                   Where cod.CNRQ = key
-                  Select cod.Eenhp, cod.Aankp, cod.PERNM, cod.OAANMNM
+                  Select cod.Eenhp, cod.Aankp, cod.PERNM, cod.OAANMNM, cod.LEV
 
         For Each codrec In codrecs
             TBboneenhp.Text = codrec.Eenhp
+            apcod = codrec.Aankp
             TBpernm.Text = codrec.PERNM
             TBoaanmnm.Text = codrec.OAANMNM
+            TBlevnm.Text = codrec.LEV
         Next
     End Sub
 
     '****COMBO's
-    Private Sub CMBper_SelectedIndexChanged(sender As Object, e As EventArgs) 
+    Private Sub CMBper_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMBper.SelectedIndexChanged
         TBpernm.Text = CMBper.SelectedValue.ToString
+        TBoaanmnm.Text = ""
     End Sub
 
-    Private Sub CMBoaanm_SelectedIndexChanged(sender As Object, e As EventArgs) 
+    Private Sub CMBlev_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMBlev.SelectedIndexChanged
+        TBlevnm.Text = CMBlev.SelectedValue.ToString
+    End Sub
+
+    Private Sub CMBoaanm_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMBoaanm.SelectedIndexChanged
         TBoaanmnm.Text = CMBoaanm.SelectedValue.ToString
-    End Sub
-
-    Private Sub CMBdies_SelectedIndexChanged(sender As Object, e As EventArgs) 
-        TBdiesel.Text = CMBdies.SelectedValue.ToString
+        TBpernm.Text = ""
     End Sub
 
     Private Sub BTNtijd_Click(sender As Object, e As EventArgs) Handles BTNtijd.Click
+        TimeVal = Lblomstijd.Text
         GetTime.StartPosition = FormStartPosition.CenterParent
         GetTime.ShowDialog()
-        TBaantal.Text = TimeVal
+        If TimeVal <> "" Then
+            TBaantal.Text = TimeVal
+            Lblomstijd.Text = TimeStr
+        End If
+        'If TimeString <> "" Then xyz = 1
     End Sub
+
+    Private Sub TBaantal_TextChanged(sender As Object, e As EventArgs) Handles TBaantal.TextChanged
+        Lblomstijd.Text = ""
+    End Sub
+
+    Private Sub ZoekCodeIM_TextChanged(sender As Object, e As EventArgs) Handles ZoekCodeIM.TextChanged
+        Dim sfound As Integer = 0
+        If ZoekCodeIM.Text = "" Then Exit Sub
+
+        SelCGNRQ = keycgnrq
+        sfound = 0
+        Dim codrecs = From cod In db.CODs
+                      Join codgp In db.CODGPs On cod.CGNRQ Equals codgp.CGNRQ
+                      Where cod.Code.StartsWith(ZoekCodeIM.Text) And codgp.INRESULT = True
+                      Order By cod.Code Ascending
+                      Select cod.CNRQ, cod.Code
+
+        For Each codrec In codrecs
+            If sfound = 0 Then
+                sfound = codrec.CNRQ
+            Else
+                Exit For
+            End If
+        Next
+        If sfound = 0 Then
+            Dim codrecsd = From cod In db.CODs
+                           Join codgp In db.CODGPs On cod.CGNRQ Equals codgp.CGNRQ
+                           Where cod.Code.StartsWith(ZoekCodeIM.Text)
+                           Order By cod.Code Ascending
+                           Select cod.CNRQ, cod.Code
+            For Each codrec In codrecsd
+                If sfound = 0 Then
+                    sfound = codrec.CNRQ
+                Else
+                    Exit For
+                End If
+            Next
+
+        End If
+        keycnrq = sfound
+        SelCGNRQ = 0
+        Setcode(keycnrq)
+        FillDisplay()
+    End Sub
+
+    Private Sub BewerkCodeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BewerkCodeToolStripMenuItem.Click
+        EditCode.ShowDialog()
+        Setcode(keycnrq)
+        FillDisplay()
+    End Sub
+
+    Private Sub BewerkPersoneelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BewerkPersoneelToolStripMenuItem.Click
+        SearchPER.ShowDialog()
+        FillCMBper(CMBper)
+        'FillCMBoaanmnm(CMBoaanm)
+    End Sub
+
+    Private Sub BTWToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BTWToolStripMenuItem.Click
+        SearchBTW.ShowDialog()
+        FillCMBbtw(CMBbtw)
+    End Sub
+
+    Private Sub OnderaannemerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OnderaannemerToolStripMenuItem.Click
+        SearchOaanm.ShowDialog()
+        FillCMBoaanmnm(CMBoaanm)
+    End Sub
+
+    Private Sub LeverancierToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LeverancierToolStripMenuItem.Click
+        SearchLEV.ShowDialog()
+        FillCMBlev(CMBlev)
+    End Sub
+
+    Private Sub lblCODEinfo_Click(sender As Object, e As EventArgs) Handles lblCODEinfo.Click
+
+    End Sub
+
+
 End Class

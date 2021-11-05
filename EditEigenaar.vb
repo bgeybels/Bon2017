@@ -11,6 +11,9 @@ Public Class EditEigenaar
         Velden_vullen()
     End Sub
     Private Sub EditEigenaar_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If IsNewRecord = False Then
+            Dim unlock = unlockrec("EIGENAAR", keyeigenaarnrq)
+        End If
         IsNewRecord = False
     End Sub
 
@@ -53,15 +56,15 @@ Public Class EditEigenaar
         updaterec.EBTWNr = TBebtwnr.Text
         updaterec.EREKNR = TBereknr.Text
 
-        updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
 
         Try
             db.SubmitChanges()
             Archive("EIGENAAR_U", Str(keyeigenaarnrq), updaterec.ENaam)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -79,14 +82,14 @@ Public Class EditEigenaar
             .EBTWNr = TBebtwnr.Text,
             .EREKNR = TBereknr.Text,
             .usernrq = LoginNm,
-            .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")}
+            .chdate = ChDate}
 
         db.EIGENAARs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try

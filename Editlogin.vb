@@ -3,10 +3,11 @@
 Public Class Editlogin
     Dim nocmdupd As Boolean = False
 
-    Private Sub EditCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Editlogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "Gebruiker: Bewerken (key=" & keyloginnrq & ")"
         If IsNewRecord = True Then Me.Text = "Gebruiker: Nieuw"
 
         nocmdupd = True
@@ -15,7 +16,7 @@ Public Class Editlogin
         Velden_vullen()
     End Sub
 
-    Private Sub EditCode_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+    Private Sub Editlogin_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         IsNewRecord = False
     End Sub
 
@@ -61,9 +62,9 @@ Public Class Editlogin
         Try
             db.SubmitChanges()
             Archive("LOGIN_U", Str(keyloginnrq), updaterec.naam)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -81,9 +82,9 @@ Public Class Editlogin
         db.Logins.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try

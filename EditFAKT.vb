@@ -8,8 +8,9 @@ Public Class Editfakt
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "Faktuur: Bewerken (key=" & keybonjr & "/" & keybonnr & ")"
         If IsNewRecord = True Then
-            Me.Text = "BonLijn: Nieuw"
+            Me.Text = "Faktuur: Nieuw"
             'Me.ToolStrip1.BackColor = Color.Bisque
         End If
         FillCMBeigenaar(CMBeigenaar)
@@ -30,11 +31,12 @@ Public Class Editfakt
 
     Private Sub Fill_DG()
         Try
-            records = From bon In db.BONs
-                      Where bon.BONJR = keybonjr AndAlso bon.BONNR = keybonnr
+            records = From fakt In db.FAKTs
+                      Where fakt.JAAR = keyfaktjr AndAlso fakt.NR = keyfaktnr
                       Take 1
         Catch ex As Exception
-
+            PositionMsgbox.CenterMsgBox(Me)
+            MsgBox("Probleem... Ophalen records niet gelukt! --> " & ex.Message)
         End Try
 
     End Sub
@@ -84,15 +86,15 @@ Public Class Editfakt
         updaterec.ENRQ = CMBeigenaar.SelectedValue
         updaterec.KNRQ = keyknrq
 
-        updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
         Try
             db.SubmitChanges()
             Dim key = keybonjr & "/" & keybonnr.ToString("0000")
             Archive("BON_U", key, TBomsbon.Text)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -121,7 +123,7 @@ Public Class Editfakt
         .cok = CBcok.CheckState,
         .bon_type = tyx.Substring(0, 1),
         .usernrq = LoginNm,
-        .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        .chdate = ChDate
         }
 
         db.BONs.InsertOnSubmit(newrec)
@@ -215,6 +217,10 @@ Public Class Editfakt
 
     Private Sub TSBsave_Click(sender As Object, e As EventArgs) Handles TSBsave.Click
         If Savedata() = True Then Close()
+    End Sub
+
+    Private Sub CBfok_CheckedChanged(sender As Object, e As EventArgs) Handles CBfok.CheckedChanged
+
     End Sub
 
     '****Functions

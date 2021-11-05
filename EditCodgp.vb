@@ -7,12 +7,16 @@ Public Class EditCodgp
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "CodeGroep: Bewerken (key=" & keycgnrq & ")"
         If IsNewRecord = True Then Me.Text = "CodeGroep: Nieuw"
 
         Fill_DG()
         Velden_vullen()
     End Sub
     Private Sub EditCode_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If IsNewRecord = False Then
+            Dim unlock = unlockrec("CODGP", keycgnrq)
+        End If
         IsNewRecord = False
     End Sub
 
@@ -50,16 +54,17 @@ Public Class EditCodgp
         updaterec.rondaf = CBrondaf.Checked
         updaterec.nostock = CBnostock.Checked
         updaterec.noinvent = CBnoinvent.Checked
-        updaterec.dies = CBdies.Checked
+        updaterec.dies = 0
+        updaterec.INRESULT = CBinresult.Checked
 
-        updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
         Try
             db.SubmitChanges()
             Archive("CODGP_U", Str(keycgnrq), oldomsgroep & " --> " & updaterec.OmsGroep)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -68,16 +73,16 @@ Public Class EditCodgp
         Dim newrec As New CODGP With {
             .OmsGroep = TBomsgroep.Text,
             .procent = TBprocent.Text,
-            .rondaf = CBrondaf.Checked, .nostock = CBnostock.Checked, .noinvent = CBnoinvent.Checked, .dies = CBdies.Checked,
+            .rondaf = CBrondaf.Checked, .nostock = CBnostock.Checked, .noinvent = CBnoinvent.Checked, .dies = 0, .INRESULT = CBinresult.Checked,
             .usernrq = LoginNm,
-            .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")}
+            .chdate = ChDate}
 
         db.CODGPs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try
@@ -108,7 +113,7 @@ Public Class EditCodgp
             CBrondaf.Checked = rec.rondaf
             CBnostock.Checked = rec.nostock
             CBnoinvent.Checked = rec.noinvent
-            CBdies.Checked = rec.dies
+            CBinresult.Checked = rec.inresult
         Next
     End Sub
 

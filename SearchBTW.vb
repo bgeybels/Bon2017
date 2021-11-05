@@ -1,5 +1,4 @@
 ﻿Imports System.Linq.Dynamic
-Imports System.Linq
 
 Public Class SearchBTW
     Private ordDGREC As String = "BTW"
@@ -96,6 +95,12 @@ NoRecords:
         UpdateRec()
     End Sub
 
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
+    End Sub
+
     Private Sub DGREC_ColumnHeaderMouseClick(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs)
         Me.ordDGREC = DGREC.Columns(e.ColumnIndex).Name
         'MsgBox(ordDGREC)
@@ -116,6 +121,16 @@ NoRecords:
 
     Private Sub UpdateRec()
         keybtwnrq = DGREC.CurrentRow.Cells("BNRQ").Value
+
+        ' test lock
+        Dim lockedby = isLocked("BTW", keybtwnrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("BTW", keybtwnrq)
+
         EditBTW.ShowDialog()
 
         Refresh_data()
@@ -173,7 +188,6 @@ NoRecords:
         TSBedit.PerformClick()
     End Sub
 
-
     Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDoubleClick
         TSBedit.PerformClick()
     End Sub
@@ -187,14 +201,16 @@ NoRecords:
     End Sub
 
     Private Sub TSBdelete_Click(sender As Object, e As System.EventArgs) Handles TSBdelete.Click
-
         If MsgBox("Verwijder btw?", MsgBoxStyle.YesNoCancel, "Wil je dit BTW-record echt verwijderen?") = MsgBoxResult.Yes Then
             DeleteRec()
         End If
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As System.EventArgs) Handles TSBexport.Click
-        MsgBox("Exporteer naar CSV")
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "BTW")
+        'ExportToExcel(DGREC, "BTW")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
     '****Filters
@@ -211,4 +227,11 @@ NoRecords:
         If nofilter = False Then Fill_DGREC()
     End Sub
 
+    Private Sub DGREC_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGREC.CellContentClick
+
+    End Sub
+
+    Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+
+    End Sub
 End Class

@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.5.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -102,7 +102,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("#ffffb3")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("13893118")>  _
         Public Property GRIDrowseven() As String
             Get
                 Return CType(Me("GRIDrowseven"),String)
@@ -114,7 +114,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("#ffff66")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1048575")>  _
         Public Property GRIDrowsodd() As String
             Get
                 Return CType(Me("GRIDrowsodd"),String)
@@ -126,7 +126,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("#1e47fc")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
         Public Property GRIDforecoloreven() As String
             Get
                 Return CType(Me("GRIDforecoloreven"),String)
@@ -138,7 +138,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("#000000")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
         Public Property GRIDforecolorodd() As String
             Get
                 Return CType(Me("GRIDforecolorodd"),String)
@@ -150,7 +150,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("#ffffff")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("16777215")>  _
         Public Property DISPtextboxbackcolor() As String
             Get
                 Return CType(Me("DISPtextboxbackcolor"),String)
@@ -174,7 +174,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("#ff4500")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("255")>  _
         Public Property DISPtextboxerror() As String
             Get
                 Return CType(Me("DISPtextboxerror"),String)
@@ -186,7 +186,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("#f49d5a")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("7642362")>  _
         Public Property GRIDcellnotused() As String
             Get
                 Return CType(Me("GRIDcellnotused"),String)
@@ -301,6 +301,126 @@ Namespace My
             End Get
             Set
                 Me("FirstFNR") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("16711680")>  _
+        Public Property GRIDselectfg() As String
+            Get
+                Return CType(Me("GRIDselectfg"),String)
+            End Get
+            Set
+                Me("GRIDselectfg") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("16757759")>  _
+        Public Property GRIDselectbg() As String
+            Get
+                Return CType(Me("GRIDselectbg"),String)
+            End Get
+            Set
+                Me("GRIDselectbg") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("65280")>  _
+        Public Property GRIDcellgratis() As String
+            Get
+                Return CType(Me("GRIDcellgratis"),String)
+            End Get
+            Set
+                Me("GRIDcellgratis") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("16022884")>  _
+        Public Property GRIDcellmemo() As String
+            Get
+                Return CType(Me("GRIDcellmemo"),String)
+            End Get
+            Set
+                Me("GRIDcellmemo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property fltfilterdatum() As Boolean
+            Get
+                Return CType(Me("fltfilterdatum"),Boolean)
+            End Get
+            Set
+                Me("fltfilterdatum") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property fltfilterleegBON() As Boolean
+            Get
+                Return CType(Me("fltfilterleegBON"),Boolean)
+            End Get
+            Set
+                Me("fltfilterleegBON") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2019")>  _
+        Public Property JaarCopy() As Integer
+            Get
+                Return CType(Me("JaarCopy"),Integer)
+            End Get
+            Set
+                Me("JaarCopy") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property XCode() As Integer
+            Get
+                Return CType(Me("XCode"),Integer)
+            End Get
+            Set
+                Me("XCode") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property fltbonpart() As Integer
+            Get
+                Return CType(Me("fltbonpart"),Integer)
+            End Get
+            Set
+                Me("fltbonpart") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property TotalsAllowed() As String
+            Get
+                Return CType(Me("TotalsAllowed"),String)
+            End Get
+            Set
+                Me("TotalsAllowed") = value
             End Set
         End Property
     End Class

@@ -2,15 +2,16 @@
 
 Public Class GrpBONL
     Dim nofilter As Boolean = True
+    Dim newprice As Decimal = 0
 
     Private Sub GrpBONL_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TSButtonPermissions(TSBsave)
-
+        CBfnr.Checked = False
         SetGrids()
 
         FillCMBbtw(CMBbtw)
-        FillCMBdies(CMBdies)
         FillCMBper(CMBper)
+        FillCMBoaanmnm(CMBoaanm)
         Fltbonjr.Value = My.Settings.fltbonjr
 
         For Each a In GroupBox1.Controls
@@ -49,7 +50,7 @@ Public Class GrpBONL
                 VNR = bonl.Volgorde, SEL = bonl.select, bonl.Datum,
                 Groep = codgp.OmsGroep, Code_,
                 bonl.memo,
-                Dies = bonl.diesel, bonl.Aantal, EenhPrijs = bonl.BONEenhp, BTW = btw.OmsBTW,
+                bonl.Aantal, EenhPrijs = bonl.BONEenhp, BTW = btw.OmsBTW,
                 bonl.PERNM, bonl.OAANMNM,
                 BonNR = bonl.EXTNR,
                 Werf, Wie,
@@ -67,7 +68,6 @@ Public Class GrpBONL
             DGREC.Columns(dginvisible(index)).Visible = False
         Next
         DGREC.Columns("Code_").HeaderText = "Code"
-        DGREC.Columns("Dies").HeaderText = "Dies%"
         DGREC.Columns("Datum").HeaderText = "StartDatum"
         DGREC.Columns("PERNM").HeaderText = "Personeel"
         DGREC.Columns("OAANMNM").HeaderText = "OnderaanNm"
@@ -80,7 +80,7 @@ Public Class GrpBONL
         For index = 0 To dgautod.GetUpperBound(0)
             DGREC.Columns(dgautod(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
         Next index
-        Dim dgautoh = New String() {"SEL", "BTW", "Dies", "BonNR", "VNR", "PERNM", "OAANMNM", "EenhPrijs", "Aantal", "Datum"}
+        Dim dgautoh = New String() {"SEL", "BTW", "BonNR", "VNR", "PERNM", "OAANMNM", "EenhPrijs", "Aantal", "Datum"}
         For index = 0 To dgautoh.GetUpperBound(0)
             DGREC.Columns(dgautoh(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
         Next index
@@ -93,17 +93,22 @@ Public Class GrpBONL
 
     Private Sub Fill_DGBON()
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
-
+        Dim hasfnr = 0
+        If CBfnr.Checked = False Then
+            hasfnr = False
+        Else
+            hasfnr = True
+        End If
         bonrecs =
                 From bon In db.BONs
                 Join klant In db.KLANTs On bon.KNRQ Equals klant.KNRQ
-                Where bon.BONJR = Fltbonjr.Value
+                Where bon.BONJR = Fltbonjr.Value And bon.fok = CBfnr.Checked
                 Select JR = bon.BONJR, NR = bon.BONNR,
                     bon.KNRQ,
-                    bon.DatumAanvang, klant.KNaam, bon.OmsBon
+                    bon.DatumAanvang, Klant = klant.KNaam, BonOms = bon.OmsBon
 
-        bonrecs = bonrecs.OrderBy("KNaam", SortOrder.Ascending = True)
-        ' DGFILTER()
+        bonrecs = bonrecs.OrderBy("Klant", SortOrder.Ascending = True)
+        DGFILTER()
 
         hkey = keybonjr
         hkey2 = keybonnr
@@ -117,12 +122,12 @@ Public Class GrpBONL
             DGBON.Columns(dginvisible(index)).Visible = False
         Next
         'set autosizemode
-        Dim dgautos = New String() {"KNaam", "NR", "DatumAanvang"}
+        Dim dgautos = New String() {"Klant", "NR", "DatumAanvang"}
         For index = 0 To dgautos.GetUpperBound(0)
             DGBON.Columns(dgautos(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next index
 
-        DGBON.Columns("OmsBon").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DGBON.Columns("BonOms").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         If DGBON.RowCount < 1 Then
             tokeybonjr = Fltbonjr.Value
             tokeybonnr = 0
@@ -131,12 +136,18 @@ Public Class GrpBONL
     End Sub
 
     Private Sub TSBexit_Click(sender As Object, e As EventArgs) Handles TSBexit.Click
+        resetbonlselect = False
         Me.Close()
     End Sub
 
     Private Sub DGFILTER()
-        records = records.Where("KNaam.Contains(@0)", Fltklant.Text)
-        records = records.Where("OmsBon.Contains(@0)", Fltwerf.Text)
+        bonrecs = bonrecs.Where("Klant.Contains(@0)", Fltklant.Text)
+        bonrecs = bonrecs.Where("BonOms.Contains(@0)", Fltwerf.Text)
+
+        If Fltbonnr.Text <> "" And IsNumeric(Fltbonnr.Text) Then
+            bonrecs = bonrecs.Where("NR == " & Fltbonnr.Text)
+            Exit Sub
+        End If
     End Sub
 
     Private Sub Fltklant_TextChanged(sender As Object, e As EventArgs) Handles Fltklant.TextChanged
@@ -147,7 +158,14 @@ Public Class GrpBONL
         If nofilter = False Then Fill_DGBON()
     End Sub
 
+    Private Sub Fltbonnr_TextChanged(sender As Object, e As EventArgs) Handles Fltbonnr.TextChanged
+        If nofilter = False Then Fill_DGBON()
+    End Sub
+
     Private Sub Fltbonjr_ValueChanged(sender As Object, e As EventArgs) Handles Fltbonjr.ValueChanged
+        If nofilter = False Then Fill_DGBON()
+    End Sub
+    Private Sub CBfnr_CheckedChanged(sender As Object, e As EventArgs) Handles CBfnr.CheckedChanged
         If nofilter = False Then Fill_DGBON()
     End Sub
 
@@ -182,11 +200,13 @@ Public Class GrpBONL
             alsodelete = True
         End If
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
-        CopyBONL(keybonjr, keybonnr, tokeybonjr, tokeybonnr)
+        CopyBONLSelected(keybonjr, keybonnr, tokeybonjr, tokeybonnr)
         If alsodelete = True Then DelBONLsel(keybonjr, keybonnr)
         keybonjr = tokeybonjr
         keybonnr = tokeybonnr
+        My.Settings.fltbonjr = tokeybonjr
         Me.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Close()
     End Sub
 
     Private Sub TSBdelete_Click(sender As Object, e As EventArgs) Handles TSBdelete.Click
@@ -196,6 +216,7 @@ Public Class GrpBONL
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
         DelBONLsel(keybonjr, keybonnr)
         Me.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Close()
     End Sub
 
     Private Sub DGBON_SelectionChanged(sender As Object, e As EventArgs) Handles DGBON.SelectionChanged
@@ -209,7 +230,7 @@ NoRecords:
 
     '****Functions
     Private Function UpdateBonL(kjr As Integer, knr As Integer) As Boolean
-        If CBbtw.Checked = False And CBdatum.Checked = False And CBdiesel.Checked = False And CBlevering.Checked = False And CBpersoneel.Checked = False And CBprijs.Checked = False Then
+        If CBbtw.Checked = False And CBdatum.Checked = False And CBoaanm.Checked = False And CBpersoneel.Checked = False And CBprijs.Checked = False And CBcode.Checked = False Then
             MsgBox("Selecteer minstens 1 aanpassing!")
             Return False
         End If
@@ -218,7 +239,7 @@ NoRecords:
             MsgBox("Inhoud veld(en) niet juist!")
             Return False
         End If
-        Dim strselected As String
+
         For Each row As DataGridViewRow In Me.DGREC.Rows
             keybonlvnr = row.Cells("VLNR").Value
             Dim updaterec = (From bonl In db.BONLs
@@ -227,13 +248,14 @@ NoRecords:
                 If CBbtw.Checked = True Then .BNRQ = CMBbtw.SelectedValue
                 If CBdatum.Checked = True Then .Datum = DTPdatum.Value
                 If CBprijs.Checked = True Then .BONEenhp = TBboneenhp.Text
-                If CBdiesel.Checked = True Then
-                    strselected = CMBdies.SelectedValue.ToString
-                    If strselected = "" Then strselected = 0
-                    .diesel = strselected
-                End If
                 If CBpersoneel.Checked = True Then .PERNM = CMBper.SelectedValue.ToString
-                If CBlevering.Checked = True Then .levering = CBleveringf.Checked
+                If CBoaanm.Checked = True Then .OAANMNM = CMBoaanm.SelectedValue.ToString
+                If CBcode.Checked = True Then
+                    .CNRQ = keycnrq
+                    .BONEenhp = newprice
+                    .BONEenhpbu = newprice
+                End If
+
 
                 .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
                 .usernrq = LoginNm
@@ -243,12 +265,16 @@ NoRecords:
                 db.SubmitChanges()
                 Dim key = keybonjr & "/" & keybonnr.ToString("0000")
                 Archive("BONL_U", key, "Groepsbewerking!")
-            Catch
-                'PositionMsgbox.CenterMsgBox(Me)
-                'MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            Catch ex As Exception
+                PositionMsgbox.CenterMsgBox(Me)
+                MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
                 Return False
             End Try
         Next
+        If newprice > 0 Then
+            ' niet nodig, gebeurt bij afsluiten bonl
+            'Bondvantot(kjr, knr)
+        End If
         Return True
     End Function
 
@@ -265,4 +291,56 @@ NoRecords:
 
         Return AllOK
     End Function
+
+    Private Sub ZoekCode_Click(sender As Object, e As EventArgs) Handles ZoekCode.Click
+        SelCGNRQ = keycgnrq
+        frompopup = True
+        filtercode = ZoekCodeIM.Text
+        codfrombon = True
+        SearchCode.ShowDialog()
+        codfrombon = False
+        filtercode = ""
+        frompopup = False
+        SelCGNRQ = 0
+        Setcode(keycnrq)
+    End Sub
+
+    Private Sub ZoekCodeIM_TextChanged(sender As Object, e As EventArgs) Handles ZoekCodeIM.TextChanged
+        Dim sfound As Integer = 0
+        If ZoekCodeIM.Text = "" Then Exit Sub
+
+        SelCGNRQ = keycgnrq
+        sfound = 0
+        Dim codrecs = From cod In db.CODs
+                      Join codgp In db.CODGPs On cod.CGNRQ Equals codgp.CGNRQ
+                      Where cod.Code.StartsWith(ZoekCodeIM.Text) And codgp.INRESULT = True
+                      Order By cod.Code Ascending
+                      Select cod.CNRQ, cod.Code
+
+        For Each codrec In codrecs
+            If sfound = 0 Then
+                sfound = codrec.CNRQ
+            Else
+                Exit For
+            End If
+        Next
+        keycnrq = sfound
+        SelCGNRQ = 0
+        Setcode(keycnrq)
+        'FillDisplay()
+    End Sub
+    Private Sub Setcode(key As Integer)
+        Dim valcode As String
+        valcode = Getvalcode(key)
+        lblCODEinfo.Text = valcode
+
+        codrecs = From cod In db.CODs
+                  Where cod.CNRQ = key
+                  Select cod.Eenhp, cod.Aankp
+        For Each codrec In codrecs
+            newprice = codrec.Eenhp
+        Next
+
+    End Sub
+
 End Class

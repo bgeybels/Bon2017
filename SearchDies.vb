@@ -20,14 +20,14 @@ Public Class SearchDies
         CMButtonPermissions(VerwijderToolStripMenuItem)
 
         nofilter = True
-        For Each a In GrBFilters.Controls
-            If (TypeOf a Is ComboBox) Then
-                If (Mid(a.name, 1, 5) = "FltCB") Then
-                    FillCMBeau(a)
-                    a.selectedindex = 0
-                End If
-            End If
-        Next
+        'For Each a In GrBFilters.Controls
+        'If (TypeOf a Is ComboBox) Then
+        'If (Mid(a.name, 1, 5) = "FltCB") Then
+        'FillCMBeau(a)
+        'a.selectedindex = 0
+        'End If
+        'End If
+        'Next
         nofilter = False
 
         hkey = keydiesnrq
@@ -106,6 +106,12 @@ Public Class SearchDies
 NoRecords:
     End Sub
 
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
+    End Sub
+
     Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As EventArgs) Handles DGREC.DoubleClick
         UpdateRec()
     End Sub
@@ -126,7 +132,17 @@ NoRecords:
 
     Private Sub UpdateRec()
         keydiesnrq = DGREC.CurrentRow.Cells("DNRQ").Value
-        EditDies.ShowDialog()
+
+        ' test lock
+        Dim lockedby = isLocked("DIES", keydiesnrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("DIES", keydiesnrq)
+
+        EditDIES.ShowDialog()
         Refresh_data()
     End Sub
 
@@ -158,6 +174,9 @@ NoRecords:
                 If (Mid(a.name, 1, 5) = "FltCB") Then
                     a.selectedindex = 0
                 End If
+            End If
+            If TypeOf a Is CheckBox Then
+                a.checked = False
             End If
         Next
         nofilter = False
@@ -194,7 +213,9 @@ NoRecords:
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("Exporteer naar excel")
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "DIESEL")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
     '****Filters
@@ -205,24 +226,25 @@ NoRecords:
         records = records.Where("Omschrijving.Contains(@0)", Fltomsdies.Text)
         records = records.Where("Wie.Contains(@0)", Fltusernrq.Text)
 
-        Select Case FltCBactief.SelectedItem
-            Case "Aan"
-                chval = "true"
-            Case "Uit"
-                chval = "false"
-            Case Else
-                chval = ""
-        End Select
+        chval = ""
+        If (CBactiefJ.Checked = True) And (CBactiefN.Checked = False) Then chval = "true"
+        If (CBactiefN.Checked = True) And (CBactiefJ.Checked = False) Then chval = "false"
         If chval <> "" Then records = records.Where("actief == " & chval)
     End Sub
 
     Private Sub Fltusernrq_TextChanged(sender As Object, e As EventArgs) Handles Fltusernrq.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
-    Private Sub FltCBdienst_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FltCBactief.SelectedIndexChanged
+
+    Private Sub Fltomsdies_TextChanged(sender As Object, e As EventArgs) Handles Fltomsdies.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
-    Private Sub Fltomsdies_TextChanged(sender As Object, e As EventArgs) Handles Fltomsdies.TextChanged
+
+    Private Sub CBactiefJ_CheckedChanged(sender As Object, e As EventArgs) Handles CBactiefJ.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBactiefN_CheckedChanged(sender As Object, e As EventArgs) Handles CBactiefN.CheckedChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
 End Class

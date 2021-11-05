@@ -9,12 +9,31 @@
             .RowsDefaultCellStyle.ForeColor = oddfc
             .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             .ScrollBars = ScrollBars.Vertical
+            .RowsDefaultCellStyle.SelectionBackColor = selectbg
+            .RowsDefaultCellStyle.SelectionForeColor = selectfg
         End With
+    End Sub
+
+    Public Sub SetAllColors()
+        evenbc = ColorTranslator.FromWin32(My.Settings.GRIDrowseven)
+        oddbc = ColorTranslator.FromWin32(My.Settings.GRIDrowsodd)
+        evenfc = ColorTranslator.FromWin32(My.Settings.GRIDforecoloreven)
+        oddfc = ColorTranslator.FromWin32(My.Settings.GRIDforecolorodd)
+        selectbg = ColorTranslator.FromWin32(My.Settings.GRIDselectbg)
+        selectfg = ColorTranslator.FromWin32(My.Settings.GRIDselectfg)
+        'DISPLAYparams
+        boxcolor = ColorTranslator.FromWin32(My.Settings.DISPtextboxbackcolor)
+        boxcolorerror = ColorTranslator.FromWin32(My.Settings.DISPtextboxerror)
+        dgcelcolor = ColorTranslator.FromWin32(My.Settings.GRIDcellnotused)
+        dgcelgratis = ColorTranslator.FromWin32(My.Settings.GRIDcellgratis)
+        dgcelmemo = ColorTranslator.FromWin32(My.Settings.GRIDcellmemo)
     End Sub
 
     Public Sub SetPopupForm(dform As Form)
         dform.FormBorderStyle = FormBorderStyle.FixedDialog
-        'dform.StartPosition = FormStartPosition.CenterParent
+        dform.StartPosition = FormStartPosition.Manual
+        dform.Location = New Point(10, 50)
+
 
         dform.MaximizeBox = False
         dform.MinimizeBox = False

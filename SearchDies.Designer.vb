@@ -41,8 +41,9 @@ Partial Class SearchDies
         Me.VerwijderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GrBFilters = New System.Windows.Forms.GroupBox()
+        Me.CBactiefN = New System.Windows.Forms.CheckBox()
+        Me.CBactiefJ = New System.Windows.Forms.CheckBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.FltCBactief = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Fltomsdies = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -177,16 +178,17 @@ Partial Class SearchDies
         '
         Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.Controls.Add(Me.GrBFilters, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
+        Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 370.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(988, 370)
         Me.TableLayoutPanel1.TabIndex = 9
         '
@@ -194,8 +196,9 @@ Partial Class SearchDies
         '
         Me.GrBFilters.AutoSize = True
         Me.GrBFilters.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GrBFilters.Controls.Add(Me.CBactiefN)
+        Me.GrBFilters.Controls.Add(Me.CBactiefJ)
         Me.GrBFilters.Controls.Add(Me.Label6)
-        Me.GrBFilters.Controls.Add(Me.FltCBactief)
         Me.GrBFilters.Controls.Add(Me.Label4)
         Me.GrBFilters.Controls.Add(Me.Fltomsdies)
         Me.GrBFilters.Controls.Add(Me.Label5)
@@ -204,35 +207,44 @@ Partial Class SearchDies
         Me.GrBFilters.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GrBFilters.Location = New System.Drawing.Point(3, 3)
         Me.GrBFilters.Name = "GrBFilters"
-        Me.GrBFilters.Size = New System.Drawing.Size(982, 42)
-        Me.GrBFilters.TabIndex = 1
+        Me.GrBFilters.Size = New System.Drawing.Size(157, 364)
+        Me.GrBFilters.TabIndex = 3
         Me.GrBFilters.TabStop = False
+        '
+        'CBactiefN
+        '
+        Me.CBactiefN.AutoSize = True
+        Me.CBactiefN.Location = New System.Drawing.Point(105, 105)
+        Me.CBactiefN.Name = "CBactiefN"
+        Me.CBactiefN.Size = New System.Drawing.Size(46, 17)
+        Me.CBactiefN.TabIndex = 45
+        Me.CBactiefN.Text = "Nee"
+        Me.CBactiefN.UseVisualStyleBackColor = True
+        '
+        'CBactiefJ
+        '
+        Me.CBactiefJ.AutoSize = True
+        Me.CBactiefJ.Location = New System.Drawing.Point(72, 105)
+        Me.CBactiefJ.Name = "CBactiefJ"
+        Me.CBactiefJ.Size = New System.Drawing.Size(37, 17)
+        Me.CBactiefJ.TabIndex = 44
+        Me.CBactiefJ.Text = "Ja"
+        Me.CBactiefJ.UseVisualStyleBackColor = True
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(327, 19)
+        Me.Label6.Location = New System.Drawing.Point(5, 105)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(34, 13)
         Me.Label6.TabIndex = 30
         Me.Label6.Text = "Actief"
         '
-        'FltCBactief
-        '
-        Me.FltCBactief.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.FltCBactief.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.FltCBactief.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FltCBactief.FormattingEnabled = True
-        Me.FltCBactief.Location = New System.Drawing.Point(389, 15)
-        Me.FltCBactief.Name = "FltCBactief"
-        Me.FltCBactief.Size = New System.Drawing.Size(64, 21)
-        Me.FltCBactief.TabIndex = 29
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label4.Location = New System.Drawing.Point(38, 20)
+        Me.Label4.Location = New System.Drawing.Point(5, 54)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(67, 13)
         Me.Label4.TabIndex = 26
@@ -241,15 +253,15 @@ Partial Class SearchDies
         'Fltomsdies
         '
         Me.Fltomsdies.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltomsdies.Location = New System.Drawing.Point(111, 15)
+        Me.Fltomsdies.Location = New System.Drawing.Point(74, 49)
         Me.Fltomsdies.Name = "Fltomsdies"
-        Me.Fltomsdies.Size = New System.Drawing.Size(94, 20)
+        Me.Fltomsdies.Size = New System.Drawing.Size(66, 20)
         Me.Fltomsdies.TabIndex = 11
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(216, 19)
+        Me.Label5.Location = New System.Drawing.Point(5, 79)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(26, 13)
         Me.Label5.TabIndex = 21
@@ -258,7 +270,7 @@ Partial Class SearchDies
         'Fltusernrq
         '
         Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltusernrq.Location = New System.Drawing.Point(248, 15)
+        Me.Fltusernrq.Location = New System.Drawing.Point(74, 75)
         Me.Fltusernrq.Name = "Fltusernrq"
         Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
         Me.Fltusernrq.TabIndex = 14
@@ -266,7 +278,7 @@ Partial Class SearchDies
         'BTN_FilterReset
         '
         Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
-        Me.BTN_FilterReset.Location = New System.Drawing.Point(0, 7)
+        Me.BTN_FilterReset.Location = New System.Drawing.Point(110, 9)
         Me.BTN_FilterReset.Name = "BTN_FilterReset"
         Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
         Me.BTN_FilterReset.TabIndex = 17
@@ -279,9 +291,9 @@ Partial Class SearchDies
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBox1.Controls.Add(Me.DGREC)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 51)
+        Me.GroupBox1.Location = New System.Drawing.Point(166, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(982, 316)
+        Me.GroupBox1.Size = New System.Drawing.Size(819, 364)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         '
@@ -299,7 +311,7 @@ Partial Class SearchDies
         Me.DGREC.ReadOnly = True
         Me.DGREC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGREC.Size = New System.Drawing.Size(976, 297)
+        Me.DGREC.Size = New System.Drawing.Size(813, 345)
         Me.DGREC.TabIndex = 1
         Me.DGREC.TabStop = False
         '
@@ -342,14 +354,15 @@ Partial Class SearchDies
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents VerwijderToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents DGREC As DataGridView
     Friend WithEvents GrBFilters As GroupBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents FltCBactief As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Fltomsdies As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Fltusernrq As TextBox
     Friend WithEvents BTN_FilterReset As Button
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents DGREC As DataGridView
+    Friend WithEvents CBactiefN As CheckBox
+    Friend WithEvents CBactiefJ As CheckBox
 End Class

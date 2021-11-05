@@ -88,7 +88,9 @@ Public Class SearchStockHist
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("TODO: Exporteer naar excel")
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "STOCKHISTORIEK")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
 
@@ -110,7 +112,7 @@ Public Class SearchStockHist
     Private Sub Fltomscode_TextChanged(sender As Object, e As EventArgs) Handles Fltomscode.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
-    Private Sub Fltomsgroep_TextChanged(sender As Object, e As EventArgs) Handles Fltomsgroep.TextChanged
+    Private Sub Fltomsgroep_TextChanged(sender As Object, e As EventArgs) Handles Fltomscode.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
     Private Sub Fltusernrq_TextChanged(sender As Object, e As EventArgs) Handles Fltusernrq.TextChanged

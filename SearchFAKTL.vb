@@ -29,9 +29,9 @@ Public Class SearchFAKTL
         Next
 
         'TSButtonPermissions(TSBnew)
-        TSButtonPermissions(TSBdelete)
-        CMButtonPermissions(NieuwToolStripMenuItem)
-        CMButtonPermissions(VerwijderToolStripMenuItem)
+        'TSButtonPermissions(TSBdelete)
+        'CMButtonPermissions(NieuwToolStripMenuItem)
+        'CMButtonPermissions(VerwijderToolStripMenuItem)
 
         ' get values from settings
         'FltCBtbw.SelectedIndex = My.Settings.fltbontbw
@@ -130,7 +130,7 @@ Public Class SearchFAKTL
                 FaktL = faktl.FAKTL, faktl.DATUM,
                 Werf,
                 faktl.AANTAL, faktl.EENHP, faktl.BTW,
-                faktl.AOMS, faktl.CODE, faktl.OMSCODE, faktl.GROEP, faktl.diesel
+                faktl.AOMS, faktl.CODE, faktl.OMSCODE, faktl.GROEP
 
         If Me.ordDGREC = Nothing Then ordDGREC = "FaktL"
         records = records.OrderBy(ordDGREC, SortOrder.Ascending = True)
@@ -142,8 +142,14 @@ Public Class SearchFAKTL
         'For index = 0 To dginvisible.GetUpperBound(0)
         '    DGREC.Columns(dginvisible(index)).Visible = False
         'Next
+        'set numbermode
+        Dim dgnums = New String() {"AANTAL", "EENHP"}
+        For index = 0 To dgnums.GetUpperBound(0)
+            DGREC.Columns(dgnums(index)).DefaultCellStyle.Format = "N2"
+            DGREC.Columns(dgnums(index)).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        Next
         'set autosizemode
-        Dim dgautos = New String() {"NR", "FaktL", "Werf", "Aantal", "Eenhp", "BTW", "AOMS", "CODE", "OMSCODE", "GROEP", "diesel"}
+        Dim dgautos = New String() {"NR", "FaktL", "Werf", "Aantal", "Eenhp", "BTW", "AOMS", "CODE", "OMSCODE", "GROEP"}
         For index = 0 To dgautos.GetUpperBound(0)
             DGREC.Columns(dgautos(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next index
@@ -160,7 +166,7 @@ Public Class SearchFAKTL
         Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
-    Private Sub DGREC_SelectionChanged(sender As Object, e As EventArgs) Handles DGREC.SelectionChanged
+    Private Sub DGREC_SelectionChanged(sender As Object, e As EventArgs)
         keybonlvnr = 0
         On Error GoTo NoRecords
         If updategrid = False Then Exit Sub
@@ -224,25 +230,16 @@ NoRecords:
         Me.Close()
     End Sub
 
-    Private Sub VerwijderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerwijderToolStripMenuItem.Click
-        TSBdelete.PerformClick()
-    End Sub
-
-    Private Sub TSBdelete_Click(sender As Object, e As EventArgs) Handles TSBdelete.Click
-        ' Voeg nog een test toe of gebruikt in bonnen!!!!
-        DeleteRec()
-    End Sub
-
     Private Sub TSBexport_Click(sender As Object, e As EventArgs)
-        MsgBox("Todo: Export")
+        'MsgBox("Todo: Export")
     End Sub
 
     Private Sub TSBprint_Click(sender As Object, e As EventArgs)
-        MsgBox("Todo: Print")
+        'MsgBox("Todo: Print")
     End Sub
 
-    Private Sub GroepsbewerkingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GroepsbewerkingToolStripMenuItem.Click
-        MsgBox("ToDo: Groepsbewerking op bonlijnen.")
+    Private Sub GroepsbewerkingToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        'MsgBox("ToDo: Groepsbewerking op bonlijnen.")
     End Sub
 
     '****Filters
@@ -257,7 +254,7 @@ NoRecords:
         If nofilter = False Then Fill_DGREC()
     End Sub
 
-    Private Sub FltOmsgroep_TextChanged(sender As Object, e As EventArgs) Handles Fltgroep.TextChanged
+    Private Sub Fltgroep_TextChanged(sender As Object, e As EventArgs) Handles Fltgroep.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
 
@@ -268,4 +265,5 @@ NoRecords:
     Private Sub Fltomscode_TextChanged(sender As Object, e As EventArgs) Handles Fltomscode.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
+
 End Class

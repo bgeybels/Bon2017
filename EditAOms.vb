@@ -7,7 +7,8 @@ Public Class EditAOms
         TSButtonPermissions(TSBsave)
 
         SetGrids()
-        If IsNewRecord = True Then Me.Text = "Volume: Nieuw"
+        Me.Text = "Eenheden: bewerken (key=" & keyanrq & ")"
+        If IsNewRecord = True Then Me.Text = "Eenheden: Nieuw"
 
         nocmdupd = True
         Fill_DG()
@@ -15,6 +16,10 @@ Public Class EditAOms
         Velden_vullen()
     End Sub
     Private Sub EditCode_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        ' unlock record (niet voor nieuwe records)
+        If IsNewRecord = False Then
+            Dim unlock = unlockrec("AOMS", keyanrq)
+        End If
         IsNewRecord = False
     End Sub
 
@@ -48,14 +53,15 @@ Public Class EditAOms
 
         Dim oldoms As String = updaterec.Oms
         updaterec.Oms = TBoms.Text
-        updaterec.chdateao = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        'updaterec.chdateao = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdateao = ChDate
         updaterec.usernrq = LoginNm
         Try
             db.SubmitChanges()
             Archive("VOLUME_U", Str(keyanrq), oldoms & " --> " & TBoms.Text)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -64,15 +70,15 @@ Public Class EditAOms
         Dim newrec As New AOms With {
             .Oms = TBoms.Text,
             .usernrq = LoginNm,
-            .chdateao = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+            .chdateao = ChDate
         }
 
         db.AOms.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try
@@ -91,6 +97,12 @@ Public Class EditAOms
         ' AllOK = False
         ' End If
         ' Next
+
+        TBoms.BackColor = boxcolor
+        If Len(TBoms.Text) > 4 Then
+            TBoms.BackColor = boxcolorerror
+            AllOK = False
+        End If
 
         Return AllOK
     End Function

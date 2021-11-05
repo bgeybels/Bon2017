@@ -9,6 +9,7 @@ Public Class EditBTW
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "BTW: Bewerken (key=" & keybtwnrq & ")"
         If IsNewRecord = True Then Me.Text = "BTW: Nieuw"
 
         nocmdupd = True
@@ -17,6 +18,10 @@ Public Class EditBTW
         Velden_vullen()
     End Sub
     Private Sub EditCode_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        ' unlock record (niet voor nieuwe records)
+        If IsNewRecord = False Then
+            Dim unlock = unlockrec("BTW", keybtwnrq)
+        End If
         IsNewRecord = False
     End Sub
 
@@ -51,16 +56,17 @@ Public Class EditBTW
         updaterec.BTW = TBbtw.Text
         updaterec.OmsBTW = TBomsbtw.Text
         updaterec.nieuwbon = CBnieuwbon.Checked
-        updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        'updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
 
         Try
             db.SubmitChanges()
             Archive("BTW_U", Str(keybtwnrq), updaterec.BTW & " - " & updaterec.OmsBTW)
 
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
 
         Return True
@@ -72,15 +78,15 @@ Public Class EditBTW
             .OmsBTW = TBomsbtw.Text,
             .nieuwbon = CBnieuwbon.Checked,
             .usernrq = LoginNm,
-            .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+            .chdate = ChDate
         }
 
         db.BTWs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try

@@ -7,12 +7,16 @@ Public Class EditDIES
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "Dieselpercentage: Bewerken (key=" & keydiesnrq & ")"
         If IsNewRecord = True Then Me.Text = "Dieselpercentage: Nieuw"
 
         Fill_DG()
         Velden_vullen()
     End Sub
     Private Sub EditCode_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If IsNewRecord = False Then
+            Dim unlock = unlockrec("DIES", keydiesnrq)
+        End If
         IsNewRecord = False
     End Sub
 
@@ -49,15 +53,15 @@ Public Class EditDIES
 
         updaterec.actief = CBactief.Checked
 
-        updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
 
         Try
             db.SubmitChanges()
             Archive("DIES_U", Str(keydiesnrq), "Actief=" & updaterec.actief & " - " & updaterec.DIES & " - " & updaterec.OmsDIES)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -68,14 +72,14 @@ Public Class EditDIES
                .OmsDIES = TBomsdies.Text,
                .actief = CBactief.Checked,
                .usernrq = LoginNm,
-               .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")}
+               .chdate = ChDate}
 
         db.DIES.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try

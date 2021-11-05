@@ -20,28 +20,28 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GRIDrowseven" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#ffffb3</Value>
+      <Value Profile="(Default)">13893118</Value>
     </Setting>
     <Setting Name="GRIDrowsodd" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#ffff66</Value>
+      <Value Profile="(Default)">1048575</Value>
     </Setting>
     <Setting Name="GRIDforecoloreven" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#1e47fc</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="GRIDforecolorodd" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#000000</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="DISPtextboxbackcolor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#ffffff</Value>
+      <Value Profile="(Default)">16777215</Value>
     </Setting>
     <Setting Name="UserLogon" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DISPtextboxerror" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#ff4500</Value>
+      <Value Profile="(Default)">255</Value>
     </Setting>
     <Setting Name="GRIDcellnotused" Type="System.String" Scope="User">
-      <Value Profile="(Default)">#f49d5a</Value>
+      <Value Profile="(Default)">7642362</Value>
     </Setting>
     <Setting Name="STOCKupdateclosed" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -69,6 +69,36 @@
     </Setting>
     <Setting Name="FirstFNR" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="GRIDselectfg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">16711680</Value>
+    </Setting>
+    <Setting Name="GRIDselectbg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">16757759</Value>
+    </Setting>
+    <Setting Name="GRIDcellgratis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">65280</Value>
+    </Setting>
+    <Setting Name="GRIDcellmemo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">16022884</Value>
+    </Setting>
+    <Setting Name="fltfilterdatum" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="fltfilterleegBON" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="JaarCopy" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2019</Value>
+    </Setting>
+    <Setting Name="XCode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="fltbonpart" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TotalsAllowed" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

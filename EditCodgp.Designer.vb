@@ -34,7 +34,7 @@ Partial Class EditCodgp
         Me.TBprocent = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CBdies = New System.Windows.Forms.CheckBox()
+        Me.CBinresult = New System.Windows.Forms.CheckBox()
         Me.CBnoinvent = New System.Windows.Forms.CheckBox()
         Me.CBnostock = New System.Windows.Forms.CheckBox()
         Me.CBrondaf = New System.Windows.Forms.CheckBox()
@@ -51,7 +51,7 @@ Partial Class EditCodgp
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBsave})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(484, 31)
+        Me.ToolStrip1.Size = New System.Drawing.Size(505, 31)
         Me.ToolStrip1.TabIndex = 3
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -91,7 +91,7 @@ Partial Class EditCodgp
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(484, 144)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(505, 139)
         Me.TableLayoutPanel1.TabIndex = 4
         '
         'GroupBox1
@@ -105,7 +105,7 @@ Partial Class EditCodgp
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(341, 142)
+        Me.GroupBox1.Size = New System.Drawing.Size(341, 140)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
@@ -145,70 +145,62 @@ Partial Class EditCodgp
         '
         Me.GroupBox2.AutoSize = True
         Me.GroupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GroupBox2.Controls.Add(Me.CBdies)
+        Me.GroupBox2.Controls.Add(Me.CBinresult)
         Me.GroupBox2.Controls.Add(Me.CBnoinvent)
         Me.GroupBox2.Controls.Add(Me.CBnostock)
         Me.GroupBox2.Controls.Add(Me.CBrondaf)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Location = New System.Drawing.Point(350, 3)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(131, 142)
+        Me.GroupBox2.Size = New System.Drawing.Size(154, 140)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
-        'CBdies
+        'CBinresult
         '
-        Me.CBdies.Appearance = System.Windows.Forms.Appearance.Button
-        Me.CBdies.Location = New System.Drawing.Point(6, 100)
-        Me.CBdies.Name = "CBdies"
-        Me.CBdies.Size = New System.Drawing.Size(107, 23)
-        Me.CBdies.TabIndex = 22
-        Me.CBdies.TabStop = False
-        Me.CBdies.Text = "Dieseltoeslag"
-        Me.CBdies.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.CBdies.UseVisualStyleBackColor = True
+        Me.CBinresult.Location = New System.Drawing.Point(6, 98)
+        Me.CBinresult.Name = "CBinresult"
+        Me.CBinresult.Size = New System.Drawing.Size(142, 23)
+        Me.CBinresult.TabIndex = 23
+        Me.CBinresult.TabStop = False
+        Me.CBinresult.Text = "Tonen in Zoekresultaat"
+        Me.CBinresult.UseVisualStyleBackColor = True
         '
         'CBnoinvent
         '
-        Me.CBnoinvent.Appearance = System.Windows.Forms.Appearance.Button
         Me.CBnoinvent.Location = New System.Drawing.Point(6, 71)
         Me.CBnoinvent.Name = "CBnoinvent"
         Me.CBnoinvent.Size = New System.Drawing.Size(107, 23)
         Me.CBnoinvent.TabIndex = 19
         Me.CBnoinvent.TabStop = False
         Me.CBnoinvent.Text = "Geen Inventaris"
-        Me.CBnoinvent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.CBnoinvent.UseVisualStyleBackColor = True
         '
         'CBnostock
         '
-        Me.CBnostock.Appearance = System.Windows.Forms.Appearance.Button
         Me.CBnostock.Location = New System.Drawing.Point(6, 42)
         Me.CBnostock.Name = "CBnostock"
         Me.CBnostock.Size = New System.Drawing.Size(107, 23)
         Me.CBnostock.TabIndex = 18
         Me.CBnostock.TabStop = False
         Me.CBnostock.Text = "Niet in Stock"
-        Me.CBnostock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.CBnostock.UseVisualStyleBackColor = True
         '
         'CBrondaf
         '
-        Me.CBrondaf.Appearance = System.Windows.Forms.Appearance.Button
         Me.CBrondaf.Location = New System.Drawing.Point(6, 13)
         Me.CBrondaf.Name = "CBrondaf"
         Me.CBrondaf.Size = New System.Drawing.Size(107, 23)
         Me.CBrondaf.TabIndex = 17
         Me.CBrondaf.TabStop = False
         Me.CBrondaf.Text = "Afronden"
-        Me.CBrondaf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.CBrondaf.UseVisualStyleBackColor = True
         '
         'EditCodgp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(484, 175)
+        Me.ClientSize = New System.Drawing.Size(505, 170)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "EditCodgp"
@@ -236,8 +228,8 @@ Partial Class EditCodgp
     Friend WithEvents TBprocent As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents CBdies As CheckBox
     Friend WithEvents CBnoinvent As CheckBox
     Friend WithEvents CBnostock As CheckBox
     Friend WithEvents CBrondaf As CheckBox
+    Friend WithEvents CBinresult As CheckBox
 End Class

@@ -1,20 +1,4 @@
 ﻿Module Module_Factuur
-    'Private Sub ToolStripButton2xx_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
-
-    '    Dim totals = From bonl In db.BONLs
-    '                 Join btw In db.BTWs On bonl.BNRQ Equals btw.BNRQ
-    '                 Where bonl.BONJR = keybonjr AndAlso bonl.BONNR = keybonnr AndAlso btw.nieuwbon = True
-    '                 Group By bonl.BONNR
-    '                    Into tbedrag = Sum(((((bonl.Aantal * bonl.BONEenhp) * bonl.diesel) / 100) + (bonl.Aantal * bonl.BONEenhp)) + ((((((bonl.Aantal * bonl.BONEenhp) * bonl.Aantal * bonl.BONEenhp) / 100) + (bonl.Aantal * bonl.BONEenhp)) * btw.BTW / 100))),
-    '                     tbtw = Sum((((((bonl.Aantal * bonl.BONEenhp) * bonl.diesel) / 100) + (bonl.Aantal * bonl.BONEenhp)) * btw.BTW) / 100),
-    '                     teenhp = Sum((((bonl.Aantal * bonl.BONEenhp) * bonl.diesel) / 100) + (bonl.Aantal * bonl.BONEenhp))
-    '                 Select tbedrag, tbtw, teenhp
-
-    '    For Each total In totals
-    '        MsgBox("TBEDRAG: " & Format(total.tbedrag, "c") & " - TBTW: " & Format(total.tbtw, "c") & " - TEENHP: " & Format(total.teenhp, "c"))
-    '    Next
-
-    'End Sub
 
     Public Function DBFact(kbonjr As Integer, kbonnr As Integer, dc As String)
         Dim FactNR As Integer = 0
@@ -50,6 +34,67 @@
         Return FactNR
     End Function
 
+    Public Sub getDBFact(kbonjr As Integer, kbonnr As Integer, dc As String)
+        Dim FactNR As Integer = 0
+        Dim RecExists As Boolean = False
+        Dim curnr As Integer = 0
+        Dim message As String = ""
+        If kbonnr < 1 Then Exit Sub
+
+        Dim bond = (From bon In db.BONs
+                    Where bon.BONJR = kbonjr AndAlso bon.BONNR = kbonnr).First()
+        Select Case dc
+            Case "D"
+                curnr = bond.fnr
+                message = "Factuurnummer (Debet) "
+            Case "C"
+                curnr = bond.cnr
+                message = "Factuurnummer (Credit) "
+        End Select
+        ' fnr/cnr staat er al in
+        If curnr > 0 Then Exit Sub
+
+        'Check of er al een FAKT-rec bestaat
+        factrecs = From fact In db.FAKTs
+                   Where fact.JAAR = kbonjr And fact.NR = kbonnr And fact.DC = dc
+                   Select fact.JAAR, fact.NR, fact.FNR
+        For Each factrec In factrecs
+            FactNR = factrec.FNR
+            RecExists = True
+        Next
+        If FactNR < 1 Then Exit Sub
+
+        'aan beide voorwaarden voldaan: (in bon=0) (er bestaat een fnr)... nu de vraag
+        If MsgBox(message & FactNR & " overnemen?", MsgBoxStyle.YesNoCancel, "Terugzetten factuurnummer.") = MsgBoxResult.No Then
+            Exit Sub
+        End If
+
+
+        ' update fnr/cnr fok/cok
+        Dim updaterec = (From bon In db.BONs
+                         Where bon.BONJR = kbonjr And bon.BONNR = kbonnr).ToList()(0)
+
+        Select Case dc
+            Case "D"
+                updaterec.fnr = FactNR
+                updaterec.fok = True
+            Case "C"
+                updaterec.cnr = FactNR
+                updaterec.cok = True
+        End Select
+        Try
+            db.SubmitChanges()
+        Catch ex As Exception
+            Exit Sub
+        End Try
+        ' update de factuur/factuurlijnen
+        Fact(RecExists, kbonjr, kbonnr, FactNR, dc)
+        FactL(kbonjr, kbonnr, FactNR, dc)
+
+        ''   this.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ''  Me.Cursor = System.Windows.Forms.Cursors.Default
+    End Sub
+
     Public Sub Fact(RecExists As Boolean, kjr As Integer, knr As Integer, factnr As Integer, dc As String)
         If RecExists = False Then
             NewFAKT(kjr, knr, factnr, dc)
@@ -58,11 +103,10 @@
         ' Totaliseer de bonlijnen: voor new fakt= new bedrag voor bestaande fakt= update
         Dim totals = From bonl In db.BONLs
                      Join btw In db.BTWs On bonl.BNRQ Equals btw.BNRQ
-                     Where bonl.BONJR = keybonjr AndAlso bonl.BONNR = keybonnr AndAlso btw.nieuwbon = True
+                     Where bonl.BONJR = keybonjr AndAlso bonl.BONNR = keybonnr AndAlso btw.nieuwbon = False
                      Let ehp = bonl.Aantal * bonl.BONEenhp
-                     Let diesel = (ehp * bonl.diesel) / 100
-                     Let tbtw = ((ehp + diesel) * btw.BTW) / 100
-                     Select ehp, diesel, tbtw, btw.BNRQ
+                     Let tbtw = (ehp * btw.BTW) / 100
+                     Select ehp, tbtw, btw.BNRQ
         Dim totehp As Decimal = 0
         Dim totbtw As Decimal = 0
         Dim tottbt As Decimal = 0
@@ -97,10 +141,10 @@
             .dtot = bond.bon.dtot
             .teenhp = Format(totehp, "#.00")
             .tbtw = Format(totbtw, "#.00")
-            .bon_type = bond.bon.bon_type
+            .fakt_bon_type = bond.bon.bon_type
             .fakt_ncalc = 0
             .usernrq = LoginNm
-            .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+            .chdate = ChDate & " " & DateTime.Now.ToString("HH:mm:ss")
         End With
 
         Try
@@ -128,7 +172,7 @@
                 .FNR = knr,
                 .DC = dc,
                 .FAKTL = newfaktl,
-                .DATUM = SysDate & " " & DateTime.Now.ToString("HH:mm:ss"),
+                .DATUM = ChDate & " " & DateTime.Now.ToString("HH:mm:ss"),
                 .BWSTRAAT = bonldrec.bonl.BWStraat,
                 .BWADRES = bonldrec.bonl.BWAdres,
                 .AANTAL = bonldrec.bonl.Aantal,
@@ -138,7 +182,7 @@
                 .CODE = bonldrec.code.Code,
                 .OMSCODE = bonldrec.code.OmsCode,
                 .GROEP = bonldrec.codgp.OmsGroep,
-                .diesel = bonldrec.bonl.diesel
+                .diesel = 0
             }
             db.FAKTLs.InsertOnSubmit(newrec)
 
@@ -160,21 +204,21 @@
         .DC = dc,
         .FNR = factnr,
         .KNaam = "",
-        .Datin = SysDate & " " & DateTime.Now.ToString("HH:mm:ss"),
+        .Datin = ChDate & " " & DateTime.Now.ToString("HH:mm:ss"),
         .Werf = "",
         .tbedrag = 0,
         .ENRQ = 0,
         .KSTRAAT = "",
         .KADRES = "",
         .WJAAR = kjr,
-        .dvan = SysDate & " " & DateTime.Now.ToString("HH:mm:ss"),
-        .dtot = SysDate & " " & DateTime.Now.ToString("HH:mm:ss"),
+        .dvan = ChDate & " " & DateTime.Now.ToString("HH:mm:ss"),
+        .dtot = ChDate & " " & DateTime.Now.ToString("HH:mm:ss"),
         .teenhp = 0,
         .tbtw = 0,
-        .bon_type = "O",
+        .fakt_bon_type = "O",
         .fakt_ncalc = 0,
         .usernrq = LoginNm,
-        .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        .chdate = ChDate & " " & DateTime.Now.ToString("HH:mm:ss")
         }
 
         db.FAKTs.InsertOnSubmit(newrec)
@@ -195,7 +239,7 @@
         .FNR = knr,
         .DC = dc,
         .FAKTL = newfaktl,
-        .DATUM = SysDate & " " & DateTime.Now.ToString("HH:mm:ss"),
+        .DATUM = ChDate & " " & DateTime.Now.ToString("HH:mm:ss"),
         .BWSTRAAT = "",
         .BWADRES = "",
         .AANTAL = 0,
@@ -218,50 +262,104 @@
         End Try
     End Sub
 
-    Private Sub DelFAKTL(kjr As Integer, knr As Integer, dc As String)
+    Public Sub DelFAKTL(kjr As Integer, knr As Integer, dc As String)
+
         Try
-            Dim deleterec = (From faktl In db.FAKTLs
-                             Where faktl.FJAAR = kjr AndAlso faktl.FNR = knr AndAlso faktl.DC = dc).ToList()(0)
-            db.FAKTLs.DeleteOnSubmit(deleterec)
-            db.SubmitChanges()
+            delrecs = From faktl In db.FAKTLs
+                      Where faktl.FJAAR = kjr AndAlso faktl.FNR = knr AndAlso faktl.DC = dc
+            For Each todelrec In delrecs
+                db.FAKTLs.DeleteOnSubmit(todelrec)
+                db.SubmitChanges()
+            Next
         Catch
             'MsgBox("Schrappen faktuurlijnen niet gelukt!")
         End Try
+
     End Sub
 
     Public Function GetFaktlFigures(keyjr As Integer, keynr As Integer)
         Dim found As String = ""
-        searchrecs = From bonl In db.BONLs
-                     Join btw In db.BTWs On bonl.BNRQ Equals btw.BNRQ
-                     Let tbedr = (bonl.Aantal * bonl.BONEenhp)
-                     Where bonl.BONJR = keyjr AndAlso bonl.BONNR = keynr
-                     Select tbedr, bonl.diesel, bonl.BNRQ
+        searchrecs = From faktl In db.FAKTLs
+                     Let tbedr = (faktl.AANTAL * faktl.EENHP)
+                     Where faktl.FJAAR = keyfaktjr AndAlso faktl.FNR = keyfaktnr AndAlso faktl.DC = keyfaktdc
+                     Select tbedr, faktl.BTW
 
-        Dim totrm As Decimal = 0
-        Dim totnac As Decimal = 0
-        Dim tot As Decimal = 0
+        Dim totincl As Decimal = 0
+        Dim totbtw As Decimal = 0
+        Dim totexcl As Decimal = 0
         Dim calcx As Decimal = 0
-        Dim telbonl As Integer = 0
+        Dim calcy As Decimal = 0
+        Dim telfaktl As Integer = 0
         For Each searchrec In searchrecs
-            telbonl = telbonl + 1
+            telfaktl = telfaktl + 1
             calcx = searchrec.tbedr
-            If searchrec.diesel <> 0 Then
-                calcx = calcx + ((calcx * searchrec.diesel) / 100)
+            totexcl = totexcl + calcx
+
+            'btw op calcx
+            calcy = 0
+            If searchrec.btw <> 0 Then
+                calcy = (calcx * searchrec.btw) / 100
             End If
-            Select Case searchrec.BNRQ
-                Case 11
-                    totrm = totrm + calcx
-                Case 1
-                    totnac = totnac + calcx
-                Case Else
-                    tot = tot + calcx
-            End Select
+            totincl = totincl + calcx + calcy
+            totbtw = totbtw + calcy
         Next
-        found = " Aantal bonlijnen: " & telbonl
-        found = found & Environment.NewLine & " Recuperatie : " & totrm.ToString("0.00")
-        found = found & Environment.NewLine & " Nacalculatie: " & totnac.ToString("0.00")
-        found = found & Environment.NewLine & " Facturatie  : " & tot.ToString("0.00")
+        found = " Aantal faktuurlijnen: " & telfaktl
+        found = found & Environment.NewLine & " Totaal Exclusief : " & totexcl.ToString("0.00")
+        found = found & Environment.NewLine & "        BTW       : " & totbtw.ToString("0.00")
+        found = found & Environment.NewLine & "        Inclusief : " & totincl.ToString("0.00")
 
         Return found
     End Function
+
+     Public Function GetSELFaktlFigures(faktldata As DataGridView)
+        Dim found As String = ""
+
+        Dim ljr As Integer
+        Dim lnr As Integer
+        Dim ldc As String
+
+        Dim totincl As Decimal = 0
+        Dim totbtw As Decimal = 0
+        Dim totexcl As Decimal = 0
+        Dim calcx As Decimal = 0
+        Dim calcy As Decimal = 0
+        Dim telfaktl As Integer = 0
+        Dim telfakt As Integer = 0
+
+        For Each row As DataGridViewRow In faktldata.Rows
+            ljr = row.Cells("JR").Value
+            lnr = row.Cells("NR").Value
+            ldc = row.Cells("DC").Value
+
+            searchrecs = From faktl In db.FAKTLs
+                         Let tbedr = (faktl.AANTAL * faktl.EENHP)
+                         Where faktl.FJAAR = ljr AndAlso faktl.FNR = lnr AndAlso faktl.DC = ldc
+                         Select tbedr, faktl.BTW
+
+            telfakt = telfakt + 1
+            For Each searchrec In searchrecs
+                telfaktl = telfaktl + 1
+                calcx = searchrec.tbedr
+                totexcl = totexcl + calcx
+
+                'btw op calcx
+                calcy = 0
+                If searchrec.btw <> 0 Then
+                    calcy = (calcx * searchrec.btw) / 100
+                End If
+                totincl = totincl + calcx + calcy
+                totbtw = totbtw + calcy
+            Next
+        Next
+
+        found = "Totaal fakturen     : " & telfakt
+        found = found & Environment.NewLine & "Totaal faktuurlijnen: " & telfaktl
+        found = found & Environment.NewLine & "Totaal Exclusief : " & totexcl.ToString("0.00")
+        found = found & Environment.NewLine & "       BTW       : " & totbtw.ToString("0.00")
+        found = found & Environment.NewLine & "       Inclusief : " & totincl.ToString("0.00")
+
+        Return found
+    End Function
+
+
 End Module

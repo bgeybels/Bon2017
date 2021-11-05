@@ -6,6 +6,10 @@ Public Class SearchStock
     Dim updategrid As Boolean = True
     Dim nofilter As Boolean = True
 
+    Private Sub SearchStock_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        stocklogon = False
+    End Sub
+
     Private Sub SearchCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If plook = True Then
             FormBorderStyle = FormBorderStyle.FixedDialog
@@ -72,10 +76,18 @@ Public Class SearchStock
     '****DATAGRID stuff
     Private Sub Fill_DGREC()
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+
+        If stocklogon = True Then
+            CBFltGrp.Checked = False
+            CBminstockJ.Checked = True
+            CBminstockN.Checked = False
+        End If
+
         records =
             From cod In db.CODs
             Join codgp In db.CODGPs On cod.CGNRQ Equals codgp.CGNRQ
             Join aoms In db.AOms On cod.ANRQ Equals aoms.ANRQ
+            Where codgp.INRESULT = True
             Let laatste_update = cod.lupdate
             Let volume = aoms.Oms
             Select cod.CNRQ,
@@ -115,6 +127,12 @@ Public Class SearchStock
 NoRecords:
     End Sub
 
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
+    End Sub
+
     Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As EventArgs) Handles DGREC.DoubleClick
         Addrec()
     End Sub
@@ -144,6 +162,9 @@ NoRecords:
                     a.selectedindex = 0
                 End If
             End If
+            If TypeOf a Is CheckBox Then
+                a.checked = False
+            End If
         Next
         CBFltGrp.Checked = True
         nofilter = False
@@ -162,7 +183,9 @@ NoRecords:
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("TODO: Exporteer naar excel")
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "STOCK")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
 
@@ -179,29 +202,24 @@ NoRecords:
         records = records.Where("plmagazijn.Contains(@0)", Fltplmagazijn.Text)
         records = records.Where("lev.Contains(@0)", Fltlev.Text)
 
-        Select Case FltCBnotstock.SelectedItem
-            Case "Aan"
-                chval = "true"
-            Case "Uit"
-                chval = "false"
-            Case Else
-                chval = ""
-        End Select
+        chval = ""
+        If (CBnotstockJ.Checked = True) And (CBnotstockN.Checked = False) Then chval = "true"
+        If (CBnotstockN.Checked = True) And (CBnotstockJ.Checked = False) Then chval = "false"
         If chval <> "" Then records = records.Where("notstock == " & chval)
-        Select Case FltCBbesteld.SelectedItem
-            Case "Aan"
-                chval = "true"
-            Case "Uit"
-                chval = "false"
-            Case Else
-                chval = ""
-        End Select
+        chval = ""
+        If (CBbesteldJ.Checked = True) And (CBbesteldN.Checked = False) Then chval = "true"
+        If (CBbesteldN.Checked = True) And (CBbesteldJ.Checked = False) Then chval = "false"
         If chval <> "" Then records = records.Where("besteld == " & chval)
+
+        chval = ""
+        If (CBminstockJ.Checked = True) And (CBminstockN.Checked = False) Then chval = "<"
+        If (CBminstockN.Checked = True) And (CBminstockJ.Checked = False) Then chval = ">"
+        If chval <> "" Then records = records.Where("Stock" & chval & " Minstock")
     End Sub
     Public Sub Fltcode_TextChanged(sender As Object, e As EventArgs) Handles Fltcode.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
-    Private Sub Fltomscode_TextChanged(sender As Object, e As EventArgs) Handles Fltomscode.TextChanged, Fltomscode.TextChanged
+    Private Sub Fltomscode_TextChanged(sender As Object, e As EventArgs) Handles Fltomscode.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
     Private Sub Fltomsgroep_TextChanged(sender As Object, e As EventArgs) Handles Fltomsgroep.TextChanged
@@ -224,16 +242,6 @@ NoRecords:
 Troubles:
     End Sub
 
-    Private Sub FltCBbesteld_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles FltCBbesteld.SelectedIndexChanged
-        If nofilter = True Then Exit Sub
-        Fill_DGREC()
-    End Sub
-
-    Private Sub FltCBnotstock_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles FltCBnotstock.SelectedIndexChanged
-        If nofilter = True Then Exit Sub
-        Fill_DGREC()
-    End Sub
-
     Private Sub Fltlev_TextChanged(sender As Object, e As EventArgs) Handles Fltlev.TextChanged
         If nofilter = True Then Exit Sub
         Fill_DGREC()
@@ -244,4 +252,44 @@ Troubles:
         Fill_DGREC()
     End Sub
 
+    Private Sub BewerkCodeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BewerkCodeToolStripMenuItem.Click
+
+        ' test lock
+        Dim lockedby = isLocked("CODE", keycnrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("CODE", keycnrq)
+
+        EditCode.ShowDialog()
+        nofilter = True
+        Refresh_data()
+        nofilter = False
+    End Sub
+
+    Private Sub CBminstockJ_CheckedChanged(sender As Object, e As EventArgs) Handles CBminstockJ.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBminstockN_CheckedChanged(sender As Object, e As EventArgs) Handles CBminstockN.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBbesteldJ_CheckedChanged(sender As Object, e As EventArgs) Handles CBbesteldJ.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBbesteldN_CheckedChanged(sender As Object, e As EventArgs) Handles CBbesteldN.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBnotstockJ_CheckedChanged(sender As Object, e As EventArgs) Handles CBnotstockJ.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBnotstockN_CheckedChanged(sender As Object, e As EventArgs) Handles CBnotstockN.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
 End Class

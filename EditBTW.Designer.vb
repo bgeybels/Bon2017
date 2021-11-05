@@ -33,12 +33,10 @@ Partial Class EditBTW
         Me.TBbtw = New System.Windows.Forms.TextBox()
         Me.TBomsbtw = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.CBnieuwbon = New System.Windows.Forms.CheckBox()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -49,7 +47,7 @@ Partial Class EditBTW
         Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(486, 31)
+        Me.ToolStrip1.Size = New System.Drawing.Size(358, 31)
         Me.ToolStrip1.TabIndex = 3
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -79,22 +77,21 @@ Partial Class EditBTW
         '
         'TableLayoutPanel1
         '
-        Me.TableLayoutPanel1.ColumnCount = 2
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox2, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(486, 91)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(358, 104)
         Me.TableLayoutPanel1.TabIndex = 4
         '
         'GroupBox1
         '
         Me.GroupBox1.AutoSize = True
+        Me.GroupBox1.Controls.Add(Me.CBnieuwbon)
         Me.GroupBox1.Controls.Add(Me.Label15)
         Me.GroupBox1.Controls.Add(Me.TBbtw)
         Me.GroupBox1.Controls.Add(Me.TBomsbtw)
@@ -102,7 +99,7 @@ Partial Class EditBTW
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(340, 85)
+        Me.GroupBox1.Size = New System.Drawing.Size(352, 107)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
@@ -138,24 +135,12 @@ Partial Class EditBTW
         Me.Label4.TabIndex = 30
         Me.Label4.Text = "Omschrijving"
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.AutoSize = True
-        Me.GroupBox2.Controls.Add(Me.CBnieuwbon)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(349, 3)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(134, 85)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
-        '
         'CBnieuwbon
         '
-        Me.CBnieuwbon.Appearance = System.Windows.Forms.Appearance.Button
         Me.CBnieuwbon.AutoSize = True
-        Me.CBnieuwbon.Location = New System.Drawing.Point(20, 23)
+        Me.CBnieuwbon.Location = New System.Drawing.Point(92, 71)
         Me.CBnieuwbon.Name = "CBnieuwbon"
-        Me.CBnieuwbon.Size = New System.Drawing.Size(75, 23)
+        Me.CBnieuwbon.Size = New System.Drawing.Size(84, 17)
         Me.CBnieuwbon.TabIndex = 15
         Me.CBnieuwbon.TabStop = False
         Me.CBnieuwbon.Text = "Nieuwe Bon"
@@ -167,7 +152,7 @@ Partial Class EditBTW
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(486, 122)
+        Me.ClientSize = New System.Drawing.Size(358, 135)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "EditBTW"
@@ -178,8 +163,6 @@ Partial Class EditBTW
         Me.TableLayoutPanel1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -194,6 +177,5 @@ Partial Class EditBTW
     Friend WithEvents TBbtw As TextBox
     Friend WithEvents TBomsbtw As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents CBnieuwbon As CheckBox
 End Class

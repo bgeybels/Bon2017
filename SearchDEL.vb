@@ -10,11 +10,9 @@ Public Class SearchDEL
     Private Sub SearchDEL_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FormBorderStyle = FormBorderStyle.Sizable
 
-        TSButtonPermissions(TSBdelete)
         Fltjaar.Text = DateTime.Now.ToString("yyyy")
 
         SetGrids()
-        Fill_DGREC()
         nofilter = False
     End Sub
 
@@ -34,16 +32,15 @@ Public Class SearchDEL
             records =
                 From del In db.DELs
                 Let Wie = del.usernrq
-                Let Wanneer = del.chdate
-                Where del.chdate > Format(FltDTPselect.Value, "#yyyy-MM-dd 00:00:00.000#") _
-                    And del.chdate < Format(FltDTPselect.Value, "#yyyy-MM-dd 00:00:00.000#")
+                Let Wanneer = "[" & del.chdate & "]"
+                Where del.chdate >= Format(FltDTPselect.Value, "#yyyy-MM-dd 00:00:00.000#") _
+                And del.chdate < Format(FltDTPselectt.Value, "#yyyy-MM-dd 23:59:59.999#")
                 Select del.id, Onderdeel = del.delWO, Sleutel = del.part, Wie, Wanneer, Inhoud = del.delinfo, del.usernrq, del.chdate, del.yearin
-
         Else
             records =
                 From del In db.DELs
                 Let Wie = del.usernrq
-                Let Wanneer = del.chdate
+                Let Wanneer = "[" & del.chdate & "]"
                 Select del.id, Onderdeel = del.delWO, Sleutel = del.part, Wie, Wanneer, Inhoud = del.delinfo, del.usernrq, del.chdate, del.yearin
         End If
 
@@ -58,6 +55,8 @@ Public Class SearchDEL
             DGREC.Columns(dginvisible(index)).Visible = False
         Next
 
+        'DGREC.Columns("Wanneer").DefaultCellStyle.Format = "N2"
+
         'set autosizemode
         Dim dgautos = New String() {"Onderdeel", "Sleutel", "Inhoud", "Wie", "Wanneer"}
         For index = 0 To dgautos.GetUpperBound(0)
@@ -65,6 +64,12 @@ Public Class SearchDEL
         Next index
         DGREC.Columns("Inhoud").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         Me.Cursor = System.Windows.Forms.Cursors.Default
+    End Sub
+
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
     End Sub
 
     Private Sub SetGrids()
@@ -105,18 +110,6 @@ Public Class SearchDEL
         Me.Close()
     End Sub
 
-    Private Sub TSBdelete_Click(sender As Object, e As EventArgs) Handles TSBdelete.Click
-        If MsgBox("Uitzuiveren archief?", MsgBoxStyle.YesNoCancel, "Wil je deze archiefrecords verwijderen?") = MsgBoxResult.Yes Then
-            MsgBox("ToDo: " & SysDate)
-            ' MsgBox(SysDate.value - 365)
-            'DeleteRec()
-        End If
-    End Sub
-
-    Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        MsgBox("Exporteer naar CSV")
-    End Sub
-
     '****Filters
     Private Sub DGFILTER()
         'records = records.Where("KNaam.startswith(@0)", Fltklant.Text)
@@ -124,42 +117,10 @@ Public Class SearchDEL
         records = records.Where("Sleutel.Contains(@0)", Fltpart.Text)
         records = records.Where("Inhoud.Contains(@0)", Fltdelinfo.Text)
         records = records.Where("Wie.Contains(@0)", Fltusernrq.Text)
-        records = records.Where("yearin.Contains(@0)", Fltjaar.Text)
+        records = records.Where("Wanneer.Contains(@0)", Fltjaar.Text)
     End Sub
 
-    Private Sub FltdelWO_TextChanged(sender As Object, e As EventArgs) Handles FltdelWO.TextChanged
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-    Private Sub Fltpart_TextChanged(sender As Object, e As EventArgs) Handles Fltpart.TextChanged
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-    Private Sub Fltdelinfo_TextChanged(sender As Object, e As EventArgs) Handles Fltdelinfo.TextChanged
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-    Private Sub Fltusernrq_TextChanged(sender As Object, e As EventArgs)
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-    Private Sub Fltchdate_TextChanged(sender As Object, e As EventArgs)
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-
-    Private Sub FltDTPselect_ValueChanged(sender As Object, e As EventArgs)
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-
-    Private Sub CBfltdate_CheckedChanged(sender As Object, e As EventArgs)
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-
-    Private Sub FltDTPselect_ValueChanged_1(sender As Object, e As EventArgs) Handles FltDTPselect.ValueChanged
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-
-    Private Sub CBfltdate_CheckedChanged_1(sender As Object, e As EventArgs) Handles CBfltdate.CheckedChanged
-        If nofilter = False Then Fill_DGREC()
-    End Sub
-
-    Private Sub Fltjaar_ValueChanged(sender As Object, e As EventArgs) Handles Fltjaar.ValueChanged
-        If nofilter = False Then Fill_DGREC()
+    Private Sub TsBtnStartFilter_Click(sender As Object, e As EventArgs) Handles TsBtnStartFilter.Click
+        Fill_DGREC()
     End Sub
 End Class

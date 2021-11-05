@@ -66,6 +66,114 @@
         End If
     End Sub
 
+
+    Public Function GetCodgpValues(key As Integer)
+        Dim found As String = ""
+        codgprecs = From codgp In db.CODGPs
+                    Where codgp.CGNRQ = key
+                    Select codgp.nostock, codgp.noinvent
+
+        For Each codgprec In codgprecs
+            found = codgprec.nostock
+        Next
+
+        Return found
+    End Function
+
+    Public Function GetKlantInfo(key As Integer)
+        Dim found As String = ""
+        Dim howto As String = ""
+        Dim sturen As String = ""
+        klantrecs = From klant In db.KLANTs
+                    Where klant.KNRQ = key
+                    Let valadres = klant.KStraat & "  -  " & klant.KAdres
+                    Let valcontact = klant.KTel & "  -  " & klant.KGSM & "  -  " & klant.KEMail
+                    Let kwerf = klant.KWStraat & " " & klant.KWAdres
+                    Select kwerf, klant.KNaam, valadres, valcontact, klant.FAC, klant.FACM, klant.FACP
+
+        For Each klantrec In klantrecs
+            found = ""
+            found += " " & klantrec.knaam & Environment.NewLine & " " & klantrec.valadres
+
+            Dim Klantwerf As String = klantrec.kwerf.Replace(" ", "")
+            found += " " & Environment.NewLine
+            If Klantwerf <> "" Then found = found & " Werf:   " & klantrec.kwerf
+            found += Environment.NewLine & " Contact:" & klantrec.valcontact
+
+            If klantrec.fac = "J" Then sturen = sturen & "Upload "
+            If klantrec.facm = "J" Then sturen = sturen & "Mail "
+            If klantrec.facp = "J" Then sturen = sturen & "Post "
+            If sturen <> "" Then found += Environment.NewLine & " (" & sturen & ")"
+        Next
+
+        Return found
+    End Function
+
+    Public Function GetKlantInfoFact(key As Integer)
+        Dim found As String = ""
+        Dim howto As String = ""
+        klantrecs = From klant In db.KLANTs
+                    Where klant.KNRQ = key
+                    Select klant.KEMailF, klant.FAC, klant.FACM, klant.FACP
+
+        For Each klantrec In klantrecs
+            found = " "
+            If klantrec.kemailf <> "" Then
+                found = found & "MailFactuur: " & klantrec.kemailf & Environment.NewLine
+            End If
+            If klantrec.fac = "J" Then
+                howto = "Upload "
+            End If
+            If klantrec.facm = "J" Then
+                If howto <> "" Then howto = howto & "- "
+                howto = howto & "Mail "
+            End If
+            If klantrec.facp = "J" Then
+                If howto <> "" Then howto = howto & "- "
+                howto = howto & "Post"
+            End If
+            If howto <> "" Then
+                found = found & " " & howto
+            End If
+        Next
+        Return found
+    End Function
+
+    Public Function GetPerInfo(key As Integer)
+        Dim found As String = ""
+        perrecs = From per In db.PERs
+                  Where per.PERNRQ = key
+                  Select per.PERNM, per.PERTEL, per.PERGSM, per.PERGSMW, per.PERDTID, per.PERDTCT, per.PERDTUD
+
+        For Each perrec In perrecs
+            found = perrec.pernm & Environment.NewLine
+            found = found & "Tel    : " & perrec.pertel & Environment.NewLine
+            found = found & "GSM    : " & perrec.pergsm & Environment.NewLine
+            found = found & "GSMWerk: " & perrec.pergsmw
+            found = found & "#"
+            found = found & "In Dienst : " & perrec.perdtid & Environment.NewLine
+            found = found & "Contract  : " & perrec.perdtct & Environment.NewLine
+            found = found & "Uit Dienst: " & perrec.perdtud
+        Next
+
+        Return found
+    End Function
+
+    Public Function GetPerInfo2(key As Integer)
+        Dim found As String = ""
+        perrecs = From per In db.PERs
+                  Where per.PERNRQ = key
+                  Select per.PERDTID, per.PERDTCT, per.PERDTUD
+
+        For Each perrec In perrecs
+            found = "In Dienst : " & perrec.perdtid & Environment.NewLine
+            found = "Contract  : " & perrec.perdtct & Environment.NewLine
+            found = "Uit Dienst: " & perrec.perdtud & Environment.NewLine
+        Next
+
+        Return found
+    End Function
+
     Public Function GetKlantNaam(key As Integer)
         Dim found As String = ""
         klantrecs = From klant In db.KLANTs
@@ -74,12 +182,8 @@
                     Let valcontact = klant.KTel & "  -  " & klant.KGSM & "  -  " & klant.KEMail
                     Let kwerf = klant.KWStraat & " " & klant.KWAdres
                     Select kwerf, klant.KNaam, valadres, valcontact
-
         For Each klantrec In klantrecs
-            found = " " & klantrec.knaam & Environment.NewLine & " " & klantrec.valadres
-            Dim Klantwerf As String = klantrec.kwerf.Replace(" ", "")
-            If Klantwerf <> "" Then found = found & " (Werf: " & Klantwerf & ")"
-            found = found & Environment.NewLine & " " & klantrec.valcontact
+            found = klantrec.KNaam
         Next
 
         Return found
@@ -117,6 +221,33 @@
             found = found & Environment.NewLine & "Stock: " & codrec.stock & " Magazijn: " & codrec.Plmagazijn
             If codrec.gratis = True Then found = found & Environment.NewLine & "Gratis"
         Next
+        Return found
+    End Function
+
+    Public Function Getpca_postcode(key As String)
+        Dim found As String = ""
+        postcoderecs = From post In db.Posts
+                       Where post.PCODE = key
+                       Let var_pc = post.PNRQ
+                       Select var_pc, post.PGEMEENTE
+
+        For Each pcrec In postcoderecs
+            found = pcrec.var_pc
+        Next
+
+        Return found
+    End Function
+    Public Function Getpca_gemeente(key As String)
+        Dim found As String = ""
+        postcoderecs = From post In db.Posts
+                       Where post.PGEMEENTE = key
+                       Let var_pc = post.PNRQ
+                       Select var_pc, post.PGEMEENTE
+
+        For Each pcrec In postcoderecs
+            found = pcrec.var_pc
+        Next
+
         Return found
     End Function
 
@@ -163,6 +294,46 @@
         CMB.DisplayMember = "ENaam"
         CMB.ValueMember = "ENRQ"
     End Sub
+    Public Sub FillCMBtype(CMB As ComboBox)
+        Dim cmbrecs =
+            From ptype In db.PTYPEs
+            Order By ptype.PTVERW
+            Select ptype.PTVERW, ptype.PTID
+
+        CMB.DataSource = cmbrecs
+        CMB.DisplayMember = "PTVERW"
+        CMB.ValueMember = "PTID"
+    End Sub
+    Public Sub FillCMBafr(CMB As ComboBox)
+        Dim cmbrecs =
+            From afr In db.AFRs
+            Order By afr.AFRVERW
+            Select afr.AFRVERW, afr.AFRID
+
+        CMB.DataSource = cmbrecs
+        CMB.DisplayMember = "AFRVERW"
+        CMB.ValueMember = "AFRID"
+    End Sub
+    Public Sub FillCMBaft(CMB As ComboBox)
+        Dim cmbrecs =
+            From aft In db.AFTs
+            Order By aft.AFTVERW
+            Select aft.AFTVERW, aft.AFTID
+
+        CMB.DataSource = cmbrecs
+        CMB.DisplayMember = "AFTVERW"
+        CMB.ValueMember = "AFTID"
+    End Sub
+    Public Sub FillCMBsector(CMB As ComboBox)
+        Dim cmbrecs =
+            From psector In db.PSECTORs
+            Order By psector.PSVERW
+            Select psector.PSVERW, psector.PSID
+
+        CMB.DataSource = cmbrecs
+        CMB.DisplayMember = "PSVERW"
+        CMB.ValueMember = "PSID"
+    End Sub
 
     Public Sub FillCMBcodgp(CMB As ComboBox)
         Dim cmbrecs =
@@ -200,12 +371,24 @@
     Public Sub FillCMBper(CMB As ComboBox)
         Dim cmbrecs =
             From per In db.PERs
+            Where per.DIENST = True And per.BEDIENDE = False
             Order By per.PERNM
             Select per.PERNM, per.PERNRQ
 
         CMB.DataSource = cmbrecs
         CMB.DisplayMember = "PERNM"
         CMB.ValueMember = "PERNM"
+    End Sub
+
+    Public Sub FillCMBlev(CMB As ComboBox)
+        Dim cmbrecs =
+            From lev In db.LEVs
+            Order By lev.LEVnaam
+            Select lev.LEVnaam, lev.LEVnrq
+
+        CMB.DataSource = cmbrecs
+        CMB.DisplayMember = "LEVnaam"
+        CMB.ValueMember = "LEVnaam"
     End Sub
 
     Public Sub FillCMBdies(CMB As ComboBox)
@@ -236,6 +419,11 @@
         CMB.Items.Add("Aan")
         CMB.Items.Add("Uit")
     End Sub
+    Public Sub FillCMBdc(CMB As ComboBox)
+        CMB.Items.Add("Eender")
+        CMB.Items.Add("Debet")
+        CMB.Items.Add("Credit")
+    End Sub
 
     Public Sub FillCMBtopten(CMB As ComboBox)
         nofilter = True
@@ -243,7 +431,7 @@
             From bon In db.BONs
             Join klant In db.KLANTs On bon.KNRQ Equals klant.KNRQ
             Let pkey = bon.BONJR & "/" & bon.BONNR
-            Let display = bon.BONJR & "/" & bon.BONNR & " " & klant.KNaam & " (" & bon.chdate & ")"
+            Let display = bon.chdate & " " & bon.BONJR & "/" & bon.BONNR & " " & klant.KNaam & " (" & bon.chdate & ")" & " [Fnr:" & bon.fnr & "/Cnr:" & bon.cnr & "]"
             Select bon.BONJR, bon.BONNR, bon.chdate, bon.usernrq, pkey, display
             Where usernrq = LoginNm
             Order By chdate Descending

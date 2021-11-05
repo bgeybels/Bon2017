@@ -100,6 +100,12 @@ Public Class SearchEigenaar
 NoRecords:
     End Sub
 
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
+    End Sub
+
     Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As EventArgs) Handles DGREC.DoubleClick
         UpdateRec()
     End Sub
@@ -124,6 +130,16 @@ NoRecords:
 
     Private Sub UpdateRec()
         keyeigenaarnrq = DGREC.CurrentRow.Cells("ENRQ").Value
+
+        ' test lock
+        Dim lockedby = isLocked("EIGENAAR", keyeigenaarnrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("EIGENAAR", keyeigenaarnrq)
+
         EditEigenaar.ShowDialog()
 
         Refresh_data()
@@ -196,18 +212,9 @@ NoRecords:
     End Sub
 
     Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        ' 'FilterKlant.ShowDialog()
-        ' Dim f As New FilterKlant
-        ' Try
-        ' f.Owner = Me
-        ' f.ShowDialog()
-        ' Finally
-        ' f.Dispose()
-        ' End Try
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "EIGENAAR")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
 
@@ -220,7 +227,7 @@ NoRecords:
     Public Sub Fltnaam_TextChanged(sender As Object, e As EventArgs) Handles Fltnaam.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
-    Private Sub Fltusernrq_TextChanged_1(sender As Object, e As EventArgs) Handles Fltusernrq.TextChanged
+    Private Sub Fltusernrq_TextChanged(sender As Object, e As EventArgs) Handles Fltusernrq.TextChanged
         If nofilter = False Then Fill_DGREC()
     End Sub
 End Class

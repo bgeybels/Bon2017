@@ -2,7 +2,7 @@
 Imports System.Linq
 
 Public Class SearchKlant
-    Private ordDGREC As String = "KNaam"
+    Private ordDGREC As String = "Naam"
     Dim updategrid As Boolean = True
     Dim nofilter As Boolean = False
 
@@ -12,6 +12,11 @@ Public Class SearchKlant
         Else
             plook = True
             FormBorderStyle = FormBorderStyle.Sizable
+        End If
+        If frompopup = False Then
+            TSBexit.Image = Bon2017.My.Resources.Resources.home
+        Else
+            TSBexit.Image = Bon2017.My.Resources.Resources.homered
         End If
 
         TSButtonPermissions(TSBnew)
@@ -61,12 +66,12 @@ Public Class SearchKlant
         Let Adres = klant.KStraat & " " & klant.KAdres
         Let Werf = klant.KWStraat & " " & klant.KWAdres
         Let Wie = klant.usernrq & " (" & klant.chdate & ")"
-        Let Gebruikt = klant.USDate
-        Select klant.KNRQ,
-            klant.KNaam, Adres, Werf,
-            Wie, Gebruikt
+        Let Upload = klant.FAC
+        Select klant.KNRQ, Upload,
+            Naam = klant.KNaam, Adres, Werf,
+            Wie, Gebruikt = klant.USDate
 
-        If Me.ordDGREC = Nothing Then ordDGREC = "KNaam"
+        If Me.ordDGREC = Nothing Then ordDGREC = "Naam"
         records = records.OrderBy(Me.ordDGREC, SortOrder.Ascending = True)
         DGKLANTFILTER()
         Me.DGREC.DataSource = records
@@ -79,11 +84,19 @@ Public Class SearchKlant
         Next
 
         'set autosizemode
-        Dim dgautos = New String() {"KNaam", "Adres", "Werf", "Wie", "Gebruikt"}
+        Dim dgautos = New String() {"Upload", "Naam", "Adres", "Werf", "Wie", "Gebruikt"}
         For index = 0 To dgautos.GetUpperBound(0)
             DGREC.Columns(dgautos(index)).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         Next index
-        DGREC.Columns("KNaam").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+
+        If frompopup = True Then
+            Dim dginvisiblex = New String() {"Gebruikt"}
+            For index = 0 To dginvisiblex.GetUpperBound(0)
+                DGREC.Columns(dginvisiblex(index)).Visible = False
+            Next
+        End If
+
+        DGREC.Columns("Naam").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 
@@ -92,6 +105,12 @@ Public Class SearchKlant
         If updategrid = False Then Exit Sub
         keyklantnrq = DGREC.CurrentRow.Cells("KNRQ").Value
 NoRecords:
+    End Sub
+
+    Private Sub DGREC_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DGREC.CellMouseDown
+        If e.Button = MouseButtons.Right Then
+            DGREC.CurrentCell = DGREC(e.ColumnIndex, e.RowIndex)
+        End If
     End Sub
 
     Private Sub DGREC_CellMouseDoubleClick(sender As Object, e As EventArgs) Handles DGREC.DoubleClick
@@ -110,14 +129,25 @@ NoRecords:
 
     '*****FIELD ACtions
     Private Sub Addrec()
-        IsNewRecord = True
+        IsNewKlant = True
+
         EditKlant.ShowDialog()
-        IsNewRecord = False
+        IsNewKlant = False
         Refresh_data()
     End Sub
 
     Private Sub UpdateRec()
         keyklantnrq = DGREC.CurrentRow.Cells("KNRQ").Value
+
+        ' test lock
+        Dim lockedby = isLocked("KLANT", keyklantnrq)
+        If lockedby <> "" Then
+            MsgBox("Record momenteel in gebruik door " & lockedby)
+            Exit Sub
+        End If
+        ' lock het record
+        Dim lock = lockrec("KLANT", keyklantnrq)
+
         EditKlant.ShowDialog()
 
         Refresh_data()
@@ -128,7 +158,7 @@ NoRecords:
                        Where bon.KNRQ = keyklantnrq
         If checkrec.Count > 0 Then
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Klant <" & DGREC.CurrentRow.Cells("KNaam").Value & "> nog gebruikt in bonnen!")
+            MsgBox("Klant <" & DGREC.CurrentRow.Cells("Naam").Value & "> nog gebruikt in bonnen!")
             Exit Sub
         End If
 
@@ -156,7 +186,7 @@ NoRecords:
             End If
         Next
         nofilter = False
-        fill_DGREC()
+        Fill_DGREC()
     End Sub
 
     Private Sub NieuwToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NieuwToolStripMenuItem.Click
@@ -189,49 +219,88 @@ NoRecords:
         End If
     End Sub
 
-    Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
-        Dim excelFile = New ExcelFile()
-
-        ' Foreach DataTable in DataSet:
-        ' 1. Create new worksheet and set it as active.
-        ' 2. Insert DataTable to active worksheet.
-        ' 3. Save active worksheet to CSV file.
-        For Each dataTable As DataTable In DataSet.Tables
-            excelFile.Worksheets.ActiveWorksheet = excelFile.Worksheets.Add(dataTable.TableName)
-            excelFile.Worksheets.ActiveWorksheet.InsertDataTable(dataTable, "A1", True)
-            excelFile.SaveCsv(dataTable.TableName + ".csv", CsvType.CommaDelimited)
-        Next
-    End Sub
-
     Private Sub ToonBonlijnenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ToonBonlijnenToolStripMenuItem.Click
         TSBDetail.PerformClick()
     End Sub
 
     Private Sub TSBDetail_Click(sender As Object, e As EventArgs) Handles TSBDetail.Click
-        filterstr = getKlantNaam(keyklantnrq)
-        FrmBONE.Show()
+        filterstr = GetKlantNaam(keyklantnrq)
+        SearchBON_NW.Show()
         'Me.Close()
     End Sub
 
-
     '****Filters
     Private Sub DGKLANTFILTER()
-        'records = records.Where("KNaam.startswith(@0)", Fltklant.Text)
-        records = records.Where("KNaam.Contains(@0)", Fltklant.Text)
+        Dim chval As String
+
+        If Fltklant.Text.StartsWith("*") Then
+            records = records.Where("Naam.Contains(@0)", Fltklant.Text.Remove(0, 1))
+        Else
+            records = records.Where("Naam.startswith(@0)", Fltklant.Text)
+        End If
+
+        chval = ""
+        If (CBuploadJ.Checked = True) And (CBuploadN.Checked = False) Then chval = "J"
+        If (CBuploadN.Checked = True) And (CBuploadJ.Checked = False) Then chval = "N"
+        If chval <> "" Then records = records.Where("Upload.Contains(@0)", chval)
+
         records = records.Where("Adres.Contains(@0)", Fltadres.Text)
         records = records.Where("Werf.Contains(@0)", Fltwerf.Text)
         records = records.Where("Wie.Contains(@0)", Fltusernrq.Text)
     End Sub
     Public Sub Fltklant_TextChanged(sender As Object, e As EventArgs) Handles Fltklant.TextChanged
-        If nofilter = False Then fill_DGREC()
+        If nofilter = False Then Fill_DGREC()
     End Sub
     Private Sub Fltadres_TextChanged(sender As Object, e As EventArgs) Handles Fltadres.TextChanged
-        If nofilter = False Then fill_DGREC()
+        If nofilter = False Then Fill_DGREC()
     End Sub
     Private Sub Fltwerf_TextChanged(sender As Object, e As EventArgs) Handles Fltwerf.TextChanged
-        If nofilter = False Then fill_DGREC()
+        If nofilter = False Then Fill_DGREC()
     End Sub
     Private Sub Fltusernrq_TextChanged(sender As Object, e As EventArgs) Handles Fltusernrq.TextChanged
-        If nofilter = False Then fill_DGREC()
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub TSBexport_Click(sender As Object, e As EventArgs) Handles TSBexport.Click
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        ExportToCSV(DGREC, "KLANTEN")
+        Me.Cursor = System.Windows.Forms.Cursors.Default
+    End Sub
+
+    Private Sub CBuploadJ_CheckedChanged(sender As Object, e As EventArgs) Handles CBuploadJ.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub CBuploadN_CheckedChanged(sender As Object, e As EventArgs) Handles CBuploadN.CheckedChanged
+        If nofilter = False Then Fill_DGREC()
+    End Sub
+
+    Private Sub UploadJaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UploadJaToolStripMenuItem.Click
+        ' Loop over geselecteerde records en zet UPDATE=true
+        UpdateSelect("J")
+        Refresh_data()
+    End Sub
+
+    Private Sub UploadNeeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UploadNeeToolStripMenuItem.Click
+        ' Loop over geselecteerde records en zet UPDATE = false
+        UpdateSelect("N")
+        Refresh_data()
+    End Sub
+
+    Private Sub UpdateSelect(setting As String)
+        Dim skeyknrq As Integer
+        Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        For Each row As DataGridViewRow In Me.DGREC.SelectedRows
+            skeyknrq = row.Cells("KNRQ").Value
+            Dim updaterecs = (From klant In db.KLANTs
+                              Where klant.KNRQ = skeyknrq).ToList()(0)
+            updaterecs.FAC = setting
+            Try
+                db.SubmitChanges()
+            Catch
+                ' Handle exception.  
+            End Try
+        Next
+        Me.Cursor = System.Windows.Forms.Cursors.Default
     End Sub
 End Class

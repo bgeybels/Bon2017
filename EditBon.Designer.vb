@@ -28,8 +28,11 @@ Partial Class Editbon
         Me.TSBexit = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
         Me.TSBsave = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
+        Me.TSBPrintBon = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabel3 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.TSBCopyBon = New System.Windows.Forms.ToolStripButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.GRPAdres = New System.Windows.Forms.GroupBox()
@@ -39,6 +42,7 @@ Partial Class Editbon
         Me.CBfok = New System.Windows.Forms.CheckBox()
         Me.TBomsbon = New System.Windows.Forms.TextBox()
         Me.GRPWerf = New System.Windows.Forms.GroupBox()
+        Me.CBpart = New System.Windows.Forms.CheckBox()
         Me.CBuv = New System.Windows.Forms.CheckBox()
         Me.CBgstk = New System.Windows.Forms.CheckBox()
         Me.CBvs = New System.Windows.Forms.CheckBox()
@@ -52,6 +56,8 @@ Partial Class Editbon
         Me.TBkemail = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TBopm = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.lblKLANTinfo = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -64,6 +70,7 @@ Partial Class Editbon
         Me.TBtav = New System.Windows.Forms.TextBox()
         Me.CMBeigenaar = New System.Windows.Forms.ComboBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CBklaar = New System.Windows.Forms.CheckBox()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
@@ -77,7 +84,7 @@ Partial Class Editbon
         '
         Me.ToolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBsave, Me.ToolStripButton1, Me.ToolStripButton2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBsave, Me.ToolStripLabel2, Me.TSBPrintBon, Me.ToolStripLabel3, Me.ToolStripLabel1, Me.TSBCopyBon})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(504, 31)
@@ -95,6 +102,7 @@ Partial Class Editbon
         '
         'ToolStripLabel4
         '
+        Me.ToolStripLabel4.Enabled = False
         Me.ToolStripLabel4.Name = "ToolStripLabel4"
         Me.ToolStripLabel4.Size = New System.Drawing.Size(16, 28)
         Me.ToolStripLabel4.Text = "   "
@@ -108,21 +116,41 @@ Partial Class Editbon
         Me.TSBsave.Size = New System.Drawing.Size(28, 28)
         Me.TSBsave.Text = "Bewaar"
         '
-        'ToolStripButton1
+        'ToolStripLabel2
         '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 28)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(16, 28)
+        Me.ToolStripLabel2.Text = "   "
         '
-        'ToolStripButton2
+        'TSBPrintBon
         '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 28)
-        Me.ToolStripButton2.Text = "ToolStripButton2"
+        Me.TSBPrintBon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TSBPrintBon.Image = Global.Bon2017.My.Resources.Resources.print
+        Me.TSBPrintBon.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBPrintBon.Name = "TSBPrintBon"
+        Me.TSBPrintBon.Size = New System.Drawing.Size(28, 28)
+        Me.TSBPrintBon.Text = "PrintBon"
+        '
+        'ToolStripLabel3
+        '
+        Me.ToolStripLabel3.Name = "ToolStripLabel3"
+        Me.ToolStripLabel3.Size = New System.Drawing.Size(16, 28)
+        Me.ToolStripLabel3.Text = "   "
+        '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(16, 28)
+        Me.ToolStripLabel1.Text = "   "
+        '
+        'TSBCopyBon
+        '
+        Me.TSBCopyBon.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TSBCopyBon.Image = Global.Bon2017.My.Resources.Resources.yum3
+        Me.TSBCopyBon.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBCopyBon.Name = "TSBCopyBon"
+        Me.TSBCopyBon.Size = New System.Drawing.Size(28, 28)
+        Me.TSBCopyBon.Text = "Copieer Bon"
         '
         'TableLayoutPanel1
         '
@@ -152,11 +180,11 @@ Partial Class Editbon
         Me.TableLayoutPanel2.Controls.Add(Me.GRPAdres, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.GRPWerf, 1, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 170)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 198)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(498, 187)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(498, 198)
         Me.TableLayoutPanel2.TabIndex = 1
         '
         'GRPAdres
@@ -171,7 +199,7 @@ Partial Class Editbon
         Me.GRPAdres.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GRPAdres.Location = New System.Drawing.Point(3, 3)
         Me.GRPAdres.Name = "GRPAdres"
-        Me.GRPAdres.Size = New System.Drawing.Size(336, 181)
+        Me.GRPAdres.Size = New System.Drawing.Size(336, 192)
         Me.GRPAdres.TabIndex = 0
         Me.GRPAdres.TabStop = False
         '
@@ -180,14 +208,14 @@ Partial Class Editbon
         Me.TBcnr.Location = New System.Drawing.Point(89, 46)
         Me.TBcnr.Name = "TBcnr"
         Me.TBcnr.Size = New System.Drawing.Size(60, 20)
-        Me.TBcnr.TabIndex = 48
+        Me.TBcnr.TabIndex = 6
         '
         'TBfnr
         '
         Me.TBfnr.Location = New System.Drawing.Point(89, 19)
         Me.TBfnr.Name = "TBfnr"
         Me.TBfnr.Size = New System.Drawing.Size(60, 20)
-        Me.TBfnr.TabIndex = 47
+        Me.TBfnr.TabIndex = 5
         '
         'CBcok
         '
@@ -198,6 +226,7 @@ Partial Class Editbon
         Me.CBcok.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBcok.Size = New System.Drawing.Size(74, 17)
         Me.CBcok.TabIndex = 46
+        Me.CBcok.TabStop = False
         Me.CBcok.Text = "Creditnota"
         Me.CBcok.UseVisualStyleBackColor = True
         '
@@ -210,6 +239,7 @@ Partial Class Editbon
         Me.CBfok.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBfok.Size = New System.Drawing.Size(62, 17)
         Me.CBfok.TabIndex = 45
+        Me.CBfok.TabStop = False
         Me.CBfok.Text = "Factuur"
         Me.CBfok.UseVisualStyleBackColor = True
         '
@@ -219,12 +249,14 @@ Partial Class Editbon
         Me.TBomsbon.Multiline = True
         Me.TBomsbon.Name = "TBomsbon"
         Me.TBomsbon.Size = New System.Drawing.Size(321, 84)
-        Me.TBomsbon.TabIndex = 44
+        Me.TBomsbon.TabIndex = 7
         '
         'GRPWerf
         '
         Me.GRPWerf.AutoSize = True
         Me.GRPWerf.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GRPWerf.Controls.Add(Me.CBklaar)
+        Me.GRPWerf.Controls.Add(Me.CBpart)
         Me.GRPWerf.Controls.Add(Me.CBuv)
         Me.GRPWerf.Controls.Add(Me.CBgstk)
         Me.GRPWerf.Controls.Add(Me.CBvs)
@@ -233,18 +265,32 @@ Partial Class Editbon
         Me.GRPWerf.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GRPWerf.Location = New System.Drawing.Point(345, 3)
         Me.GRPWerf.Name = "GRPWerf"
-        Me.GRPWerf.Size = New System.Drawing.Size(150, 181)
+        Me.GRPWerf.Size = New System.Drawing.Size(150, 192)
         Me.GRPWerf.TabIndex = 1
         Me.GRPWerf.TabStop = False
+        '
+        'CBpart
+        '
+        Me.CBpart.AutoSize = True
+        Me.CBpart.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CBpart.Location = New System.Drawing.Point(15, 134)
+        Me.CBpart.Name = "CBpart"
+        Me.CBpart.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CBpart.Size = New System.Drawing.Size(72, 17)
+        Me.CBpart.TabIndex = 61
+        Me.CBpart.TabStop = False
+        Me.CBpart.Text = "Particulier"
+        Me.CBpart.UseVisualStyleBackColor = True
         '
         'CBuv
         '
         Me.CBuv.AutoSize = True
         Me.CBuv.Location = New System.Drawing.Point(15, 88)
         Me.CBuv.Name = "CBuv"
-        Me.CBuv.Size = New System.Drawing.Size(41, 17)
+        Me.CBuv.Size = New System.Drawing.Size(110, 17)
         Me.CBuv.TabIndex = 61
-        Me.CBuv.Text = "UV"
+        Me.CBuv.TabStop = False
+        Me.CBuv.Text = "UV - In Uitvoering"
         Me.CBuv.UseVisualStyleBackColor = True
         '
         'CBgstk
@@ -252,9 +298,10 @@ Partial Class Editbon
         Me.CBgstk.AutoSize = True
         Me.CBgstk.Location = New System.Drawing.Point(15, 65)
         Me.CBgstk.Name = "CBgstk"
-        Me.CBgstk.Size = New System.Drawing.Size(55, 17)
+        Me.CBgstk.Size = New System.Drawing.Size(121, 17)
         Me.CBgstk.TabIndex = 59
-        Me.CBgstk.Text = "GSTK"
+        Me.CBgstk.TabStop = False
+        Me.CBgstk.Text = "GSTK - Geen Stock"
         Me.CBgstk.UseVisualStyleBackColor = True
         '
         'CBvs
@@ -262,9 +309,10 @@ Partial Class Editbon
         Me.CBvs.AutoSize = True
         Me.CBvs.Location = New System.Drawing.Point(15, 19)
         Me.CBvs.Name = "CBvs"
-        Me.CBvs.Size = New System.Drawing.Size(40, 17)
+        Me.CBvs.Size = New System.Drawing.Size(117, 17)
         Me.CBvs.TabIndex = 60
-        Me.CBvs.Text = "VS"
+        Me.CBvs.TabStop = False
+        Me.CBvs.Text = "VS - Vorderingstaat"
         Me.CBvs.UseVisualStyleBackColor = True
         '
         'CBdel
@@ -272,9 +320,10 @@ Partial Class Editbon
         Me.CBdel.AutoSize = True
         Me.CBdel.Location = New System.Drawing.Point(15, 111)
         Me.CBdel.Name = "CBdel"
-        Me.CBdel.Size = New System.Drawing.Size(42, 17)
+        Me.CBdel.Size = New System.Drawing.Size(106, 17)
         Me.CBdel.TabIndex = 57
-        Me.CBdel.Text = "Del"
+        Me.CBdel.TabStop = False
+        Me.CBdel.Text = "Del - Verwijderen"
         Me.CBdel.UseVisualStyleBackColor = True
         '
         'CBtbw
@@ -284,7 +333,8 @@ Partial Class Editbon
         Me.CBtbw.Name = "CBtbw"
         Me.CBtbw.Size = New System.Drawing.Size(121, 17)
         Me.CBtbw.TabIndex = 58
-        Me.CBtbw.Text = "TBW (Te BeWaren)"
+        Me.CBtbw.TabStop = False
+        Me.CBtbw.Text = "TBW - Te BeWaren"
         Me.CBtbw.UseVisualStyleBackColor = True
         '
         'GRPContact
@@ -298,7 +348,7 @@ Partial Class Editbon
         Me.GRPContact.Controls.Add(Me.TBkemail)
         Me.GRPContact.Controls.Add(Me.Label12)
         Me.GRPContact.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GRPContact.Location = New System.Drawing.Point(3, 363)
+        Me.GRPContact.Location = New System.Drawing.Point(3, 402)
         Me.GRPContact.Name = "GRPContact"
         Me.GRPContact.Size = New System.Drawing.Size(498, 58)
         Me.GRPContact.TabIndex = 2
@@ -320,6 +370,7 @@ Partial Class Editbon
         Me.DTPdtot.Name = "DTPdtot"
         Me.DTPdtot.Size = New System.Drawing.Size(107, 20)
         Me.DTPdtot.TabIndex = 65
+        Me.DTPdtot.TabStop = False
         '
         'Label14
         '
@@ -337,6 +388,7 @@ Partial Class Editbon
         Me.DTPdvan.Name = "DTPdvan"
         Me.DTPdvan.Size = New System.Drawing.Size(107, 20)
         Me.DTPdvan.TabIndex = 63
+        Me.DTPdvan.TabStop = False
         '
         'TBkemail
         '
@@ -358,6 +410,8 @@ Partial Class Editbon
         '
         Me.GroupBox1.AutoSize = True
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.TBopm)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.lblKLANTinfo)
         Me.GroupBox1.Controls.Add(Me.Label1)
@@ -372,9 +426,26 @@ Partial Class Editbon
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(498, 161)
+        Me.GroupBox1.Size = New System.Drawing.Size(498, 189)
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(9, 153)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(58, 13)
+        Me.Label5.TabIndex = 62
+        Me.Label5.Text = "Opmerking"
+        '
+        'TBopm
+        '
+        Me.TBopm.Location = New System.Drawing.Point(72, 150)
+        Me.TBopm.MaxLength = 50
+        Me.TBopm.Name = "TBopm"
+        Me.TBopm.Size = New System.Drawing.Size(340, 20)
+        Me.TBopm.TabIndex = 61
         '
         'Label4
         '
@@ -409,18 +480,18 @@ Partial Class Editbon
         '
         Me.CMBtype.AllowDrop = True
         Me.CMBtype.FormattingEnabled = True
-        Me.CMBtype.Items.AddRange(New Object() {"Bouw", "Verkoop", "Transport", "Container", "Nazorg", "Onbekend"})
-        Me.CMBtype.Location = New System.Drawing.Point(66, 121)
+        Me.CMBtype.Items.AddRange(New Object() {"Bouw", "Verkoop", "Transport", "Container", "Nazorg", "Groenonderhoud", "Onbekend"})
+        Me.CMBtype.Location = New System.Drawing.Point(72, 121)
         Me.CMBtype.Name = "CMBtype"
         Me.CMBtype.Size = New System.Drawing.Size(121, 21)
-        Me.CMBtype.TabIndex = 57
+        Me.CMBtype.TabIndex = 4
         '
         'LBLboninfo
         '
         Me.LBLboninfo.AutoSize = True
         Me.LBLboninfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLboninfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.LBLboninfo.Location = New System.Drawing.Point(62, 13)
+        Me.LBLboninfo.Location = New System.Drawing.Point(68, 13)
         Me.LBLboninfo.Name = "LBLboninfo"
         Me.LBLboninfo.Size = New System.Drawing.Size(73, 20)
         Me.LBLboninfo.TabIndex = 56
@@ -437,20 +508,25 @@ Partial Class Editbon
         '
         'ZoekKlant
         '
+        Me.ZoekKlant.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.ZoekKlant.Image = Global.Bon2017.My.Resources.Resources.search
         Me.ZoekKlant.Location = New System.Drawing.Point(227, 7)
         Me.ZoekKlant.Name = "ZoekKlant"
         Me.ZoekKlant.Size = New System.Drawing.Size(36, 33)
         Me.ZoekKlant.TabIndex = 54
-        Me.ZoekKlant.UseVisualStyleBackColor = True
+        Me.ZoekKlant.TabStop = False
+        Me.ToolTip1.SetToolTip(Me.ZoekKlant, "Zoek naar klant")
+        Me.ZoekKlant.UseVisualStyleBackColor = False
         '
         'DTPdatumaanvang
         '
         Me.DTPdatumaanvang.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DTPdatumaanvang.Location = New System.Drawing.Point(66, 41)
+        Me.DTPdatumaanvang.Location = New System.Drawing.Point(72, 41)
+        Me.DTPdatumaanvang.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
         Me.DTPdatumaanvang.Name = "DTPdatumaanvang"
         Me.DTPdatumaanvang.Size = New System.Drawing.Size(107, 20)
-        Me.DTPdatumaanvang.TabIndex = 53
+        Me.DTPdatumaanvang.TabIndex = 1
+        Me.DTPdatumaanvang.Value = New Date(2019, 12, 28, 0, 0, 0, 0)
         '
         'Label2
         '
@@ -463,18 +539,31 @@ Partial Class Editbon
         '
         'TBtav
         '
-        Me.TBtav.Location = New System.Drawing.Point(66, 95)
+        Me.TBtav.Location = New System.Drawing.Point(72, 95)
         Me.TBtav.Name = "TBtav"
         Me.TBtav.Size = New System.Drawing.Size(197, 20)
-        Me.TBtav.TabIndex = 51
+        Me.TBtav.TabIndex = 3
         '
         'CMBeigenaar
         '
         Me.CMBeigenaar.FormattingEnabled = True
-        Me.CMBeigenaar.Location = New System.Drawing.Point(66, 66)
+        Me.CMBeigenaar.Location = New System.Drawing.Point(72, 66)
         Me.CMBeigenaar.Name = "CMBeigenaar"
         Me.CMBeigenaar.Size = New System.Drawing.Size(197, 21)
-        Me.CMBeigenaar.TabIndex = 50
+        Me.CMBeigenaar.TabIndex = 2
+        '
+        'CBklaar
+        '
+        Me.CBklaar.AutoSize = True
+        Me.CBklaar.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CBklaar.Location = New System.Drawing.Point(15, 156)
+        Me.CBklaar.Name = "CBklaar"
+        Me.CBklaar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CBklaar.Size = New System.Drawing.Size(50, 17)
+        Me.CBklaar.TabIndex = 62
+        Me.CBklaar.TabStop = False
+        Me.CBklaar.Text = "Klaar"
+        Me.CBklaar.UseVisualStyleBackColor = True
         '
         'Editbon
         '
@@ -542,6 +631,13 @@ Partial Class Editbon
     Friend WithEvents lblKLANTinfo As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents ToolStripButton1 As ToolStripButton
-    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents TSBPrintBon As ToolStripButton
+    Friend WithEvents ToolStripLabel2 As ToolStripLabel
+    Friend WithEvents TSBCopyBon As ToolStripButton
+    Friend WithEvents ToolStripLabel3 As ToolStripLabel
+    Friend WithEvents ToolStripLabel1 As ToolStripLabel
+    Friend WithEvents CBpart As CheckBox
+    Friend WithEvents TBopm As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents CBklaar As CheckBox
 End Class

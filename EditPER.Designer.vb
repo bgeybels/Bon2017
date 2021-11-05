@@ -28,25 +28,36 @@ Partial Class EditPER
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
         Me.TSBsave = New System.Windows.Forms.ToolStripButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DTPperdtud = New System.Windows.Forms.DateTimePicker()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.DTPperdtct = New System.Windows.Forms.DateTimePicker()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DTPperdtid = New System.Windows.Forms.DateTimePicker()
         Me.CBdienst = New System.Windows.Forms.CheckBox()
-        Me.TBtel = New System.Windows.Forms.TextBox()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.TBpersort = New System.Windows.Forms.TextBox()
         Me.TBpernm = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TBpergsmw = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.TBperice = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TBpergsmw = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.TBpertel = New System.Windows.Forms.TextBox()
         Me.TBpergsm = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.CBbediende = New System.Windows.Forms.CheckBox()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.TableLayoutPanel2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -56,7 +67,7 @@ Partial Class EditPER
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBexit, Me.ToolStripLabel4, Me.TSBsave})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(367, 31)
+        Me.ToolStrip1.Size = New System.Drawing.Size(559, 31)
         Me.ToolStrip1.TabIndex = 3
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -90,7 +101,6 @@ Partial Class EditPER
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.TableLayoutPanel1.ColumnCount = 1
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.GroupBox2, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
@@ -98,64 +108,132 @@ Partial Class EditPER
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(367, 263)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(559, 383)
         Me.TableLayoutPanel1.TabIndex = 4
         '
-        'GroupBox1
+        'GroupBox2
         '
-        Me.GroupBox1.AutoSize = True
-        Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GroupBox1.Controls.Add(Me.CBdienst)
-        Me.GroupBox1.Controls.Add(Me.TBtel)
-        Me.GroupBox1.Controls.Add(Me.Label14)
-        Me.GroupBox1.Controls.Add(Me.Label15)
-        Me.GroupBox1.Controls.Add(Me.TBpersort)
-        Me.GroupBox1.Controls.Add(Me.TBpernm)
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(361, 139)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
+        Me.GroupBox2.AutoSize = True
+        Me.GroupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBox2.Controls.Add(Me.TableLayoutPanel2)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(553, 377)
+        Me.GroupBox2.TabIndex = 1
+        Me.GroupBox2.TabStop = False
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.AutoSize = True
+        Me.TableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel2.ColumnCount = 1
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupBox3, 0, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.GroupBox4, 0, 1)
+        Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 16)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 2
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(547, 358)
+        Me.TableLayoutPanel2.TabIndex = 6
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.AutoSize = True
+        Me.GroupBox3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBox3.Controls.Add(Me.CBbediende)
+        Me.GroupBox3.Controls.Add(Me.Label3)
+        Me.GroupBox3.Controls.Add(Me.DTPperdtud)
+        Me.GroupBox3.Controls.Add(Me.Label2)
+        Me.GroupBox3.Controls.Add(Me.DTPperdtct)
+        Me.GroupBox3.Controls.Add(Me.Label4)
+        Me.GroupBox3.Controls.Add(Me.DTPperdtid)
+        Me.GroupBox3.Controls.Add(Me.CBdienst)
+        Me.GroupBox3.Controls.Add(Me.Label5)
+        Me.GroupBox3.Controls.Add(Me.TBpersort)
+        Me.GroupBox3.Controls.Add(Me.TBpernm)
+        Me.GroupBox3.Controls.Add(Me.Label6)
+        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox3.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(541, 210)
+        Me.GroupBox3.TabIndex = 0
+        Me.GroupBox3.TabStop = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 174)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(53, 13)
+        Me.Label3.TabIndex = 66
+        Me.Label3.Text = "Uit Dienst"
+        '
+        'DTPperdtud
+        '
+        Me.DTPperdtud.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DTPperdtud.Location = New System.Drawing.Point(93, 171)
+        Me.DTPperdtud.Name = "DTPperdtud"
+        Me.DTPperdtud.Size = New System.Drawing.Size(107, 20)
+        Me.DTPperdtud.TabIndex = 65
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 148)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(71, 13)
+        Me.Label2.TabIndex = 64
+        Me.Label2.Text = "Vast Contract"
+        '
+        'DTPperdtct
+        '
+        Me.DTPperdtct.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DTPperdtct.Location = New System.Drawing.Point(93, 145)
+        Me.DTPperdtct.Name = "DTPperdtct"
+        Me.DTPperdtct.Size = New System.Drawing.Size(107, 20)
+        Me.DTPperdtct.TabIndex = 63
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(12, 122)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(49, 13)
+        Me.Label4.TabIndex = 62
+        Me.Label4.Text = "In Dienst"
+        '
+        'DTPperdtid
+        '
+        Me.DTPperdtid.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DTPperdtid.Location = New System.Drawing.Point(93, 119)
+        Me.DTPperdtid.Name = "DTPperdtid"
+        Me.DTPperdtid.Size = New System.Drawing.Size(107, 20)
+        Me.DTPperdtid.TabIndex = 61
         '
         'CBdienst
         '
-        Me.CBdienst.Appearance = System.Windows.Forms.Appearance.Button
         Me.CBdienst.AutoSize = True
-        Me.CBdienst.Location = New System.Drawing.Point(93, 97)
+        Me.CBdienst.Location = New System.Drawing.Point(93, 75)
         Me.CBdienst.Name = "CBdienst"
-        Me.CBdienst.Size = New System.Drawing.Size(57, 23)
+        Me.CBdienst.Size = New System.Drawing.Size(66, 17)
         Me.CBdienst.TabIndex = 38
         Me.CBdienst.TabStop = False
         Me.CBdienst.Text = "In dienst"
         Me.CBdienst.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.CBdienst.UseVisualStyleBackColor = True
         '
-        'TBtel
+        'Label5
         '
-        Me.TBtel.Location = New System.Drawing.Point(93, 71)
-        Me.TBtel.Name = "TBtel"
-        Me.TBtel.Size = New System.Drawing.Size(242, 20)
-        Me.TBtel.TabIndex = 14
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(7, 75)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(39, 13)
-        Me.Label14.TabIndex = 37
-        Me.Label14.Text = "TEL??"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(7, 49)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(49, 13)
-        Me.Label15.TabIndex = 36
-        Me.Label15.Text = "Sortering"
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(7, 49)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(49, 13)
+        Me.Label5.TabIndex = 36
+        Me.Label5.Text = "Sortering"
         '
         'TBpersort
         '
@@ -171,31 +249,49 @@ Partial Class EditPER
         Me.TBpernm.Size = New System.Drawing.Size(242, 20)
         Me.TBpernm.TabIndex = 10
         '
-        'Label4
+        'Label6
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(7, 23)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(35, 13)
-        Me.Label4.TabIndex = 35
-        Me.Label4.Text = "Naam"
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(7, 23)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(35, 13)
+        Me.Label6.TabIndex = 35
+        Me.Label6.Text = "Naam"
         '
-        'GroupBox2
+        'GroupBox4
         '
-        Me.GroupBox2.AutoSize = True
-        Me.GroupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GroupBox2.Controls.Add(Me.TBpergsmw)
-        Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.Label2)
-        Me.GroupBox2.Controls.Add(Me.TBpertel)
-        Me.GroupBox2.Controls.Add(Me.TBpergsm)
-        Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 148)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(361, 112)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
+        Me.GroupBox4.AutoSize = True
+        Me.GroupBox4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBox4.Controls.Add(Me.TBperice)
+        Me.GroupBox4.Controls.Add(Me.Label1)
+        Me.GroupBox4.Controls.Add(Me.TBpergsmw)
+        Me.GroupBox4.Controls.Add(Me.Label7)
+        Me.GroupBox4.Controls.Add(Me.Label8)
+        Me.GroupBox4.Controls.Add(Me.TBpertel)
+        Me.GroupBox4.Controls.Add(Me.TBpergsm)
+        Me.GroupBox4.Controls.Add(Me.Label9)
+        Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox4.Location = New System.Drawing.Point(3, 219)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(541, 136)
+        Me.GroupBox4.TabIndex = 1
+        Me.GroupBox4.TabStop = False
+        '
+        'TBperice
+        '
+        Me.TBperice.Location = New System.Drawing.Point(93, 97)
+        Me.TBperice.Name = "TBperice"
+        Me.TBperice.Size = New System.Drawing.Size(242, 20)
+        Me.TBperice.TabIndex = 38
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(7, 101)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(24, 13)
+        Me.Label1.TabIndex = 39
+        Me.Label1.Text = "ICE"
         '
         'TBpergsmw
         '
@@ -204,23 +300,23 @@ Partial Class EditPER
         Me.TBpergsmw.Size = New System.Drawing.Size(242, 20)
         Me.TBpergsmw.TabIndex = 34
         '
-        'Label1
+        'Label7
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(7, 75)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(60, 13)
-        Me.Label1.TabIndex = 37
-        Me.Label1.Text = "GSM Werk"
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(7, 75)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(60, 13)
+        Me.Label7.TabIndex = 37
+        Me.Label7.Text = "GSM Werk"
         '
-        'Label2
+        'Label8
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(7, 23)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(49, 13)
-        Me.Label2.TabIndex = 36
-        Me.Label2.Text = "Telefoon"
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(7, 23)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(49, 13)
+        Me.Label8.TabIndex = 36
+        Me.Label8.Text = "Telefoon"
         '
         'TBpertel
         '
@@ -236,20 +332,32 @@ Partial Class EditPER
         Me.TBpergsm.Size = New System.Drawing.Size(242, 20)
         Me.TBpergsm.TabIndex = 32
         '
-        'Label3
+        'Label9
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(7, 49)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(31, 13)
-        Me.Label3.TabIndex = 35
-        Me.Label3.Text = "GSM"
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(7, 49)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(31, 13)
+        Me.Label9.TabIndex = 35
+        Me.Label9.Text = "GSM"
+        '
+        'CBbediende
+        '
+        Me.CBbediende.AutoSize = True
+        Me.CBbediende.Location = New System.Drawing.Point(93, 96)
+        Me.CBbediende.Name = "CBbediende"
+        Me.CBbediende.Size = New System.Drawing.Size(71, 17)
+        Me.CBbediende.TabIndex = 67
+        Me.CBbediende.TabStop = False
+        Me.CBbediende.Text = "Bediende"
+        Me.CBbediende.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.CBbediende.UseVisualStyleBackColor = True
         '
         'EditPER
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(367, 294)
+        Me.ClientSize = New System.Drawing.Size(559, 414)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Name = "EditPER"
@@ -258,10 +366,14 @@ Partial Class EditPER
         Me.ToolStrip1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.TableLayoutPanel2.ResumeLayout(False)
+        Me.TableLayoutPanel2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -272,19 +384,28 @@ Partial Class EditPER
     Friend WithEvents ToolStripLabel4 As ToolStripLabel
     Friend WithEvents TSBsave As ToolStripButton
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents TBtel As TextBox
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label15 As Label
+    Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents CBdienst As CheckBox
+    Friend WithEvents Label5 As Label
     Friend WithEvents TBpersort As TextBox
     Friend WithEvents TBpernm As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents CBdienst As CheckBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents TBpergsmw As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
     Friend WithEvents TBpertel As TextBox
     Friend WithEvents TBpergsm As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents TBperice As TextBox
+    Friend WithEvents Label1 As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents DTPperdtud As DateTimePicker
+    Friend WithEvents Label2 As Label
+    Friend WithEvents DTPperdtct As DateTimePicker
+    Friend WithEvents Label4 As Label
+    Friend WithEvents DTPperdtid As DateTimePicker
+    Friend WithEvents CBbediende As CheckBox
 End Class

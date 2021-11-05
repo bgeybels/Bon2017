@@ -28,6 +28,8 @@ Partial Class SearchStockHist
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.TSBexport = New System.Windows.Forms.ToolStripButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.DGREC = New System.Windows.Forms.DataGridView()
         Me.GrBFilters = New System.Windows.Forms.GroupBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.FltOmschrijving = New System.Windows.Forms.TextBox()
@@ -43,13 +45,11 @@ Partial Class SearchStockHist
         Me.Fltomscode = New System.Windows.Forms.TextBox()
         Me.Fltcode = New System.Windows.Forms.TextBox()
         Me.BTN_FilterReset = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.DGREC = New System.Windows.Forms.DataGridView()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
-        Me.GrBFilters.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DGREC, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GrBFilters.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -99,18 +99,49 @@ Partial Class SearchStockHist
         '
         Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.Controls.Add(Me.GrBFilters, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
+        Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1260, 489)
         Me.TableLayoutPanel1.TabIndex = 9
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.AutoSize = True
+        Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupBox1.Controls.Add(Me.DGREC)
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox1.Location = New System.Drawing.Point(256, 3)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(1001, 483)
+        Me.GroupBox1.TabIndex = 2
+        Me.GroupBox1.TabStop = False
+        '
+        'DGREC
+        '
+        Me.DGREC.AllowUserToAddRows = False
+        Me.DGREC.AllowUserToDeleteRows = False
+        Me.DGREC.AllowUserToOrderColumns = True
+        Me.DGREC.AllowUserToResizeRows = False
+        Me.DGREC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGREC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DGREC.Location = New System.Drawing.Point(3, 16)
+        Me.DGREC.MultiSelect = False
+        Me.DGREC.Name = "DGREC"
+        Me.DGREC.ReadOnly = True
+        Me.DGREC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DGREC.Size = New System.Drawing.Size(995, 464)
+        Me.DGREC.TabIndex = 3
+        Me.DGREC.TabStop = False
         '
         'GrBFilters
         '
@@ -133,14 +164,14 @@ Partial Class SearchStockHist
         Me.GrBFilters.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GrBFilters.Location = New System.Drawing.Point(3, 3)
         Me.GrBFilters.Name = "GrBFilters"
-        Me.GrBFilters.Size = New System.Drawing.Size(1254, 42)
-        Me.GrBFilters.TabIndex = 1
+        Me.GrBFilters.Size = New System.Drawing.Size(247, 483)
+        Me.GrBFilters.TabIndex = 3
         Me.GrBFilters.TabStop = False
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(705, 18)
+        Me.Label6.Location = New System.Drawing.Point(3, 123)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(67, 13)
         Me.Label6.TabIndex = 45
@@ -149,7 +180,7 @@ Partial Class SearchStockHist
         'FltOmschrijving
         '
         Me.FltOmschrijving.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FltOmschrijving.Location = New System.Drawing.Point(776, 14)
+        Me.FltOmschrijving.Location = New System.Drawing.Point(102, 119)
         Me.FltOmschrijving.Name = "FltOmschrijving"
         Me.FltOmschrijving.Size = New System.Drawing.Size(66, 20)
         Me.FltOmschrijving.TabIndex = 44
@@ -157,7 +188,7 @@ Partial Class SearchStockHist
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(856, 18)
+        Me.Label5.Location = New System.Drawing.Point(3, 149)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(97, 13)
         Me.Label5.TabIndex = 43
@@ -166,7 +197,7 @@ Partial Class SearchStockHist
         'Fltusernrq
         '
         Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltusernrq.Location = New System.Drawing.Point(955, 14)
+        Me.Fltusernrq.Location = New System.Drawing.Point(102, 145)
         Me.Fltusernrq.Name = "Fltusernrq"
         Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
         Me.Fltusernrq.TabIndex = 42
@@ -175,7 +206,7 @@ Partial Class SearchStockHist
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label4.Location = New System.Drawing.Point(582, 18)
+        Me.Label4.Location = New System.Drawing.Point(3, 97)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(36, 13)
         Me.Label4.TabIndex = 41
@@ -184,7 +215,7 @@ Partial Class SearchStockHist
         'Fltomsgroep
         '
         Me.Fltomsgroep.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltomsgroep.Location = New System.Drawing.Point(621, 14)
+        Me.Fltomsgroep.Location = New System.Drawing.Point(102, 93)
         Me.Fltomsgroep.Name = "Fltomsgroep"
         Me.Fltomsgroep.Size = New System.Drawing.Size(66, 20)
         Me.Fltomsgroep.TabIndex = 20
@@ -192,7 +223,7 @@ Partial Class SearchStockHist
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(302, 18)
+        Me.Label3.Location = New System.Drawing.Point(3, 70)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(36, 13)
         Me.Label3.TabIndex = 40
@@ -203,7 +234,7 @@ Partial Class SearchStockHist
         Me.CBFltGrp.AutoSize = True
         Me.CBFltGrp.Checked = True
         Me.CBFltGrp.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CBFltGrp.Location = New System.Drawing.Point(558, 17)
+        Me.CBFltGrp.Location = New System.Drawing.Point(81, 96)
         Me.CBFltGrp.Name = "CBFltGrp"
         Me.CBFltGrp.Size = New System.Drawing.Size(15, 14)
         Me.CBFltGrp.TabIndex = 39
@@ -215,15 +246,15 @@ Partial Class SearchStockHist
         Me.CMBcodgp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.CMBcodgp.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.CMBcodgp.FormattingEnabled = True
-        Me.CMBcodgp.Location = New System.Drawing.Point(341, 14)
+        Me.CMBcodgp.Location = New System.Drawing.Point(102, 66)
         Me.CMBcodgp.Name = "CMBcodgp"
-        Me.CMBcodgp.Size = New System.Drawing.Size(212, 21)
+        Me.CMBcodgp.Size = New System.Drawing.Size(139, 21)
         Me.CMBcodgp.TabIndex = 18
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(159, 18)
+        Me.Label2.Location = New System.Drawing.Point(3, 44)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
         Me.Label2.TabIndex = 37
@@ -232,7 +263,7 @@ Partial Class SearchStockHist
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(41, 18)
+        Me.Label1.Location = New System.Drawing.Point(3, 18)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(32, 13)
         Me.Label1.TabIndex = 34
@@ -241,7 +272,7 @@ Partial Class SearchStockHist
         'Fltomscode
         '
         Me.Fltomscode.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltomscode.Location = New System.Drawing.Point(215, 14)
+        Me.Fltomscode.Location = New System.Drawing.Point(102, 40)
         Me.Fltomscode.Name = "Fltomscode"
         Me.Fltomscode.Size = New System.Drawing.Size(66, 20)
         Me.Fltomscode.TabIndex = 24
@@ -249,7 +280,7 @@ Partial Class SearchStockHist
         'Fltcode
         '
         Me.Fltcode.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltcode.Location = New System.Drawing.Point(77, 14)
+        Me.Fltcode.Location = New System.Drawing.Point(102, 14)
         Me.Fltcode.Name = "Fltcode"
         Me.Fltcode.Size = New System.Drawing.Size(66, 20)
         Me.Fltcode.TabIndex = 22
@@ -257,42 +288,12 @@ Partial Class SearchStockHist
         'BTN_FilterReset
         '
         Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
-        Me.BTN_FilterReset.Location = New System.Drawing.Point(0, 7)
+        Me.BTN_FilterReset.Location = New System.Drawing.Point(206, 14)
         Me.BTN_FilterReset.Name = "BTN_FilterReset"
         Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
         Me.BTN_FilterReset.TabIndex = 17
         Me.BTN_FilterReset.TabStop = False
         Me.BTN_FilterReset.UseVisualStyleBackColor = True
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.AutoSize = True
-        Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.GroupBox1.Controls.Add(Me.DGREC)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 51)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1254, 435)
-        Me.GroupBox1.TabIndex = 2
-        Me.GroupBox1.TabStop = False
-        '
-        'DGREC
-        '
-        Me.DGREC.AllowUserToAddRows = False
-        Me.DGREC.AllowUserToDeleteRows = False
-        Me.DGREC.AllowUserToOrderColumns = True
-        Me.DGREC.AllowUserToResizeRows = False
-        Me.DGREC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGREC.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DGREC.Location = New System.Drawing.Point(3, 16)
-        Me.DGREC.MultiSelect = False
-        Me.DGREC.Name = "DGREC"
-        Me.DGREC.ReadOnly = True
-        Me.DGREC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGREC.Size = New System.Drawing.Size(1248, 416)
-        Me.DGREC.TabIndex = 3
-        Me.DGREC.TabStop = False
         '
         'SearchStockHist
         '
@@ -307,10 +308,10 @@ Partial Class SearchStockHist
         Me.ToolStrip1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        Me.GrBFilters.ResumeLayout(False)
-        Me.GrBFilters.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.DGREC, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GrBFilters.ResumeLayout(False)
+        Me.GrBFilters.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -322,7 +323,13 @@ Partial Class SearchStockHist
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents TSBexport As ToolStripButton
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents DGREC As DataGridView
     Friend WithEvents GrBFilters As GroupBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents FltOmschrijving As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Fltusernrq As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Fltomsgroep As TextBox
     Friend WithEvents Label3 As Label
@@ -333,10 +340,4 @@ Partial Class SearchStockHist
     Friend WithEvents Fltomscode As TextBox
     Friend WithEvents Fltcode As TextBox
     Friend WithEvents BTN_FilterReset As Button
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents DGREC As DataGridView
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Fltusernrq As TextBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents FltOmschrijving As TextBox
 End Class

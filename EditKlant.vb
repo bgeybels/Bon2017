@@ -6,12 +6,18 @@ Public Class EditKlant
         TSButtonPermissions(TSBsave)
 
         SetGrids()
-        If IsNewRecord = True Then Me.Text = "Klanten: Nieuw"
+        Me.Text = "Klant: Bewerken (key=" & keyklantnrq & ")"
+        If IsNewKlant = True Then Me.Text = "Klant: Nieuw"
         Fill_DG()
         Velden_vullen()
     End Sub
     Private Sub EditKlant_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        IsNewRecord = False
+        ' unlock record (niet voor nieuwe records)
+        If IsNewKlant = False Then
+            Dim unlock = unlockrec("KLANT", keyklantnrq)
+        End If
+
+        IsNewKlant = False
     End Sub
 
     Private Sub SetGrids()
@@ -33,7 +39,7 @@ Public Class EditKlant
             Return False
         End If
 
-        If IsNewRecord = True Then
+        If IsNewKlant = True Then
             SaveNEW()
             Return True
             Exit Function
@@ -52,25 +58,41 @@ Public Class EditKlant
         updaterec.KGSM = TBkgsm.Text
         updaterec.KFax = TBkfax.Text
         updaterec.KEMail = TBkemail.Text
+        updaterec.KEMailF = TBkemailf.Text
         updaterec.KBTWNr = TBkbtwnr.Text
-        updaterec.ConvIN_NR = Val(TBconvin_nr.Text)
+        updaterec.ConvIN_NR = 0
+        If CBfac.CheckState = 1 Then
+            updaterec.FAC = "J"
+        Else
+            updaterec.FAC = "N"
+        End If
+        If CBfacm.CheckState = 1 Then
+            updaterec.FACM = "J"
+        Else
+            updaterec.FACM = "N"
+        End If
+        If CBfacp.CheckState = 1 Then
+            updaterec.FACP = "J"
+        Else
+            updaterec.FACP = "N"
+        End If
 
-        updaterec.chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
-
-        updaterec.USDate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
 
         Try
             db.SubmitChanges()
             Archive("KLANT_U", Str(keyklantnrq), updaterec.KNaam & " - " & updaterec.KStraat & "/" & updaterec.KAdres)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
+
         Return True
     End Function
 
     Private Sub SaveNEW()
+
         Dim newrec As New KLANT With {
            .KNaam = TBknaam.Text,
            .Ktav = TBktav.Text,
@@ -82,18 +104,22 @@ Public Class EditKlant
            .KGSM = TBkgsm.Text,
            .KFax = TBkfax.Text,
            .KEMail = TBkemail.Text,
+           .KEMailF = TBkemailf.Text,
            .KBTWNr = TBkbtwnr.Text,
-           .ConvIN_NR = TBconvin_nr.Text,
+           .ConvIN_NR = 0,
+           .FAC = "N",
+           .FACM = "N",
+           .FACP = "N",
            .usernrq = LoginNm,
-           .USDate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss"),
-           .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")}
+           .USDate = ChDate,
+           .chdate = ChDate}
 
         db.KLANTs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try
@@ -112,24 +138,77 @@ Public Class EditKlant
         'AllOK = False
         'End If
         'Next
-
+        Dim TBNum20() As TextBox = New TextBox() {TBkgsm, TBktel, TBkfax}
+        For Each TB As TextBox In TBNum20
+            TB.BackColor = boxcolor
+            If TB.TextLength > 20 Then
+                TB.BackColor = boxcolorerror
+                AllOK = False
+            End If
+        Next
+        Dim TBNum50() As TextBox = New TextBox() {TBknaam, TBkemail, TBkstraat, TBkadres, TBkemailf}
+        For Each TB As TextBox In TBNum50
+            TB.BackColor = boxcolor
+            If TB.TextLength > 50 Then
+                TB.BackColor = boxcolorerror
+                AllOK = False
+            End If
+        Next
+        Dim TBNum100() As TextBox = New TextBox() {TBktav}
+        For Each TB As TextBox In TBNum100
+            TB.BackColor = boxcolor
+            If TB.TextLength > 100 Then
+                TB.BackColor = boxcolorerror
+                AllOK = False
+            End If
+        Next
+        Dim TBNum30() As TextBox = New TextBox() {TBkbtwnr}
+        For Each TB As TextBox In TBNum30
+            TB.BackColor = boxcolor
+            If TB.TextLength > 30 Then
+                TB.BackColor = boxcolorerror
+                AllOK = False
+            End If
+        Next
         Return AllOK
     End Function
 
     Private Sub Velden_vullen()
         For Each klantrec In klantrecs
-            TBknaam.Text = klantrec.KNaam
-            TBktav.Text = klantrec.ktav
-            TBconvin_nr.Text = klantrec.convin_nr
-            TBkbtwnr.Text = klantrec.kbtwnr
-            TBkstraat.Text = klantrec.kstraat
-            TBkadres.Text = klantrec.kadres
-            TBkwadres.Text = klantrec.kwadres
-            TBkwstraat.Text = klantrec.kwstraat
-            TBkemail.Text = klantrec.kemail
-            TBktel.Text = klantrec.ktel
-            TBkgsm.Text = klantrec.kgsm
-            TBkfax.Text = klantrec.kfax
+            If IsNewKlant Then
+                Dim TBNum() As TextBox = New TextBox() {TBknaam, TBktav, TBkbtwnr, TBkstraat, TBkadres, TBkwadres, TBkwstraat, TBkemail, TBkemailf, TBktel, TBkgsm, TBkfax}
+                For Each TB As TextBox In TBNum
+                    TB.Text = ""
+                Next
+            Else
+                TBknaam.Text = klantrec.KNaam
+                TBktav.Text = klantrec.ktav
+                TBkbtwnr.Text = klantrec.kbtwnr
+                TBkstraat.Text = klantrec.kstraat
+                TBkadres.Text = klantrec.kadres
+                TBkwadres.Text = klantrec.kwadres
+                TBkwstraat.Text = klantrec.kwstraat
+                TBkemail.Text = klantrec.kemail
+                TBkemailf.Text = klantrec.kemailf
+                TBktel.Text = klantrec.ktel
+                TBkgsm.Text = klantrec.kgsm
+                TBkfax.Text = klantrec.kfax
+                If klantrec.fac = "J" Then
+                    CBfac.Checked = True
+                Else
+                    CBfac.Checked = False
+                End If
+                If klantrec.facm = "J" Then
+                    CBfacm.Checked = True
+                Else
+                    CBfacm.Checked = False
+                End If
+                If klantrec.facp = "J" Then
+                    CBfacp.Checked = True
+                Else
+                    CBfacp.Checked = False
+                End If
+            End If
         Next
     End Sub
 
@@ -142,4 +221,10 @@ Public Class EditKlant
         If Savedata() = True Then Close()
     End Sub
 
+    Private Sub TBkadres_TextChanged(sender As Object, e As EventArgs) Handles TBkadres.TextChanged
+        Dim getpc As String
+        getpc = Getpca_postcode(TBkadres.Text)
+        If getpc = "" Then getpc = Getpca_gemeente(TBkadres.Text)
+        If getpc <> "" Then TBkadres.Text = getpc
+    End Sub
 End Class

@@ -3,16 +3,20 @@
 Public Class EditPER
     Dim nocmdupd As Boolean = False
 
-    Private Sub EditCode_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub EditPER_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TSButtonPermissions(TSBsave)
 
         SetGrids()
+        Me.Text = "Personeel: Bewerken (key=" & keypernrq & ")"
         If IsNewRecord = True Then Me.Text = "Personeel: Nieuw"
 
         Fill_DG()
         Velden_vullen()
     End Sub
     Private Sub EditCode_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If IsNewRecord = False Then
+            Dim unlock = unlockrec("PER", keypernrq)
+        End If
         IsNewRecord = False
     End Sub
 
@@ -46,23 +50,28 @@ Public Class EditPER
 
         Dim oldpernm As String = updaterec.PERNM
         updaterec.PERNM = TBpernm.Text
-        updaterec.tel = TBtel.Text
         updaterec.PERSORT = TBpersort.Text
         updaterec.PERTEL = TBpertel.Text
         updaterec.PERGSM = TBpergsm.Text
+        updaterec.PERICE = TBperice.Text
         updaterec.PERGSMW = TBpergsmw.Text
 
         updaterec.DIENST = CBdienst.Checked
+        updaterec.BEDIENDE = CBbediende.Checked
 
-        updaterec.ChDate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")
+        updaterec.PERDTID = Format(DTPperdtid.Value, "#yyyy-MM-dd#")
+        updaterec.PERDTCT = Format(DTPperdtct.Value, "#yyyy-MM-dd#")
+        updaterec.PERDTUD = Format(DTPperdtud.Value, "#yyyy-MM-dd#")
+
+        updaterec.chdate = ChDate
         updaterec.usernrq = LoginNm
 
         Try
             db.SubmitChanges()
             Archive("PER_U", Str(keypernrq), oldpernm & " --> " & updaterec.PERNM & " - " & updaterec.PERTEL & " - " & updaterec.PERGSM)
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen!")
+            MsgBox("Probleem... Aanpassingen zijn niet opgeslagen! --> " & ex.Message)
         End Try
         Return True
     End Function
@@ -72,19 +81,23 @@ Public Class EditPER
               .PERNM = TBpernm.Text,
               .PERTEL = TBpertel.Text,
               .PERGSM = TBpergsm.Text,
+              .PERICE = TBperice.Text,
               .PERGSMW = TBpergsmw.Text,
-              .tel = TBtel.Text,
               .PERSORT = TBpersort.Text,
               .DIENST = CBdienst.Checked,
+              .BEDIENDE = CBbediende.Checked,
+              .PERDTID = DTPperdtid.Value,
+              .PERDTCT = DTPperdtct.Value,
+              .PERDTUD = DTPperdtud.Value,
               .usernrq = LoginNm,
-              .chdate = SysDate & " " & DateTime.Now.ToString("HH:mm:ss")}
+              .chdate = ChDate}
 
         db.PERs.InsertOnSubmit(newrec)
         Try
             db.SubmitChanges()
-        Catch
+        Catch ex As Exception
             PositionMsgbox.CenterMsgBox(Me)
-            MsgBox("Nieuw record niet gelukt.")
+            MsgBox("Probleem... Nieuw record niet gelukt! --> " & ex.Message)
             Exit Sub
             ' Handle exception.  
         End Try
@@ -104,19 +117,54 @@ Public Class EditPER
         '  End If
         '  Next
 
+        TBpersort.BackColor = boxcolor
+        If Len(TBpersort.Text) > 3 Then
+            TBpersort.BackColor = boxcolorerror
+            AllOK = False
+        End If
+
         Return AllOK
     End Function
 
     Private Sub Velden_vullen()
         For Each rec In records
-            TBpernm.Text = rec.PERNM
-            TBtel.Text = rec.tel
-            TBpersort.Text = rec.persort
-            TBpertel.Text = rec.pertel
-            TBpergsm.Text = rec.pergsm
-            TBpergsmw.Text = rec.pergsmw
+            If IsNewRecord Then
+                Dim TBNum() As TextBox = New TextBox() {TBpernm, TBpertel, TBpersort, TBpertel, TBpergsm, TBpergsmw}
+                For Each TB As TextBox In TBNum
+                    TB.Text = ""
+                Next
+                DTPperdtid.Value = SysDate
+                DTPperdtct.Value = "01.01.2050"
+                DTPperdtud.Value = "01.01.2050"
+                CBdienst.Checked = True
+                CBbediende.Checked = False
+            Else
+                TBpernm.Text = rec.PERNM
+                TBpertel.Text = rec.tel
+                TBpersort.Text = rec.persort
+                TBpertel.Text = rec.pertel
+                TBpergsm.Text = rec.pergsm
+                TBperice.Text = rec.perice
+                TBpergsmw.Text = rec.pergsmw
+                CBdienst.Checked = rec.DIENST
+                CBbediende.Checked = rec.BEDIENDE
+                If Not IsNothing(rec.perdtid) Then
+                    DTPperdtid.Value = rec.perdtid
+                Else
+                    DTPperdtid.Value = SysDate
+                End If
+                If Not IsNothing(rec.perdtct) Then
+                    DTPperdtct.Value = rec.perdtct
+                Else
+                    DTPperdtct.Value = SysDate
+                End If
+                If Not IsNothing(rec.perdtud) Then
+                    DTPperdtud.Value = rec.perdtud
+                Else
+                    DTPperdtud.Value = SysDate
+                End If
+            End If
 
-            CBdienst.Checked = rec.DIENST
         Next
     End Sub
 

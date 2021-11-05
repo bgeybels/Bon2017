@@ -38,6 +38,9 @@ Partial Class SearchKlant
         Me.TSBexport = New System.Windows.Forms.ToolStripButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupFilter = New System.Windows.Forms.GroupBox()
+        Me.CBuploadN = New System.Windows.Forms.CheckBox()
+        Me.CBuploadJ = New System.Windows.Forms.CheckBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Fltusernrq = New System.Windows.Forms.TextBox()
         Me.BTN_FilterReset = New System.Windows.Forms.Button()
@@ -56,6 +59,9 @@ Partial Class SearchKlant
         Me.VerwijderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToonBonlijnenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.UploadJaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UploadNeeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupFilter.SuspendLayout()
@@ -164,16 +170,17 @@ Partial Class SearchKlant
         '
         Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.Controls.Add(Me.GroupFilter, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
+        Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 458.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1248, 458)
         Me.TableLayoutPanel1.TabIndex = 6
         '
@@ -181,6 +188,9 @@ Partial Class SearchKlant
         '
         Me.GroupFilter.AutoSize = True
         Me.GroupFilter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GroupFilter.Controls.Add(Me.CBuploadN)
+        Me.GroupFilter.Controls.Add(Me.CBuploadJ)
+        Me.GroupFilter.Controls.Add(Me.Label8)
         Me.GroupFilter.Controls.Add(Me.Label5)
         Me.GroupFilter.Controls.Add(Me.Fltusernrq)
         Me.GroupFilter.Controls.Add(Me.BTN_FilterReset)
@@ -193,14 +203,43 @@ Partial Class SearchKlant
         Me.GroupFilter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupFilter.Location = New System.Drawing.Point(3, 3)
         Me.GroupFilter.Name = "GroupFilter"
-        Me.GroupFilter.Size = New System.Drawing.Size(1242, 42)
-        Me.GroupFilter.TabIndex = 1
+        Me.GroupFilter.Size = New System.Drawing.Size(131, 452)
+        Me.GroupFilter.TabIndex = 3
         Me.GroupFilter.TabStop = False
+        '
+        'CBuploadN
+        '
+        Me.CBuploadN.AutoSize = True
+        Me.CBuploadN.Location = New System.Drawing.Point(79, 157)
+        Me.CBuploadN.Name = "CBuploadN"
+        Me.CBuploadN.Size = New System.Drawing.Size(46, 17)
+        Me.CBuploadN.TabIndex = 52
+        Me.CBuploadN.Text = "Nee"
+        Me.CBuploadN.UseVisualStyleBackColor = True
+        '
+        'CBuploadJ
+        '
+        Me.CBuploadJ.AutoSize = True
+        Me.CBuploadJ.Location = New System.Drawing.Point(46, 157)
+        Me.CBuploadJ.Name = "CBuploadJ"
+        Me.CBuploadJ.Size = New System.Drawing.Size(37, 17)
+        Me.CBuploadJ.TabIndex = 51
+        Me.CBuploadJ.Text = "Ja"
+        Me.CBuploadJ.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(5, 158)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(41, 13)
+        Me.Label8.TabIndex = 50
+        Me.Label8.Text = "Upload"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(407, 16)
+        Me.Label5.Location = New System.Drawing.Point(4, 135)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(26, 13)
         Me.Label5.TabIndex = 21
@@ -209,7 +248,7 @@ Partial Class SearchKlant
         'Fltusernrq
         '
         Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltusernrq.Location = New System.Drawing.Point(444, 12)
+        Me.Fltusernrq.Location = New System.Drawing.Point(46, 131)
         Me.Fltusernrq.Name = "Fltusernrq"
         Me.Fltusernrq.Size = New System.Drawing.Size(66, 20)
         Me.Fltusernrq.TabIndex = 14
@@ -217,7 +256,7 @@ Partial Class SearchKlant
         'BTN_FilterReset
         '
         Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
-        Me.BTN_FilterReset.Location = New System.Drawing.Point(0, 7)
+        Me.BTN_FilterReset.Location = New System.Drawing.Point(77, 12)
         Me.BTN_FilterReset.Name = "BTN_FilterReset"
         Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
         Me.BTN_FilterReset.TabIndex = 17
@@ -227,7 +266,7 @@ Partial Class SearchKlant
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(284, 16)
+        Me.Label3.Location = New System.Drawing.Point(4, 109)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(30, 13)
         Me.Label3.TabIndex = 16
@@ -236,7 +275,7 @@ Partial Class SearchKlant
         'Fltwerf
         '
         Me.Fltwerf.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltwerf.Location = New System.Drawing.Point(325, 12)
+        Me.Fltwerf.Location = New System.Drawing.Point(46, 105)
         Me.Fltwerf.Name = "Fltwerf"
         Me.Fltwerf.Size = New System.Drawing.Size(66, 20)
         Me.Fltwerf.TabIndex = 12
@@ -244,7 +283,7 @@ Partial Class SearchKlant
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(167, 15)
+        Me.Label2.Location = New System.Drawing.Point(4, 82)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 13)
         Me.Label2.TabIndex = 14
@@ -253,7 +292,7 @@ Partial Class SearchKlant
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(43, 16)
+        Me.Label1.Location = New System.Drawing.Point(4, 57)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(31, 13)
         Me.Label1.TabIndex = 13
@@ -262,7 +301,7 @@ Partial Class SearchKlant
         'Fltadres
         '
         Me.Fltadres.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltadres.Location = New System.Drawing.Point(207, 12)
+        Me.Fltadres.Location = New System.Drawing.Point(46, 79)
         Me.Fltadres.Name = "Fltadres"
         Me.Fltadres.Size = New System.Drawing.Size(66, 20)
         Me.Fltadres.TabIndex = 11
@@ -270,7 +309,7 @@ Partial Class SearchKlant
         'Fltklant
         '
         Me.Fltklant.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltklant.Location = New System.Drawing.Point(85, 12)
+        Me.Fltklant.Location = New System.Drawing.Point(46, 53)
         Me.Fltklant.Name = "Fltklant"
         Me.Fltklant.Size = New System.Drawing.Size(66, 20)
         Me.Fltklant.TabIndex = 10
@@ -281,9 +320,9 @@ Partial Class SearchKlant
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBox1.Controls.Add(Me.DGREC)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 51)
+        Me.GroupBox1.Location = New System.Drawing.Point(140, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1242, 404)
+        Me.GroupBox1.Size = New System.Drawing.Size(1105, 452)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         '
@@ -297,57 +336,73 @@ Partial Class SearchKlant
         Me.DGREC.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DGREC.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGREC.Location = New System.Drawing.Point(3, 16)
-        Me.DGREC.MultiSelect = False
         Me.DGREC.Name = "DGREC"
         Me.DGREC.ReadOnly = True
         Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGREC.Size = New System.Drawing.Size(1236, 385)
+        Me.DGREC.Size = New System.Drawing.Size(1099, 433)
         Me.DGREC.TabIndex = 1
         Me.DGREC.TabStop = False
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NieuwToolStripMenuItem, Me.BewerkToolStripMenuItem, Me.ToolStripSeparator1, Me.VerwijderToolStripMenuItem, Me.ToolStripSeparator2, Me.ToonBonlijnenToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NieuwToolStripMenuItem, Me.BewerkToolStripMenuItem, Me.ToolStripSeparator1, Me.VerwijderToolStripMenuItem, Me.ToolStripSeparator2, Me.ToonBonlijnenToolStripMenuItem, Me.ToolStripSeparator3, Me.UploadJaToolStripMenuItem, Me.UploadNeeToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(155, 104)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(181, 176)
         '
         'NieuwToolStripMenuItem
         '
         Me.NieuwToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemadd
         Me.NieuwToolStripMenuItem.Name = "NieuwToolStripMenuItem"
-        Me.NieuwToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.NieuwToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.NieuwToolStripMenuItem.Text = "Nieuw"
         '
         'BewerkToolStripMenuItem
         '
         Me.BewerkToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemedit
         Me.BewerkToolStripMenuItem.Name = "BewerkToolStripMenuItem"
-        Me.BewerkToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.BewerkToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.BewerkToolStripMenuItem.Text = "Bewerk"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(151, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(150, 6)
         '
         'VerwijderToolStripMenuItem
         '
         Me.VerwijderToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemdelete
         Me.VerwijderToolStripMenuItem.Name = "VerwijderToolStripMenuItem"
-        Me.VerwijderToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.VerwijderToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.VerwijderToolStripMenuItem.Text = "Verwijder"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(151, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(150, 6)
         '
         'ToonBonlijnenToolStripMenuItem
         '
         Me.ToonBonlijnenToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.star2
         Me.ToonBonlijnenToolStripMenuItem.Name = "ToonBonlijnenToolStripMenuItem"
-        Me.ToonBonlijnenToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
+        Me.ToonBonlijnenToolStripMenuItem.Size = New System.Drawing.Size(153, 22)
         Me.ToonBonlijnenToolStripMenuItem.Text = "Toon Bonlijnen"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(177, 6)
+        '
+        'UploadJaToolStripMenuItem
+        '
+        Me.UploadJaToolStripMenuItem.Name = "UploadJaToolStripMenuItem"
+        Me.UploadJaToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UploadJaToolStripMenuItem.Text = "Upload-Ja"
+        '
+        'UploadNeeToolStripMenuItem
+        '
+        Me.UploadNeeToolStripMenuItem.Name = "UploadNeeToolStripMenuItem"
+        Me.UploadNeeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.UploadNeeToolStripMenuItem.Text = "Upload-Nee"
         '
         'SearchKlant
         '
@@ -380,16 +435,6 @@ Partial Class SearchKlant
     Friend WithEvents TSBdelete As ToolStripButton
     Friend WithEvents TSBexport As ToolStripButton
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents GroupFilter As GroupBox
-    Friend WithEvents BTN_FilterReset As Button
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Fltwerf As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Fltadres As TextBox
-    Friend WithEvents Fltklant As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Fltusernrq As TextBox
     Friend WithEvents ToolStripLabel3 As ToolStripLabel
     Friend WithEvents TSBDetail As ToolStripButton
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
@@ -404,4 +449,20 @@ Partial Class SearchKlant
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DGREC As DataGridView
+    Friend WithEvents GroupFilter As GroupBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Fltusernrq As TextBox
+    Friend WithEvents BTN_FilterReset As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Fltwerf As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Fltadres As TextBox
+    Friend WithEvents Fltklant As TextBox
+    Friend WithEvents CBuploadN As CheckBox
+    Friend WithEvents CBuploadJ As CheckBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents UploadJaToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UploadNeeToolStripMenuItem As ToolStripMenuItem
 End Class

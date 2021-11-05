@@ -32,14 +32,19 @@ Partial Class SearchStock
         Me.TSBexport = New System.Windows.Forms.ToolStripButton()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GrBFilters = New System.Windows.Forms.GroupBox()
+        Me.CBnotstockN = New System.Windows.Forms.CheckBox()
+        Me.CBnotstockJ = New System.Windows.Forms.CheckBox()
+        Me.CBbesteldN = New System.Windows.Forms.CheckBox()
+        Me.CBbesteldJ = New System.Windows.Forms.CheckBox()
+        Me.CBminstockN = New System.Windows.Forms.CheckBox()
+        Me.CBminstockJ = New System.Windows.Forms.CheckBox()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Fltlev = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Fltplmagazijn = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.FltCBbesteld = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.FltCBnotstock = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Fltomsgroep = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -56,6 +61,8 @@ Partial Class SearchStock
         Me.DGREC = New System.Windows.Forms.DataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.NieuwToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.BewerkCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GrBFilters.SuspendLayout()
@@ -126,16 +133,17 @@ Partial Class SearchStock
         '
         Me.TableLayoutPanel1.AutoSize = True
         Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TableLayoutPanel1.Controls.Add(Me.GrBFilters, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 0, 1)
+        Me.TableLayoutPanel1.Controls.Add(Me.GroupBox1, 1, 0)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 31)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
+        Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 429.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(1416, 429)
         Me.TableLayoutPanel1.TabIndex = 8
         '
@@ -143,14 +151,19 @@ Partial Class SearchStock
         '
         Me.GrBFilters.AutoSize = True
         Me.GrBFilters.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GrBFilters.Controls.Add(Me.CBnotstockN)
+        Me.GrBFilters.Controls.Add(Me.CBnotstockJ)
+        Me.GrBFilters.Controls.Add(Me.CBbesteldN)
+        Me.GrBFilters.Controls.Add(Me.CBbesteldJ)
+        Me.GrBFilters.Controls.Add(Me.CBminstockN)
+        Me.GrBFilters.Controls.Add(Me.CBminstockJ)
+        Me.GrBFilters.Controls.Add(Me.Label10)
         Me.GrBFilters.Controls.Add(Me.Label9)
         Me.GrBFilters.Controls.Add(Me.Fltlev)
         Me.GrBFilters.Controls.Add(Me.Label8)
         Me.GrBFilters.Controls.Add(Me.Fltplmagazijn)
         Me.GrBFilters.Controls.Add(Me.Label7)
-        Me.GrBFilters.Controls.Add(Me.FltCBbesteld)
         Me.GrBFilters.Controls.Add(Me.Label6)
-        Me.GrBFilters.Controls.Add(Me.FltCBnotstock)
         Me.GrBFilters.Controls.Add(Me.Label4)
         Me.GrBFilters.Controls.Add(Me.Fltomsgroep)
         Me.GrBFilters.Controls.Add(Me.Label3)
@@ -166,15 +179,84 @@ Partial Class SearchStock
         Me.GrBFilters.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GrBFilters.Location = New System.Drawing.Point(3, 3)
         Me.GrBFilters.Name = "GrBFilters"
-        Me.GrBFilters.Size = New System.Drawing.Size(1410, 42)
-        Me.GrBFilters.TabIndex = 1
+        Me.GrBFilters.Size = New System.Drawing.Size(248, 423)
+        Me.GrBFilters.TabIndex = 3
         Me.GrBFilters.TabStop = False
+        '
+        'CBnotstockN
+        '
+        Me.CBnotstockN.AutoSize = True
+        Me.CBnotstockN.Location = New System.Drawing.Point(104, 39)
+        Me.CBnotstockN.Name = "CBnotstockN"
+        Me.CBnotstockN.Size = New System.Drawing.Size(46, 17)
+        Me.CBnotstockN.TabIndex = 77
+        Me.CBnotstockN.Text = "Nee"
+        Me.CBnotstockN.UseVisualStyleBackColor = True
+        '
+        'CBnotstockJ
+        '
+        Me.CBnotstockJ.AutoSize = True
+        Me.CBnotstockJ.Location = New System.Drawing.Point(71, 39)
+        Me.CBnotstockJ.Name = "CBnotstockJ"
+        Me.CBnotstockJ.Size = New System.Drawing.Size(37, 17)
+        Me.CBnotstockJ.TabIndex = 76
+        Me.CBnotstockJ.Text = "Ja"
+        Me.CBnotstockJ.UseVisualStyleBackColor = True
+        '
+        'CBbesteldN
+        '
+        Me.CBbesteldN.AutoSize = True
+        Me.CBbesteldN.Location = New System.Drawing.Point(104, 15)
+        Me.CBbesteldN.Name = "CBbesteldN"
+        Me.CBbesteldN.Size = New System.Drawing.Size(46, 17)
+        Me.CBbesteldN.TabIndex = 75
+        Me.CBbesteldN.Text = "Nee"
+        Me.CBbesteldN.UseVisualStyleBackColor = True
+        '
+        'CBbesteldJ
+        '
+        Me.CBbesteldJ.AutoSize = True
+        Me.CBbesteldJ.Location = New System.Drawing.Point(71, 15)
+        Me.CBbesteldJ.Name = "CBbesteldJ"
+        Me.CBbesteldJ.Size = New System.Drawing.Size(37, 17)
+        Me.CBbesteldJ.TabIndex = 74
+        Me.CBbesteldJ.Text = "Ja"
+        Me.CBbesteldJ.UseVisualStyleBackColor = True
+        '
+        'CBminstockN
+        '
+        Me.CBminstockN.AutoSize = True
+        Me.CBminstockN.Location = New System.Drawing.Point(104, 261)
+        Me.CBminstockN.Name = "CBminstockN"
+        Me.CBminstockN.Size = New System.Drawing.Size(46, 17)
+        Me.CBminstockN.TabIndex = 56
+        Me.CBminstockN.Text = "Nee"
+        Me.CBminstockN.UseVisualStyleBackColor = True
+        '
+        'CBminstockJ
+        '
+        Me.CBminstockJ.AutoSize = True
+        Me.CBminstockJ.Location = New System.Drawing.Point(71, 261)
+        Me.CBminstockJ.Name = "CBminstockJ"
+        Me.CBminstockJ.Size = New System.Drawing.Size(37, 17)
+        Me.CBminstockJ.TabIndex = 55
+        Me.CBminstockJ.Text = "Ja"
+        Me.CBminstockJ.UseVisualStyleBackColor = True
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(9, 263)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(58, 13)
+        Me.Label10.TabIndex = 54
+        Me.Label10.Text = "Stock<Min"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label9.Location = New System.Drawing.Point(442, 17)
+        Me.Label9.Location = New System.Drawing.Point(6, 96)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(27, 13)
         Me.Label9.TabIndex = 53
@@ -183,7 +265,7 @@ Partial Class SearchStock
         'Fltlev
         '
         Me.Fltlev.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltlev.Location = New System.Drawing.Point(475, 13)
+        Me.Fltlev.Location = New System.Drawing.Point(72, 92)
         Me.Fltlev.Name = "Fltlev"
         Me.Fltlev.Size = New System.Drawing.Size(66, 20)
         Me.Fltlev.TabIndex = 16
@@ -192,7 +274,7 @@ Partial Class SearchStock
         '
         Me.Label8.AutoSize = True
         Me.Label8.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label8.Location = New System.Drawing.Point(295, 17)
+        Me.Label8.Location = New System.Drawing.Point(6, 70)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(62, 13)
         Me.Label8.TabIndex = 51
@@ -201,7 +283,7 @@ Partial Class SearchStock
         'Fltplmagazijn
         '
         Me.Fltplmagazijn.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltplmagazijn.Location = New System.Drawing.Point(363, 13)
+        Me.Fltplmagazijn.Location = New System.Drawing.Point(72, 66)
         Me.Fltplmagazijn.Name = "Fltplmagazijn"
         Me.Fltplmagazijn.Size = New System.Drawing.Size(66, 20)
         Me.Fltplmagazijn.TabIndex = 14
@@ -209,48 +291,26 @@ Partial Class SearchStock
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(41, 17)
+        Me.Label7.Location = New System.Drawing.Point(6, 16)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(42, 13)
         Me.Label7.TabIndex = 49
         Me.Label7.Text = "Besteld"
         '
-        'FltCBbesteld
-        '
-        Me.FltCBbesteld.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.FltCBbesteld.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.FltCBbesteld.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FltCBbesteld.FormattingEnabled = True
-        Me.FltCBbesteld.Location = New System.Drawing.Point(89, 13)
-        Me.FltCBbesteld.Name = "FltCBbesteld"
-        Me.FltCBbesteld.Size = New System.Drawing.Size(64, 21)
-        Me.FltCBbesteld.TabIndex = 10
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(159, 17)
+        Me.Label6.Location = New System.Drawing.Point(6, 43)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(61, 13)
         Me.Label6.TabIndex = 47
         Me.Label6.Text = "GeenStock"
         '
-        'FltCBnotstock
-        '
-        Me.FltCBnotstock.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.FltCBnotstock.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.FltCBnotstock.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.FltCBnotstock.FormattingEnabled = True
-        Me.FltCBnotstock.Location = New System.Drawing.Point(221, 13)
-        Me.FltCBnotstock.Name = "FltCBnotstock"
-        Me.FltCBnotstock.Size = New System.Drawing.Size(64, 21)
-        Me.FltCBnotstock.TabIndex = 12
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label4.Location = New System.Drawing.Point(844, 17)
+        Me.Label4.Location = New System.Drawing.Point(6, 151)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(36, 13)
         Me.Label4.TabIndex = 41
@@ -259,7 +319,7 @@ Partial Class SearchStock
         'Fltomsgroep
         '
         Me.Fltomsgroep.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltomsgroep.Location = New System.Drawing.Point(883, 13)
+        Me.Fltomsgroep.Location = New System.Drawing.Point(72, 147)
         Me.Fltomsgroep.Name = "Fltomsgroep"
         Me.Fltomsgroep.Size = New System.Drawing.Size(66, 20)
         Me.Fltomsgroep.TabIndex = 20
@@ -267,7 +327,7 @@ Partial Class SearchStock
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(557, 17)
+        Me.Label3.Location = New System.Drawing.Point(6, 124)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(36, 13)
         Me.Label3.TabIndex = 40
@@ -278,7 +338,7 @@ Partial Class SearchStock
         Me.CBFltGrp.AutoSize = True
         Me.CBFltGrp.Checked = True
         Me.CBFltGrp.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CBFltGrp.Location = New System.Drawing.Point(813, 16)
+        Me.CBFltGrp.Location = New System.Drawing.Point(53, 124)
         Me.CBFltGrp.Name = "CBFltGrp"
         Me.CBFltGrp.Size = New System.Drawing.Size(15, 14)
         Me.CBFltGrp.TabIndex = 39
@@ -290,15 +350,15 @@ Partial Class SearchStock
         Me.CMBcodgp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.CMBcodgp.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.CMBcodgp.FormattingEnabled = True
-        Me.CMBcodgp.Location = New System.Drawing.Point(596, 13)
+        Me.CMBcodgp.Location = New System.Drawing.Point(72, 120)
         Me.CMBcodgp.Name = "CMBcodgp"
-        Me.CMBcodgp.Size = New System.Drawing.Size(212, 21)
+        Me.CMBcodgp.Size = New System.Drawing.Size(170, 21)
         Me.CMBcodgp.TabIndex = 18
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(1214, 17)
+        Me.Label5.Location = New System.Drawing.Point(6, 229)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(66, 13)
         Me.Label5.TabIndex = 38
@@ -307,7 +367,7 @@ Partial Class SearchStock
         'Fltusernrq
         '
         Me.Fltusernrq.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltusernrq.Location = New System.Drawing.Point(1281, 13)
+        Me.Fltusernrq.Location = New System.Drawing.Point(72, 225)
         Me.Fltusernrq.Name = "Fltusernrq"
         Me.Fltusernrq.Size = New System.Drawing.Size(120, 20)
         Me.Fltusernrq.TabIndex = 26
@@ -315,7 +375,7 @@ Partial Class SearchStock
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(1075, 17)
+        Me.Label2.Location = New System.Drawing.Point(6, 203)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(53, 13)
         Me.Label2.TabIndex = 37
@@ -324,7 +384,7 @@ Partial Class SearchStock
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(957, 17)
+        Me.Label1.Location = New System.Drawing.Point(6, 177)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(32, 13)
         Me.Label1.TabIndex = 34
@@ -333,7 +393,7 @@ Partial Class SearchStock
         'Fltomscode
         '
         Me.Fltomscode.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltomscode.Location = New System.Drawing.Point(1131, 13)
+        Me.Fltomscode.Location = New System.Drawing.Point(72, 199)
         Me.Fltomscode.Name = "Fltomscode"
         Me.Fltomscode.Size = New System.Drawing.Size(66, 20)
         Me.Fltomscode.TabIndex = 24
@@ -341,7 +401,7 @@ Partial Class SearchStock
         'Fltcode
         '
         Me.Fltcode.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Fltcode.Location = New System.Drawing.Point(993, 13)
+        Me.Fltcode.Location = New System.Drawing.Point(72, 173)
         Me.Fltcode.Name = "Fltcode"
         Me.Fltcode.Size = New System.Drawing.Size(66, 20)
         Me.Fltcode.TabIndex = 22
@@ -349,7 +409,7 @@ Partial Class SearchStock
         'BTN_FilterReset
         '
         Me.BTN_FilterReset.Image = Global.Bon2017.My.Resources.Resources.reload
-        Me.BTN_FilterReset.Location = New System.Drawing.Point(0, 7)
+        Me.BTN_FilterReset.Location = New System.Drawing.Point(207, 12)
         Me.BTN_FilterReset.Name = "BTN_FilterReset"
         Me.BTN_FilterReset.Size = New System.Drawing.Size(35, 35)
         Me.BTN_FilterReset.TabIndex = 17
@@ -362,9 +422,9 @@ Partial Class SearchStock
         Me.GroupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.GroupBox1.Controls.Add(Me.DGREC)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 51)
+        Me.GroupBox1.Location = New System.Drawing.Point(257, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1410, 375)
+        Me.GroupBox1.Size = New System.Drawing.Size(1156, 423)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         '
@@ -383,23 +443,35 @@ Partial Class SearchStock
         Me.DGREC.ReadOnly = True
         Me.DGREC.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.DGREC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGREC.Size = New System.Drawing.Size(1404, 356)
+        Me.DGREC.Size = New System.Drawing.Size(1150, 404)
         Me.DGREC.TabIndex = 3
         Me.DGREC.TabStop = False
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NieuwToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NieuwToolStripMenuItem, Me.ToolStripSeparator1, Me.BewerkCodeToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(109, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(144, 54)
         '
         'NieuwToolStripMenuItem
         '
         Me.NieuwToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemadd
         Me.NieuwToolStripMenuItem.Name = "NieuwToolStripMenuItem"
-        Me.NieuwToolStripMenuItem.Size = New System.Drawing.Size(108, 22)
+        Me.NieuwToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
         Me.NieuwToolStripMenuItem.Text = "Nieuw"
         Me.NieuwToolStripMenuItem.ToolTipText = "Nieuwe blanco code"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(140, 6)
+        '
+        'BewerkCodeToolStripMenuItem
+        '
+        Me.BewerkCodeToolStripMenuItem.Image = Global.Bon2017.My.Resources.Resources.itemedit
+        Me.BewerkCodeToolStripMenuItem.Name = "BewerkCodeToolStripMenuItem"
+        Me.BewerkCodeToolStripMenuItem.Size = New System.Drawing.Size(143, 22)
+        Me.BewerkCodeToolStripMenuItem.Text = "Bewerk Code"
         '
         'SearchStock
         '
@@ -432,10 +504,17 @@ Partial Class SearchStock
     Friend WithEvents TSBexport As ToolStripButton
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents GrBFilters As GroupBox
-    Friend WithEvents BTN_FilterReset As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DGREC As DataGridView
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents NieuwToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GrBFilters As GroupBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Fltlev As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Fltplmagazijn As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Fltomsgroep As TextBox
     Friend WithEvents Label3 As Label
@@ -447,14 +526,14 @@ Partial Class SearchStock
     Friend WithEvents Label1 As Label
     Friend WithEvents Fltomscode As TextBox
     Friend WithEvents Fltcode As TextBox
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents NieuwToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Label9 As Label
-    Friend WithEvents Fltlev As TextBox
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Fltplmagazijn As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents FltCBbesteld As ComboBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents FltCBnotstock As ComboBox
+    Friend WithEvents BTN_FilterReset As Button
+    Friend WithEvents BewerkCodeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents CBminstockN As CheckBox
+    Friend WithEvents CBminstockJ As CheckBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents CBnotstockN As CheckBox
+    Friend WithEvents CBnotstockJ As CheckBox
+    Friend WithEvents CBbesteldN As CheckBox
+    Friend WithEvents CBbesteldJ As CheckBox
 End Class

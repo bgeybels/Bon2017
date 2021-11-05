@@ -14,19 +14,23 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Temp\bon2017_local\</PublishUrl>
-    <Install>false</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <PublishUrl>\\VBOXSVR\Temp\Bon2017\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>15</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <InstallUrl>\\VBOXSVR\Temp\Bon2017\</InstallUrl>
+    <ProductName>Bon2017</ProductName>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>31</ApplicationRevision>
+    <ApplicationVersion>1.6.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -74,7 +78,16 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>4.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -106,6 +119,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Archive_BON.Designer.vb">
+      <DependentUpon>Archive_BON.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Archive_BON.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BON.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -123,6 +142,24 @@
       <DependentUpon>ConnectDB.vb</DependentUpon>
     </Compile>
     <Compile Include="ConnectDB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAF.Designer.vb">
+      <DependentUpon>EditAF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditAF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAfr.Designer.vb">
+      <DependentUpon>EditAfr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditAfr.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAft.Designer.vb">
+      <DependentUpon>EditAft.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditAft.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditAOms.Designer.vb">
@@ -215,10 +252,52 @@
     <Compile Include="EditPER.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Editperl.Designer.vb">
+      <DependentUpon>Editperl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Editperl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPrest.Designer.vb">
+      <DependentUpon>EditPrest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditPrest.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPSector.Designer.vb">
+      <DependentUpon>EditPSector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditPSector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPType.Designer.vb">
+      <DependentUpon>EditPType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditPType.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditStock.Designer.vb">
       <DependentUpon>EditStock.vb</DependentUpon>
     </Compile>
     <Compile Include="EditStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUser.Designer.vb">
+      <DependentUpon>EditUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditVersie.Designer.vb">
+      <DependentUpon>EditVersie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditVersie.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditVERSIEG.Designer.vb">
+      <DependentUpon>EditVERSIEG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditVERSIEG.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GrpBONL.Designer.vb">
@@ -227,14 +306,11 @@
     <Compile Include="GrpBONL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Module_AFTH.vb" />
+    <Compile Include="Module_Archive.vb" />
     <Compile Include="Module_BON.vb" />
+    <Compile Include="Module_Export.vb" />
     <Compile Include="Module_Factuur.vb" />
-    <Compile Include="FrmBONE.Designer.vb">
-      <DependentUpon>FrmBONE.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FrmBONE.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="GetTime.Designer.vb">
       <DependentUpon>GetTime.vb</DependentUpon>
     </Compile>
@@ -255,16 +331,55 @@
     </Compile>
     <Compile Include="Module_dim.vb" />
     <Compile Include="Module_Display.vb" />
+    <Compile Include="Module_lock.vb" />
+    <Compile Include="Module_PREST.vb" />
+    <Compile Include="Module_STOCK.vb" />
     <Compile Include="Module_things.vb" />
+    <Compile Include="MoveCode.Designer.vb">
+      <DependentUpon>MoveCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MoveCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
+    <Compile Include="My Project\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Form2.Designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Progress.Designer.vb">
+      <DependentUpon>Progress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Progress.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\SearchPersStock.Designer.vb">
+      <DependentUpon>SearchPersStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\SearchPersStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\SearchPERStock.Designer.vb">
+      <DependentUpon>SearchPERStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\SearchPERStock.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -272,22 +387,46 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="PositionMsgbox.vb" />
+    <Compile Include="SearchAF.Designer.vb">
+      <DependentUpon>SearchAF.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchAF.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchAFR.Designer.vb">
+      <DependentUpon>SearchAFR.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchAFR.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchAFT.Designer.vb">
+      <DependentUpon>SearchAFT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchAFT.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SearchAOms.Designer.vb">
       <DependentUpon>SearchAOms.vb</DependentUpon>
     </Compile>
     <Compile Include="SearchAOms.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchBON.Designer.vb">
-      <DependentUpon>SearchBON.vb</DependentUpon>
+    <Compile Include="SearchBONL_all.Designer.vb">
+      <DependentUpon>SearchBONL_all.vb</DependentUpon>
     </Compile>
-    <Compile Include="SearchBON.vb">
+    <Compile Include="SearchBONL_all.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchBONL.Designer.vb">
-      <DependentUpon>SearchBONL.vb</DependentUpon>
+    <Compile Include="SearchBONL_NW.Designer.vb">
+      <DependentUpon>SearchBONL_NW.vb</DependentUpon>
     </Compile>
-    <Compile Include="SearchBONL.vb">
+    <Compile Include="SearchBONL_NW.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchBON_NW.Designer.vb">
+      <DependentUpon>SearchBON_NW.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchBON_NW.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SearchBTW.Designer.vb">
@@ -338,6 +477,12 @@
     <Compile Include="SearchFAKTL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SearchFeest.Designer.vb">
+      <DependentUpon>SearchFeest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchFeest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SearchKlant.Designer.vb">
       <DependentUpon>SearchKlant.vb</DependentUpon>
     </Compile>
@@ -368,6 +513,36 @@
     <Compile Include="SearchPER.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SearchPERL.Designer.vb">
+      <DependentUpon>SearchPERL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPERL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchPrestaties.Designer.vb">
+      <DependentUpon>SearchPrestaties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPrestaties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchPSector.Designer.vb">
+      <DependentUpon>SearchPSector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPSector.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchPStock.Designer.vb">
+      <DependentUpon>SearchPStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchPType.Designer.vb">
+      <DependentUpon>SearchPType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPType.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SearchStock.Designer.vb">
       <DependentUpon>SearchStock.vb</DependentUpon>
     </Compile>
@@ -380,6 +555,30 @@
     <Compile Include="SearchStockHist.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SearchStockPER.Designer.vb">
+      <DependentUpon>SearchStockPER.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchStockPER.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchUsers.Designer.vb">
+      <DependentUpon>SearchUsers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchUsers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchVersie.Designer.vb">
+      <DependentUpon>SearchVersie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchVersie.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchVersieG.Designer.vb">
+      <DependentUpon>SearchVersieG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SearchVersieG.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Settings.UserOverride.vb" />
     <Compile Include="StartSQL.Designer.vb">
       <DependentUpon>StartSQL.vb</DependentUpon>
@@ -389,6 +588,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Archive_BON.resx">
+      <DependentUpon>Archive_BON.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAF.resx">
+      <DependentUpon>EditAF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAfr.resx">
+      <DependentUpon>EditAfr.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAft.resx">
+      <DependentUpon>EditAft.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditAOms.resx">
       <DependentUpon>EditAOms.vb</DependentUpon>
     </EmbeddedResource>
@@ -434,11 +645,29 @@
     <EmbeddedResource Include="EditPER.resx">
       <DependentUpon>EditPER.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Editperl.resx">
+      <DependentUpon>Editperl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditPrest.resx">
+      <DependentUpon>EditPrest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditPSector.resx">
+      <DependentUpon>EditPSector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditPType.resx">
+      <DependentUpon>EditPType.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditStock.resx">
       <DependentUpon>EditStock.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmBONE.resx">
-      <DependentUpon>FrmBONE.vb</DependentUpon>
+    <EmbeddedResource Include="EditUser.resx">
+      <DependentUpon>EditUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditVersie.resx">
+      <DependentUpon>EditVersie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditVERSIEG.resx">
+      <DependentUpon>EditVERSIEG.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GetTime.resx">
       <DependentUpon>GetTime.vb</DependentUpon>
@@ -446,14 +675,38 @@
     <EmbeddedResource Include="GrpBONL.resx">
       <DependentUpon>GrpBONL.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MoveCode.resx">
+      <DependentUpon>MoveCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\SearchPersStock.resx">
+      <DependentUpon>SearchPersStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\SearchPERStock.resx">
+      <DependentUpon>SearchPERStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchAF.resx">
+      <DependentUpon>SearchAF.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchAFR.resx">
+      <DependentUpon>SearchAFR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchAFT.resx">
+      <DependentUpon>SearchAFT.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SearchAOms.resx">
       <DependentUpon>SearchAOms.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchBON.resx">
-      <DependentUpon>SearchBON.vb</DependentUpon>
+    <EmbeddedResource Include="SearchBONL_all.resx">
+      <DependentUpon>SearchBONL_all.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchBONL.resx">
-      <DependentUpon>SearchBONL.vb</DependentUpon>
+    <EmbeddedResource Include="SearchBONL_NW.resx">
+      <DependentUpon>SearchBONL_NW.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchBON_NW.resx">
+      <DependentUpon>SearchBON_NW.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchBTW.resx">
       <DependentUpon>SearchBTW.vb</DependentUpon>
@@ -479,6 +732,9 @@
     <EmbeddedResource Include="SearchFAKTL.resx">
       <DependentUpon>SearchFAKTL.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SearchFeest.resx">
+      <DependentUpon>SearchFeest.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SearchKlant.resx">
       <DependentUpon>SearchKlant.vb</DependentUpon>
     </EmbeddedResource>
@@ -494,11 +750,38 @@
     <EmbeddedResource Include="SearchPER.resx">
       <DependentUpon>SearchPER.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SearchPERL.resx">
+      <DependentUpon>SearchPERL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchPrestaties.resx">
+      <DependentUpon>SearchPrestaties.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchPSector.resx">
+      <DependentUpon>SearchPSector.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchPStock.resx">
+      <DependentUpon>SearchPStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchPType.resx">
+      <DependentUpon>SearchPType.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SearchStock.resx">
       <DependentUpon>SearchStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchStockHist.resx">
       <DependentUpon>SearchStockHist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchStockPER.resx">
+      <DependentUpon>SearchStockPER.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchUsers.resx">
+      <DependentUpon>SearchUsers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchVersie.resx">
+      <DependentUpon>SearchVersie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchVersieG.resx">
+      <DependentUpon>SearchVersieG.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StartSQL.resx">
       <DependentUpon>StartSQL.vb</DependentUpon>
@@ -517,9 +800,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <None Include="BONDataSet.xsc">
       <DependentUpon>BONDataSet.xsd</DependentUpon>
@@ -532,6 +815,7 @@
     <None Include="BONDataSet.xss">
       <DependentUpon>BONDataSet.xsd</DependentUpon>
     </None>
+    <None Include="My Project\app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -555,9 +839,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -915,6 +1196,61 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logojacky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VSTOEE100">
+      <Guid>{AAB9C2AA-6036-4AE1-A41C-A40AB7F39520}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VSWebSite100">
+      <Guid>{AE445664-2B39-4A6A-9A1B-88B9C2BF13FC}</Guid>
+      <VersionMajor>10</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="4.ico" />
+    <None Include="Resources\homered.png" />
+    <None Include="Resources\canvas_faktuurlijnen.png" />
+    <None Include="Resources\canvas_fakturen.png" />
+    <None Include="Resources\canvas_bonnen.png" />
+    <None Include="Resources\canvas_bonlijnen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

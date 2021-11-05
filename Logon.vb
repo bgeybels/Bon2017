@@ -14,24 +14,36 @@ Public Class Logon
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
         Check_Details()
+        vardvan = SysDate
+        vardtot = SysDate
     End Sub
 
     Private Sub Logon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim mac = getMacAddress()
         UsernameTextBox.Text = My.Settings.UserLogon
+        TotalsAllowed = False
+        If My.Settings.TotalsAllowed.Contains(mac) Then
+            TotalsAllowed = True
+        End If
         If mac = "08002789924F" Then
             UsernameTextBox.Text = "SYSTEM"
             PasswordTextBox.Text = "BGE"
         Else
             PasswordTextBox.Text = ""
         End If
+        CB_updatestock.Checked = 1
+        CB_updatestock.Visible = False
 
+        SetAllColors()
         SetInfo()
 
         Conn.ConnectionString = My.Settings.BONConnectionString
         If Conn.ConnectionString = "" Then
             ConnectDB.Show()
         End If
+
+        PasswordTextBox.Focus()
+        PasswordTextBox.Select()
 
     End Sub
 
@@ -73,8 +85,19 @@ Public Class Logon
         sysDBUsed = LBLinfo.Text
         LBLinfo.Text = "DataBase " & LBLinfo.Text
 
-        Me.Text = "Toegangscontrole: " & Application.ProductVersion & ":" & Application.ProductName & "  MAC:" & getMacAddress()
+        Me.Text = "Toegangscontrole: " & GetVersion() & " : " & Application.ProductName & "  MAC:" & getMacAddress()
+
     End Sub
+
+    Public Function GetVersion() As String
+        If (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed) Then
+            Dim ver As Version
+            ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion
+            Return String.Format("{0}.{1}.{2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision)
+        Else
+            Return "Not Published"
+        End If
+    End Function
 
     Private Sub Check_Details()
         Dim UName As String = UsernameTextBox.Text.ToString.Trim
@@ -83,26 +106,33 @@ Public Class Logon
         Dim sd As New BONDataContext
 
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
+        updatestock = CB_updatestock.Checked
         Try
-            Dim query = From login In sd.Logins
-                        Select login.pwd, login.naam, login.[new], login.del, login.upd, login.CurrentLogon
-                        Where naam = UName AndAlso pwd = PWord
+            Dim query = From login In sd.USERS
+                        Select login.UNRQ, login.UPWD, login.UNAAM, login.UNEW, login.UDEL, login.UUPD, login.USYSUSER,
+                                login.USTOCKUSER, login.GETFAKTNR, login.UPERSUSER, login.TOTALS, login.TOTALSSYS
+                        Where UNAAM = UName AndAlso UPWD = PWord
 
             If query.Count() = 1 Then
                 For Each user In query
-                    LoginNm = user.naam
-                    LoginDEL = user.del
-                    LoginNEW = user.[new]
-                    LoginUPD = user.upd
-                    LoginSysAdmin = False
-                    If user.currentlogon = "Y" Then loginsysadmin = True
+                    LoginNm = user.UNAAM
+                    LoginID = user.UNRQ
+                    LoginDEL = user.UDEL
+                    LoginNEW = user.UNEW
+                    LoginUPD = user.UUPD
+                    LoginSysAdmin = user.USYSUSER
+                    LoginStockAdmin = user.USTOCKUSER
+                    LoginPersAdmin = user.UPERSUSER
+                    LoginTotals = user.TOTALS
+                    LoginTotalsSys = user.TOTALSSYS
+                    GetFaktNr = user.GETFAKTNR
                 Next
                 'Sysdate mag je enkel aanpassen met alle permissies
                 SysDate = DTPsys.Value.ToString("dd/MM/yyyy")
                 If LoginDEL = False Or LoginNEW = False Or LoginUPD = False Then
                     If SysDate <> Today.ToString("dd/MM/yyyy") Then
                         PositionMsgbox.CenterMsgBox(Me)
-                        MsgBox("Aanpassen datum enkel toegelaten als je alle rechten hebt!")
+                        MsgBox("Aanpassen datum enkel toegelaten als je voldoende rechten hebt!")
                         'DTPsys.Value = DateTime.Now
                         SysDate = Today.ToString("dd/MM/yyyy")
                     End If
@@ -137,7 +167,4 @@ Public Class Logon
         SetInfo()
     End Sub
 
-    Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
-
-    End Sub
 End Class
