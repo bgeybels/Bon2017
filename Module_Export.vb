@@ -371,10 +371,12 @@ Module Module_Export
             Dim finfo As String = ""
             Dim sendinfo As String = ""
             finfo = ""
-            If dbbonr.fnr > 0 Then
-                finfo = " Factuur: " & dbbonr.fnr
-            ElseIf dbbonr.cnr > 0 Then
-                finfo = " Creditnota: " & dbbonr.cnr
+            If NaCalc = False Then
+                If dbbonr.fnr > 0 Then
+                    finfo = " Factuur: " & dbbonr.fnr
+                ElseIf dbbonr.cnr > 0 Then
+                    finfo = " Creditnota: " & dbbonr.cnr
+                End If
             End If
             sendinfo = ""
             If sendinfo <> "" Then sendinfo = "[" & sendinfo & "] "

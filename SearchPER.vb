@@ -79,7 +79,7 @@ Public Class SearchPER
             Select per.PERNRQ,
                 InDienst = per.DIENST,
                 Bediende = per.BEDIENDE,
-                Sortering = per.PERSORT,
+                Sortering = per.PERSORTLONG,
                 Naam = per.PERNM,
                 DT_InDienst = per.PERDTID,
                 DT_Contract = per.PERDTCT,

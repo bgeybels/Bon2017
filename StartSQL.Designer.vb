@@ -25,6 +25,7 @@ Partial Class StartSQL
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.SQLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateAFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdatePERSSorteringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -41,6 +42,7 @@ Partial Class StartSQL
         Me.Button2 = New System.Windows.Forms.Button()
         Me.BtnStart = New System.Windows.Forms.Button()
         Me.TBsql = New System.Windows.Forms.TextBox()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -58,7 +60,7 @@ Partial Class StartSQL
         '
         'SQLToolStripMenuItem
         '
-        Me.SQLToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateAFToolStripMenuItem})
+        Me.SQLToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdatePERSSorteringToolStripMenuItem, Me.ToolStripSeparator1, Me.UpdateAFToolStripMenuItem})
         Me.SQLToolStripMenuItem.Name = "SQLToolStripMenuItem"
         Me.SQLToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
         Me.SQLToolStripMenuItem.Text = "SQL"
@@ -66,8 +68,14 @@ Partial Class StartSQL
         'UpdateAFToolStripMenuItem
         '
         Me.UpdateAFToolStripMenuItem.Name = "UpdateAFToolStripMenuItem"
-        Me.UpdateAFToolStripMenuItem.Size = New System.Drawing.Size(129, 22)
+        Me.UpdateAFToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.UpdateAFToolStripMenuItem.Text = "Update AF"
+        '
+        'UpdatePERSSorteringToolStripMenuItem
+        '
+        Me.UpdatePERSSorteringToolStripMenuItem.Name = "UpdatePERSSorteringToolStripMenuItem"
+        Me.UpdatePERSSorteringToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.UpdatePERSSorteringToolStripMenuItem.Text = "Update PERS sortering"
         '
         'TableLayoutPanel1
         '
@@ -226,6 +234,11 @@ Partial Class StartSQL
         Me.TBsql.Size = New System.Drawing.Size(364, 186)
         Me.TBsql.TabIndex = 2
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(188, 6)
+        '
         'StartSQL
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -266,4 +279,6 @@ Partial Class StartSQL
     Friend WithEvents TBtyN As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents TBtyDEFAULT As TextBox
+    Friend WithEvents UpdatePERSSorteringToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
 End Class

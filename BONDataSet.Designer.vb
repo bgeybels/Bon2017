@@ -59,8 +59,6 @@ Partial Public Class BONDataSet
     
     Private tableParameter As ParameterDataTable
     
-    Private tablePER As PERDataTable
-    
     Private tablePost As PostDataTable
     
     Private tableReport As ReportDataTable
@@ -104,6 +102,8 @@ Partial Public Class BONDataSet
     Private tableUSERS As USERSDataTable
     
     Private tableAF As AFDataTable
+    
+    Private tablePER As PERDataTable
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -185,9 +185,6 @@ Partial Public Class BONDataSet
             If (Not (ds.Tables("Parameter")) Is Nothing) Then
                 MyBase.Tables.Add(New ParameterDataTable(ds.Tables("Parameter")))
             End If
-            If (Not (ds.Tables("PER")) Is Nothing) Then
-                MyBase.Tables.Add(New PERDataTable(ds.Tables("PER")))
-            End If
             If (Not (ds.Tables("Post")) Is Nothing) Then
                 MyBase.Tables.Add(New PostDataTable(ds.Tables("Post")))
             End If
@@ -253,6 +250,9 @@ Partial Public Class BONDataSet
             End If
             If (Not (ds.Tables("AF")) Is Nothing) Then
                 MyBase.Tables.Add(New AFDataTable(ds.Tables("AF")))
+            End If
+            If (Not (ds.Tables("PER")) Is Nothing) Then
+                MyBase.Tables.Add(New PERDataTable(ds.Tables("PER")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -438,16 +438,6 @@ Partial Public Class BONDataSet
     Public ReadOnly Property Parameter() As ParameterDataTable
         Get
             Return Me.tableParameter
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property PER() As PERDataTable
-        Get
-            Return Me.tablePER
         End Get
     End Property
     
@@ -673,6 +663,16 @@ Partial Public Class BONDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property PER() As PERDataTable
+        Get
+            Return Me.tablePER
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -789,9 +789,6 @@ Partial Public Class BONDataSet
             If (Not (ds.Tables("Parameter")) Is Nothing) Then
                 MyBase.Tables.Add(New ParameterDataTable(ds.Tables("Parameter")))
             End If
-            If (Not (ds.Tables("PER")) Is Nothing) Then
-                MyBase.Tables.Add(New PERDataTable(ds.Tables("PER")))
-            End If
             If (Not (ds.Tables("Post")) Is Nothing) Then
                 MyBase.Tables.Add(New PostDataTable(ds.Tables("Post")))
             End If
@@ -857,6 +854,9 @@ Partial Public Class BONDataSet
             End If
             If (Not (ds.Tables("AF")) Is Nothing) Then
                 MyBase.Tables.Add(New AFDataTable(ds.Tables("AF")))
+            End If
+            If (Not (ds.Tables("PER")) Is Nothing) Then
+                MyBase.Tables.Add(New PERDataTable(ds.Tables("PER")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -992,12 +992,6 @@ Partial Public Class BONDataSet
                 Me.tableParameter.InitVars
             End If
         End If
-        Me.tablePER = CType(MyBase.Tables("PER"),PERDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tablePER) Is Nothing) Then
-                Me.tablePER.InitVars
-            End If
-        End If
         Me.tablePost = CType(MyBase.Tables("Post"),PostDataTable)
         If (initTable = true) Then
             If (Not (Me.tablePost) Is Nothing) Then
@@ -1130,6 +1124,12 @@ Partial Public Class BONDataSet
                 Me.tableAF.InitVars
             End If
         End If
+        Me.tablePER = CType(MyBase.Tables("PER"),PERDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tablePER) Is Nothing) Then
+                Me.tablePER.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1174,8 +1174,6 @@ Partial Public Class BONDataSet
         MyBase.Tables.Add(Me.tableOAANM)
         Me.tableParameter = New ParameterDataTable()
         MyBase.Tables.Add(Me.tableParameter)
-        Me.tablePER = New PERDataTable()
-        MyBase.Tables.Add(Me.tablePER)
         Me.tablePost = New PostDataTable()
         MyBase.Tables.Add(Me.tablePost)
         Me.tableReport = New ReportDataTable()
@@ -1220,6 +1218,8 @@ Partial Public Class BONDataSet
         MyBase.Tables.Add(Me.tableUSERS)
         Me.tableAF = New AFDataTable()
         MyBase.Tables.Add(Me.tableAF)
+        Me.tablePER = New PERDataTable()
+        MyBase.Tables.Add(Me.tablePER)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1321,12 +1321,6 @@ Partial Public Class BONDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Function ShouldSerializeParameter() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Private Function ShouldSerializePER() As Boolean
         Return false
     End Function
     
@@ -1464,6 +1458,12 @@ Partial Public Class BONDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Private Function ShouldSerializePER() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Sub SchemaChanged(ByVal sender As Object, ByVal e As Global.System.ComponentModel.CollectionChangeEventArgs)
         If (e.Action = Global.System.ComponentModel.CollectionChangeAction.Remove) Then
             Me.InitVars
@@ -1572,9 +1572,6 @@ Partial Public Class BONDataSet
     Public Delegate Sub ParameterRowChangeEventHandler(ByVal sender As Object, ByVal e As ParameterRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Delegate Sub PERRowChangeEventHandler(ByVal sender As Object, ByVal e As PERRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Delegate Sub PostRowChangeEventHandler(ByVal sender As Object, ByVal e As PostRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -1639,6 +1636,9 @@ Partial Public Class BONDataSet
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Delegate Sub AFRowChangeEventHandler(ByVal sender As Object, ByVal e As AFRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Delegate Sub PERRowChangeEventHandler(ByVal sender As Object, ByVal e As PERRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -8735,403 +8735,6 @@ Partial Public Class BONDataSet
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "ParameterDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class PERDataTable
-        Inherits Global.System.Data.TypedTableBase(Of PERRow)
-        
-        Private columnPERNRQ As Global.System.Data.DataColumn
-        
-        Private columnPERNM As Global.System.Data.DataColumn
-        
-        Private columnPERTEL As Global.System.Data.DataColumn
-        
-        Private columnPERGSM As Global.System.Data.DataColumn
-        
-        Private columnPERGSMW As Global.System.Data.DataColumn
-        
-        Private columnusernrq As Global.System.Data.DataColumn
-        
-        Private columnchdate As Global.System.Data.DataColumn
-        
-        Private columntel As Global.System.Data.DataColumn
-        
-        Private columnPERSORT As Global.System.Data.DataColumn
-        
-        Private columnDIENST As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "PER"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property PERNRQColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPERNRQ
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property PERNMColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPERNM
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property PERTELColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPERTEL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property PERGSMColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPERGSM
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property PERGSMWColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPERGSMW
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property usernrqColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnusernrq
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property chdateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnchdate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property telColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columntel
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property PERSORTColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPERSORT
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property DIENSTColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnDIENST
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As PERRow
-            Get
-                Return CType(Me.Rows(index),PERRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event PERRowChanging As PERRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event PERRowChanged As PERRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event PERRowDeleting As PERRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Event PERRowDeleted As PERRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Sub AddPERRow(ByVal row As PERRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddPERRow(ByVal PERNM As String, ByVal PERTEL As String, ByVal PERGSM As String, ByVal PERGSMW As String, ByVal usernrq As String, ByVal chdate As Date, ByVal tel As Integer, ByVal PERSORT As String, ByVal DIENST As Boolean) As PERRow
-            Dim rowPERRow As PERRow = CType(Me.NewRow,PERRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, PERNM, PERTEL, PERGSM, PERGSMW, usernrq, chdate, tel, PERSORT, DIENST}
-            rowPERRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowPERRow)
-            Return rowPERRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function FindByPERNRQ(ByVal PERNRQ As Integer) As PERRow
-            Return CType(Me.Rows.Find(New Object() {PERNRQ}),PERRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As PERDataTable = CType(MyBase.Clone,PERDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New PERDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnPERNRQ = MyBase.Columns("PERNRQ")
-            Me.columnPERNM = MyBase.Columns("PERNM")
-            Me.columnPERTEL = MyBase.Columns("PERTEL")
-            Me.columnPERGSM = MyBase.Columns("PERGSM")
-            Me.columnPERGSMW = MyBase.Columns("PERGSMW")
-            Me.columnusernrq = MyBase.Columns("usernrq")
-            Me.columnchdate = MyBase.Columns("chdate")
-            Me.columntel = MyBase.Columns("tel")
-            Me.columnPERSORT = MyBase.Columns("PERSORT")
-            Me.columnDIENST = MyBase.Columns("DIENST")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnPERNRQ = New Global.System.Data.DataColumn("PERNRQ", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPERNRQ)
-            Me.columnPERNM = New Global.System.Data.DataColumn("PERNM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPERNM)
-            Me.columnPERTEL = New Global.System.Data.DataColumn("PERTEL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPERTEL)
-            Me.columnPERGSM = New Global.System.Data.DataColumn("PERGSM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPERGSM)
-            Me.columnPERGSMW = New Global.System.Data.DataColumn("PERGSMW", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPERGSMW)
-            Me.columnusernrq = New Global.System.Data.DataColumn("usernrq", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnusernrq)
-            Me.columnchdate = New Global.System.Data.DataColumn("chdate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnchdate)
-            Me.columntel = New Global.System.Data.DataColumn("tel", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntel)
-            Me.columnPERSORT = New Global.System.Data.DataColumn("PERSORT", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPERSORT)
-            Me.columnDIENST = New Global.System.Data.DataColumn("DIENST", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDIENST)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnPERNRQ}, true))
-            Me.columnPERNRQ.AutoIncrement = true
-            Me.columnPERNRQ.AutoIncrementSeed = -1
-            Me.columnPERNRQ.AutoIncrementStep = -1
-            Me.columnPERNRQ.AllowDBNull = false
-            Me.columnPERNRQ.ReadOnly = true
-            Me.columnPERNRQ.Unique = true
-            Me.columnPERNM.AllowDBNull = false
-            Me.columnPERNM.MaxLength = 100
-            Me.columnPERTEL.AllowDBNull = false
-            Me.columnPERTEL.MaxLength = 20
-            Me.columnPERGSM.AllowDBNull = false
-            Me.columnPERGSM.MaxLength = 20
-            Me.columnPERGSMW.AllowDBNull = false
-            Me.columnPERGSMW.MaxLength = 20
-            Me.columnusernrq.AllowDBNull = false
-            Me.columnusernrq.MaxLength = 10
-            Me.columnchdate.AllowDBNull = false
-            Me.columntel.AllowDBNull = false
-            Me.columnPERSORT.AllowDBNull = false
-            Me.columnPERSORT.MaxLength = 3
-            Me.columnDIENST.AllowDBNull = false
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function NewPERRow() As PERRow
-            Return CType(Me.NewRow,PERRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New PERRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(PERRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.PERRowChangedEvent) Is Nothing) Then
-                RaiseEvent PERRowChanged(Me, New PERRowChangeEvent(CType(e.Row,PERRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.PERRowChangingEvent) Is Nothing) Then
-                RaiseEvent PERRowChanging(Me, New PERRowChangeEvent(CType(e.Row,PERRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.PERRowDeletedEvent) Is Nothing) Then
-                RaiseEvent PERRowDeleted(Me, New PERRowChangeEvent(CType(e.Row,PERRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.PERRowDeletingEvent) Is Nothing) Then
-                RaiseEvent PERRowDeleting(Me, New PERRowChangeEvent(CType(e.Row,PERRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub RemovePERRow(ByVal row As PERRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As BONDataSet = New BONDataSet()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "PERDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -18044,6 +17647,485 @@ Partial Public Class BONDataSet
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class PERDataTable
+        Inherits Global.System.Data.TypedTableBase(Of PERRow)
+        
+        Private columnPERNRQ As Global.System.Data.DataColumn
+        
+        Private columnPERNM As Global.System.Data.DataColumn
+        
+        Private columnPERTEL As Global.System.Data.DataColumn
+        
+        Private columnPERGSM As Global.System.Data.DataColumn
+        
+        Private columnPERGSMW As Global.System.Data.DataColumn
+        
+        Private columnusernrq As Global.System.Data.DataColumn
+        
+        Private columnchdate As Global.System.Data.DataColumn
+        
+        Private columntel As Global.System.Data.DataColumn
+        
+        Private columnPERSORT As Global.System.Data.DataColumn
+        
+        Private columnDIENST As Global.System.Data.DataColumn
+        
+        Private columnPERICE As Global.System.Data.DataColumn
+        
+        Private columnPERDTID As Global.System.Data.DataColumn
+        
+        Private columnPERDTCT As Global.System.Data.DataColumn
+        
+        Private columnPERDTUD As Global.System.Data.DataColumn
+        
+        Private columnBEDIENDE As Global.System.Data.DataColumn
+        
+        Private columnPERSORTLONG As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "PER"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERNRQColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERNRQ
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERNMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERNM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERTELColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERTEL
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERGSMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERGSM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERGSMWColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERGSMW
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property usernrqColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnusernrq
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property chdateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnchdate
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property telColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntel
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERSORTColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERSORT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property DIENSTColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDIENST
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERICEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERICE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERDTIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERDTID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERDTCTColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERDTCT
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERDTUDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERDTUD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property BEDIENDEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBEDIENDE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PERSORTLONGColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPERSORTLONG
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As PERRow
+            Get
+                Return CType(Me.Rows(index),PERRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event PERRowChanging As PERRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event PERRowChanged As PERRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event PERRowDeleting As PERRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event PERRowDeleted As PERRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Sub AddPERRow(ByVal row As PERRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Function AddPERRow(ByVal PERNM As String, ByVal PERTEL As String, ByVal PERGSM As String, ByVal PERGSMW As String, ByVal usernrq As String, ByVal chdate As Date, ByVal tel As Integer, ByVal PERSORT As String, ByVal DIENST As Boolean, ByVal PERICE As String, ByVal PERDTID As Date, ByVal PERDTCT As Date, ByVal PERDTUD As Date, ByVal BEDIENDE As Boolean, ByVal PERSORTLONG As String) As PERRow
+            Dim rowPERRow As PERRow = CType(Me.NewRow,PERRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, PERNM, PERTEL, PERGSM, PERGSMW, usernrq, chdate, tel, PERSORT, DIENST, PERICE, PERDTID, PERDTCT, PERDTUD, BEDIENDE, PERSORTLONG}
+            rowPERRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowPERRow)
+            Return rowPERRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function FindByPERNRQ(ByVal PERNRQ As Integer) As PERRow
+            Return CType(Me.Rows.Find(New Object() {PERNRQ}),PERRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As PERDataTable = CType(MyBase.Clone,PERDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New PERDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnPERNRQ = MyBase.Columns("PERNRQ")
+            Me.columnPERNM = MyBase.Columns("PERNM")
+            Me.columnPERTEL = MyBase.Columns("PERTEL")
+            Me.columnPERGSM = MyBase.Columns("PERGSM")
+            Me.columnPERGSMW = MyBase.Columns("PERGSMW")
+            Me.columnusernrq = MyBase.Columns("usernrq")
+            Me.columnchdate = MyBase.Columns("chdate")
+            Me.columntel = MyBase.Columns("tel")
+            Me.columnPERSORT = MyBase.Columns("PERSORT")
+            Me.columnDIENST = MyBase.Columns("DIENST")
+            Me.columnPERICE = MyBase.Columns("PERICE")
+            Me.columnPERDTID = MyBase.Columns("PERDTID")
+            Me.columnPERDTCT = MyBase.Columns("PERDTCT")
+            Me.columnPERDTUD = MyBase.Columns("PERDTUD")
+            Me.columnBEDIENDE = MyBase.Columns("BEDIENDE")
+            Me.columnPERSORTLONG = MyBase.Columns("PERSORTLONG")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnPERNRQ = New Global.System.Data.DataColumn("PERNRQ", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERNRQ)
+            Me.columnPERNM = New Global.System.Data.DataColumn("PERNM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERNM)
+            Me.columnPERTEL = New Global.System.Data.DataColumn("PERTEL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERTEL)
+            Me.columnPERGSM = New Global.System.Data.DataColumn("PERGSM", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERGSM)
+            Me.columnPERGSMW = New Global.System.Data.DataColumn("PERGSMW", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERGSMW)
+            Me.columnusernrq = New Global.System.Data.DataColumn("usernrq", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnusernrq)
+            Me.columnchdate = New Global.System.Data.DataColumn("chdate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnchdate)
+            Me.columntel = New Global.System.Data.DataColumn("tel", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntel)
+            Me.columnPERSORT = New Global.System.Data.DataColumn("PERSORT", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERSORT)
+            Me.columnDIENST = New Global.System.Data.DataColumn("DIENST", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDIENST)
+            Me.columnPERICE = New Global.System.Data.DataColumn("PERICE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERICE)
+            Me.columnPERDTID = New Global.System.Data.DataColumn("PERDTID", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERDTID)
+            Me.columnPERDTCT = New Global.System.Data.DataColumn("PERDTCT", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERDTCT)
+            Me.columnPERDTUD = New Global.System.Data.DataColumn("PERDTUD", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERDTUD)
+            Me.columnBEDIENDE = New Global.System.Data.DataColumn("BEDIENDE", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBEDIENDE)
+            Me.columnPERSORTLONG = New Global.System.Data.DataColumn("PERSORTLONG", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPERSORTLONG)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnPERNRQ}, true))
+            Me.columnPERNRQ.AutoIncrement = true
+            Me.columnPERNRQ.AutoIncrementSeed = -1
+            Me.columnPERNRQ.AutoIncrementStep = -1
+            Me.columnPERNRQ.AllowDBNull = false
+            Me.columnPERNRQ.ReadOnly = true
+            Me.columnPERNRQ.Unique = true
+            Me.columnPERNM.AllowDBNull = false
+            Me.columnPERNM.MaxLength = 100
+            Me.columnPERTEL.AllowDBNull = false
+            Me.columnPERTEL.MaxLength = 20
+            Me.columnPERGSM.AllowDBNull = false
+            Me.columnPERGSM.MaxLength = 20
+            Me.columnPERGSMW.AllowDBNull = false
+            Me.columnPERGSMW.MaxLength = 20
+            Me.columnusernrq.AllowDBNull = false
+            Me.columnusernrq.MaxLength = 10
+            Me.columnchdate.AllowDBNull = false
+            Me.columntel.AllowDBNull = false
+            Me.columnPERSORT.AllowDBNull = false
+            Me.columnPERSORT.MaxLength = 3
+            Me.columnDIENST.AllowDBNull = false
+            Me.columnPERICE.MaxLength = 20
+            Me.columnBEDIENDE.AllowDBNull = false
+            Me.columnPERSORTLONG.AllowDBNull = false
+            Me.columnPERSORTLONG.MaxLength = 20
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function NewPERRow() As PERRow
+            Return CType(Me.NewRow,PERRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New PERRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(PERRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.PERRowChangedEvent) Is Nothing) Then
+                RaiseEvent PERRowChanged(Me, New PERRowChangeEvent(CType(e.Row,PERRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.PERRowChangingEvent) Is Nothing) Then
+                RaiseEvent PERRowChanging(Me, New PERRowChangeEvent(CType(e.Row,PERRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.PERRowDeletedEvent) Is Nothing) Then
+                RaiseEvent PERRowDeleted(Me, New PERRowChangeEvent(CType(e.Row,PERRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.PERRowDeletingEvent) Is Nothing) Then
+                RaiseEvent PERRowDeleting(Me, New PERRowChangeEvent(CType(e.Row,PERRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub RemovePERRow(ByVal row As PERRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As BONDataSet = New BONDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "PERDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class AOmsRow
@@ -21424,132 +21506,6 @@ Partial Public Class BONDataSet
         Public Sub SettbwNull()
             Me(Me.tableParameter.tbwColumn) = Global.System.Convert.DBNull
         End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class PERRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tablePER As PERDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tablePER = CType(Me.Table,PERDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property PERNRQ() As Integer
-            Get
-                Return CType(Me(Me.tablePER.PERNRQColumn),Integer)
-            End Get
-            Set
-                Me(Me.tablePER.PERNRQColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property PERNM() As String
-            Get
-                Return CType(Me(Me.tablePER.PERNMColumn),String)
-            End Get
-            Set
-                Me(Me.tablePER.PERNMColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property PERTEL() As String
-            Get
-                Return CType(Me(Me.tablePER.PERTELColumn),String)
-            End Get
-            Set
-                Me(Me.tablePER.PERTELColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property PERGSM() As String
-            Get
-                Return CType(Me(Me.tablePER.PERGSMColumn),String)
-            End Get
-            Set
-                Me(Me.tablePER.PERGSMColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property PERGSMW() As String
-            Get
-                Return CType(Me(Me.tablePER.PERGSMWColumn),String)
-            End Get
-            Set
-                Me(Me.tablePER.PERGSMWColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property usernrq() As String
-            Get
-                Return CType(Me(Me.tablePER.usernrqColumn),String)
-            End Get
-            Set
-                Me(Me.tablePER.usernrqColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property chdate() As Date
-            Get
-                Return CType(Me(Me.tablePER.chdateColumn),Date)
-            End Get
-            Set
-                Me(Me.tablePER.chdateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property tel() As Integer
-            Get
-                Return CType(Me(Me.tablePER.telColumn),Integer)
-            End Get
-            Set
-                Me(Me.tablePER.telColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property PERSORT() As String
-            Get
-                Return CType(Me(Me.tablePER.PERSORTColumn),String)
-            End Get
-            Set
-                Me(Me.tablePER.PERSORTColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property DIENST() As Boolean
-            Get
-                Return CType(Me(Me.tablePER.DIENSTColumn),Boolean)
-            End Get
-            Set
-                Me(Me.tablePER.DIENSTColumn) = value
-            End Set
-        End Property
     End Class
     
     '''<summary>
@@ -25294,6 +25250,262 @@ Partial Public Class BONDataSet
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class PERRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablePER As PERDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablePER = CType(Me.Table,PERDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERNRQ() As Integer
+            Get
+                Return CType(Me(Me.tablePER.PERNRQColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablePER.PERNRQColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERNM() As String
+            Get
+                Return CType(Me(Me.tablePER.PERNMColumn),String)
+            End Get
+            Set
+                Me(Me.tablePER.PERNMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERTEL() As String
+            Get
+                Return CType(Me(Me.tablePER.PERTELColumn),String)
+            End Get
+            Set
+                Me(Me.tablePER.PERTELColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERGSM() As String
+            Get
+                Return CType(Me(Me.tablePER.PERGSMColumn),String)
+            End Get
+            Set
+                Me(Me.tablePER.PERGSMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERGSMW() As String
+            Get
+                Return CType(Me(Me.tablePER.PERGSMWColumn),String)
+            End Get
+            Set
+                Me(Me.tablePER.PERGSMWColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property usernrq() As String
+            Get
+                Return CType(Me(Me.tablePER.usernrqColumn),String)
+            End Get
+            Set
+                Me(Me.tablePER.usernrqColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property chdate() As Date
+            Get
+                Return CType(Me(Me.tablePER.chdateColumn),Date)
+            End Get
+            Set
+                Me(Me.tablePER.chdateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property tel() As Integer
+            Get
+                Return CType(Me(Me.tablePER.telColumn),Integer)
+            End Get
+            Set
+                Me(Me.tablePER.telColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERSORT() As String
+            Get
+                Return CType(Me(Me.tablePER.PERSORTColumn),String)
+            End Get
+            Set
+                Me(Me.tablePER.PERSORTColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property DIENST() As Boolean
+            Get
+                Return CType(Me(Me.tablePER.DIENSTColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablePER.DIENSTColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERICE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablePER.PERICEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PERICE' in table 'PER' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePER.PERICEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERDTID() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablePER.PERDTIDColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PERDTID' in table 'PER' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePER.PERDTIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERDTCT() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablePER.PERDTCTColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PERDTCT' in table 'PER' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePER.PERDTCTColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERDTUD() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablePER.PERDTUDColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PERDTUD' in table 'PER' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePER.PERDTUDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property BEDIENDE() As Boolean
+            Get
+                Return CType(Me(Me.tablePER.BEDIENDEColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablePER.BEDIENDEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PERSORTLONG() As String
+            Get
+                Return CType(Me(Me.tablePER.PERSORTLONGColumn),String)
+            End Get
+            Set
+                Me(Me.tablePER.PERSORTLONGColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPERICENull() As Boolean
+            Return Me.IsNull(Me.tablePER.PERICEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPERICENull()
+            Me(Me.tablePER.PERICEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPERDTIDNull() As Boolean
+            Return Me.IsNull(Me.tablePER.PERDTIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPERDTIDNull()
+            Me(Me.tablePER.PERDTIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPERDTCTNull() As Boolean
+            Return Me.IsNull(Me.tablePER.PERDTCTColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPERDTCTNull()
+            Me(Me.tablePER.PERDTCTColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPERDTUDNull() As Boolean
+            Return Me.IsNull(Me.tablePER.PERDTUDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPERDTUDNull()
+            Me(Me.tablePER.PERDTUDColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -25891,42 +26103,6 @@ Partial Public Class BONDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property Row() As ParameterRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-    Public Class PERRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As PERRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New(ByVal row As PERRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property Row() As PERRow
             Get
                 Return Me.eventRow
             End Get
@@ -26719,6 +26895,42 @@ Partial Public Class BONDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property Row() As AFRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Class PERRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As PERRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New(ByVal row As PERRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Row() As PERRow
             Get
                 Return Me.eventRow
             End Get
@@ -36424,526 +36636,6 @@ Namespace BONDataSetTableAdapters
                     ByVal Original_geenfnr As Global.System.Nullable(Of Short),  _
                     ByVal Original_tbw As Global.System.Nullable(Of Integer)) As Integer
             Return Me.Update(Dok_Pad, Valuta_Symbool, Sortering_Cod, Sortering_Bon, Tonen_BTW, Excell_IM_Print, DrAantal0, DrAantal, StDocLoc, StDocLoc2, StDocLoc3, StDocLoc4, veld1, veld2, veld3, veld4, veld5, veld6, defprint, defprinto, offft1, offft2, offft3, offft1check, offft3check, offft4check, offft4, usernrq, chdate, dies, geenfnr, tbw, Original_nrq, Original_Dok_Pad, Original_Valuta_Symbool, Original_Sortering_Cod, Original_Sortering_Bon, Original_Tonen_BTW, Original_Excell_IM_Print, Original_DrAantal0, Original_DrAantal, Original_StDocLoc, Original_StDocLoc2, Original_StDocLoc3, Original_StDocLoc4, Original_veld1, Original_veld2, Original_veld3, Original_veld4, Original_veld5, Original_veld6, Original_defprint, Original_defprinto, Original_offft1check, Original_offft3check, Original_offft4check, Original_usernrq, Original_chdate, Original_dies, Original_geenfnr, Original_tbw, Original_nrq)
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class PERTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
-        
-        Private _connection As Global.System.Data.SqlClient.SqlConnection
-        
-        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
-        
-        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "PER"
-            tableMapping.ColumnMappings.Add("PERNRQ", "PERNRQ")
-            tableMapping.ColumnMappings.Add("PERNM", "PERNM")
-            tableMapping.ColumnMappings.Add("PERTEL", "PERTEL")
-            tableMapping.ColumnMappings.Add("PERGSM", "PERGSM")
-            tableMapping.ColumnMappings.Add("PERGSMW", "PERGSMW")
-            tableMapping.ColumnMappings.Add("usernrq", "usernrq")
-            tableMapping.ColumnMappings.Add("chdate", "chdate")
-            tableMapping.ColumnMappings.Add("tel", "tel")
-            tableMapping.ColumnMappings.Add("PERSORT", "PERSORT")
-            tableMapping.ColumnMappings.Add("DIENST", "DIENST")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[PER] WHERE (([PERNRQ] = @Original_PERNRQ) AND ([PERNM] = @Orig"& _ 
-                "inal_PERNM) AND ([PERTEL] = @Original_PERTEL) AND ([PERGSM] = @Original_PERGSM) "& _ 
-                "AND ([PERGSMW] = @Original_PERGSMW) AND ([usernrq] = @Original_usernrq) AND ([ch"& _ 
-                "date] = @Original_chdate) AND ([tel] = @Original_tel) AND ([PERSORT] = @Original"& _ 
-                "_PERSORT) AND ([DIENST] = @Original_DIENST))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERNRQ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNRQ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERNM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERTEL", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERTEL", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERGSM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERGSMW", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSMW", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_usernrq", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "usernrq", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_chdate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "chdate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_tel", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "tel", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERSORT", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORT", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DIENST", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIENST", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PER] ([PERNM], [PERTEL], [PERGSM], [PERGSMW], [usernrq], [chda"& _ 
-                "te], [tel], [PERSORT], [DIENST]) VALUES (@PERNM, @PERTEL, @PERGSM, @PERGSMW, @us"& _ 
-                "ernrq, @chdate, @tel, @PERSORT, @DIENST);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT PERNRQ, PERNM, PERTEL, PERGSM,"& _ 
-                " PERGSMW, usernrq, chdate, tel, PERSORT, DIENST FROM PER WHERE (PERNRQ = SCOPE_I"& _ 
-                "DENTITY())"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERNM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERTEL", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERTEL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERGSM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERGSMW", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSMW", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@usernrq", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "usernrq", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@chdate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "chdate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@tel", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "tel", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERSORT", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIENST", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIENST", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[PER] SET [PERNM] = @PERNM, [PERTEL] = @PERTEL, [PERGSM] = @PERGSM, "& _ 
-                "[PERGSMW] = @PERGSMW, [usernrq] = @usernrq, [chdate] = @chdate, [tel] = @tel, [P"& _ 
-                "ERSORT] = @PERSORT, [DIENST] = @DIENST WHERE (([PERNRQ] = @Original_PERNRQ) AND "& _ 
-                "([PERNM] = @Original_PERNM) AND ([PERTEL] = @Original_PERTEL) AND ([PERGSM] = @O"& _ 
-                "riginal_PERGSM) AND ([PERGSMW] = @Original_PERGSMW) AND ([usernrq] = @Original_u"& _ 
-                "sernrq) AND ([chdate] = @Original_chdate) AND ([tel] = @Original_tel) AND ([PERS"& _ 
-                "ORT] = @Original_PERSORT) AND ([DIENST] = @Original_DIENST));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT PERNRQ, PE"& _ 
-                "RNM, PERTEL, PERGSM, PERGSMW, usernrq, chdate, tel, PERSORT, DIENST FROM PER WHE"& _ 
-                "RE (PERNRQ = @PERNRQ)"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERNM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERTEL", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERTEL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERGSM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERGSMW", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSMW", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@usernrq", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "usernrq", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@chdate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "chdate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@tel", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "tel", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERSORT", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIENST", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIENST", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERNRQ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNRQ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERNM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERTEL", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERTEL", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERGSM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERGSMW", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSMW", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_usernrq", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "usernrq", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_chdate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "chdate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_tel", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "tel", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERSORT", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORT", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DIENST", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIENST", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERNRQ", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNRQ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.Bon2017.My.MySettings.Default.BONConnectionString
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT PERNRQ, PERNM, PERTEL, PERGSM, PERGSMW, usernrq, chdate, tel, PERSORT, DIE"& _ 
-                "NST FROM dbo.PER"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As BONDataSet.PERDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As BONDataSet.PERDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As BONDataSet.PERDataTable = New BONDataSet.PERDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As BONDataSet.PERDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As BONDataSet) As Integer
-            Return Me.Adapter.Update(dataSet, "PER")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_PERNRQ As Integer, ByVal Original_PERNM As String, ByVal Original_PERTEL As String, ByVal Original_PERGSM As String, ByVal Original_PERGSMW As String, ByVal Original_usernrq As String, ByVal Original_chdate As Date, ByVal Original_tel As Integer, ByVal Original_PERSORT As String, ByVal Original_DIENST As Boolean) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_PERNRQ,Integer)
-            If (Original_PERNM Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERNM")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_PERNM,String)
-            End If
-            If (Original_PERTEL Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERTEL")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_PERTEL,String)
-            End If
-            If (Original_PERGSM Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERGSM")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_PERGSM,String)
-            End If
-            If (Original_PERGSMW Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERGSMW")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_PERGSMW,String)
-            End If
-            If (Original_usernrq Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_usernrq")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_usernrq,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_chdate,Date)
-            Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_tel,Integer)
-            If (Original_PERSORT Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERSORT")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_PERSORT,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_DIENST,Boolean)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal PERNM As String, ByVal PERTEL As String, ByVal PERGSM As String, ByVal PERGSMW As String, ByVal usernrq As String, ByVal chdate As Date, ByVal tel As Integer, ByVal PERSORT As String, ByVal DIENST As Boolean) As Integer
-            If (PERNM Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERNM")
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(PERNM,String)
-            End If
-            If (PERTEL Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERTEL")
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(PERTEL,String)
-            End If
-            If (PERGSM Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERGSM")
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(PERGSM,String)
-            End If
-            If (PERGSMW Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERGSMW")
-            Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(PERGSMW,String)
-            End If
-            If (usernrq Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("usernrq")
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(usernrq,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(chdate,Date)
-            Me.Adapter.InsertCommand.Parameters(6).Value = CType(tel,Integer)
-            If (PERSORT Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERSORT")
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(PERSORT,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(8).Value = CType(DIENST,Boolean)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal PERNM As String,  _
-                    ByVal PERTEL As String,  _
-                    ByVal PERGSM As String,  _
-                    ByVal PERGSMW As String,  _
-                    ByVal usernrq As String,  _
-                    ByVal chdate As Date,  _
-                    ByVal tel As Integer,  _
-                    ByVal PERSORT As String,  _
-                    ByVal DIENST As Boolean,  _
-                    ByVal Original_PERNRQ As Integer,  _
-                    ByVal Original_PERNM As String,  _
-                    ByVal Original_PERTEL As String,  _
-                    ByVal Original_PERGSM As String,  _
-                    ByVal Original_PERGSMW As String,  _
-                    ByVal Original_usernrq As String,  _
-                    ByVal Original_chdate As Date,  _
-                    ByVal Original_tel As Integer,  _
-                    ByVal Original_PERSORT As String,  _
-                    ByVal Original_DIENST As Boolean,  _
-                    ByVal PERNRQ As Integer) As Integer
-            If (PERNM Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERNM")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(PERNM,String)
-            End If
-            If (PERTEL Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERTEL")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(PERTEL,String)
-            End If
-            If (PERGSM Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERGSM")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(PERGSM,String)
-            End If
-            If (PERGSMW Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERGSMW")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(PERGSMW,String)
-            End If
-            If (usernrq Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("usernrq")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(usernrq,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(chdate,Date)
-            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(tel,Integer)
-            If (PERSORT Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("PERSORT")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PERSORT,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(DIENST,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_PERNRQ,Integer)
-            If (Original_PERNM Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERNM")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_PERNM,String)
-            End If
-            If (Original_PERTEL Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERTEL")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(Original_PERTEL,String)
-            End If
-            If (Original_PERGSM Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERGSM")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_PERGSM,String)
-            End If
-            If (Original_PERGSMW Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERGSMW")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_PERGSMW,String)
-            End If
-            If (Original_usernrq Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_usernrq")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_usernrq,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_chdate,Date)
-            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_tel,Integer)
-            If (Original_PERSORT Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_PERSORT")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_PERSORT,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_DIENST,Boolean)
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(PERNRQ,Integer)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal PERNM As String,  _
-                    ByVal PERTEL As String,  _
-                    ByVal PERGSM As String,  _
-                    ByVal PERGSMW As String,  _
-                    ByVal usernrq As String,  _
-                    ByVal chdate As Date,  _
-                    ByVal tel As Integer,  _
-                    ByVal PERSORT As String,  _
-                    ByVal DIENST As Boolean,  _
-                    ByVal Original_PERNRQ As Integer,  _
-                    ByVal Original_PERNM As String,  _
-                    ByVal Original_PERTEL As String,  _
-                    ByVal Original_PERGSM As String,  _
-                    ByVal Original_PERGSMW As String,  _
-                    ByVal Original_usernrq As String,  _
-                    ByVal Original_chdate As Date,  _
-                    ByVal Original_tel As Integer,  _
-                    ByVal Original_PERSORT As String,  _
-                    ByVal Original_DIENST As Boolean) As Integer
-            Return Me.Update(PERNM, PERTEL, PERGSM, PERGSMW, usernrq, chdate, tel, PERSORT, DIENST, Original_PERNRQ, Original_PERNM, Original_PERTEL, Original_PERGSM, Original_PERGSMW, Original_usernrq, Original_chdate, Original_tel, Original_PERSORT, Original_DIENST, Original_PERNRQ)
         End Function
     End Class
     
@@ -48434,6 +48126,738 @@ Namespace BONDataSetTableAdapters
     End Class
     
     '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class PERTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "PER"
+            tableMapping.ColumnMappings.Add("PERNRQ", "PERNRQ")
+            tableMapping.ColumnMappings.Add("PERNM", "PERNM")
+            tableMapping.ColumnMappings.Add("PERTEL", "PERTEL")
+            tableMapping.ColumnMappings.Add("PERGSM", "PERGSM")
+            tableMapping.ColumnMappings.Add("PERGSMW", "PERGSMW")
+            tableMapping.ColumnMappings.Add("usernrq", "usernrq")
+            tableMapping.ColumnMappings.Add("chdate", "chdate")
+            tableMapping.ColumnMappings.Add("tel", "tel")
+            tableMapping.ColumnMappings.Add("PERSORT", "PERSORT")
+            tableMapping.ColumnMappings.Add("DIENST", "DIENST")
+            tableMapping.ColumnMappings.Add("PERICE", "PERICE")
+            tableMapping.ColumnMappings.Add("PERDTID", "PERDTID")
+            tableMapping.ColumnMappings.Add("PERDTCT", "PERDTCT")
+            tableMapping.ColumnMappings.Add("PERDTUD", "PERDTUD")
+            tableMapping.ColumnMappings.Add("BEDIENDE", "BEDIENDE")
+            tableMapping.ColumnMappings.Add("PERSORTLONG", "PERSORTLONG")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[PER] WHERE (([PERNRQ] = @Original_PERNRQ) AND ([PERNM] = @Orig"& _ 
+                "inal_PERNM) AND ([PERTEL] = @Original_PERTEL) AND ([PERGSM] = @Original_PERGSM) "& _ 
+                "AND ([PERGSMW] = @Original_PERGSMW) AND ([usernrq] = @Original_usernrq) AND ([ch"& _ 
+                "date] = @Original_chdate) AND ([tel] = @Original_tel) AND ([PERSORT] = @Original"& _ 
+                "_PERSORT) AND ([DIENST] = @Original_DIENST) AND ((@IsNull_PERICE = 1 AND [PERICE"& _ 
+                "] IS NULL) OR ([PERICE] = @Original_PERICE)) AND ((@IsNull_PERDTID = 1 AND [PERD"& _ 
+                "TID] IS NULL) OR ([PERDTID] = @Original_PERDTID)) AND ((@IsNull_PERDTCT = 1 AND "& _ 
+                "[PERDTCT] IS NULL) OR ([PERDTCT] = @Original_PERDTCT)) AND ((@IsNull_PERDTUD = 1"& _ 
+                " AND [PERDTUD] IS NULL) OR ([PERDTUD] = @Original_PERDTUD)) AND ([BEDIENDE] = @O"& _ 
+                "riginal_BEDIENDE) AND ([PERSORTLONG] = @Original_PERSORTLONG))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERNRQ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNRQ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERNM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERTEL", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERTEL", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERGSM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERGSMW", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSMW", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_usernrq", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "usernrq", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_chdate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "chdate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_tel", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "tel", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERSORT", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORT", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DIENST", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIENST", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PERICE", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERICE", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERICE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERICE", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PERDTID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERDTID", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PERDTCT", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTCT", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERDTCT", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTCT", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PERDTUD", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTUD", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERDTUD", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTUD", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BEDIENDE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BEDIENDE", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERSORTLONG", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORTLONG", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PER] ([PERNM], [PERTEL], [PERGSM], [PERGSMW], [usernrq], [chda"& _ 
+                "te], [tel], [PERSORT], [DIENST], [PERICE], [PERDTID], [PERDTCT], [PERDTUD], [BED"& _ 
+                "IENDE], [PERSORTLONG]) VALUES (@PERNM, @PERTEL, @PERGSM, @PERGSMW, @usernrq, @ch"& _ 
+                "date, @tel, @PERSORT, @DIENST, @PERICE, @PERDTID, @PERDTCT, @PERDTUD, @BEDIENDE,"& _ 
+                " @PERSORTLONG);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT PERNRQ, PERNM, PERTEL, PERGSM, PERGSMW, usernrq, chdate,"& _ 
+                " tel, PERSORT, DIENST, PERICE, PERDTID, PERDTCT, PERDTUD, BEDIENDE, PERSORTLONG "& _ 
+                "FROM PER WHERE (PERNRQ = SCOPE_IDENTITY())"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERNM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERTEL", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERTEL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERGSM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERGSMW", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSMW", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@usernrq", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "usernrq", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@chdate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "chdate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@tel", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "tel", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERSORT", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIENST", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIENST", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERICE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERICE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERDTID", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERDTCT", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTCT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERDTUD", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTUD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BEDIENDE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BEDIENDE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERSORTLONG", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORTLONG", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[PER] SET [PERNM] = @PERNM, [PERTEL] = @PERTEL, [PERGSM] = @PERGSM, "& _ 
+                "[PERGSMW] = @PERGSMW, [usernrq] = @usernrq, [chdate] = @chdate, [tel] = @tel, [P"& _ 
+                "ERSORT] = @PERSORT, [DIENST] = @DIENST, [PERICE] = @PERICE, [PERDTID] = @PERDTID"& _ 
+                ", [PERDTCT] = @PERDTCT, [PERDTUD] = @PERDTUD, [BEDIENDE] = @BEDIENDE, [PERSORTLO"& _ 
+                "NG] = @PERSORTLONG WHERE (([PERNRQ] = @Original_PERNRQ) AND ([PERNM] = @Original"& _ 
+                "_PERNM) AND ([PERTEL] = @Original_PERTEL) AND ([PERGSM] = @Original_PERGSM) AND "& _ 
+                "([PERGSMW] = @Original_PERGSMW) AND ([usernrq] = @Original_usernrq) AND ([chdate"& _ 
+                "] = @Original_chdate) AND ([tel] = @Original_tel) AND ([PERSORT] = @Original_PER"& _ 
+                "SORT) AND ([DIENST] = @Original_DIENST) AND ((@IsNull_PERICE = 1 AND [PERICE] IS"& _ 
+                " NULL) OR ([PERICE] = @Original_PERICE)) AND ((@IsNull_PERDTID = 1 AND [PERDTID]"& _ 
+                " IS NULL) OR ([PERDTID] = @Original_PERDTID)) AND ((@IsNull_PERDTCT = 1 AND [PER"& _ 
+                "DTCT] IS NULL) OR ([PERDTCT] = @Original_PERDTCT)) AND ((@IsNull_PERDTUD = 1 AND"& _ 
+                " [PERDTUD] IS NULL) OR ([PERDTUD] = @Original_PERDTUD)) AND ([BEDIENDE] = @Origi"& _ 
+                "nal_BEDIENDE) AND ([PERSORTLONG] = @Original_PERSORTLONG));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT PERNRQ, PERN"& _ 
+                "M, PERTEL, PERGSM, PERGSMW, usernrq, chdate, tel, PERSORT, DIENST, PERICE, PERDT"& _ 
+                "ID, PERDTCT, PERDTUD, BEDIENDE, PERSORTLONG FROM PER WHERE (PERNRQ = @PERNRQ)"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERNM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERTEL", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERTEL", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERGSM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSM", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERGSMW", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSMW", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@usernrq", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "usernrq", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@chdate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "chdate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@tel", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "tel", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERSORT", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DIENST", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIENST", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERICE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERICE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERDTID", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERDTCT", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTCT", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERDTUD", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTUD", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@BEDIENDE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BEDIENDE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERSORTLONG", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORTLONG", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERNRQ", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNRQ", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERNM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERTEL", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERTEL", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERGSM", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSM", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERGSMW", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERGSMW", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_usernrq", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "usernrq", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_chdate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "chdate", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_tel", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "tel", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERSORT", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORT", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_DIENST", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "DIENST", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PERICE", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERICE", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERICE", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERICE", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PERDTID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTID", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERDTID", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PERDTCT", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTCT", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERDTCT", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTCT", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_PERDTUD", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTUD", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERDTUD", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERDTUD", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_BEDIENDE", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "BEDIENDE", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_PERSORTLONG", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "PERSORTLONG", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@PERNRQ", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "PERNRQ", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.Bon2017.My.MySettings.Default.BONConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT PERNRQ, PERNM, PERTEL, PERGSM, PERGSMW, usernrq, chdate, tel, PERSORT, DIE"& _ 
+                "NST, PERICE, PERDTID, PERDTCT, PERDTUD, BEDIENDE, PERSORTLONG FROM dbo.PER"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As BONDataSet.PERDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As BONDataSet.PERDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As BONDataSet.PERDataTable = New BONDataSet.PERDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As BONDataSet.PERDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As BONDataSet) As Integer
+            Return Me.Adapter.Update(dataSet, "PER")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete( _
+                    ByVal Original_PERNRQ As Integer,  _
+                    ByVal Original_PERNM As String,  _
+                    ByVal Original_PERTEL As String,  _
+                    ByVal Original_PERGSM As String,  _
+                    ByVal Original_PERGSMW As String,  _
+                    ByVal Original_usernrq As String,  _
+                    ByVal Original_chdate As Date,  _
+                    ByVal Original_tel As Integer,  _
+                    ByVal Original_PERSORT As String,  _
+                    ByVal Original_DIENST As Boolean,  _
+                    ByVal Original_PERICE As String,  _
+                    ByVal Original_PERDTID As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PERDTCT As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PERDTUD As Global.System.Nullable(Of Date),  _
+                    ByVal Original_BEDIENDE As Boolean,  _
+                    ByVal Original_PERSORTLONG As String) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_PERNRQ,Integer)
+            If (Original_PERNM Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERNM")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_PERNM,String)
+            End If
+            If (Original_PERTEL Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERTEL")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_PERTEL,String)
+            End If
+            If (Original_PERGSM Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERGSM")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_PERGSM,String)
+            End If
+            If (Original_PERGSMW Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERGSMW")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_PERGSMW,String)
+            End If
+            If (Original_usernrq Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_usernrq")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_usernrq,String)
+            End If
+            Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_chdate,Date)
+            Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_tel,Integer)
+            If (Original_PERSORT Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERSORT")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_PERSORT,String)
+            End If
+            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_DIENST,Boolean)
+            If (Original_PERICE Is Nothing) Then
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_PERICE,String)
+            End If
+            If (Original_PERDTID.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_PERDTID.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PERDTCT.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_PERDTCT.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PERDTUD.HasValue = true) Then
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_PERDTUD.Value,Date)
+            Else
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_BEDIENDE,Boolean)
+            If (Original_PERSORTLONG Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERSORTLONG")
+            Else
+                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_PERSORTLONG,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert(ByVal PERNM As String, ByVal PERTEL As String, ByVal PERGSM As String, ByVal PERGSMW As String, ByVal usernrq As String, ByVal chdate As Date, ByVal tel As Integer, ByVal PERSORT As String, ByVal DIENST As Boolean, ByVal PERICE As String, ByVal PERDTID As Global.System.Nullable(Of Date), ByVal PERDTCT As Global.System.Nullable(Of Date), ByVal PERDTUD As Global.System.Nullable(Of Date), ByVal BEDIENDE As Boolean, ByVal PERSORTLONG As String) As Integer
+            If (PERNM Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERNM")
+            Else
+                Me.Adapter.InsertCommand.Parameters(0).Value = CType(PERNM,String)
+            End If
+            If (PERTEL Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERTEL")
+            Else
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(PERTEL,String)
+            End If
+            If (PERGSM Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERGSM")
+            Else
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(PERGSM,String)
+            End If
+            If (PERGSMW Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERGSMW")
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(PERGSMW,String)
+            End If
+            If (usernrq Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("usernrq")
+            Else
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(usernrq,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(chdate,Date)
+            Me.Adapter.InsertCommand.Parameters(6).Value = CType(tel,Integer)
+            If (PERSORT Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERSORT")
+            Else
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(PERSORT,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(8).Value = CType(DIENST,Boolean)
+            If (PERICE Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(PERICE,String)
+            End If
+            If (PERDTID.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(PERDTID.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (PERDTCT.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(PERDTCT.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (PERDTUD.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(12).Value = CType(PERDTUD.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.InsertCommand.Parameters(13).Value = CType(BEDIENDE,Boolean)
+            If (PERSORTLONG Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERSORTLONG")
+            Else
+                Me.Adapter.InsertCommand.Parameters(14).Value = CType(PERSORTLONG,String)
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal PERNM As String,  _
+                    ByVal PERTEL As String,  _
+                    ByVal PERGSM As String,  _
+                    ByVal PERGSMW As String,  _
+                    ByVal usernrq As String,  _
+                    ByVal chdate As Date,  _
+                    ByVal tel As Integer,  _
+                    ByVal PERSORT As String,  _
+                    ByVal DIENST As Boolean,  _
+                    ByVal PERICE As String,  _
+                    ByVal PERDTID As Global.System.Nullable(Of Date),  _
+                    ByVal PERDTCT As Global.System.Nullable(Of Date),  _
+                    ByVal PERDTUD As Global.System.Nullable(Of Date),  _
+                    ByVal BEDIENDE As Boolean,  _
+                    ByVal PERSORTLONG As String,  _
+                    ByVal Original_PERNRQ As Integer,  _
+                    ByVal Original_PERNM As String,  _
+                    ByVal Original_PERTEL As String,  _
+                    ByVal Original_PERGSM As String,  _
+                    ByVal Original_PERGSMW As String,  _
+                    ByVal Original_usernrq As String,  _
+                    ByVal Original_chdate As Date,  _
+                    ByVal Original_tel As Integer,  _
+                    ByVal Original_PERSORT As String,  _
+                    ByVal Original_DIENST As Boolean,  _
+                    ByVal Original_PERICE As String,  _
+                    ByVal Original_PERDTID As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PERDTCT As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PERDTUD As Global.System.Nullable(Of Date),  _
+                    ByVal Original_BEDIENDE As Boolean,  _
+                    ByVal Original_PERSORTLONG As String,  _
+                    ByVal PERNRQ As Integer) As Integer
+            If (PERNM Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERNM")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(PERNM,String)
+            End If
+            If (PERTEL Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERTEL")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(PERTEL,String)
+            End If
+            If (PERGSM Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERGSM")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(PERGSM,String)
+            End If
+            If (PERGSMW Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERGSMW")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(PERGSMW,String)
+            End If
+            If (usernrq Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("usernrq")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(usernrq,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(chdate,Date)
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(tel,Integer)
+            If (PERSORT Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERSORT")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(PERSORT,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(8).Value = CType(DIENST,Boolean)
+            If (PERICE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(PERICE,String)
+            End If
+            If (PERDTID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(PERDTID.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (PERDTCT.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(PERDTCT.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            If (PERDTUD.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(PERDTUD.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(BEDIENDE,Boolean)
+            If (PERSORTLONG Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PERSORTLONG")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(PERSORTLONG,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_PERNRQ,Integer)
+            If (Original_PERNM Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERNM")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_PERNM,String)
+            End If
+            If (Original_PERTEL Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERTEL")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_PERTEL,String)
+            End If
+            If (Original_PERGSM Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERGSM")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_PERGSM,String)
+            End If
+            If (Original_PERGSMW Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERGSMW")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(Original_PERGSMW,String)
+            End If
+            If (Original_usernrq Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_usernrq")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_usernrq,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_chdate,Date)
+            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_tel,Integer)
+            If (Original_PERSORT Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERSORT")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_PERSORT,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_DIENST,Boolean)
+            If (Original_PERICE Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_PERICE,String)
+            End If
+            If (Original_PERDTID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_PERDTID.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PERDTCT.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_PERDTCT.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
+            End If
+            If (Original_PERDTUD.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(0,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(Original_PERDTUD.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(32).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_BEDIENDE,Boolean)
+            If (Original_PERSORTLONG Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("Original_PERSORTLONG")
+            Else
+                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(Original_PERSORTLONG,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(35).Value = CType(PERNRQ,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal PERNM As String,  _
+                    ByVal PERTEL As String,  _
+                    ByVal PERGSM As String,  _
+                    ByVal PERGSMW As String,  _
+                    ByVal usernrq As String,  _
+                    ByVal chdate As Date,  _
+                    ByVal tel As Integer,  _
+                    ByVal PERSORT As String,  _
+                    ByVal DIENST As Boolean,  _
+                    ByVal PERICE As String,  _
+                    ByVal PERDTID As Global.System.Nullable(Of Date),  _
+                    ByVal PERDTCT As Global.System.Nullable(Of Date),  _
+                    ByVal PERDTUD As Global.System.Nullable(Of Date),  _
+                    ByVal BEDIENDE As Boolean,  _
+                    ByVal PERSORTLONG As String,  _
+                    ByVal Original_PERNRQ As Integer,  _
+                    ByVal Original_PERNM As String,  _
+                    ByVal Original_PERTEL As String,  _
+                    ByVal Original_PERGSM As String,  _
+                    ByVal Original_PERGSMW As String,  _
+                    ByVal Original_usernrq As String,  _
+                    ByVal Original_chdate As Date,  _
+                    ByVal Original_tel As Integer,  _
+                    ByVal Original_PERSORT As String,  _
+                    ByVal Original_DIENST As Boolean,  _
+                    ByVal Original_PERICE As String,  _
+                    ByVal Original_PERDTID As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PERDTCT As Global.System.Nullable(Of Date),  _
+                    ByVal Original_PERDTUD As Global.System.Nullable(Of Date),  _
+                    ByVal Original_BEDIENDE As Boolean,  _
+                    ByVal Original_PERSORTLONG As String) As Integer
+            Return Me.Update(PERNM, PERTEL, PERGSM, PERGSMW, usernrq, chdate, tel, PERSORT, DIENST, PERICE, PERDTID, PERDTCT, PERDTUD, BEDIENDE, PERSORTLONG, Original_PERNRQ, Original_PERNM, Original_PERTEL, Original_PERGSM, Original_PERGSMW, Original_usernrq, Original_chdate, Original_tel, Original_PERSORT, Original_DIENST, Original_PERICE, Original_PERDTID, Original_PERDTCT, Original_PERDTUD, Original_BEDIENDE, Original_PERSORTLONG, Original_PERNRQ)
+        End Function
+    End Class
+    
+    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -48480,8 +48904,6 @@ Namespace BONDataSetTableAdapters
         
         Private _parameterTableAdapter As ParameterTableAdapter
         
-        Private _pERTableAdapter As PERTableAdapter
-        
         Private _postTableAdapter As PostTableAdapter
         
         Private _reportTableAdapter As ReportTableAdapter
@@ -48525,6 +48947,8 @@ Namespace BONDataSetTableAdapters
         Private _uSERSTableAdapter As USERSTableAdapter
         
         Private _aFTableAdapter As AFTableAdapter
+        
+        Private _pERTableAdapter As PERTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -48776,20 +49200,6 @@ Namespace BONDataSetTableAdapters
             End Get
             Set
                 Me._parameterTableAdapter = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
-         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
-            "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property PERTableAdapter() As PERTableAdapter
-            Get
-                Return Me._pERTableAdapter
-            End Get
-            Set
-                Me._pERTableAdapter = value
             End Set
         End Property
         
@@ -49102,6 +49512,20 @@ Namespace BONDataSetTableAdapters
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
+            "a", "System.Drawing.Design.UITypeEditor")>  _
+        Public Property PERTableAdapter() As PERTableAdapter
+            Get
+                Return Me._pERTableAdapter
+            End Get
+            Set
+                Me._pERTableAdapter = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property BackupDataSetBeforeUpdate() As Boolean
             Get
@@ -49187,10 +49611,6 @@ Namespace BONDataSetTableAdapters
                 If ((Not (Me._parameterTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._parameterTableAdapter.Connection) Is Nothing)) Then
                     Return Me._parameterTableAdapter.Connection
-                End If
-                If ((Not (Me._pERTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._pERTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._pERTableAdapter.Connection
                 End If
                 If ((Not (Me._postTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._postTableAdapter.Connection) Is Nothing)) Then
@@ -49280,6 +49700,10 @@ Namespace BONDataSetTableAdapters
                             AndAlso (Not (Me._aFTableAdapter.Connection) Is Nothing)) Then
                     Return Me._aFTableAdapter.Connection
                 End If
+                If ((Not (Me._pERTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._pERTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._pERTableAdapter.Connection
+                End If
                 Return Nothing
             End Get
             Set
@@ -49342,9 +49766,6 @@ Namespace BONDataSetTableAdapters
                     count = (count + 1)
                 End If
                 If (Not (Me._parameterTableAdapter) Is Nothing) Then
-                    count = (count + 1)
-                End If
-                If (Not (Me._pERTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 If (Not (Me._postTableAdapter) Is Nothing) Then
@@ -49413,6 +49834,9 @@ Namespace BONDataSetTableAdapters
                 If (Not (Me._aFTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
+                If (Not (Me._pERTableAdapter) Is Nothing) Then
+                    count = (count + 1)
+                End If
                 Return count
             End Get
         End Property
@@ -49430,15 +49854,6 @@ Namespace BONDataSetTableAdapters
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._aOmsTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._vERSIETableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.VERSIE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._vERSIETableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -49496,15 +49911,6 @@ Namespace BONDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._vCTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.VC.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._vCTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me._pRESTTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.PREST.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
@@ -49514,12 +49920,21 @@ Namespace BONDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._pTYPETableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.PTYPE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._vERSIETableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.VERSIE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._pTYPETableAdapter.Update(updatedRows))
+                    result = (result + Me._vERSIETableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._pSECTORTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.PSECTOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._pSECTORTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -49577,12 +49992,30 @@ Namespace BONDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._pSECTORTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.PSECTOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._uSERSTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.USERS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._pSECTORTableAdapter.Update(updatedRows))
+                    result = (result + Me._uSERSTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._pTYPETableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.PTYPE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._pTYPETableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._vCTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.VC.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._vCTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -49601,15 +50034,6 @@ Namespace BONDataSetTableAdapters
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._reportTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._postTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Post.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._postTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -49757,21 +50181,12 @@ Namespace BONDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._pERTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.PER.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._postTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Post.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._pERTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._uSERSTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.USERS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._uSERSTableAdapter.Update(updatedRows))
+                    result = (result + Me._postTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -49781,6 +50196,15 @@ Namespace BONDataSetTableAdapters
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me._aFTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
+            If (Not (Me._pERTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.PER.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._pERTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -49799,14 +50223,6 @@ Namespace BONDataSetTableAdapters
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me._aOmsTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._vERSIETableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.VERSIE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._vERSIETableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -49858,14 +50274,6 @@ Namespace BONDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._vCTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.VC.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._vCTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._pRESTTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.PREST.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
@@ -49874,11 +50282,19 @@ Namespace BONDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._pTYPETableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.PTYPE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._vERSIETableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.VERSIE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._pTYPETableAdapter.Update(addedRows))
+                    result = (result + Me._vERSIETableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._pSECTORTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.PSECTOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._pSECTORTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -49930,11 +50346,27 @@ Namespace BONDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._pSECTORTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.PSECTOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._uSERSTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.USERS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._pSECTORTableAdapter.Update(addedRows))
+                    result = (result + Me._uSERSTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._pTYPETableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.PTYPE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._pTYPETableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._vCTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.VC.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._vCTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -49951,14 +50383,6 @@ Namespace BONDataSetTableAdapters
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me._reportTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._postTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Post.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._postTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -50090,19 +50514,11 @@ Namespace BONDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._pERTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.PER.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._postTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.Post.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._pERTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._uSERSTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.USERS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._uSERSTableAdapter.Update(addedRows))
+                    result = (result + Me._postTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -50111,6 +50527,14 @@ Namespace BONDataSetTableAdapters
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me._aFTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
+            If (Not (Me._pERTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.PER.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._pERTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -50124,6 +50548,14 @@ Namespace BONDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As BONDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._pERTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.PER.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._pERTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
             If (Not (Me._aFTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.AF.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -50132,19 +50564,11 @@ Namespace BONDataSetTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._uSERSTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.USERS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._postTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Post.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._uSERSTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._pERTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.PER.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._pERTableAdapter.Update(deletedRows))
+                    result = (result + Me._postTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -50276,14 +50700,6 @@ Namespace BONDataSetTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._postTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Post.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._postTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             If (Not (Me._reportTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.Report.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -50300,11 +50716,27 @@ Namespace BONDataSetTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._pSECTORTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.PSECTOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._vCTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.VC.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._pSECTORTableAdapter.Update(deletedRows))
+                    result = (result + Me._vCTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._pTYPETableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.PTYPE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._pTYPETableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._uSERSTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.USERS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._uSERSTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -50356,11 +50788,19 @@ Namespace BONDataSetTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._pTYPETableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.PTYPE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._pSECTORTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.PSECTOR.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._pTYPETableAdapter.Update(deletedRows))
+                    result = (result + Me._pSECTORTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._vERSIETableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.VERSIE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._vERSIETableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -50369,14 +50809,6 @@ Namespace BONDataSetTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._pRESTTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._vCTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.VC.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._vCTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -50425,14 +50857,6 @@ Namespace BONDataSetTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._vERSIEGTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._vERSIETableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.VERSIE.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._vERSIETableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -50570,11 +50994,6 @@ Namespace BONDataSetTableAdapters
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._pERTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._pERTableAdapter.Connection) = false)) Then
-                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
-                        "tring.")
-            End If
             If ((Not (Me._postTableAdapter) Is Nothing)  _
                         AndAlso (Me.MatchTableAdapterConnection(Me._postTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
@@ -50682,6 +51101,11 @@ Namespace BONDataSetTableAdapters
             End If
             If ((Not (Me._aFTableAdapter) Is Nothing)  _
                         AndAlso (Me.MatchTableAdapterConnection(Me._aFTableAdapter.Connection) = false)) Then
+                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
+                        "tring.")
+            End If
+            If ((Not (Me._pERTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._pERTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -50868,15 +51292,6 @@ Namespace BONDataSetTableAdapters
                     If Me._parameterTableAdapter.Adapter.AcceptChangesDuringUpdate Then
                         Me._parameterTableAdapter.Adapter.AcceptChangesDuringUpdate = false
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._parameterTableAdapter.Adapter)
-                    End If
-                End If
-                If (Not (Me._pERTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._pERTableAdapter, Me._pERTableAdapter.Connection)
-                    Me._pERTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me._pERTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me._pERTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._pERTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._pERTableAdapter.Adapter)
                     End If
                 End If
                 If (Not (Me._postTableAdapter) Is Nothing) Then
@@ -51077,6 +51492,15 @@ Namespace BONDataSetTableAdapters
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._aFTableAdapter.Adapter)
                     End If
                 End If
+                If (Not (Me._pERTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._pERTableAdapter, Me._pERTableAdapter.Connection)
+                    Me._pERTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._pERTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._pERTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._pERTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._pERTableAdapter.Adapter)
+                    End If
+                End If
                 '
                 '---- Perform updates -----------
                 '
@@ -51205,10 +51629,6 @@ Namespace BONDataSetTableAdapters
                     Me._parameterTableAdapter.Connection = CType(revertConnections(Me._parameterTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._parameterTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._pERTableAdapter) Is Nothing) Then
-                    Me._pERTableAdapter.Connection = CType(revertConnections(Me._pERTableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me._pERTableAdapter.Transaction = Nothing
-                End If
                 If (Not (Me._postTableAdapter) Is Nothing) Then
                     Me._postTableAdapter.Connection = CType(revertConnections(Me._postTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._postTableAdapter.Transaction = Nothing
@@ -51296,6 +51716,10 @@ Namespace BONDataSetTableAdapters
                 If (Not (Me._aFTableAdapter) Is Nothing) Then
                     Me._aFTableAdapter.Connection = CType(revertConnections(Me._aFTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._aFTableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._pERTableAdapter) Is Nothing) Then
+                    Me._pERTableAdapter.Connection = CType(revertConnections(Me._pERTableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._pERTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

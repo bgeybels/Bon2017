@@ -50,7 +50,8 @@ Public Class EditPER
 
         Dim oldpernm As String = updaterec.PERNM
         updaterec.PERNM = TBpernm.Text
-        updaterec.PERSORT = TBpersort.Text
+        updaterec.PERSORTLONG = TBpersort.Text
+        updaterec.PERSORT = ""
         updaterec.PERTEL = TBpertel.Text
         updaterec.PERGSM = TBpergsm.Text
         updaterec.PERICE = TBperice.Text
@@ -83,7 +84,8 @@ Public Class EditPER
               .PERGSM = TBpergsm.Text,
               .PERICE = TBperice.Text,
               .PERGSMW = TBpergsmw.Text,
-              .PERSORT = TBpersort.Text,
+              .PERSORT = "",
+              .PERSORTLONG = TBpersort.Text,
               .DIENST = CBdienst.Checked,
               .BEDIENDE = CBbediende.Checked,
               .PERDTID = DTPperdtid.Value,
@@ -118,7 +120,7 @@ Public Class EditPER
         '  Next
 
         TBpersort.BackColor = boxcolor
-        If Len(TBpersort.Text) > 3 Then
+        If Len(TBpersort.Text) > 10 Then
             TBpersort.BackColor = boxcolorerror
             AllOK = False
         End If
@@ -141,7 +143,7 @@ Public Class EditPER
             Else
                 TBpernm.Text = rec.PERNM
                 TBpertel.Text = rec.tel
-                TBpersort.Text = rec.persort
+                TBpersort.Text = rec.persortlong
                 TBpertel.Text = rec.pertel
                 TBpergsm.Text = rec.pergsm
                 TBperice.Text = rec.perice

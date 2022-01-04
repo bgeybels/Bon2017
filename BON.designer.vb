@@ -157,12 +157,6 @@ Partial Public Class BONDataContext
     End Sub
   Partial Private Sub DeletePTYPE(instance As PTYPE)
     End Sub
-  Partial Private Sub InsertPER(instance As PER)
-    End Sub
-  Partial Private Sub UpdatePER(instance As PER)
-    End Sub
-  Partial Private Sub DeletePER(instance As PER)
-    End Sub
   Partial Private Sub InsertPREST(instance As PREST)
     End Sub
   Partial Private Sub UpdatePREST(instance As PREST)
@@ -216,6 +210,12 @@ Partial Public Class BONDataContext
   Partial Private Sub UpdateAF(instance As AF)
     End Sub
   Partial Private Sub DeleteAF(instance As AF)
+    End Sub
+  Partial Private Sub InsertPER(instance As PER)
+    End Sub
+  Partial Private Sub UpdatePER(instance As PER)
+    End Sub
+  Partial Private Sub DeletePER(instance As PER)
     End Sub
   #End Region
 	
@@ -376,12 +376,6 @@ Partial Public Class BONDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property PERs() As System.Data.Linq.Table(Of PER)
-		Get
-			Return Me.GetTable(Of PER)
-		End Get
-	End Property
-	
 	Public ReadOnly Property PRESTs() As System.Data.Linq.Table(Of PREST)
 		Get
 			Return Me.GetTable(Of PREST)
@@ -433,6 +427,12 @@ Partial Public Class BONDataContext
 	Public ReadOnly Property AFs() As System.Data.Linq.Table(Of AF)
 		Get
 			Return Me.GetTable(Of AF)
+		End Get
+	End Property
+	
+	Public ReadOnly Property PERs() As System.Data.Linq.Table(Of PER)
+		Get
+			Return Me.GetTable(Of PER)
 		End Get
 	End Property
 End Class
@@ -6588,380 +6588,6 @@ Partial Public Class PTYPE
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.PER")>  _
-Partial Public Class PER
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _PERNRQ As Integer
-	
-	Private _PERNM As String
-	
-	Private _PERTEL As String
-	
-	Private _PERGSM As String
-	
-	Private _PERGSMW As String
-	
-	Private _usernrq As String
-	
-	Private _chdate As Date
-	
-	Private _tel As Integer
-	
-	Private _PERSORT As String
-	
-	Private _DIENST As Boolean
-	
-	Private _PERICE As String
-	
-	Private _PERDTID As System.Nullable(Of Date)
-	
-	Private _PERDTCT As System.Nullable(Of Date)
-	
-	Private _PERDTUD As System.Nullable(Of Date)
-	
-	Private _BEDIENDE As Boolean
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnPERNRQChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnPERNRQChanged()
-    End Sub
-    Partial Private Sub OnPERNMChanging(value As String)
-    End Sub
-    Partial Private Sub OnPERNMChanged()
-    End Sub
-    Partial Private Sub OnPERTELChanging(value As String)
-    End Sub
-    Partial Private Sub OnPERTELChanged()
-    End Sub
-    Partial Private Sub OnPERGSMChanging(value As String)
-    End Sub
-    Partial Private Sub OnPERGSMChanged()
-    End Sub
-    Partial Private Sub OnPERGSMWChanging(value As String)
-    End Sub
-    Partial Private Sub OnPERGSMWChanged()
-    End Sub
-    Partial Private Sub OnusernrqChanging(value As String)
-    End Sub
-    Partial Private Sub OnusernrqChanged()
-    End Sub
-    Partial Private Sub OnchdateChanging(value As Date)
-    End Sub
-    Partial Private Sub OnchdateChanged()
-    End Sub
-    Partial Private Sub OntelChanging(value As Integer)
-    End Sub
-    Partial Private Sub OntelChanged()
-    End Sub
-    Partial Private Sub OnPERSORTChanging(value As String)
-    End Sub
-    Partial Private Sub OnPERSORTChanged()
-    End Sub
-    Partial Private Sub OnDIENSTChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnDIENSTChanged()
-    End Sub
-    Partial Private Sub OnPERICEChanging(value As String)
-    End Sub
-    Partial Private Sub OnPERICEChanged()
-    End Sub
-    Partial Private Sub OnPERDTIDChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnPERDTIDChanged()
-    End Sub
-    Partial Private Sub OnPERDTCTChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnPERDTCTChanged()
-    End Sub
-    Partial Private Sub OnPERDTUDChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnPERDTUDChanged()
-    End Sub
-    Partial Private Sub OnBEDIENDEChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnBEDIENDEChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERNRQ", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property PERNRQ() As Integer
-		Get
-			Return Me._PERNRQ
-		End Get
-		Set
-			If ((Me._PERNRQ = value)  _
-						= false) Then
-				Me.OnPERNRQChanging(value)
-				Me.SendPropertyChanging
-				Me._PERNRQ = value
-				Me.SendPropertyChanged("PERNRQ")
-				Me.OnPERNRQChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERNM", DbType:="NVarChar(100) NOT NULL", CanBeNull:=false)>  _
-	Public Property PERNM() As String
-		Get
-			Return Me._PERNM
-		End Get
-		Set
-			If (String.Equals(Me._PERNM, value) = false) Then
-				Me.OnPERNMChanging(value)
-				Me.SendPropertyChanging
-				Me._PERNM = value
-				Me.SendPropertyChanged("PERNM")
-				Me.OnPERNMChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERTEL", DbType:="NVarChar(20) NOT NULL", CanBeNull:=false)>  _
-	Public Property PERTEL() As String
-		Get
-			Return Me._PERTEL
-		End Get
-		Set
-			If (String.Equals(Me._PERTEL, value) = false) Then
-				Me.OnPERTELChanging(value)
-				Me.SendPropertyChanging
-				Me._PERTEL = value
-				Me.SendPropertyChanged("PERTEL")
-				Me.OnPERTELChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERGSM", DbType:="NVarChar(20) NOT NULL", CanBeNull:=false)>  _
-	Public Property PERGSM() As String
-		Get
-			Return Me._PERGSM
-		End Get
-		Set
-			If (String.Equals(Me._PERGSM, value) = false) Then
-				Me.OnPERGSMChanging(value)
-				Me.SendPropertyChanging
-				Me._PERGSM = value
-				Me.SendPropertyChanged("PERGSM")
-				Me.OnPERGSMChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERGSMW", DbType:="NVarChar(20) NOT NULL", CanBeNull:=false)>  _
-	Public Property PERGSMW() As String
-		Get
-			Return Me._PERGSMW
-		End Get
-		Set
-			If (String.Equals(Me._PERGSMW, value) = false) Then
-				Me.OnPERGSMWChanging(value)
-				Me.SendPropertyChanging
-				Me._PERGSMW = value
-				Me.SendPropertyChanged("PERGSMW")
-				Me.OnPERGSMWChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_usernrq", DbType:="NVarChar(10) NOT NULL", CanBeNull:=false)>  _
-	Public Property usernrq() As String
-		Get
-			Return Me._usernrq
-		End Get
-		Set
-			If (String.Equals(Me._usernrq, value) = false) Then
-				Me.OnusernrqChanging(value)
-				Me.SendPropertyChanging
-				Me._usernrq = value
-				Me.SendPropertyChanged("usernrq")
-				Me.OnusernrqChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chdate", DbType:="DateTime NOT NULL")>  _
-	Public Property chdate() As Date
-		Get
-			Return Me._chdate
-		End Get
-		Set
-			If ((Me._chdate = value)  _
-						= false) Then
-				Me.OnchdateChanging(value)
-				Me.SendPropertyChanging
-				Me._chdate = value
-				Me.SendPropertyChanged("chdate")
-				Me.OnchdateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_tel", DbType:="Int NOT NULL")>  _
-	Public Property tel() As Integer
-		Get
-			Return Me._tel
-		End Get
-		Set
-			If ((Me._tel = value)  _
-						= false) Then
-				Me.OntelChanging(value)
-				Me.SendPropertyChanging
-				Me._tel = value
-				Me.SendPropertyChanged("tel")
-				Me.OntelChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERSORT", DbType:="NVarChar(3) NOT NULL", CanBeNull:=false)>  _
-	Public Property PERSORT() As String
-		Get
-			Return Me._PERSORT
-		End Get
-		Set
-			If (String.Equals(Me._PERSORT, value) = false) Then
-				Me.OnPERSORTChanging(value)
-				Me.SendPropertyChanging
-				Me._PERSORT = value
-				Me.SendPropertyChanged("PERSORT")
-				Me.OnPERSORTChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DIENST", DbType:="Bit NOT NULL")>  _
-	Public Property DIENST() As Boolean
-		Get
-			Return Me._DIENST
-		End Get
-		Set
-			If ((Me._DIENST = value)  _
-						= false) Then
-				Me.OnDIENSTChanging(value)
-				Me.SendPropertyChanging
-				Me._DIENST = value
-				Me.SendPropertyChanged("DIENST")
-				Me.OnDIENSTChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERICE", DbType:="VarChar(20)")>  _
-	Public Property PERICE() As String
-		Get
-			Return Me._PERICE
-		End Get
-		Set
-			If (String.Equals(Me._PERICE, value) = false) Then
-				Me.OnPERICEChanging(value)
-				Me.SendPropertyChanging
-				Me._PERICE = value
-				Me.SendPropertyChanged("PERICE")
-				Me.OnPERICEChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERDTID", DbType:="DateTime")>  _
-	Public Property PERDTID() As System.Nullable(Of Date)
-		Get
-			Return Me._PERDTID
-		End Get
-		Set
-			If (Me._PERDTID.Equals(value) = false) Then
-				Me.OnPERDTIDChanging(value)
-				Me.SendPropertyChanging
-				Me._PERDTID = value
-				Me.SendPropertyChanged("PERDTID")
-				Me.OnPERDTIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERDTCT", DbType:="DateTime")>  _
-	Public Property PERDTCT() As System.Nullable(Of Date)
-		Get
-			Return Me._PERDTCT
-		End Get
-		Set
-			If (Me._PERDTCT.Equals(value) = false) Then
-				Me.OnPERDTCTChanging(value)
-				Me.SendPropertyChanging
-				Me._PERDTCT = value
-				Me.SendPropertyChanged("PERDTCT")
-				Me.OnPERDTCTChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERDTUD", DbType:="DateTime")>  _
-	Public Property PERDTUD() As System.Nullable(Of Date)
-		Get
-			Return Me._PERDTUD
-		End Get
-		Set
-			If (Me._PERDTUD.Equals(value) = false) Then
-				Me.OnPERDTUDChanging(value)
-				Me.SendPropertyChanging
-				Me._PERDTUD = value
-				Me.SendPropertyChanged("PERDTUD")
-				Me.OnPERDTUDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BEDIENDE", DbType:="Bit NOT NULL")>  _
-	Public Property BEDIENDE() As Boolean
-		Get
-			Return Me._BEDIENDE
-		End Get
-		Set
-			If ((Me._BEDIENDE = value)  _
-						= false) Then
-				Me.OnBEDIENDEChanging(value)
-				Me.SendPropertyChanging
-				Me._BEDIENDE = value
-				Me.SendPropertyChanged("BEDIENDE")
-				Me.OnBEDIENDEChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.PREST")>  _
 Partial Public Class PREST
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -10295,6 +9921,402 @@ Partial Public Class AF
 				Me._DATECRE = value
 				Me.SendPropertyChanged("DATECRE")
 				Me.OnDATECREChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.PER")>  _
+Partial Public Class PER
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _PERNRQ As Integer
+	
+	Private _PERNM As String
+	
+	Private _PERTEL As String
+	
+	Private _PERGSM As String
+	
+	Private _PERGSMW As String
+	
+	Private _usernrq As String
+	
+	Private _chdate As Date
+	
+	Private _tel As Integer
+	
+	Private _PERSORT As String
+	
+	Private _DIENST As Boolean
+	
+	Private _PERICE As String
+	
+	Private _PERDTID As System.Nullable(Of Date)
+	
+	Private _PERDTCT As System.Nullable(Of Date)
+	
+	Private _PERDTUD As System.Nullable(Of Date)
+	
+	Private _BEDIENDE As Boolean
+	
+	Private _PERSORTLONG As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnPERNRQChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnPERNRQChanged()
+    End Sub
+    Partial Private Sub OnPERNMChanging(value As String)
+    End Sub
+    Partial Private Sub OnPERNMChanged()
+    End Sub
+    Partial Private Sub OnPERTELChanging(value As String)
+    End Sub
+    Partial Private Sub OnPERTELChanged()
+    End Sub
+    Partial Private Sub OnPERGSMChanging(value As String)
+    End Sub
+    Partial Private Sub OnPERGSMChanged()
+    End Sub
+    Partial Private Sub OnPERGSMWChanging(value As String)
+    End Sub
+    Partial Private Sub OnPERGSMWChanged()
+    End Sub
+    Partial Private Sub OnusernrqChanging(value As String)
+    End Sub
+    Partial Private Sub OnusernrqChanged()
+    End Sub
+    Partial Private Sub OnchdateChanging(value As Date)
+    End Sub
+    Partial Private Sub OnchdateChanged()
+    End Sub
+    Partial Private Sub OntelChanging(value As Integer)
+    End Sub
+    Partial Private Sub OntelChanged()
+    End Sub
+    Partial Private Sub OnPERSORTChanging(value As String)
+    End Sub
+    Partial Private Sub OnPERSORTChanged()
+    End Sub
+    Partial Private Sub OnDIENSTChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnDIENSTChanged()
+    End Sub
+    Partial Private Sub OnPERICEChanging(value As String)
+    End Sub
+    Partial Private Sub OnPERICEChanged()
+    End Sub
+    Partial Private Sub OnPERDTIDChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnPERDTIDChanged()
+    End Sub
+    Partial Private Sub OnPERDTCTChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnPERDTCTChanged()
+    End Sub
+    Partial Private Sub OnPERDTUDChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnPERDTUDChanged()
+    End Sub
+    Partial Private Sub OnBEDIENDEChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnBEDIENDEChanged()
+    End Sub
+    Partial Private Sub OnPERSORTLONGChanging(value As String)
+    End Sub
+    Partial Private Sub OnPERSORTLONGChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERNRQ", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property PERNRQ() As Integer
+		Get
+			Return Me._PERNRQ
+		End Get
+		Set
+			If ((Me._PERNRQ = value)  _
+						= false) Then
+				Me.OnPERNRQChanging(value)
+				Me.SendPropertyChanging
+				Me._PERNRQ = value
+				Me.SendPropertyChanged("PERNRQ")
+				Me.OnPERNRQChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERNM", DbType:="NVarChar(100) NOT NULL", CanBeNull:=false)>  _
+	Public Property PERNM() As String
+		Get
+			Return Me._PERNM
+		End Get
+		Set
+			If (String.Equals(Me._PERNM, value) = false) Then
+				Me.OnPERNMChanging(value)
+				Me.SendPropertyChanging
+				Me._PERNM = value
+				Me.SendPropertyChanged("PERNM")
+				Me.OnPERNMChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERTEL", DbType:="NVarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property PERTEL() As String
+		Get
+			Return Me._PERTEL
+		End Get
+		Set
+			If (String.Equals(Me._PERTEL, value) = false) Then
+				Me.OnPERTELChanging(value)
+				Me.SendPropertyChanging
+				Me._PERTEL = value
+				Me.SendPropertyChanged("PERTEL")
+				Me.OnPERTELChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERGSM", DbType:="NVarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property PERGSM() As String
+		Get
+			Return Me._PERGSM
+		End Get
+		Set
+			If (String.Equals(Me._PERGSM, value) = false) Then
+				Me.OnPERGSMChanging(value)
+				Me.SendPropertyChanging
+				Me._PERGSM = value
+				Me.SendPropertyChanged("PERGSM")
+				Me.OnPERGSMChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERGSMW", DbType:="NVarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property PERGSMW() As String
+		Get
+			Return Me._PERGSMW
+		End Get
+		Set
+			If (String.Equals(Me._PERGSMW, value) = false) Then
+				Me.OnPERGSMWChanging(value)
+				Me.SendPropertyChanging
+				Me._PERGSMW = value
+				Me.SendPropertyChanged("PERGSMW")
+				Me.OnPERGSMWChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_usernrq", DbType:="NVarChar(10) NOT NULL", CanBeNull:=false)>  _
+	Public Property usernrq() As String
+		Get
+			Return Me._usernrq
+		End Get
+		Set
+			If (String.Equals(Me._usernrq, value) = false) Then
+				Me.OnusernrqChanging(value)
+				Me.SendPropertyChanging
+				Me._usernrq = value
+				Me.SendPropertyChanged("usernrq")
+				Me.OnusernrqChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_chdate", DbType:="DateTime NOT NULL")>  _
+	Public Property chdate() As Date
+		Get
+			Return Me._chdate
+		End Get
+		Set
+			If ((Me._chdate = value)  _
+						= false) Then
+				Me.OnchdateChanging(value)
+				Me.SendPropertyChanging
+				Me._chdate = value
+				Me.SendPropertyChanged("chdate")
+				Me.OnchdateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_tel", DbType:="Int NOT NULL")>  _
+	Public Property tel() As Integer
+		Get
+			Return Me._tel
+		End Get
+		Set
+			If ((Me._tel = value)  _
+						= false) Then
+				Me.OntelChanging(value)
+				Me.SendPropertyChanging
+				Me._tel = value
+				Me.SendPropertyChanged("tel")
+				Me.OntelChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERSORT", DbType:="NVarChar(3) NOT NULL", CanBeNull:=false)>  _
+	Public Property PERSORT() As String
+		Get
+			Return Me._PERSORT
+		End Get
+		Set
+			If (String.Equals(Me._PERSORT, value) = false) Then
+				Me.OnPERSORTChanging(value)
+				Me.SendPropertyChanging
+				Me._PERSORT = value
+				Me.SendPropertyChanged("PERSORT")
+				Me.OnPERSORTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DIENST", DbType:="Bit NOT NULL")>  _
+	Public Property DIENST() As Boolean
+		Get
+			Return Me._DIENST
+		End Get
+		Set
+			If ((Me._DIENST = value)  _
+						= false) Then
+				Me.OnDIENSTChanging(value)
+				Me.SendPropertyChanging
+				Me._DIENST = value
+				Me.SendPropertyChanged("DIENST")
+				Me.OnDIENSTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERICE", DbType:="VarChar(20)")>  _
+	Public Property PERICE() As String
+		Get
+			Return Me._PERICE
+		End Get
+		Set
+			If (String.Equals(Me._PERICE, value) = false) Then
+				Me.OnPERICEChanging(value)
+				Me.SendPropertyChanging
+				Me._PERICE = value
+				Me.SendPropertyChanged("PERICE")
+				Me.OnPERICEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERDTID", DbType:="DateTime")>  _
+	Public Property PERDTID() As System.Nullable(Of Date)
+		Get
+			Return Me._PERDTID
+		End Get
+		Set
+			If (Me._PERDTID.Equals(value) = false) Then
+				Me.OnPERDTIDChanging(value)
+				Me.SendPropertyChanging
+				Me._PERDTID = value
+				Me.SendPropertyChanged("PERDTID")
+				Me.OnPERDTIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERDTCT", DbType:="DateTime")>  _
+	Public Property PERDTCT() As System.Nullable(Of Date)
+		Get
+			Return Me._PERDTCT
+		End Get
+		Set
+			If (Me._PERDTCT.Equals(value) = false) Then
+				Me.OnPERDTCTChanging(value)
+				Me.SendPropertyChanging
+				Me._PERDTCT = value
+				Me.SendPropertyChanged("PERDTCT")
+				Me.OnPERDTCTChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERDTUD", DbType:="DateTime")>  _
+	Public Property PERDTUD() As System.Nullable(Of Date)
+		Get
+			Return Me._PERDTUD
+		End Get
+		Set
+			If (Me._PERDTUD.Equals(value) = false) Then
+				Me.OnPERDTUDChanging(value)
+				Me.SendPropertyChanging
+				Me._PERDTUD = value
+				Me.SendPropertyChanged("PERDTUD")
+				Me.OnPERDTUDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BEDIENDE", DbType:="Bit NOT NULL")>  _
+	Public Property BEDIENDE() As Boolean
+		Get
+			Return Me._BEDIENDE
+		End Get
+		Set
+			If ((Me._BEDIENDE = value)  _
+						= false) Then
+				Me.OnBEDIENDEChanging(value)
+				Me.SendPropertyChanging
+				Me._BEDIENDE = value
+				Me.SendPropertyChanged("BEDIENDE")
+				Me.OnBEDIENDEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PERSORTLONG", DbType:="VarChar(20) NOT NULL", CanBeNull:=false)>  _
+	Public Property PERSORTLONG() As String
+		Get
+			Return Me._PERSORTLONG
+		End Get
+		Set
+			If (String.Equals(Me._PERSORTLONG, value) = false) Then
+				Me.OnPERSORTLONGChanging(value)
+				Me.SendPropertyChanging
+				Me._PERSORTLONG = value
+				Me.SendPropertyChanged("PERSORTLONG")
+				Me.OnPERSORTLONGChanged
 			End If
 		End Set
 	End Property

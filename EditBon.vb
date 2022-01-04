@@ -308,7 +308,7 @@ Public Class Editbon
     Private Sub TSBCopyBon_Click(sender As Object, e As EventArgs) Handles TSBCopyBon.Click
         ' Nieuwjaar = ToJaar
         Me.Cursor = System.Windows.Forms.Cursors.WaitCursor
-        If CopyBON(keybonjr) = False Then
+        If CopyBON(My.Settings.JaarCopy) = False Then
             Me.Cursor = System.Windows.Forms.Cursors.Default
             MsgBox("Kopieer Bon(lijnen) niet gelukt!")
             Exit Sub

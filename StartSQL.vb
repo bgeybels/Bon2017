@@ -259,6 +259,10 @@ Public Class StartSQL
         createAF()
     End Sub
 
+    Private Sub UpdatePERSSorteringToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdatePERSSorteringToolStripMenuItem.Click
+        updateperssort()
+    End Sub
+
     Private Sub UpdateTOTALSToolStripMenuItem_Click(sender As Object, e As EventArgs) 
         updatetotals()
     End Sub
@@ -387,6 +391,15 @@ Public Class StartSQL
         execPC(sqlTask)
 
         MsgBox("New Field PER added.")
+    End Sub
+
+    Private Sub updateperssort()
+        sqlTask = "ALTER TABLE PER ADD PERSORTLONG VARCHAR(20) Not NULL default '';"
+        execPC(sqlTask)
+        sqlTask = "UPDATE PER SET PER.PERSORTLONG=PER.PERSORT;"
+        execPC(sqlTask)
+
+        MsgBox("Sortering Personeel aangepast.")
     End Sub
 
     Private Sub CreatePrestaties()
